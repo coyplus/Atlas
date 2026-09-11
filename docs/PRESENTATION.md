@@ -68,7 +68,5 @@ The flywheel explains the reinforcing relationship hypothesis; the architecture
 explains how the bank delivers it. On phones, the circular flywheel becomes an
 ordered vertical loop with an explicit return to meaningful interactions.
 
-Presentation navigation uses the network when available, with the packaged deck
-as an offline fallback. This prevents an installed banking shell from pinning
-the online presentation to an older release. Existing older workers must first
-receive the app update; a fresh deployment URL bypasses their origin cache.
+The published site requires a server-side password. Offline application caching
+is retired so presentation and prototype navigation pass the access check.

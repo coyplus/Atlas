@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { resolve, extname } from 'node:path';
-test('an available release waits for consent, then saves and restarts', async ({
+test('old offline caches are retired without repeatedly reloading the app', async ({
   page,
   browserName,
 }) => {
@@ -17,9 +17,9 @@ test('an available release waits for consent, then saves and restarts', async ({
         return;
       }
       let content = await readFile(file);
-      if (pathname === '/sw.js' && revision === 2)
+      if (pathname === '/sw.js' && revision === 1)
         content = Buffer.from(
-          content.toString().replace(/atlas-([a-z0-9]+)/, 'atlas-$1-updatecheck'),
+          "self.addEventListener('install',()=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));",
         );
       const types: Record<string, string> = {
         '.js': 'text/javascript',
@@ -48,19 +48,33 @@ test('an available release waits for consent, then saves and restarts', async ({
     await page.locator('.welcome-scenarios [data-scenario="jordan"]').click();
     await expect(page.locator('.now-page')).toBeVisible();
     await page.evaluate(async () => {
+      await caches.open('atlas-old-test');
+      await navigator.serviceWorker.register('/sw.js');
       await navigator.serviceWorker.ready;
     });
-    await page.evaluate(() => window.atlas.dispatch('remove:container-ac-cc'));
+    await page.waitForFunction(() => !!navigator.serviceWorker.controller);
     revision = 2;
     await page.evaluate(async () => {
       await (await navigator.serviceWorker.getRegistration())!.update();
     });
-    await expect(page.locator('.update-notice')).toBeVisible();
-    await expect(page.locator('#content [data-module=container-ac-cc]')).toHaveCount(0);
-    await page.locator('.update-notice button').first().click();
-    await expect(page.locator('.update-notice')).toHaveCount(0);
+    await expect
+      .poll(() =>
+        page.evaluate(
+          async () => (await caches.keys()).filter((k) => k.startsWith('atlas-')).length,
+        ),
+      )
+      .toBe(0);
+    await expect
+      .poll(() =>
+        page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).length),
+      )
+      .toBe(0);
     await expect(page.locator('.now-page')).toBeVisible();
-    await expect(page.locator('#content [data-module=container-ac-cc]')).toHaveCount(0);
+    await page.reload();
+    await expect(page.locator('.now-page')).toBeVisible();
+    expect(
+      await page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).length),
+    ).toBe(0);
   } finally {
     await new Promise<void>((r) => server.close(() => r()));
   }

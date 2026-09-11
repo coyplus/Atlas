@@ -21,6 +21,7 @@
     "qr": "node scripts/qr.mjs"
   },
   "dependencies": {
+    "@vercel/functions": "^3.9.7",
     "html-react-parser": "5.2.17",
     "react": "19.3.0",
     "react-dom": "19.3.0"
