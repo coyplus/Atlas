@@ -95,10 +95,10 @@ inspection. Timeline marks are also a deliberate compact data-control exception.
 
 The three drawer stops are docked (a visible 44 px lip), timeline (Time Travel plus a
 What If preview), and expanded. Do not invent an intermediate stop per feature. Heights
-are measured from actual controls. On short screens the expanded drawer becomes one
-scroller, with the grip retained, so experiments cannot be stranded in a zero-height body.
-Opening or docking resets this outer scroll; Time Travel and selected experiments persist.
-On taller screens the timeline remains visible above the independent ideas scroller.
+are measured from actual controls. The expanded drawer uses one scroller for Time Travel, ideas and commitments on
+all phone sizes. The grip stays visible so the drawer can still be moved. The
+body has no separate vertical scroll area. Opening or docking resets the drawer
+scroll; Time Travel and selected experiments persist.
 
 Time Travel thumb, fill, date, age, projections and milestone positions derive from the
 same selected month. A scenario change resets them together. The filled track retains

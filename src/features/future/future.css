@@ -1729,8 +1729,7 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
   margin: 12px 0;
 }
 
-/* Short screens change the scroll model, never the reading size. The grip stays
-   available while the timeline and experiments share one scroll surface. */
+/* Short screens adjust spacing without shrinking the reading size. */
 .phone .future-studio[data-short='true'] .future-drawer-summary {
   padding-bottom: 8px;
 }
@@ -1740,18 +1739,19 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
 .phone .future-studio[data-short='true'] .future-time-track {
   margin-block: 0;
 }
-.phone .future-studio[data-short='true'][data-drawer='expanded'] .future-drawer {
+/* One scroll surface for the whole expanded drawer, on every phone. */
+.phone .future-studio[data-drawer='expanded'] .future-drawer {
   display: block;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: none;
 }
-.phone .future-studio[data-short='true'][data-drawer='expanded'] .future-drawer-grip {
+.phone .future-studio[data-drawer='expanded'] .future-drawer-grip {
   position: sticky;
   top: 0;
   z-index: 3;
   background: var(--canvas);
 }
-.phone .future-studio[data-short='true'][data-drawer='expanded'] .future-drawer-body {
+.phone .future-studio[data-drawer='expanded'] .future-drawer-body {
   overflow: visible;
 }
