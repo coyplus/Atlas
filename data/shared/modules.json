@@ -1,0 +1,339 @@
+{
+  "note": "Front-end vocabulary: the module catalogue (Convergence/08-component-contracts/02).",
+  "modules": [
+    {
+      "id": "balance",
+      "title": "Balance",
+      "category": "Spend",
+      "description": "The full number, when you want it",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "safespend",
+      "title": "Safe to spend",
+      "category": "Spend",
+      "description": "What\u2019s truly spendable, bills set aside",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "grocery",
+      "title": "Grocery spending",
+      "category": "Spend",
+      "description": "Spent this month across your accounts and pots",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "subs",
+      "title": "Subscriptions",
+      "category": "Spend",
+      "description": "Everything on repeat, in one number",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "points",
+      "title": "HSBC Points",
+      "category": "Rewards",
+      "description": "Earned for openness \u2014 never for spending",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "cashback",
+      "title": "Cashback",
+      "category": "Rewards",
+      "description": "Cashback from eligible card spending",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "safetydays",
+      "title": "Safety net",
+      "category": "Save",
+      "description": "How long your cushion would carry you",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "creditscore",
+      "title": "Credit score",
+      "category": "Spend",
+      "description": "Quietly monitored \u2014 soft checks only",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "holiday",
+      "title": "Next holiday",
+      "category": "Save",
+      "description": "Your next trip, becoming a date",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "housepot",
+      "title": "House pot",
+      "category": "Save",
+      "description": "A committed pot, with the rate your plan earned",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "wealth",
+      "title": "Total wealth",
+      "category": "Invest",
+      "description": "Everything, in one honest number",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "ratio",
+      "title": "Protected floor",
+      "category": "Invest",
+      "description": "The floor allocation in your investment plan",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "familypot",
+      "title": "Family pot",
+      "category": "Save",
+      "description": "A shared pot \u2014 everyone sees the receipts",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "activity",
+      "title": "Recent activity",
+      "category": null,
+      "description": null,
+      "sizes": "W"
+    },
+    {
+      "id": "dd",
+      "title": "Direct Debits",
+      "category": "Spend",
+      "description": "Every recurring commitment, in one number",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "efpot",
+      "title": "Emergency fund",
+      "category": "Save",
+      "description": "Your cushion \u2014 a pot you chose to watch",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "retpot",
+      "title": "Retirement",
+      "category": "Save",
+      "description": "The long game, quietly on course",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "goldenratio",
+      "title": "Golden Ratio",
+      "category": "Invest",
+      "description": "Explore investing beyond your essentials and safety net",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "rateswatch",
+      "title": "Rates watch",
+      "category": "Save",
+      "description": "A standing check that your rates stay honest",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "afterbills",
+      "title": "Left after bills",
+      "category": "Spend",
+      "description": "Balance minus the bills still to come",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "spent",
+      "title": "Spent this month",
+      "category": "Spend",
+      "description": "Your purchases this month",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "whereitgoes",
+      "title": "Where it goes",
+      "category": "Spend",
+      "description": "What the month\u2019s money did, by kind",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "freedom",
+      "title": "Freedom date",
+      "category": "Save",
+      "description": "The month your debt reaches zero",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "investments",
+      "title": "Investments",
+      "category": "Invest",
+      "description": "Your investments, allocation and long-term plans",
+      "sizes": "SWTF"
+    },
+    {
+      "id": "eatingout",
+      "title": "Eating out",
+      "category": "Spend",
+      "description": "Your eating-out purchases this month",
+      "sizes": [
+        "S",
+        "W",
+        "T",
+        "F"
+      ]
+    },
+    {
+      "id": "cardusage",
+      "title": "Credit used",
+      "category": "Spend",
+      "description": "Card balance as a share of your credit limit",
+      "sizes": [
+        "S",
+        "W",
+        "T",
+        "F"
+      ]
+    },
+    {
+      "id": "groceryrhythm",
+      "title": "Grocery rhythm",
+      "category": "Spend",
+      "description": "Months within your grocery spending line",
+      "sizes": [
+        "S",
+        "W",
+        "T",
+        "F"
+      ]
+    }
+  ],
+  "newPlanIntents": [
+    {
+      "id": "aside",
+      "icon": "i-wallet",
+      "t": "Set some money aside",
+      "s": "No target, no pressure \u2014 it just leaves the current account"
+    },
+    {
+      "id": "goal",
+      "icon": "i-target",
+      "t": "Save for something specific",
+      "s": "A thing, a number, a date"
+    },
+    {
+      "id": "grow",
+      "icon": "i-trend",
+      "t": "Grow it long-term",
+      "s": "Explore an investment plan with your own numbers"
+    },
+    {
+      "id": "together",
+      "icon": "i-users",
+      "t": "Do it with other people",
+      "s": "A pot everyone can see \u2014 receipts for all"
+    },
+    {
+      "id": "auto",
+      "icon": "i-zap",
+      "t": "Automate a good habit",
+      "s": "A rule that runs quietly and leaves receipts"
+    }
+  ],
+  "newPlanRecommendations": {
+    "aside": {
+      "title": "A simple pot",
+      "pt": "Set aside",
+      "target": null,
+      "rate": 50,
+      "icon": "wallet",
+      "copy": "Money that\u2019s decided to wait. <b>\u00a350 a month</b> moves itself \u2014 no target, no deadline, withdraw whenever. If it\u2019s still undecided in autumn, I\u2019ll ask again, gently."
+    },
+    "goal": {
+      "title": "A goal pot",
+      "pt": "New goal",
+      "target": 1000,
+      "rate": 100,
+      "icon": "target",
+      "copy": "A pot with a ring around it: <b>\u00a31,000</b>, fed <b>\u00a3100 a month</b>, reached in ten months. Name it what you like \u2014 change the target or the date any time, both free."
+    },
+    "grow": {
+      "title": "An investment pot",
+      "pt": "First investments",
+      "target": null,
+      "rate": 150,
+      "icon": "trend",
+      "grow": true,
+      "copy": "Start with <b>\u00a3150 a month</b> towards a long-term investment plan. Explore the projection and adjust the amount before you decide."
+    },
+    "together": {
+      "title": "A shared pot",
+      "pt": "Shared pot",
+      "target": 900,
+      "rate": 100,
+      "icon": "users",
+      "shared": true,
+      "copy": "One pot, several people, receipts for everyone. You choose who\u2019s in; each person\u2019s own money stays their own. Invites go out when you\u2019re ready."
+    }
+  },
+  "benefits": [
+    {
+      "id": "coach",
+      "t": "An hour with a financial coach",
+      "s": "A named human, your numbers, no product agenda",
+      "cost": 400,
+      "icon": "user"
+    },
+    {
+      "id": "boost",
+      "t": "Rate boost \u00b7 +0.25% on one pot",
+      "s": "Three months, on the pot you choose",
+      "cost": 300,
+      "icon": "trend"
+    },
+    {
+      "id": "fx",
+      "t": "Fee-free international transfers",
+      "s": "Three months, any currency",
+      "cost": 250,
+      "icon": "swap"
+    },
+    {
+      "id": "lounge",
+      "t": "Airport lounge pass",
+      "s": "Two guests \u00b7 Premier only",
+      "cost": 350,
+      "icon": "plane",
+      "premier": true
+    }
+  ],
+  "tiers": [
+    "Everyday",
+    "Premier",
+    "Premier Elite"
+  ],
+  "quiz": [
+    {
+      "q": "It\u2019s three days to payday and \u00a360 is left. What\u2019s your instinct?",
+      "o": [
+        "Fine \u2014 that\u2019s roughly the plan",
+        "Check what\u2019s due, then relax",
+        "How did that happen?"
+      ]
+    },
+    {
+      "q": "A windfall of \u00a3500 lands. First feeling?",
+      "o": [
+        "Park it before it burns a hole",
+        "Half sensible, half fun",
+        "Finally \u2014 breathing room"
+      ]
+    },
+    {
+      "q": "Money apps usually feel\u2026",
+      "o": [
+        "Useful but nagging",
+        "Fine in small doses",
+        "Like homework"
+      ]
+    }
+  ]
+}

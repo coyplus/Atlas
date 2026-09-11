@@ -1,0 +1,41 @@
+{
+ "hsbcPeople": [
+  {
+   "id": "priya",
+   "name": "Priya",
+   "role": "Relationship Manager",
+   "initials": "P",
+   "serves": [
+    "elena"
+   ],
+   "note": "Named contact for Premier customers; holds the quarterly review."
+  },
+  {
+   "id": "maya",
+   "name": "Maya",
+   "role": "HSBC Wealth adviser",
+   "initials": "M",
+   "serves": [
+    "elena"
+   ],
+   "note": "Signs rebalances inside the mandate Elena agreed."
+  },
+  {
+   "id": "human247",
+   "name": "A human, 24/7",
+   "role": "Support",
+   "initials": "H",
+   "serves": [
+    "alex",
+    "jordan",
+    "sam"
+   ],
+   "note": "Reachable from any conversation via 'A person, please'; context travels with the customer."
+  }
+ ],
+ "ai": {
+  "customerFacingName": "AI",
+  "internalComponentName": "Companion",
+  "ruling": "Data/04 §8.5 — no persona name, so it is never confused with a person."
+ }
+}

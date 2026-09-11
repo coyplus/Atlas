@@ -1,0 +1,938 @@
+/* Vanilla support system: stable overlay, independent scroll surfaces, no clipping transitions. */
+.agent-avatar {
+  width: 40px;
+  height: 40px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.agent-avatar.agent-ai {
+  border: 1.5px solid var(--red);
+  color: var(--red);
+  background: var(--surface);
+}
+.agent-avatar .icon {
+  width: 22px;
+  height: 22px;
+}
+.agent-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body[data-direction='vanilla'] .phone {
+  --support-ease: var(--ease-settle);
+  --support-height: 190px;
+}
+body[data-direction='vanilla'] .statusbar {
+  position: relative;
+  z-index: 21;
+}
+body[data-direction='vanilla'] .app-header {
+  position: relative;
+  z-index: 18;
+  background: var(--canvas);
+}
+body[data-direction='vanilla'] .has-modal .app-header {
+  visibility: hidden;
+}
+body[data-direction='vanilla'] #support-slot {
+  position: absolute;
+  top: var(--header-height, 94px);
+  left: 0;
+  right: 0;
+  z-index: 16;
+  pointer-events: none;
+  background: transparent;
+}
+body[data-direction='vanilla'] .support-dock {
+  padding: 8px var(--page) 18px;
+  overflow-anchor: none;
+  transition: padding var(--duration-surface) var(--ease-settle);
+  pointer-events: none;
+  background: transparent;
+}
+body[data-direction='vanilla'] .support-dock[hidden] {
+  display: none;
+}
+body[data-direction='vanilla'] .support-bar.ai-card {
+  margin: 0;
+  padding: 16px 18px;
+  border: 0;
+  border-radius: calc(var(--radius) + 6px);
+  background: var(--surface);
+  box-shadow: var(--elevation-companion);
+  transition:
+    padding var(--duration-surface) var(--ease-settle),
+    box-shadow var(--duration-surface) var(--ease-settle);
+  pointer-events: auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+body[data-direction='vanilla'] .support-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+}
+body[data-direction='vanilla'] .support-summary {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+body[data-direction='vanilla'] .support-copy {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+body[data-direction='vanilla'] .support-copy strong {
+  display: block;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.25px;
+  font-weight: 600;
+  transition: font-size var(--duration-surface) var(--ease-settle);
+}
+body[data-direction='vanilla'] .support-subtitle {
+  display: none;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body[data-direction='vanilla'] .support-avatar.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--red);
+  flex-shrink: 0;
+  border: 1.5px solid var(--red);
+  padding: 0;
+  background: var(--surface);
+}
+body[data-direction='vanilla'] .support-avatar .agent-avatar {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+body[data-direction='vanilla'] .support-avatar.is-person {
+  border: 0;
+}
+body[data-direction='vanilla'] .support-avatar.is-playing {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+body[data-direction='vanilla'] .support-reveal {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition:
+    grid-template-rows var(--duration-surface) var(--ease-settle),
+    opacity 160ms ease;
+}
+body[data-direction='vanilla'] .support-inner {
+  min-height: 0;
+  overflow: hidden;
+  visibility: visible;
+  transition: visibility 280ms;
+}
+body[data-direction='vanilla'] .support-message {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 12px 0 0;
+}
+body[data-direction='vanilla'] .support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  align-items: center;
+  margin-top: 12px;
+}
+body[data-direction='vanilla'] .support-actions .btn {
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 12px;
+}
+body[data-direction='vanilla'] .support-actions .text {
+  padding: 10px 0;
+  text-decoration: none;
+  color: var(--muted);
+}
+body[data-direction='vanilla'] .is-compact {
+  padding-top: 6px;
+  padding-bottom: 14px;
+}
+body[data-direction='vanilla'] .is-compact .support-bar {
+  padding: 10px 14px;
+  box-shadow: 0 10px 24px -10px #18212d45;
+}
+body[data-direction='vanilla'] .is-compact .support-copy strong {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body[data-direction='vanilla'] .is-compact .support-subtitle {
+  display: block;
+}
+body[data-direction='vanilla'] .is-compact .support-reveal {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+body[data-direction='vanilla'] .is-compact .support-inner {
+  visibility: hidden;
+}
+body[data-direction='vanilla'] .content {
+  padding-top: var(--support-height);
+  overflow-anchor: none;
+}
+body[data-direction='vanilla'] .recap-player {
+  padding-top: 10px;
+  cursor: auto;
+}
+body[data-direction='vanilla'] .recap-player[hidden] {
+  display: none;
+}
+body[data-direction='vanilla'] .recap-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+body[data-direction='vanilla'] #recap-progress {
+  min-width: 0;
+  flex: 1;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--red);
+  cursor: pointer;
+}
+body[data-direction='vanilla'] .recap-duration {
+  opacity: 0.7;
+}
+body[data-direction='vanilla'] .recap-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 2px;
+}
+body[data-direction='vanilla'] .recap-controls .icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: relative;
+}
+body[data-direction='vanilla'] .recap-controls .icon {
+  width: 20px;
+  height: 20px;
+}
+body[data-direction='vanilla'] .recap-controls [data-action='support:speed'] {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+body[data-direction='vanilla'] .recap-speed {
+  font-size: 9px;
+  line-height: 10px;
+}
+body[data-direction='vanilla'] .recap-date {
+  font-size: 10px;
+  color: var(--muted);
+  margin-left: auto;
+}
+body[data-direction='vanilla'] .recap-player .recap-error {
+  font-size: 12px;
+  margin-top: 6px;
+  color: var(--red);
+}
+body[data-direction='vanilla'] .sheet {
+  top: var(--status-height, 36px);
+  bottom: 0;
+  max-height: none;
+  border-radius: 0;
+  background: var(--surface);
+  animation: none;
+  overflow: visible;
+}
+body[data-direction='vanilla'] .sheet.sheet-continuing {
+  animation: none;
+}
+/* One continuous navigation surface with the status bar; spacing replaces the divider. */
+body[data-direction='vanilla'] .sheet-header {
+  height: 58px;
+  min-height: 58px;
+  padding: 6px var(--page);
+  gap: 12px;
+  background: var(--canvas);
+  border-bottom: 0;
+  position: relative;
+  z-index: 18;
+  flex-shrink: 0;
+}
+body[data-direction='vanilla'] .sheet-header h2 {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 500;
+}
+body[data-direction='vanilla'] .sheet-body {
+  padding-top: calc(var(--support-height) + 12px);
+  overflow-anchor: none;
+  overscroll-behavior: contain;
+}
+body[data-direction='vanilla'] .scrim {
+  top: var(--status-height, 36px);
+  background: var(--surface);
+  backdrop-filter: none;
+  animation: none;
+}
+body[data-direction='vanilla'] .conversation-identity {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 1;
+}
+body[data-direction='vanilla'] .conversation-identity b {
+  font-size: 15px;
+  font-weight: 600;
+  display: block;
+}
+body[data-direction='vanilla'] .conversation-identity small {
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-top: 3px;
+}
+body[data-direction='vanilla'] .support-conversation .sheet-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  padding: 16px 24px 20px;
+}
+body[data-direction='vanilla'] .support-conversation .chat-thread {
+  flex: 1;
+  min-height: 70px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  align-content: start;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr);
+}
+body[data-direction='vanilla'] .chat-message .message-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+body[data-direction='vanilla'] .message-author .agent-avatar {
+  width: 28px;
+  height: 28px;
+  flex-basis: 28px;
+}
+body[data-direction='vanilla'] .message-author .icon {
+  width: 16px;
+  height: 16px;
+}
+body[data-direction='vanilla'] .chat-message.human {
+  background: var(--soft);
+  border: 0;
+}
+body[data-direction='vanilla'] .support-conversation .chat-chips {
+  margin: 10px 0;
+  flex-shrink: 0;
+}
+body[data-direction='vanilla'] .chat-context-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 0;
+  flex-shrink: 0;
+}
+body[data-direction='vanilla'] .chat-context-actions .btn {
+  font-size: 13px;
+}
+body[data-direction='vanilla'] .support-conversation #chat-form {
+  flex-shrink: 0;
+}
+body[data-direction='vanilla'] .support-conversation .chat-note {
+  display: none;
+}
+body[data-direction='vanilla'] .chat-compose button {
+  width: 44px;
+  height: 44px;
+}
+body[data-direction='vanilla'] .chat-compose:focus-within {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 1px var(--focus);
+}
+body[data-direction='vanilla'] .chat-compose input:focus-visible {
+  outline: none;
+}
+body[data-direction='vanilla'] .pot-companion {
+  padding: 10px 0;
+  background: transparent;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+}
+body[data-direction='vanilla'] .pot-companion small {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-direction='vanilla'] .support-dock,
+  body[data-direction='vanilla'] .support-bar,
+  body[data-direction='vanilla'] .support-reveal,
+  body[data-direction='vanilla'] .support-inner,
+  body[data-direction='vanilla'] .support-copy strong {
+    transition: none;
+  }
+  body[data-direction='vanilla'] .sheet {
+    animation: none;
+  }
+}
+body[data-direction='vanilla'] .phone.premier {
+  --ink: #f4f4f4;
+  --muted: #b6b8bc;
+  --quiet: #989ba0;
+  --canvas: #17181a;
+  --surface: #242528;
+  --line: #414348;
+  --soft: #303236;
+  --jade: #b6c8c6;
+  --jade-soft: #303638;
+  --shadow: 0 12px 30px -20px #0009;
+}
+body[data-direction='vanilla'] .premier .ai-card {
+  background: var(--surface);
+}
+body[data-direction='vanilla'] .premier .ai-symbol,
+body[data-direction='vanilla'] .premier .ai-link {
+  color: var(--ink);
+}
+body[data-direction='vanilla'] .premier .story-tile {
+  background: #303236;
+  color: var(--ink);
+}
+body[data-direction='vanilla'] .premier .story-tile.new {
+  background: #36383c;
+  color: var(--ink);
+}
+body[data-direction='vanilla'] .premier .bank-brand small {
+  color: var(--muted);
+}
+
+body[data-direction='vanilla'] .header-actions {
+  gap: 8px;
+}
+body[data-direction='vanilla'] .header-actions .icon-btn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  margin: 0;
+}
+body[data-direction='vanilla'] .header-actions .agent-avatar {
+  width: 36px;
+  height: 36px;
+  flex-basis: 36px;
+}
+body[data-direction='vanilla'] .has-player .support-message,
+body[data-direction='vanilla'] .has-player .support-actions {
+  display: none;
+}
+body[data-direction='vanilla'] .human-link > .agent-avatar {
+  flex: 0 0 40px;
+}
+
+body[data-direction='vanilla'] .premier .agent-avatar.agent-ai {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+body[data-direction='vanilla'] .premier .support-avatar[data-action='support:discuss'] {
+  border-color: var(--muted);
+}
+
+/* Main-page chrome scrolls out; detail headers retain their own fixed geometry. */
+body[data-direction='vanilla'] .app-header {
+  position: absolute;
+  top: var(--status-height, 36px);
+  left: 0;
+  right: 0;
+  transform: translateY(calc(-1 * var(--header-scroll, 0px)));
+}
+body[data-direction='vanilla'] #support-slot {
+  top: calc(var(--header-height, 94px) - var(--header-scroll, 0px));
+}
+/* Let scrolling content continue beneath the status glass without moving its initial position. */
+body[data-direction='vanilla'] .content {
+  margin-top: calc(-1 * var(--status-height, 36px));
+  padding-top: calc(
+    var(--status-height, 36px) + var(--app-header-height, 58px) + var(--support-height)
+  );
+}
+/* Conversation is a modal surface, visually distinct from navigated details. */
+body[data-direction='vanilla'] .sheet.support-conversation {
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  background: var(--canvas);
+  box-shadow: 0 -12px 40px #0003;
+  animation: conversation-modal-enter var(--duration-surface) var(--ease-settle);
+}
+body[data-direction='vanilla'] .sheet.support-conversation.sheet-continuing {
+  animation: none;
+}
+body[data-direction='vanilla'] .support-conversation .sheet-header {
+  height: 76px;
+  min-height: 76px;
+  padding: 16px 20px;
+  background: var(--canvas);
+  border-bottom: 0;
+}
+body[data-direction='vanilla'] .support-conversation .sheet-header > [data-action='close'] {
+  background: var(--soft);
+}
+body[data-direction='vanilla'] .support-conversation .conversation-identity b {
+  font-size: 17px;
+}
+body[data-direction='vanilla'] .support-conversation .sheet-body {
+  padding: 8px 20px 20px;
+}
+body[data-direction='vanilla'] .support-conversation .chat-message.ai {
+  background: var(--surface);
+}
+body[data-direction='vanilla'] .support-conversation .chat-compose {
+  background: var(--surface);
+  box-shadow: 0 5px 18px -12px #0004;
+}
+body[data-direction='vanilla'] .support-conversation #chat-form {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+@keyframes conversation-modal-enter {
+  from {
+    transform: translateY(28px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-direction='vanilla'] .sheet.support-conversation {
+    animation: none;
+  }
+}
+/* Conversation owns the entire phone surface, including the area behind status text. */
+body[data-direction='vanilla'] .phone[data-support-surface='conversation'] .statusbar {
+  background: transparent;
+}
+body[data-direction='vanilla'] .phone[data-support-surface='conversation'] .scrim {
+  top: 0;
+  background: var(--canvas);
+}
+body[data-direction='vanilla'] .sheet.support-conversation {
+  top: 0;
+  padding-top: var(--status-height, 36px);
+  border-radius: 0;
+  box-shadow: none;
+}
+body[data-direction='vanilla'] .support-conversation .sheet-header {
+  padding: 16px 24px;
+  height: 76px;
+  min-height: 76px;
+}
+body[data-direction='vanilla'] .support-conversation .sheet-body {
+  padding: 12px 24px calc(20px + var(--audio-height, 0px));
+}
+/* Incoming speech turns at the lower left; outgoing speech mirrors it. */
+body[data-direction='vanilla'] .support-conversation .chat-message {
+  justify-self: start;
+  width: fit-content;
+  max-width: calc(100% - 24px);
+  min-width: 0;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 16px 16px 16px 2px;
+  overflow-wrap: anywhere;
+}
+body[data-direction='vanilla'] .support-conversation .chat-message.user {
+  justify-self: end;
+  margin: 0;
+  border-radius: 16px 16px 2px 16px;
+}
+body[data-direction='vanilla'] .support-conversation .chat-message p {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+body[data-direction='vanilla'] .chat-context-actions:empty {
+  display: none;
+}
+body[data-direction='vanilla'] .support-conversation .chat-chips {
+  gap: 8px;
+  margin: 16px 0 12px;
+}
+body[data-direction='vanilla'] .support-conversation .chat-chips .btn {
+  min-height: var(--target-min);
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 400;
+  background: var(--surface);
+}
+body[data-direction='vanilla'] .support-conversation .chat-chips .chat-suggestion-primary {
+  border-color: var(--red);
+  color: var(--red);
+}
+body[data-direction='vanilla'] .premier .support-conversation .chat-chips .chat-suggestion-primary {
+  color: var(--ink);
+}
+body[data-direction='vanilla'] .support-conversation #chat-form {
+  padding-top: 0;
+  border: 0;
+}
+/* One independent audio surface; it never replaces contextual support. */
+body[data-direction='vanilla'] #audio-dock {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 86px;
+  z-index: 19;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px -10px #0005;
+  padding: 6px 10px 2px;
+}
+body[data-direction='vanilla'] #audio-dock[hidden] {
+  display: none;
+}
+body[data-direction='vanilla'] .has-modal #audio-dock {
+  bottom: 12px;
+}
+body[data-direction='vanilla'] #audio-dock .recap-player {
+  padding: 0;
+}
+body[data-direction='vanilla'] #audio-dock .recap-controls {
+  gap: 0;
+  margin: 0;
+}
+body[data-direction='vanilla'] #audio-dock .recap-name {
+  flex: 1;
+  min-width: 0;
+  padding-left: 4px;
+}
+body[data-direction='vanilla'] #audio-dock .recap-name b {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+body[data-direction='vanilla'] #audio-dock .recap-name small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+body[data-direction='vanilla'] #audio-dock .recap-speed {
+  font-size: 12px;
+}
+body[data-direction='vanilla'] #audio-dock [data-action='support:play'] {
+  color: var(--red);
+}
+body[data-direction='vanilla'] #audio-dock #recap-progress {
+  display: block;
+  height: 18px;
+}
+body[data-direction='vanilla'] .has-audio .content {
+  padding-bottom: calc(24px + var(--audio-height, 0px));
+}
+body[data-direction='vanilla'] .has-audio .sheet:not(.support-conversation) .sheet-body {
+  padding-bottom: calc(36px + var(--audio-height, 0px));
+}
+@media (max-width: 700px) {
+  body[data-direction='vanilla'] #audio-dock {
+    bottom: 74px;
+  }
+  body[data-direction='vanilla'] .has-modal #audio-dock {
+    bottom: 12px;
+  }
+}
+
+body[data-direction='vanilla'] #audio-dock,
+body[data-direction='vanilla'] .has-modal #audio-dock {
+  bottom: var(--audio-bottom, 86px);
+}
+/* Horizontal chart exploration must not trap vertical return-to-top gestures. */
+body[data-direction='vanilla'] #future-stage {
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+}
+
+/* Neutral focus belongs to the Vanilla theme, including Premier inputs. */
+body[data-direction='vanilla'] .phone {
+  --focus: #171919;
+}
+body[data-direction='vanilla'] .phone.premier {
+  --focus: #fff;
+}
+body[data-direction='vanilla'] .premier .support-bar.ai-card {
+  box-shadow:
+    0 14px 28px -8px #000b,
+    0 2px 6px #0005;
+}
+body[data-direction='vanilla'] .premier .is-compact .support-bar.ai-card {
+  box-shadow:
+    0 12px 24px -6px #000b,
+    0 2px 6px #0005;
+}
+/* The header identifies an AI-only conversation; mixed conversations retain authors. */
+body[data-direction='vanilla'] .chat-thread[data-ai-only='true'] .chat-message.ai .message-author {
+  display: none;
+}
+/* A thin seek line with a small interaction thumb; the native range remains accessible. */
+body[data-direction='vanilla'] #audio-dock #recap-progress {
+  --played: 0%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  height: 24px;
+  padding: 0;
+  touch-action: pan-y;
+}
+body[data-direction='vanilla'] #recap-progress::-webkit-slider-runnable-track {
+  height: 2px;
+  border: 0;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--red) 0 var(--played), var(--line) var(--played) 100%);
+}
+body[data-direction='vanilla'] #recap-progress::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 8px;
+  height: 8px;
+  margin-top: -3px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--red);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+body[data-direction='vanilla'] #recap-progress:hover::-webkit-slider-thumb,
+body[data-direction='vanilla'] #recap-progress:focus-visible::-webkit-slider-thumb,
+body[data-direction='vanilla'] #recap-progress:active::-webkit-slider-thumb {
+  opacity: 1;
+}
+body[data-direction='vanilla'] #recap-progress::-moz-range-track {
+  height: 2px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--line);
+}
+body[data-direction='vanilla'] #recap-progress::-moz-range-progress {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--red);
+}
+body[data-direction='vanilla'] #recap-progress::-moz-range-thumb {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--red);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+body[data-direction='vanilla'] #recap-progress:hover::-moz-range-thumb,
+body[data-direction='vanilla'] #recap-progress:focus-visible::-moz-range-thumb,
+body[data-direction='vanilla'] #recap-progress:active::-moz-range-thumb {
+  opacity: 1;
+}
+body[data-direction='vanilla'] #audio-dock #recap-progress:focus-visible {
+  outline: 1px solid var(--focus);
+  outline-offset: 0;
+  border-radius: 4px;
+}
+
+/* Official Material Symbols are fill-based outlined paths, not stroked drawings. */
+.icon[data-material] {
+  fill: currentColor;
+  stroke: none;
+  stroke-width: 0;
+}
+/* Feathered glass lives behind the card and cannot intercept page gestures. */
+body[data-direction='vanilla'] #support-slot::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--header-height, 94px)) 0 -24px;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--canvas) 64%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(#000 0%, #000 calc(100% - 48px), transparent 100%);
+  mask-image: linear-gradient(#000 0%, #000 calc(100% - 48px), transparent 100%);
+}
+body[data-direction='vanilla'] #support-slot:has(.support-dock[hidden])::before {
+  display: none;
+}
+body[data-direction='vanilla'] .support-dock {
+  position: relative;
+}
+/* Brief Now arrival: the original blueprint's restrained red/white thinking rim. */
+@property --support-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+body[data-direction='vanilla'] .support-bar {
+  position: relative;
+}
+body[data-direction='vanilla'] .support-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--support-angle),
+    transparent 0deg,
+    #db0011e6 35deg,
+    #fff 55deg,
+    #db0011e6 80deg,
+    transparent 125deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+body[data-direction='vanilla'] .is-thinking .support-bar::after {
+  opacity: 1;
+  animation: support-thinking 3s linear infinite;
+}
+body[data-direction='vanilla'] .is-thinking .support-bar.ai-card {
+  box-shadow:
+    0 12px 26px -12px #18212d40,
+    0 0 20px -5px #db001140;
+}
+body[data-direction='vanilla'] .is-thinking .support-subtitle {
+  display: block;
+}
+body[data-direction='vanilla'] .is-thinking .support-reveal {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+body[data-direction='vanilla'] .is-thinking .support-inner {
+  visibility: hidden;
+}
+@keyframes support-thinking {
+  to {
+    --support-angle: 360deg;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-direction='vanilla'] .support-bar::after {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Glass may cover scrolling content, never a detail's fixed screen header. */
+body[data-direction='vanilla'] .phone[data-support-surface='detail'] #support-slot::before {
+  top: 0;
+}
+/* Journeys reserve the screen for the task, with help available in the header. */
+body[data-direction='vanilla'] .support-journey .sheet-body {
+  padding: 24px var(--page) calc(32px + var(--audio-height, 0px));
+}
+body[data-direction='vanilla'] .journey-help {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  padding: 4px;
+}
+body[data-direction='vanilla'] .journey-help .agent-avatar {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+}
+body[data-direction='vanilla'] .journey-help .icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Detail and journey titles float over their own scrolling content. The feather
+   extends past the header edge without adding an opaque strip or a divider. */
+body[data-direction='vanilla'] .level-two > .sheet-header {
+  background: transparent;
+  margin-bottom: -58px;
+  isolation: isolate;
+}
+body[data-direction='vanilla'] .level-two > .sheet-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -24px;
+  z-index: -1;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--canvas) 72%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-mask-image: linear-gradient(#000 0%, #000 calc(100% - 24px), transparent);
+  mask-image: linear-gradient(#000 0%, #000 calc(100% - 24px), transparent);
+}
+body[data-direction='vanilla'] .level-two > .sheet-body {
+  padding-top: calc(58px + var(--support-height) + 12px);
+  scroll-padding-top: calc(58px + var(--support-height) + 12px);
+}
+body[data-direction='vanilla'] .level-two.support-journey > .sheet-body {
+  padding-top: 82px;
+  scroll-padding-top: 82px;
+}
+@media (prefers-reduced-transparency: reduce) {
+  body[data-direction='vanilla'] .level-two > .sheet-header::before {
+    background: var(--canvas);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* One useful thought, with room to read it. Fuller context lives in the conversation. */
+body[data-direction='vanilla'] .support-dock[data-single-message='true'] .support-copy strong {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+body[data-direction='vanilla'] .support-dock[data-single-message='true'] .support-subtitle {
+  display: none;
+}

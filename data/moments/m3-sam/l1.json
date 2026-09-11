@@ -1,0 +1,1004 @@
+{
+  "$schema": "../../schema/schema.json#/definitions/L1",
+  "layer": 1,
+  "moment": {
+    "id": "m3",
+    "name": "Grow",
+    "stage": "Ready to invest · nearly Premier",
+    "customerId": "sam",
+    "asOf": "2026-09-08",
+    "tenure": "month 8",
+    "segment": "Everyday · nearly Premier",
+    "description": "Three plans running quietly; idle cash identified; the first investment rehearsed."
+  },
+  "asOf": "2026-09-08",
+  "customer": {
+    "id": "sam",
+    "firstName": "Sam",
+    "age": 33,
+    "birthYear": 1993,
+    "occupation": "Product manager",
+    "employer": "Acme Ltd",
+    "city": "Bristol",
+    "joined": "2026-01-12",
+    "tenureMonths": 8,
+    "segment": "Everyday · nearly Premier",
+    "tier": "Everyday",
+    "nearPremier": true
+  },
+  "household": {
+    "id": "hh-sam",
+    "members": [
+      {
+        "id": "sam",
+        "name": "Sam",
+        "relation": "self",
+        "age": 33,
+        "initials": "S"
+      },
+      {
+        "id": "riley",
+        "name": "Riley",
+        "relation": "partner",
+        "age": 32,
+        "initials": "R"
+      },
+      {
+        "id": "ella",
+        "name": "Ella",
+        "relation": "child",
+        "age": 4,
+        "initials": "E"
+      }
+    ],
+    "consentModel": "Sam and Riley share family pots. Ella is a household dependent, with no account access. Other accounts remain private."
+  },
+  "productsHeld": [
+    {
+      "productId": "current",
+      "since": "2026-01-12"
+    },
+    {
+      "productId": "pot",
+      "count": 9
+    },
+    {
+      "productId": "points"
+    },
+    {
+      "productId": "committed-plan",
+      "potId": "house"
+    },
+    {
+      "productId": "cashback"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "ac-cur",
+      "productId": "current",
+      "name": "HSBC Current",
+      "kind": "current",
+      "masked": "6118",
+      "balance": 3120.44,
+      "owed": null,
+      "description": "Everyday spending"
+    }
+  ],
+  "pots": [
+    {
+      "id": "house",
+      "name": "House deposit",
+      "kind": "committed-plan",
+      "balance": 6400.0,
+      "target": 24000,
+      "monthlyRate": 320,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": false,
+      "description": "£320/month · 5.1% earned rate",
+      "terms": [
+        [
+          "Rate",
+          "5.1% fixed while committed"
+        ],
+        [
+          "Why",
+          "3-yr plan shared · 8 months kept"
+        ],
+        [
+          "Exit",
+          "withdraw any time · free"
+        ]
+      ],
+      "members": null,
+      "rules": [
+        "r-house-payday"
+      ],
+      "createdOn": "2026-03"
+    },
+    {
+      "id": "ef",
+      "name": "Emergency fund",
+      "kind": "goal",
+      "balance": 4200.0,
+      "target": 5000,
+      "monthlyRate": 40,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": true,
+      "description": "£40/month · 90 safety days",
+      "terms": null,
+      "members": [
+        {
+          "memberId": "sam",
+          "role": "Owner"
+        },
+        {
+          "memberId": "riley",
+          "role": "Contributor"
+        }
+      ],
+      "rules": [
+        "r-ef-payday"
+      ],
+      "createdOn": "2026-01",
+      "memberAccess": {
+        "sam": {
+          "name": "Sam",
+          "role": "Owner"
+        },
+        "riley": {
+          "name": "Riley",
+          "role": "Contributor"
+        }
+      }
+    },
+    {
+      "id": "hol",
+      "name": "Family holiday",
+      "kind": "goal",
+      "balance": 600,
+      "target": 2400,
+      "monthlyRate": 60,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": false,
+      "description": "Time away together · £60/month when the grocery challenge is met",
+      "terms": null,
+      "members": [
+        {
+          "memberId": "sam",
+          "role": "Owner"
+        },
+        {
+          "memberId": "riley",
+          "role": "Contributor"
+        }
+      ],
+      "rules": [
+        "r-hol-challenge"
+      ],
+      "createdOn": "2026-01",
+      "memberAccess": {
+        "sam": {
+          "name": "Sam",
+          "role": "Owner"
+        },
+        "riley": {
+          "name": "Riley",
+          "role": "Contributor"
+        }
+      },
+      "appearance": {
+        "colour": "peach",
+        "photo": "/assets/stories/horizon.jpg"
+      }
+    },
+    {
+      "id": "un",
+      "name": "Not decided yet",
+      "kind": "saving",
+      "balance": 850.0,
+      "target": null,
+      "monthlyRate": 30,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": false,
+      "description": "Money that hasn’t chosen a job — spare cash gathers here",
+      "terms": null,
+      "members": null,
+      "rules": [],
+      "createdOn": "2026-06"
+    },
+    {
+      "id": "family-budget",
+      "name": "Family groceries",
+      "kind": "budget",
+      "balance": 101.9,
+      "target": null,
+      "budgetLimit": 300,
+      "budgetAlert": 80,
+      "isDebt": false,
+      "stopsAtTarget": false,
+      "rules": [],
+      "members": [
+        {
+          "memberId": "sam",
+          "role": "Owner"
+        },
+        {
+          "memberId": "riley",
+          "role": "Contributor"
+        }
+      ],
+      "spendingCategory": "groceries",
+      "description": "Money set aside to spend",
+      "arrangementState": {
+        "merchant": "Tesco",
+        "merchantSince": "2026-09-01"
+      }
+    },
+    {
+      "id": "ac-savings",
+      "name": "Long-term savings",
+      "kind": "saving",
+      "balance": 72727.66,
+      "target": null,
+      "monthlyRate": 0,
+      "isDebt": false,
+      "stopsAtTarget": false,
+      "rules": [],
+      "members": null,
+      "description": "Savings for longer-term family plans",
+      "createdOn": "2026-01"
+    },
+    {
+      "id": "ella-next",
+      "name": "Ella’s next chapter",
+      "kind": "goal",
+      "balance": 6000,
+      "target": 16000,
+      "monthlyRate": 0,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": true,
+      "rules": [],
+      "members": null,
+      "description": "Education, training or a first step into adult life. £6,000 set aside from long-term savings; monthly funding still to choose.",
+      "createdOn": "2026-09",
+      "appearance": {
+        "colour": "lilac"
+      },
+      "visualIcon": "spark"
+    },
+    {
+      "id": "my-own",
+      "name": "Something of my own",
+      "kind": "goal",
+      "balance": 3500,
+      "target": 8000,
+      "monthlyRate": 0,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": true,
+      "rules": [],
+      "members": null,
+      "description": "Room to try a business idea or a change of direction. £3,500 set aside from long-term savings; monthly funding still to choose.",
+      "createdOn": "2026-09",
+      "appearance": {
+        "colour": "sand"
+      },
+      "visualIcon": "bolt"
+    },
+    {
+      "id": "friends",
+      "name": "Time with friends",
+      "kind": "goal",
+      "balance": 500,
+      "target": 1500,
+      "monthlyRate": 0,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": true,
+      "rules": [],
+      "members": null,
+      "description": "Shared dinners, a weekend away, and keeping time for old friends. £500 set aside from long-term savings; monthly funding still to choose.",
+      "createdOn": "2026-09",
+      "appearance": {
+        "colour": "rose",
+        "photo": "/assets/stories/cooking.jpg"
+      },
+      "visualIcon": "users"
+    }
+  ],
+  "rules": [
+    {
+      "id": "r-house-payday",
+      "potId": "house",
+      "type": "payday-fixed",
+      "amount": 320,
+      "source": "ac-cur",
+      "since": "2026-01",
+      "active": true,
+      "terms": "5.1% fixed while committed · 3-year plan · exit free"
+    },
+    {
+      "id": "r-ef-payday",
+      "potId": "ef",
+      "type": "payday-fixed",
+      "amount": 40,
+      "source": "ac-cur",
+      "since": "2026-01",
+      "active": true,
+      "stopsAt": 5000
+    },
+    {
+      "id": "r-hol-challenge",
+      "potId": "hol",
+      "type": "challenge",
+      "amount": 60,
+      "source": "ac-cur",
+      "since": "2026-01",
+      "active": true,
+      "condition": "groceries under £220 in the month"
+    }
+  ],
+  "income": [
+    {
+      "id": "inc-salary",
+      "source": "Salary",
+      "employer": "Acme Ltd",
+      "netMonthly": 2600.0,
+      "frequency": "monthly",
+      "payDay": 28,
+      "lastPaid": "2026-08-28",
+      "nextPay": "2026-09-28"
+    }
+  ],
+  "bills": [
+    {
+      "id": "bill-rent",
+      "name": "Rent",
+      "category": "housing",
+      "amount": 900.0,
+      "frequency": "monthly",
+      "day": 1
+    },
+    {
+      "id": "bill-council",
+      "name": "Council tax",
+      "category": "housing",
+      "amount": 120.0,
+      "frequency": "monthly",
+      "day": 1
+    },
+    {
+      "id": "bill-energy",
+      "name": "Energy",
+      "category": "utilities",
+      "amount": 110.0,
+      "frequency": "monthly",
+      "day": 3
+    },
+    {
+      "id": "bill-water",
+      "name": "Water",
+      "category": "utilities",
+      "amount": 30.0,
+      "frequency": "monthly",
+      "day": 3
+    },
+    {
+      "id": "bill-broadband",
+      "name": "Broadband",
+      "category": "telecoms",
+      "amount": 40.0,
+      "frequency": "monthly",
+      "day": 6
+    },
+    {
+      "id": "bill-phone",
+      "name": "Phone",
+      "category": "telecoms",
+      "amount": 30.0,
+      "frequency": "monthly",
+      "day": 6
+    },
+    {
+      "id": "bill-transport",
+      "name": "Travel pass",
+      "category": "transport",
+      "amount": 130.0,
+      "frequency": "monthly",
+      "day": 1
+    },
+    {
+      "id": "bill-insurance",
+      "name": "Contents & life insurance",
+      "category": "insurance",
+      "amount": 40.0,
+      "frequency": "monthly",
+      "day": 8
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx-sam-001",
+      "date": "2026-08-28",
+      "ledger": "ac-cur",
+      "counterparty": "Acme Ltd — salary",
+      "category": "income",
+      "amount": 2600.0,
+      "direction": "in",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-002",
+      "date": "2026-08-28",
+      "ledger": "ac-cur",
+      "counterparty": "Payday move → House deposit",
+      "category": "rule",
+      "amount": -320.0,
+      "direction": "out",
+      "ruleId": "r-house-payday",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-003",
+      "date": "2026-08-28",
+      "ledger": "ac-cur",
+      "counterparty": "Payday move → Emergency fund",
+      "category": "rule",
+      "amount": -40.0,
+      "direction": "out",
+      "ruleId": "r-ef-payday",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-004",
+      "date": "2026-08-31",
+      "ledger": "ac-cur",
+      "counterparty": "Grocery challenge held → Holiday",
+      "category": "rule",
+      "amount": -60.0,
+      "direction": "out",
+      "ruleId": "r-hol-challenge",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-005",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Rent",
+      "category": "housing",
+      "amount": -900.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-006",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Council tax",
+      "category": "housing",
+      "amount": -120.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-007",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Travel pass",
+      "category": "transport",
+      "amount": -130.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-008",
+      "date": "2026-09-01",
+      "ledger": "family-budget",
+      "counterparty": "Tesco",
+      "category": "groceries",
+      "amount": -84.3,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-009",
+      "date": "2026-09-03",
+      "ledger": "ac-cur",
+      "counterparty": "Energy",
+      "category": "utilities",
+      "amount": -110.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-010",
+      "date": "2026-09-03",
+      "ledger": "ac-cur",
+      "counterparty": "Water",
+      "category": "utilities",
+      "amount": -30.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-011",
+      "date": "2026-09-04",
+      "ledger": "family-budget",
+      "counterparty": "Lidl",
+      "category": "groceries",
+      "amount": -58.9,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-012",
+      "date": "2026-09-06",
+      "ledger": "ac-cur",
+      "counterparty": "Broadband",
+      "category": "telecoms",
+      "amount": -40.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-013",
+      "date": "2026-09-06",
+      "ledger": "ac-cur",
+      "counterparty": "Phone",
+      "category": "telecoms",
+      "amount": -30.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-014",
+      "date": "2026-09-06",
+      "ledger": "family-budget",
+      "counterparty": "Co-op",
+      "category": "groceries",
+      "amount": -32.6,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-015",
+      "date": "2026-09-07",
+      "ledger": "ac-cur",
+      "counterparty": "Card cashback",
+      "category": "cashback",
+      "amount": 8.0,
+      "direction": "in",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-016",
+      "date": "2026-09-07",
+      "ledger": "family-budget",
+      "counterparty": "Local grocer",
+      "category": "groceries",
+      "amount": -22.3,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-017",
+      "date": "2026-08-28",
+      "ledger": "house",
+      "counterparty": "Payday move",
+      "category": "rule",
+      "amount": 320.0,
+      "direction": "in",
+      "ruleId": "r-house-payday",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-018",
+      "date": "2026-08-28",
+      "ledger": "ef",
+      "counterparty": "Payday move",
+      "category": "rule",
+      "amount": 40.0,
+      "direction": "in",
+      "ruleId": "r-ef-payday",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-sam-019",
+      "date": "2026-08-31",
+      "ledger": "hol",
+      "counterparty": "Grocery challenge — August held",
+      "category": "rule",
+      "amount": 60.0,
+      "direction": "in",
+      "ruleId": "r-hol-challenge",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-family-sam",
+      "date": "2026-09-01",
+      "ledger": "family-budget",
+      "counterparty": "Sam · grocery allowance",
+      "category": "transfer",
+      "amount": 150,
+      "direction": "in",
+      "ruleId": null,
+      "memberId": "sam",
+      "receipt": true
+    },
+    {
+      "id": "tx-family-riley",
+      "date": "2026-09-01",
+      "ledger": "family-budget",
+      "counterparty": "Riley · grocery allowance",
+      "category": "transfer",
+      "amount": 150,
+      "direction": "in",
+      "ruleId": null,
+      "memberId": "riley",
+      "receipt": true
+    },
+    {
+      "id": "tx-family-source",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Your share → Family groceries",
+      "category": "transfer",
+      "amount": -150,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    }
+  ],
+  "ledgerOpeningBalances": {
+    "note": "Reconciled fictional opening balances for the expanded household story; balances already include recorded transfers and spending. £10,000 of existing long-term savings is earmarked for Ella (£6,000), a business idea (£3,500) and friends (£500); total holdings and existing £420 monthly Rules are unchanged.",
+    "values": {
+      "ac-cur": 2442.44,
+      "house": 6080.0,
+      "ef": 4160.0,
+      "hol": 540.0,
+      "un": 850.0,
+      "family-budget": 0.0,
+      "ac-savings": 72727.66,
+      "ella-next": 6000,
+      "my-own": 3500,
+      "friends": 500
+    }
+  },
+  "spending": {
+    "month": "2026-09",
+    "monthToDate": true,
+    "byCategory": {
+      "groceries": 198.1
+    },
+    "comparisons": {
+      "groceries": {
+        "line": 220.0,
+        "monthsHeld": 8
+      }
+    },
+    "cardSpendingYtd": 3200.0,
+    "note": "Groceries have stayed under the £220 line for eight months running; the challenge sends £60 to the holiday pot each time. Grocery purchases now come from the shared Family groceries pot; the insight still counts these same purchases once."
+  },
+  "credit": {
+    "score": null,
+    "status": "not monitored yet",
+    "softChecksOnly": true,
+    "debts": []
+  },
+  "savingsAndInvestments": {
+    "cash": 3120.4400000000023,
+    "inPots": 94879.56,
+    "invested": 0.0,
+    "floorProtectedPct": null,
+    "floorProtected": null,
+    "illustratedGrowthAnnual": null
+  },
+  "netWorth": {
+    "held": 98000,
+    "owed": 0,
+    "net": 98000,
+    "engineNetWorth": 98000,
+    "asOf": "2026-09-08"
+  },
+  "moneySpeed": {
+    "monthly": 420,
+    "prototypeFigure": 420,
+    "note": "Σ active rules that move money on a schedule (repayments included, as the prototype counts them)"
+  },
+  "goals": [
+    {
+      "id": "goal-house",
+      "statement": "£24,000 house deposit by 2031",
+      "potId": "house",
+      "target": 24000,
+      "by": "2031",
+      "priority": 1
+    },
+    {
+      "id": "goal-ef",
+      "statement": "A £5,000 emergency fund (90 days of essentials held already)",
+      "potId": "ef",
+      "target": 5000,
+      "priority": 2
+    },
+    {
+      "id": "goal-hol",
+      "statement": "A £2,400 holiday, funded by the grocery challenge",
+      "potId": "hol",
+      "target": 2400,
+      "priority": 3
+    },
+    {
+      "id": "goal-invest",
+      "statement": "Start investing what is genuinely safe to invest, floor-protected",
+      "potId": null,
+      "priority": 4
+    },
+    {
+      "id": "goal-ella-next",
+      "statement": "Ella’s next chapter",
+      "potId": "ella-next",
+      "target": 16000,
+      "priority": 5
+    },
+    {
+      "id": "goal-my-own",
+      "statement": "Something of my own",
+      "potId": "my-own",
+      "target": 8000,
+      "priority": 6
+    },
+    {
+      "id": "goal-friends",
+      "statement": "Time with friends",
+      "potId": "friends",
+      "target": 1500,
+      "priority": 7
+    }
+  ],
+  "rewards": {
+    "points": {
+      "balance": 480,
+      "ledger": [
+        {
+          "date": "2026-01",
+          "reason": "Money personality quiz",
+          "points": 25
+        },
+        {
+          "date": "2026-01..2026-09",
+          "reason": "52 weekly check-ins",
+          "points": 260
+        },
+        {
+          "date": "2026-09",
+          "reason": "8 months of consistency",
+          "points": 160
+        },
+        {
+          "date": "2026-03..2026-09",
+          "reason": "Beliefs corrected & confirmed",
+          "points": 35
+        }
+      ],
+      "note": "Total 480 — earned only for openness and consistency."
+    },
+    "cashback": {
+      "ytd": 64.0,
+      "rate": 0.02,
+      "basis": "cardSpendingYtd",
+      "cardSpendingYtd": 3200.0,
+      "monthly": 8.0,
+      "note": "Cashback on card spending — a fact of the account, never a nudge (Data/04 §8.5)."
+    },
+    "activeBenefits": [],
+    "challenges": {
+      "in-touch": {
+        "count": 14,
+        "joinedAt": "2026-08-01",
+        "confirmedDates": [
+          "2026-09-01"
+        ],
+        "source": "Illustrative scenario progress; steps recorded by the customer."
+      },
+      "growing-savings": {
+        "count": 12,
+        "joinedAt": "2026-08-10",
+        "confirmedDates": [
+          "2026-09-01"
+        ],
+        "source": "Illustrative scenario progress; steps recorded by the customer."
+      },
+      "money-date": {
+        "count": 2,
+        "joinedAt": "2026-07-01",
+        "confirmedDates": [
+          "2026-08-15"
+        ],
+        "source": "Illustrative scenario progress; steps recorded by the customer."
+      }
+    }
+  },
+  "relationship": {
+    "joined": "2026-01-12",
+    "tenureMonths": 8,
+    "tier": "Everyday",
+    "tierSince": null,
+    "nearPremier": true,
+    "relationshipManagerId": null,
+    "experts": [
+      "human247"
+    ],
+    "milestones": [
+      {
+        "date": "2026-01-12",
+        "event": "Joined",
+        "story": {
+          "id": "joined",
+          "title": "A new beginning",
+          "summary": "You joined HSBC.",
+          "detail": "Your relationship with HSBC began on 12 January 2026.",
+          "category": "Beginning",
+          "icon": "sun",
+          "figure": null,
+          "figureLabel": null,
+          "action": null,
+          "actionLabel": null
+        }
+      },
+      {
+        "date": "2026-01",
+        "event": "Quiz — Planner",
+        "badge": "Quiz taken",
+        "story": {
+          "id": "personality",
+          "title": "Putting your approach into words",
+          "summary": "Your quiz revealed a Planner.",
+          "detail": "Your first money personality quiz gave us a starting point: planning mattered to you. Your portrait can change as we learn more from you.",
+          "category": "Understanding you",
+          "icon": "spark",
+          "figure": null,
+          "figureLabel": null,
+          "action": "portrait",
+          "actionLabel": "Your portrait today"
+        }
+      },
+      {
+        "date": "2026-02",
+        "event": "First month held",
+        "badge": "First month held",
+        "story": {
+          "id": "first-month",
+          "title": "Your first month, complete",
+          "summary": "You reached your first monthly milestone.",
+          "detail": "February marked your first month with HSBC and the first monthly milestone recorded in your journey.",
+          "category": "Everyday progress",
+          "icon": "clock",
+          "figure": null,
+          "figureLabel": null,
+          "action": null,
+          "actionLabel": null
+        }
+      },
+      {
+        "date": "2026-03",
+        "event": "House pot committed — earned 5.1%",
+        "story": {
+          "id": "home-plan",
+          "title": "A plan for your home",
+          "summary": "You committed to your house deposit pot.",
+          "detail": "You set a savings commitment for your house deposit, giving the goal a regular place in your money plan.",
+          "category": "Your goals",
+          "icon": "home",
+          "figure": null,
+          "figureLabel": null,
+          "action": "pot:house",
+          "actionLabel": "Your house deposit today"
+        }
+      },
+      {
+        "date": "2026-07",
+        "event": "90 safety days held",
+        "badge": "90 safety days",
+        "story": {
+          "id": "safety-buffer",
+          "title": "Room to breathe",
+          "summary": "You reached a 90-day safety buffer.",
+          "detail": "In July, your safety buffer reached 90 days. This milestone marks the cushion you had built at that point in your journey.",
+          "category": "Your goals",
+          "icon": "shield",
+          "figure": "90",
+          "figureLabel": "days of safety · July 2026",
+          "action": "pot:ef",
+          "actionLabel": "Your emergency fund today"
+        }
+      },
+      {
+        "date": "2026-08",
+        "event": "Eight grocery months held — the challenge funds the holiday pot",
+        "story": {
+          "id": "grocery-rhythm",
+          "title": "Everyday habits, bigger plans",
+          "summary": "Eight months of grocery budgeting.",
+          "detail": "Your grocery budgeting routine reached eight months, with the challenge helping to fund your family holiday pot.",
+          "category": "Everyday progress",
+          "icon": "repeat",
+          "figure": "8",
+          "figureLabel": "months of grocery budgeting",
+          "action": "pot:hol",
+          "actionLabel": "Your holiday pot today"
+        }
+      }
+    ],
+    "statusNote": "£98,000 Total Relationship Balance · £2,000 to Premier.",
+    "contactHistory": []
+  },
+  "behaviour": {
+    "financial": [
+      "Plans first, then lets the months run",
+      "Three rules running since January",
+      "Grocery line held 8 months",
+      "Cash accumulates in the current account beyond the safety net (£1,300 genuinely investable, idle)"
+    ],
+    "app": {
+      "sessionsPerWeek": 3,
+      "lastOpened": "2026-09-08",
+      "featuresUsed": [
+        "Now",
+        "Future",
+        "House deposit detail",
+        "Golden Ratio working",
+        "Conversation"
+      ],
+      "quizDone": true,
+      "quizDate": "2026-01",
+      "checkIns": 52,
+      "beliefsConfirmed": 1,
+      "notifications": "receipts and monthly summary"
+    }
+  },
+  "autonomy": {
+    "level": "acts within limits you set",
+    "limits": "Moves up to £420 a month between pots, exactly as agreed",
+    "paused": false
+  }
+}

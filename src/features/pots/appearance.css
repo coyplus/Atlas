@@ -1,0 +1,534 @@
+/* Pot identity is consistent on canvas and timeline. Status is explicit text. */
+.future-orbit .future-value,
+.future-orbit.is-complete .future-value {
+  background: var(--pot-colour);
+  border: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+.future-orbit .future-orbit-copy {
+  color: var(--pot-ink);
+}
+.phone .future-orbit .future-orbit-copy .icon,
+.phone .future-orbit .future-orbit-copy em {
+  color: inherit;
+}
+.phone .future-milestone:not(.is-ghost) {
+  background: var(--pot-colour);
+  color: var(--pot-ink);
+  border: 0;
+  box-shadow: none;
+}
+.future-milestone:not(.is-ghost)::after {
+  background: color-mix(in srgb, var(--pot-colour) 45%, transparent);
+}
+.future-target {
+  border: 0;
+  overflow: visible;
+  fill: none;
+}
+.future-target circle {
+  stroke: color-mix(in srgb, var(--ink) 34%, transparent);
+  stroke-width: 1.5px;
+  stroke-dasharray: 0.1 2.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.future-orbit.has-photo .future-value img,
+.pot-appearance-preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.62);
+}
+.future-orbit.has-photo .future-value::after,
+.pot-appearance-preview.has-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #15334fb3, #1b3952b3 48%, #112d47d6);
+}
+.future-orbit.has-photo .future-orbit-copy {
+  color: #fff;
+  text-shadow: 0 1px 8px #102c4666;
+}
+.future-ghost {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  transition:
+    left var(--duration-spatial) var(--ease-settle),
+    top var(--duration-spatial) var(--ease-settle),
+    width var(--duration-spatial) var(--ease-settle),
+    height var(--duration-spatial) var(--ease-settle);
+  touch-action: none;
+}
+.future-ghost .future-value {
+  border: 0;
+  background: radial-gradient(
+    circle at 42% 35%,
+    color-mix(in srgb, var(--muted) 17%, transparent),
+    color-mix(in srgb, var(--muted) 8%, transparent) 65%,
+    transparent 100%
+  );
+  box-shadow: none;
+}
+.future-ghost .future-orbit-copy {
+  color: var(--muted);
+}
+.phone .future-ghost .future-orbit-copy .icon {
+  color: inherit;
+}
+.phone .future-ghost .future-orbit-copy b {
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 500;
+  max-width: 94px;
+}
+.future-ghost[data-labels='false'] .future-orbit-copy b {
+  display: none;
+}
+.future-ghost[data-icon='false'] .future-orbit-copy {
+  display: none;
+}
+.phone .future-milestone.is-ghost {
+  border: 0;
+  color: color-mix(in srgb, var(--muted) 78%, var(--surface));
+  background: color-mix(in srgb, var(--muted) 10%, var(--surface));
+  box-shadow: none;
+}
+.future-milestone.is-ghost::after {
+  background: var(--muted);
+  opacity: 0.2;
+}
+.horizon-art {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border: 1.5px dashed var(--muted);
+  border-radius: 50%;
+  margin: 8px 0 24px;
+}
+.horizon-art .icon {
+  width: 30px;
+  height: 30px;
+}
+.horizon-when {
+  color: var(--muted);
+}
+.horizon-planning {
+  border-block: 1px solid var(--line);
+  padding: 20px 0;
+  margin: 26px 0;
+}
+.horizon-planning summary {
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.horizon-planning small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  display: block;
+}
+.horizon-actions {
+  display: grid;
+  gap: 12px;
+}
+.container-detail {
+  position: relative;
+  isolation: isolate;
+}
+.pot-backdrop {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  inset: -130px -24px auto;
+  height: 460px;
+  overflow: hidden;
+  mask-image: linear-gradient(151deg, #000 20%, #0009 43%, transparent 78%);
+}
+.pot-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.6);
+  opacity: 0.32;
+}
+.pot-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, #628eac33, transparent 65%);
+}
+.pot-personalise-link {
+  margin: 18px 0 0;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 0;
+  font-size: 13px;
+  cursor: pointer;
+}
+.pot-personalise-link .icon {
+  width: 16px;
+  height: 16px;
+}
+.pot-personalisation h2 {
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin: 8px 0 16px;
+}
+.pot-personalisation p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+.pot-appearance-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 180px;
+  height: 180px;
+  margin: 28px auto;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--pot-colour, #7fa9c2);
+  box-shadow: inset 0 1px 2px #fff8;
+  color: var(--pot-ink, #000);
+}
+.pot-appearance-preview > span {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 140px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+.pot-appearance-preview.has-photo {
+  color: white;
+}
+.pot-appearance-preview .icon {
+  width: 28px;
+  height: 28px;
+}
+.pot-colours {
+  border: 0;
+  padding: 0;
+  margin: 28px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  justify-items: center;
+}
+.pot-colours legend {
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+.pot-colours button {
+  border: 3px solid transparent;
+  background: var(--swatch);
+  color: var(--pot-ink, #000);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.pot-colours button[aria-pressed='true'] {
+  outline: 1.5px solid var(--ink);
+  outline-offset: 4px;
+}
+.pot-personalisation > .btn {
+  margin-top: 12px;
+}
+.pot-personalisation > small {
+  display: block;
+  margin: 20px 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+@media (prefers-reduced-motion: reduce) {
+  .future-ghost {
+    transition: none;
+  }
+}
+
+.phone .future-ghost:active:not(:disabled) {
+  transform: translate(-50%, -50%);
+}
+.future-universe.is-manipulating .future-ghost {
+  transition: none;
+}
+.future-studio .fg-empty {
+  pointer-events: none;
+}
+.pot-personalisation > .btn.primary {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.phone .future-ghost {
+  min-width: 0;
+  min-height: 0;
+  box-shadow: none;
+  pointer-events: none;
+}
+.future-ghost .future-value {
+  pointer-events: auto;
+  clip-path: circle(50%);
+  cursor: pointer;
+}
+.phone .future-ghost[data-labels='false'] .future-orbit-copy .icon {
+  width: clamp(10px, calc(var(--value-d) - 18px), 22px);
+  height: clamp(10px, calc(var(--value-d) - 18px), 22px);
+}
+.future-ghost[data-compact='true'] .future-orbit-copy small {
+  display: none;
+}
+.container-detail[style*='--pot-colour']::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  inset: -130px -24px auto;
+  height: 390px;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--pot-colour) 12%, transparent),
+    transparent 75%
+  );
+}
+
+.possibility-number-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.possibility-number-fields .field {
+  min-width: 0;
+}
+.possibility-number-fields input {
+  min-width: 0;
+  width: 100%;
+}
+.phone .future-orbit[data-empty='true'] .future-orbit-copy {
+  color: var(--muted);
+}
+
+.phone .horizon-detail {
+  padding-top: 0;
+}
+
+/* One editable title, personal reasoning, and a decision that stays in reach. */
+body[data-direction='vanilla'] .phone .sheet:has(.horizon-detail) {
+  bottom: 0;
+  padding-bottom: 0;
+}
+body[data-direction='vanilla'] .phone .sheet:has(.horizon-detail) > .sheet-body {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+.phone .horizon-detail {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+}
+.horizon-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 78px var(--page) 20px;
+  scroll-padding-block: 78px 20px;
+}
+.horizon-content .horizon-when {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.horizon-when .icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.horizon-detail form {
+  margin: 0;
+}
+.horizon-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.phone .horizon-name input {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 0 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  /* Override the mobile input reset, which fixes ordinary fields at 16px. */
+  font-size: 30px !important;
+  font-weight: 500;
+  letter-spacing: -0.7px;
+}
+.horizon-name .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--muted);
+}
+.horizon-detail .horizon-reason {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 20px 0 28px;
+  color: var(--muted);
+}
+.horizon-detail .possibility-numbers {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.horizon-detail .possibility-numbers h3 {
+  margin: 0 0 18px;
+}
+.horizon-detail .possibility-number-fields .field {
+  margin: 0;
+}
+.horizon-detail .horizon-actions {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 16px var(--page) 20px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  gap: 14px;
+}
+.horizon-actions > p {
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+.horizon-decisions {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 12px;
+}
+.horizon-detail .horizon-decisions .btn {
+  margin: 0;
+  min-height: 48px;
+}
+@media (prefers-reduced-transparency: no-preference) {
+  .horizon-detail .horizon-actions {
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+
+body[data-direction='vanilla'] .phone .sheet:has(> .sheet-body > .container-detail) > .sheet-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: calc(28px + var(--audio-height, 0px));
+}
+.pot-appearance-tools {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-top: 16px;
+}
+.pot-colour-control {
+  flex: 1;
+  min-width: 0;
+}
+.pot-colour-control > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--muted);
+}
+.pot-colour-control > summary::-webkit-details-marker {
+  display: none;
+}
+.pot-colour-control summary b {
+  font-weight: 500;
+  color: var(--ink);
+}
+.pot-colour-control summary > .icon {
+  width: 16px;
+  height: 16px;
+  transform: rotate(90deg);
+}
+.pot-colour-control[open] summary > .icon {
+  transform: rotate(-90deg);
+}
+.pot-colour-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--pot-colour);
+  flex-shrink: 0;
+}
+.pot-appearance-tools .pot-personalise-link {
+  margin: 0;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 0;
+  font-size: 14px;
+}
+.pot-inline-colours {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px 6px 16px;
+}
+.phone .pot-inline-colours button {
+  width: 44px;
+  height: 44px;
+  min-width: 0;
+  min-height: 0;
+  padding: 9px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--swatch);
+  color: var(--pot-ink);
+}
+.pot-inline-colours button[aria-pressed='true'] {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+.pot-inline-colours button[aria-pressed='false'] .icon {
+  visibility: hidden;
+}

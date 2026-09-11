@@ -1,0 +1,128 @@
+/* A personal backdrop belongs to Now's upper canvas, never its detail screens. */
+.now-backdrop {
+  position: absolute;
+  inset: 0 0 auto;
+  height: min(540px, 74%);
+  transform: translateY(calc(-1 * var(--now-photo-scroll, 0px)));
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(151deg, #000 0%, #000 48%, #000a 58%, transparent 76%);
+  mask-image: linear-gradient(151deg, #000 0%, #000 48%, #000a 58%, transparent 76%);
+}
+.now-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% 32%;
+  filter: saturate(0.55);
+  opacity: 0.42;
+}
+.now-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #16171928, #1c202440 50%, var(--canvas));
+}
+body[data-direction='vanilla'] .phone[data-now-photo='true'] > .content {
+  position: relative;
+  z-index: 1;
+}
+body[data-direction='vanilla']
+  .phone[data-now-photo='true'][data-now-photo-at-top='true']:not(.has-modal)
+  .app-header {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+body[data-direction='vanilla']
+  .phone[data-now-photo='true'][data-now-photo-at-top='true']:not(.has-modal)
+  #support-slot::before {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+body[data-direction='vanilla']
+  .phone[data-now-photo='true'][data-now-photo-at-top='true']:not(.has-modal)
+  .support-bar.ai-card {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.phone.has-modal .now-backdrop {
+  visibility: hidden;
+}
+.now-background-settings > h1 {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin: 12px 0;
+}
+.now-background-settings > p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+.now-background-preview {
+  height: 280px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  margin: 28px 0 20px;
+  display: grid;
+  place-items: center;
+}
+.now-background-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% 32%;
+  opacity: 0.55;
+  filter: saturate(0.55);
+}
+.now-background-preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, transparent 40%, var(--canvas) 95%);
+}
+.now-background-preview > span {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1;
+  font-size: 18px;
+  font-weight: 500;
+}
+.now-background-preview > .icon {
+  width: 36px;
+  height: 36px;
+  color: var(--muted);
+}
+.now-background-settings > .btn {
+  margin-top: 12px;
+}
+.now-background-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+.now-background-settings > small {
+  color: var(--muted);
+  font-size: 11px;
+}
+@media (prefers-reduced-transparency: reduce) {
+  .now-backdrop {
+    display: none;
+  }
+  body[data-direction='vanilla']
+    .phone[data-now-photo='true'][data-now-photo-at-top='true']:not(.has-modal)
+    .support-bar.ai-card {
+    background: var(--surface);
+  }
+}
+.now-background-settings > .btn.primary {
+  background: var(--ink);
+  color: var(--surface);
+}

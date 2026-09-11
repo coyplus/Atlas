@@ -1,0 +1,1289 @@
+.checkin-entry .feeling-entry-label small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 3px;
+}
+body[data-direction='vanilla'] .sheet:has(.checkin-flow) {
+  top: 0;
+  padding-top: var(--status-height, 36px);
+  background: var(--canvas);
+  overflow: hidden;
+}
+body[data-direction='vanilla'] .phone:has(.checkin-flow) .statusbar {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+body[data-direction='vanilla'] .sheet:has(.checkin-flow) .sheet-header {
+  background: transparent;
+  border: 0;
+  margin-bottom: 0;
+}
+body[data-direction='vanilla'] .sheet:has(.checkin-flow) .sheet-header::before {
+  display: none;
+}
+body[data-direction='vanilla'] .sheet:has(.checkin-flow) > .sheet-body {
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.checkin-flow {
+  --tool-color: #a39db5;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: min-content;
+  padding: 18px 24px 30px;
+  color: var(--ink);
+  background: radial-gradient(
+    ellipse 95% 42% at 50% 34%,
+    color-mix(in srgb, var(--tool-color) 13%, transparent),
+    transparent
+  );
+}
+.checkin-flow h1 {
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -1px;
+  margin: 18px 0 15px;
+  text-wrap: balance;
+}
+.checkin-flow p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+.checkin-eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.checkin-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.checkin-hero-art {
+  width: 220px;
+  max-width: 75%;
+  margin: 24px auto 8px;
+  animation: checkin-drift 16s ease-in-out infinite alternate;
+}
+.checkin-result-art {
+  width: 155px;
+  margin: 15px auto 0;
+}
+.checkin-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  display: grid;
+  gap: 9px;
+}
+.checkin-flow .btn {
+  margin: 0;
+  font-size: 14px;
+  min-height: 46px;
+}
+.checkin-flow .btn.secondary {
+  background: var(--ink);
+  color: var(--canvas);
+  border: 1px solid var(--ink);
+}
+.checkin-flow .btn.text {
+  font-size: 12px;
+}
+.checkin-flow .checkin-quiet {
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 18px 0 0;
+  text-align: center;
+  color: var(--muted);
+}
+.toolkit-home {
+  background: radial-gradient(
+    ellipse at 30% 22%,
+    color-mix(in srgb, #a59eb8 10%, transparent),
+    transparent 55%
+  );
+}
+.toolkit-home h1 {
+  margin-top: 12px;
+  font-size: 32px;
+}
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
+.toolkit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 15px;
+  border: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+  border-radius: 23px;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--surface) 90%, transparent),
+    color-mix(in srgb, var(--tool-color) 11%, var(--canvas))
+  );
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ink) 3%, transparent);
+  transition: transform 0.25s;
+}
+.toolkit-card:active {
+  transform: scale(0.975);
+}
+.toolkit-card .checkin-art {
+  height: 108px;
+  object-fit: contain;
+  margin: -2px 0 12px;
+}
+.toolkit-card h2 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.3px;
+  margin: 9px 0 8px;
+}
+.toolkit-card p {
+  font-size: 12px;
+  line-height: 1.4;
+}
+.toolkit-card .checkin-eyebrow {
+  letter-spacing: 0.4px;
+  font-size: 9px;
+}
+.toolkit-completed {
+  margin-top: 10px;
+  font-size: 9px;
+  color: var(--muted);
+}
+.checkin-list-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-align: left;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+}
+.checkin-list-link > span {
+  flex: 1;
+  font-size: 14px;
+}
+.checkin-list-link small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 5px;
+}
+.checkin-list-link .icon {
+  width: 19px;
+  height: 19px;
+}
+.checkin-progress {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.checkin-progress > div {
+  flex-basis: 100%;
+  display: flex;
+  gap: 5px;
+}
+.checkin-progress i {
+  height: 2px;
+  border-radius: 2px;
+  flex: 1;
+  background: var(--line);
+}
+.checkin-progress i.filled {
+  background: var(--tool-color);
+}
+.checkin-flow .checkin-instruction {
+  margin: 18px 0;
+  font-size: 12px;
+}
+.instinct-deck {
+  position: relative;
+  touch-action: pan-y;
+  margin: 8px 8px 24px;
+  cursor: grab;
+  outline-offset: 8px;
+}
+.instinct-deck::before {
+  content: '';
+  position: absolute;
+  inset: 5px -5px -5px;
+  border-radius: 29px;
+  background: color-mix(in srgb, var(--tool-color) 20%, var(--surface));
+  transform: rotate(-3deg);
+}
+.instinct-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 295px;
+  border: 1px solid color-mix(in srgb, var(--tool-color) 35%, var(--line));
+  border-radius: 27px;
+  padding: 26px 23px 18px;
+  background: linear-gradient(
+    130deg,
+    color-mix(in srgb, var(--tool-color) 20%, var(--surface)),
+    var(--surface)
+  );
+  box-shadow: 0 16px 32px #0000000a;
+  overflow: hidden;
+}
+.instinct-card h2 {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.65px;
+  margin: 23px 0 18px;
+  text-wrap: balance;
+}
+.instinct-card > .checkin-art {
+  width: 95px;
+  margin: auto 0 3px auto;
+  opacity: 0.7;
+}
+.instinct-card > p {
+  font-size: 11px;
+}
+.instinct-swipe-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: auto;
+  padding-top: 25px;
+}
+.instinct-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+.instinct-choices .btn.secondary {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border-color: var(--line);
+  padding: 12px 6px;
+  font-size: 12px;
+}
+.instinct-choices + .btn.secondary {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+  font-size: 12px;
+}
+.checkin-inline-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+}
+.checkin-purchases {
+  display: grid;
+  margin-top: 24px;
+}
+.checkin-purchases > button {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+  min-height: 76px;
+}
+.checkin-purchases > button > span {
+  flex: 1;
+  min-width: 0;
+}
+.checkin-purchases b {
+  font-size: 14px;
+  font-weight: 500;
+}
+.checkin-purchases small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.checkin-purchases strong {
+  font-size: 14px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.checkin-purchases .icon {
+  height: 14px;
+  width: 14px;
+}
+.reflection-receipt {
+  position: relative;
+  margin: 25px 8px 30px;
+  padding: 27px 24px 32px;
+  background: color-mix(in srgb, var(--surface) 96%, var(--tool-color));
+  border: 1px solid var(--line);
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+  box-shadow: 0 12px 24px #00000008;
+}
+.reflection-receipt::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: -1px;
+  right: -1px;
+  height: 9px;
+  background:
+    linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--surface) 96%, var(--tool-color)) 33%,
+        transparent 33%
+      )
+      0 0/16px 16px,
+    linear-gradient(
+        225deg,
+        color-mix(in srgb, var(--surface) 96%, var(--tool-color)) 33%,
+        transparent 33%
+      )
+      0 0/16px 16px;
+}
+.reflection-receipt h2 {
+  font-size: 21px;
+  font-weight: 500;
+  margin: 16px 0 12px;
+}
+.reflection-receipt > strong {
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+.receipt-rule {
+  display: block;
+  border-top: 1px dashed var(--line);
+  margin: 24px 0 17px;
+}
+.reflection-receipt p {
+  font-size: 12px;
+}
+.checkin-options {
+  display: grid;
+  gap: 9px;
+  margin-top: 18px;
+}
+.checkin-options .btn.secondary {
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  color: var(--ink);
+  border-color: var(--line);
+  text-align: left;
+  justify-content: flex-start;
+  padding: 13px 18px;
+}
+.checkin-flow .checkin-small-heading {
+  font-size: 27px;
+  margin: 0 0 10px;
+}
+.checkin-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+.checkin-chips button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 10px 15px;
+  font-size: 12px;
+  background: color-mix(in srgb, var(--surface) 65%, transparent);
+}
+.checkin-chips button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--canvas);
+  border-color: var(--ink);
+}
+.checkin-field {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 24px 0 0;
+}
+.checkin-field small {
+  float: right;
+  color: var(--muted);
+  font-size: 11px;
+}
+.checkin-field textarea {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 10px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.checkin-question {
+  margin: 28px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+.future-choices {
+  display: grid;
+  gap: 8px;
+  margin-top: 24px;
+}
+.future-choices button {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  text-align: left;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+.future-choices button > span:nth-child(2) {
+  flex: 1;
+  font-size: 13px;
+}
+.future-choices .icon {
+  width: 14px;
+  height: 14px;
+}
+.future-choice-mark {
+  width: 32px;
+  height: 32px;
+  background: #92aaa0;
+  border-radius: 50% 50% 10% 10%;
+  flex-shrink: 0;
+}
+.future-choice-mark.mark-1 {
+  background: #95aabd;
+  border-radius: 50% 50% 0 0;
+}
+.future-choice-mark.mark-2 {
+  background: #b6a386;
+  border-radius: 50%;
+}
+.future-choice-mark.mark-3 {
+  background: #a89ab9;
+  border-radius: 5px;
+  transform: rotate(15deg) scale(0.8);
+}
+.future-choice-mark.mark-4 {
+  background: #799b8a;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.future-choice-mark.mark-5 {
+  background: #bf978a;
+  border-radius: 50% 20% 50% 30%;
+}
+.future-window {
+  position: relative;
+  margin: 22px auto 4px;
+  width: 100%;
+  max-width: 310px;
+  aspect-ratio: 1.35;
+  overflow: hidden;
+  border-radius: 120px 120px 20px 20px;
+  background: linear-gradient(#7897ae, #d6c9ac);
+  box-shadow: inset 0 0 0 1px #ffffff25;
+}
+.future-window > .checkin-art {
+  width: 150%;
+  max-width: none;
+  position: absolute;
+  left: -25%;
+  top: -10%;
+  height: 130%;
+  animation: checkin-drift 18s ease-in-out infinite alternate;
+}
+.future-window > span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 22px 16px 15px;
+  background: linear-gradient(transparent, #16262c80);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.future-window[data-future='people'] {
+  filter: hue-rotate(330deg);
+}
+.future-window[data-future='learn'] {
+  filter: hue-rotate(20deg);
+}
+.future-window[data-future='outside'] {
+  filter: hue-rotate(345deg);
+}
+.checkin-result-copy {
+  border-block: 1px solid var(--line);
+  padding: 20px 0;
+  margin: 8px 0;
+}
+.checkin-result-copy > p {
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.checkin-memory-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 23px 0 0;
+  cursor: pointer;
+  min-height: 44px;
+}
+.checkin-memory-choice input {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  margin: 1px 0;
+  accent-color: var(--ink);
+}
+.checkin-memory-choice small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.checkin-edit-insight {
+  margin-top: 12px;
+  font-size: 11px;
+}
+.checkin-edit-insight summary {
+  min-height: 35px;
+  padding: 10px 0;
+  cursor: pointer;
+  color: var(--muted);
+}
+.checkin-edit-insight .checkin-field {
+  margin: 0;
+}
+.checkin-filter {
+  display: flex;
+  gap: 5px;
+  background: var(--soft);
+  padding: 5px;
+  border-radius: 15px;
+  margin: 24px 0 12px;
+}
+.checkin-filter button {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 11px;
+  font-size: 12px;
+}
+.checkin-filter button[aria-pressed='true'] {
+  background: var(--surface);
+  box-shadow: 0 2px 8px #00000008;
+}
+.checkin-saved-list > button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 21px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.checkin-saved-list > button > .checkin-art {
+  width: 58px;
+  flex-shrink: 0;
+}
+.checkin-saved-list > button > span {
+  flex: 1;
+  min-width: 0;
+}
+.checkin-saved-list small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.checkin-saved-list b {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 7px 0;
+}
+.checkin-saved-list p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  margin-bottom: 6px;
+}
+.checkin-saved-list .icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.checkin-empty {
+  text-align: center;
+  padding: 28px 0;
+}
+.checkin-empty .checkin-art {
+  width: 180px;
+  margin: auto;
+}
+.checkin-empty h2 {
+  font-size: 23px;
+  font-weight: 400;
+}
+@keyframes checkin-drift {
+  from {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+  to {
+    transform: translateY(4px) rotate(2deg);
+  }
+}
+@media (max-width: 360px) {
+  .checkin-flow {
+    padding: 16px 18px 24px;
+  }
+  .toolkit-grid {
+    gap: 9px;
+  }
+  .toolkit-card {
+    padding: 12px;
+  }
+  .toolkit-card h2 {
+    font-size: 16px;
+  }
+  .toolkit-card .checkin-art {
+    height: 80px;
+  }
+  .instinct-card h2 {
+    font-size: 25px;
+  }
+  .instinct-card {
+    min-height: 260px;
+  }
+  .checkin-flow h1 {
+    font-size: 30px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .checkin-flow * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Each postcard depicts the chosen aspiration; the saved version keeps that scene. */
+.future-window > .future-scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  animation: checkin-landscape 22s ease-in-out infinite alternate;
+}
+.future-window[data-future] {
+  filter: none;
+}
+@keyframes checkin-landscape {
+  from {
+    transform: scale(1.015) translateY(1px);
+  }
+  to {
+    transform: scale(1.055) translateY(-2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .future-window > .future-scene {
+    animation: none;
+  }
+}
+/* Shared calm journey: content scrolls beneath glass; actions never drift. */
+body[data-direction='vanilla'] .phone .sheet:has(.is-calm) > .sheet-body {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.checkin-flow.is-calm,
+.feeling-flow.is-calm {
+  padding: 0;
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.calm-main {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.calm-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: 82px 24px 24px;
+}
+.calm-footer.checkin-footer,
+.calm-footer.feeling-footer {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 14px 24px max(32px, env(safe-area-inset-bottom));
+  bottom: auto;
+  background: color-mix(in srgb, var(--canvas) 60%, transparent);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  position: relative;
+  z-index: 2;
+  gap: 8px;
+}
+.calm-footer::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--canvas) 60%, transparent));
+  pointer-events: none;
+}
+.calm-footer .checkin-quiet {
+  margin-top: 6px;
+}
+.calm-footer .checkin-question,
+.calm-footer .checkin-options {
+  margin-top: 0;
+}
+.calm-footer .checkin-inline-actions {
+  margin-top: 0;
+}
+.is-calm .instinct-choices {
+  margin-bottom: 0;
+}
+.is-calm .instinct-deck {
+  margin-bottom: 8px;
+}
+.instinct-card[data-checkin-swipe],
+.instinct-card[data-checkin-swipe] * {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.instinct-card[data-checkin-swipe] {
+  touch-action: pan-y;
+  cursor: grab;
+  outline-offset: 4px;
+  will-change: transform;
+}
+.instinct-card[data-checkin-swipe]:active {
+  cursor: grabbing;
+}
+.is-calm .checkin-hero-art {
+  margin: 14px auto;
+}
+.is-calm .feeling-hero {
+  margin: 14px auto;
+  flex-shrink: 0;
+}
+.is-calm .feeling-caption {
+  margin: 10px 0 18px;
+  min-height: 0;
+}
+.feeling-reflect .calm-inner > .reflection-author,
+.checkin-flow .calm-inner > .reflection-author {
+  margin-top: 24px;
+}
+.is-calm .reflection-invitation {
+  margin-top: 20px;
+  flex-shrink: 0;
+}
+.is-calm[data-stage='reason'] .reflection-receipt {
+  margin: 14px 0 20px;
+  padding: 16px 20px 20px;
+}
+.is-calm[data-stage='reason'] .reflection-receipt > strong {
+  font-size: 32px;
+}
+.is-calm[data-stage='reason'] .receipt-rule {
+  margin: 12px 0;
+}
+.is-calm[data-stage='reason'] .reflection-receipt h2 {
+  margin: 10px 0;
+}
+.is-calm[data-stage='reflect'] .calm-inner > h1 {
+  font-size: 29px;
+}
+.is-calm[data-stage='saved'] .calm-inner,
+.is-calm.feeling-saved .calm-inner {
+  text-align: center;
+}
+.is-calm[data-stage='saved'] .checkin-result-copy {
+  border: 0;
+  padding: 8px 0;
+  margin: 0;
+}
+.is-calm[data-stage='saved'] .checkin-result-copy p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.checkin-flow .checkin-closing-line,
+.feeling-flow .checkin-closing-line {
+  margin: 22px 0 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  text-align: center;
+}
+.daily-reward {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: 24px;
+  padding: 10px 16px;
+  border-radius: 24px;
+  color: var(--ink);
+  font-size: 12px;
+  background: color-mix(in srgb, var(--surface) 65%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  animation: reward-arrive 0.7s ease-out both;
+}
+.daily-reward > span {
+  font-size: 10px;
+  color: var(--muted);
+}
+.checkin-closing-art {
+  animation: closing-arrive 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.daily-complete-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  margin-top: 24px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+.daily-complete-card > .checkin-art {
+  width: 70px;
+}
+.daily-complete-card > div {
+  flex: 1;
+}
+.daily-complete-card h2 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 8px 0;
+}
+.daily-complete-card .btn {
+  margin-top: 5px;
+}
+.toolkit-card:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.toolkit-card:disabled:active {
+  transform: none;
+}
+.checkin-flow .daily-invitation {
+  font-size: 12px;
+  margin-top: 20px;
+}
+.history-feeling-art {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+}
+.history-feeling-hero {
+  width: 120px;
+  height: 120px;
+  margin: 24px auto;
+}
+@keyframes reward-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes closing-arrive {
+  from {
+    opacity: 0.5;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (max-width: 360px) {
+  .calm-inner {
+    padding: 76px 18px 20px;
+  }
+  .calm-footer.checkin-footer,
+  .calm-footer.feeling-footer {
+    padding-inline: 18px;
+  }
+  .is-calm .instinct-card {
+    min-height: 235px;
+    padding: 20px;
+  }
+  .is-calm .instinct-card h2 {
+    font-size: 24px;
+  }
+  .is-calm .instinct-card > .checkin-art {
+    width: 68px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .checkin-closing-art,
+  .daily-reward {
+    animation: none !important;
+  }
+}
+
+/* A small daily stamp, echoed by a seven-day card inside the toolkit. */
+.toolkit-home {
+  padding-top: 32px;
+}
+.daily-stamp {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--muted);
+  overflow: visible;
+}
+.stamp-edge {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-dasharray: 1 3;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+.stamp-inner {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.8;
+  opacity: 0.35;
+}
+.stamp-centre {
+  fill: currentColor;
+  opacity: 0.3;
+}
+.daily-stamp.is-complete {
+  color: #6d9991;
+}
+.is-complete .stamp-edge {
+  fill: currentColor;
+  opacity: 1;
+}
+.is-complete .stamp-inner {
+  stroke: #fff;
+  opacity: 0.4;
+}
+.stamp-tick {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: rotate(-8deg);
+  transform-origin: center;
+}
+.checkin-entry .feeling-entry-symbol {
+  width: 28px;
+  flex-basis: 28px;
+}
+.checkin-entry .feeling-streak i {
+  display: none;
+}
+.checkin-entry {
+  column-gap: 9px;
+}
+.checkin-entry .feeling-streak {
+  font-size: 10px;
+}
+.checkin-stamp-card {
+  margin-top: 24px;
+  padding: 18px 14px 14px;
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #81aaa2 7%, var(--surface)),
+    color-mix(in srgb, var(--surface) 50%, transparent)
+  );
+}
+.stamp-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 2px;
+}
+.stamp-card-heading > span {
+  font-size: 13px;
+}
+.stamp-card-heading strong {
+  font-size: 19px;
+  font-weight: 500;
+}
+.stamp-card-heading > small {
+  font-size: 8px;
+  letter-spacing: 1.1px;
+  color: var(--muted);
+}
+.checkin-stamp-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  list-style: none;
+  margin: 16px 0 12px;
+  padding: 0;
+}
+.checkin-stamp-week li {
+  text-align: center;
+  min-width: 0;
+}
+.checkin-stamp-week .daily-stamp {
+  max-width: 42px;
+  margin: 0 auto 6px;
+}
+.checkin-stamp-week li > span {
+  font-size: 9px;
+  color: var(--muted);
+}
+.checkin-stamp-week .is-today > span {
+  color: var(--ink);
+  font-weight: 600;
+}
+.checkin-stamp-week .is-today .is-empty .stamp-edge {
+  stroke-dasharray: none;
+  opacity: 0.85;
+}
+.checkin-stamp-week .is-today .is-empty .stamp-inner {
+  opacity: 0.5;
+}
+.checkin-flow .checkin-stamp-card > p {
+  font-size: 10px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* One soft press, a halo and four tiny glints. Never loops. */
+.daily-reward {
+  position: relative;
+  overflow: visible;
+  animation: reward-press 1.15s 0.25s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.daily-reward > .reward-points {
+  font-size: 12px;
+  color: var(--ink);
+}
+.daily-reward::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid color-mix(in srgb, #81aaa2 55%, transparent);
+  border-radius: inherit;
+  pointer-events: none;
+  animation: reward-halo 1.6s 0.4s ease-out both;
+}
+.reward-sparkles {
+  position: absolute;
+  inset: -15px -12px;
+  width: calc(100% + 24px);
+  height: calc(100% + 30px);
+  overflow: visible;
+  pointer-events: none;
+  color: #81aaa2;
+}
+.reward-sparkles path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+}
+.reward-sparkles circle {
+  fill: currentColor;
+}
+.reward-sparkles > * {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: reward-glint 1.5s 0.5s ease-out both;
+}
+.reward-sparkles > :nth-child(even) {
+  animation-delay: 0.7s;
+}
+@keyframes reward-press {
+  0% {
+    opacity: 0;
+    transform: translateY(7px) scale(0.94);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0) scale(1.025);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes reward-halo {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  25% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.16, 1.5);
+  }
+}
+@keyframes reward-glint {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  35% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-4px);
+  }
+}
+@media (max-width: 360px) {
+  .checkin-entry .feeling-entry-label {
+    font-size: 12px;
+  }
+  .checkin-entry .feeling-entry-label small {
+    font-size: 10px;
+  }
+  .checkin-entry .feeling-streak {
+    font-size: 9px;
+  }
+  .checkin-entry {
+    padding-inline: 10px;
+    gap: 7px;
+  }
+  .stamp-card-heading > small {
+    letter-spacing: 0.6px;
+    font-size: 7px;
+  }
+  .checkin-stamp-week {
+    gap: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .daily-reward {
+    animation: none !important;
+  }
+  .daily-reward::after,
+  .reward-sparkles {
+    display: none;
+  }
+}
+
+/* Keep the reward in the initial view of the closing postcard. */
+.is-calm[data-stage='saved'] .checkin-closing-art .future-window {
+  width: min(62%, 180px);
+  margin: 14px auto 4px;
+}
+.is-calm[data-stage='saved'] .checkin-closing-art .future-window > span {
+  font-size: 10px;
+  padding: 16px 8px 10px;
+}
+.is-calm[data-stage='saved'] .checkin-result-copy {
+  max-height: 100px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+/* Progress belongs to the journey chrome, outside the scrolling reflection. */
+.calm-progress {
+  flex-shrink: 0;
+  padding: 88px 24px 12px;
+  position: relative;
+  z-index: 3;
+}
+.calm-progress .checkin-progress {
+  margin: 0;
+}
+.calm-progress + .calm-main .calm-inner {
+  padding-top: 20px;
+}
+.reflection-item-group {
+  margin-top: 26px;
+}
+.reflection-item-group > h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.reflection-item-group .checkin-purchases {
+  margin-top: 0;
+}
+.reflection-item-group .checkin-purchases b {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 360px) {
+  .calm-progress {
+    padding-inline: 18px;
+  }
+}

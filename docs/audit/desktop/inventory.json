@@ -1,0 +1,1549 @@
+{
+  "screens": [
+    {
+      "person": "alex",
+      "tab": "now",
+      "name": "now",
+      "actions": [],
+      "key": "000-alex-now",
+      "title": "now",
+      "text": "Pay\nTransfer\nAdd money\nMore\nMy numbers\nCustomise\nBalance\n£1,180.62\n\nAvailable balance\n\nDirect Debits\n£86.20\n\n3 Direct Debits\n\nCredit score\nLearning\n\nSoft check\n\nRecent activity\nSwitch bonus — HSBC promise kept\n£200.00\nCoffee & lunch\n-£19.60\nAcme Ltd — salary\n£1,000.00\nAdd a number\n2 new\nAll accounts and pots · 1\nMy stories\nNEW STORY\nYour money personality\nDiscover your money habits and a way forward that feels like you.\nNEW STORY\nDirect Debits\nAll three Direct Debits moved over — and landed.\nFOR YOU\nSafe to spend\nPayday is in 8 days. One number says what’s truly spendable.\nAll HSBC products",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 1295,
+      "navHidden": false
+    },
+    {
+      "person": "alex",
+      "tab": "future",
+      "name": "future",
+      "actions": [],
+      "key": "001-alex-future",
+      "title": "future",
+      "text": "Goal\n3\nNew career\nRoom to grow\nFit\nToday\n24\nyears old\nNet worth today\n£1,181\nExplore your future in months\nWhat if…\nTry a change",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        },
+        {
+          "label": "AI possibility: Your next career chapter · around Aug 2031",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Make space for your life · around Aug 2035",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Time for a different pace · around Aug 2041",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: More choices for later · around Aug 2045",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "",
+          "class": "",
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": false
+    },
+    {
+      "person": "alex",
+      "tab": "you",
+      "name": "you",
+      "actions": [],
+      "key": "002-alex-you",
+      "title": "you",
+      "text": "Money check-in\nA little space for yourself\nA\nYou\nAdd\nA first outline\nMONEY PERSONALITY\nA picture of you.\n\nDiscover how you plan, spend and save. Your answers shape your portrait.\n\nTake the 2-minute quiz\nYour money personality + 25 HSBC Points\nHSBC Status\nHSBC\n£1,180.62\nTotal Relationship Balance\nHSBC\nYour starting point\nPremier\n£100,000\nElite\n£250,000\n£98,819.38\nto Premier\nExplore your access\n0\nHSBC Points\nUse your Points \nYour challenges\nSee all 20\nDear future me\n3 months\n+100 Points\n30 days in touch\n30 days\n+100 Points\nSmall change, big start\n30 saving days\n+100 Points\nView Points activity\nYour journey with us\n\nSince 11 August 2026\n\n19 August 2026\nYour first £200, delivered\nYour switch bonus arrived.\n11 August 2026\nA new beginning\nYour everyday banking moved to HSBC.\nExplore your journey\nOn your behalf\nwatches nothing yet\nNone granted\nReview your rulesStep everything down\nAsk HSBC AI",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        }
+      ],
+      "smallText": [
+        {
+          "text": "A little space for yourself",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "Your money personality + 25 HSBC Points",
+          "size": "11px",
+          "class": "portrait-reward"
+        }
+      ],
+      "overflow": false,
+      "scroll": 1634,
+      "navHidden": false
+    },
+    {
+      "person": "alex",
+      "tab": "you",
+      "name": "points",
+      "actions": [
+        "points"
+      ],
+      "key": "003-alex-points",
+      "title": "Your rewards",
+      "text": "Your rewards\nHSBC POINTS\n0\n\nEarn Points through everyday money habits, sharing what matters to you and completing challenges.\n\nYour challenges\n20 badges to discover · 0 earned\nUse your Points\nAn hour with a financial coach\nA named human, your numbers, no product agenda\n400 more Points to unlock\n400\npoints\nRate boost · +0.25% on one pot\nThree months, on the pot you choose\n300 more Points to unlock\n300\npoints\nFee-free international transfers\nThree months, any currency\n250 more Points to unlock\n250\npoints\nAirport lounge pass\nTwo guests · Premier only\nAvailable with Premier or Elite\n350\npoints\nView Points activity",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 269,
+      "navHidden": true
+    },
+    {
+      "person": "alex",
+      "tab": "you",
+      "name": "membership",
+      "actions": [
+        "membership"
+      ],
+      "key": "004-alex-membership",
+      "title": "HSBC Status",
+      "text": "HSBC Status\nHSBC\nPremier\nElite\nYour membership\nHSBC\nCurrent membership\n£1,180.62\nYour Total Relationship Balance\nHSBC\nYour starting point\nPremier\n£100,000\nElite\n£250,000\n\n£98,819.38\nto Premier\n\nYOUR ACCESS\nClarity for your everyday money.\nYour money, together in Atlas\nPersonalised insights and Money Rules\nHSBC Points and rewards\nAT £100,000\nStep into Premier\n\nSpecialist access, family services and three benefits chosen by you.\n\nExplore Premier\nA\nMembership, shared\nSee which benefits can include your household\n\nMembership follows your HSBC relationship balance. View each tier to see what it includes.",
+      "smallTargets": [
+        {
+          "label": "Your Total Relationship Balance",
+          "class": "membership-balance-link",
+          "width": 194,
+          "height": 32
+        }
+      ],
+      "smallText": [
+        {
+          "text": "HSBC",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "Your starting point",
+          "size": "9px",
+          "class": ""
+        },
+        {
+          "text": "Premier",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£100,000",
+          "size": "9px",
+          "class": ""
+        },
+        {
+          "text": "Elite",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£250,000",
+          "size": "9px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 350,
+      "navHidden": true
+    },
+    {
+      "person": "alex",
+      "tab": "you",
+      "name": "portrait",
+      "actions": [
+        "portrait"
+      ],
+      "key": "005-alex-portrait",
+      "title": "Your money portrait",
+      "text": "Your money portrait\nA FIRST OUTLINE\nYour story starts here\n\nThree questions give us a first impression. As you share and confirm more, new details appear.\n\nDiscover your money personality",
+      "smallTargets": [],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": true
+    },
+    {
+      "person": "alex",
+      "tab": "you",
+      "name": "checkin-home",
+      "actions": [
+        "checkin-home"
+      ],
+      "key": "006-alex-checkin-home",
+      "title": "Money check-in",
+      "text": "Money check-in\nA MOMENT FOR YOU\nA little pause.\nA clearer perspective.\n\nNo right answers. No tasks to tick off.\nChoose what you need today.\n\nA little time for you\nYOUR DAILY PAUSE\nFri\nSat\nSun\nMon\nTue\nWed\nToday\n\nOne small pause, whenever you’re ready.\n\nOne small check-in today · +5 HSBC Points\n\nFeel · 30 seconds\nMoney Feeling\n\nName what’s on your mind.\n\nDiscover · 1 minute\nMoney Instinct\n\nFind what feels like you.\n\nReflect · 1 minute\nWas It Worth It?\n\nNotice what your spending gives you.\n\nImagine · 90 seconds\nAn Ordinary Day Ahead\n\nPicture more of what matters.\n\nOne moment is enough. The rest can wait.\n\nReflection History\nRevisit, keep or forget a reflection",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "YOUR DAILY PAUSE",
+          "size": "8px",
+          "class": ""
+        },
+        {
+          "text": "One small pause, whenever you’re ready.",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 352,
+      "navHidden": true
+    },
+    {
+      "person": "alex",
+      "tab": "future",
+      "name": "future-expanded",
+      "actions": [],
+      "drawer": "expanded",
+      "key": "007-alex-future-expanded",
+      "title": "future",
+      "text": "Goal\n3\nNew career\nRoom to grow\nFit\nToday\n24\nyears old\nNet worth today\n£1,181\nExplore your future in months\nWhat if…\nBreathing room\n£25/month towards £1,000\nBreathing room · Now within reach\nMoney Speed\n0 Money Rules\n£0\n/month",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        },
+        {
+          "label": "AI possibility: Your next career chapter · around Aug 2031",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Make space for your life · around Aug 2035",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Time for a different pace · around Aug 2041",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: More choices for later · around Aug 2045",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "",
+          "class": "",
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 47,
+      "navHidden": false
+    },
+    {
+      "person": "jordan",
+      "tab": "now",
+      "name": "now",
+      "actions": [],
+      "key": "008-jordan-now",
+      "title": "now",
+      "text": "Pay\nTransfer\nAdd money\nMore\nMy numbers\nCustomise\nSafe to spend\n£820.00\n\nAfter commitments\n\nAvailable\nSet aside\nGrocery budget\nBenefit changed\n£320/mo\n\n£150.30 spent\n\nCredit card\n£780.00\n\n29.9% variable\n\nFlat utilities\n£450/mo\n\n£270.00 spent\n\nJ\nN\nEating out budget\n£200/mo\n\n£131.00 spent\n\nEmergency fund\n£430.00\n\n4.2% AER\n\nCar loan\n£3,600.00\n\n0% fixed\n\nRecent activity\nRound-ups (month to date)\n£22.00\nRound-ups → Emergency fund (month to date)\n-£22.00\nGym\n-£25.93\nAdd a number\n3 new\nAll accounts and pots · 9\nMy stories\nNEW STORY\nEating out\nEating out averages £245. A little less could help your fund.\nFOR YOU\nRound-ups\nYour round-ups could clear the car loan three months sooner.\nIN PLACE\nThe payday rule\n£50 on payday · running since Feb\nAll HSBC products",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 1510,
+      "navHidden": false
+    },
+    {
+      "person": "jordan",
+      "tab": "future",
+      "name": "future",
+      "actions": [],
+      "key": "009-jordan-future",
+      "title": "future",
+      "text": "Goal\n3\nFit\nToday\n29\nyears old\nNet worth today\n-£1,141\nExplore your future in months\nWhat if…\nTry a change",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        },
+        {
+          "label": "Emergency fund · May 2027",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "Car loan · Sept 2028",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Your next career chapter · around Sept 2031",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Make space for your life · around Sept 2035",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Time for a different pace · around Sept 2041",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: More choices for later · around Sept 2045",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "",
+          "class": "",
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": false
+    },
+    {
+      "person": "jordan",
+      "tab": "you",
+      "name": "you",
+      "actions": [],
+      "key": "010-jordan-you",
+      "title": "you",
+      "text": "Money check-in\nA little space for yourself\n3 day streak\nJ\nYou\nBen\nN\nNia\nAdd\nTaking shape with you\nMONEY PERSONALITY\nSteady builder\n\nYou find your footing through small, regular steps.\n\nRhythm\nPlanning\nSpontaneity\nExplore your portrait\nHSBC Status\nHSBC\n£3,238.88\nTotal Relationship Balance\nHSBC\nYour starting point\nPremier\n£100,000\nElite\n£250,000\n£96,761.12\nto Premier\nExplore your access\n140\nHSBC Points\nUse your Points \nYour challenges\nSee all 20\nPay yourself first\n3 monthly paydays\n+120 Points\n30 days in touch\n21 / 30 daily reviews\n+100 Points\nIn your own rhythm\n2 / 4 budget reviews\n+120 Points\nView Points activity\nYour journey with us\n\nSince 10 February 2026\n\n13 September 2026\nA place of your own, in the plan\nYou started a house deposit pot.\nJune 2026\nFinding your rhythm\nBudgeting became a habit.\nMarch 2026\nYour safety net began\nYou opened your first emergency fund.\nExplore your journey\nOn your behalf\nacts within limits you set\nRound-ups move automatically, up to £30 a month\nReview your rulesStep everything down\nAsk HSBC AI",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        }
+      ],
+      "smallText": [
+        {
+          "text": "A little space for yourself",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 1786,
+      "navHidden": false
+    },
+    {
+      "person": "jordan",
+      "tab": "now",
+      "name": "container-house",
+      "actions": [
+        "pot:house"
+      ],
+      "key": "011-jordan-container-house",
+      "title": "House deposit",
+      "text": "House deposit\nAvailable balance\n£150.00\nSavings Pot\nPot colour · Slate\nPhoto\n£3,000 goal\n£2,850 to go\nAdd money\nMove money\nAccount info\nMore\nHow it works\nOn track\nYour savings rate\n4.0% AER variable\nView your conditions and payments.\nNo rules attached\nView details\nRecent activity\nView all\nFirst deposit — by hand\n13 Sept 2026\n£150.00",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "savings pot",
+          "size": "11px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 157,
+      "navHidden": true
+    },
+    {
+      "person": "jordan",
+      "tab": "you",
+      "name": "points",
+      "actions": [
+        "points"
+      ],
+      "key": "012-jordan-points",
+      "title": "Your rewards",
+      "text": "Your rewards\nHSBC POINTS\n140\n\nEarn Points through everyday money habits, sharing what matters to you and completing challenges.\n\nYour challenges\n20 badges to discover · 0 earned\nUse your Points\nAn hour with a financial coach\nA named human, your numbers, no product agenda\n260 more Points to unlock\n400\npoints\nRate boost · +0.25% on one pot\nThree months, on the pot you choose\n160 more Points to unlock\n300\npoints\nFee-free international transfers\nThree months, any currency\n110 more Points to unlock\n250\npoints\nAirport lounge pass\nTwo guests · Premier only\nAvailable with Premier or Elite\n350\npoints\nView Points activity",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 269,
+      "navHidden": true
+    },
+    {
+      "person": "jordan",
+      "tab": "you",
+      "name": "membership",
+      "actions": [
+        "membership"
+      ],
+      "key": "013-jordan-membership",
+      "title": "HSBC Status",
+      "text": "HSBC Status\nHSBC\nPremier\nElite\nYour membership\nHSBC\nCurrent membership\n£3,238.88\nYour Total Relationship Balance\nHSBC\nYour starting point\nPremier\n£100,000\nElite\n£250,000\n\n£96,761.12\nto Premier\n\nYOUR ACCESS\nClarity for your everyday money.\nYour money, together in Atlas\nPersonalised insights and Money Rules\nHSBC Points and rewards\nAT £100,000\nStep into Premier\n\nSpecialist access, family services and three benefits chosen by you.\n\nExplore Premier\nJ\nN\nMembership, shared\nSee which benefits can include your household\n\nMembership follows your HSBC relationship balance. View each tier to see what it includes.",
+      "smallTargets": [
+        {
+          "label": "Your Total Relationship Balance",
+          "class": "membership-balance-link",
+          "width": 194,
+          "height": 32
+        }
+      ],
+      "smallText": [
+        {
+          "text": "HSBC",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "Your starting point",
+          "size": "9px",
+          "class": ""
+        },
+        {
+          "text": "Premier",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£100,000",
+          "size": "9px",
+          "class": ""
+        },
+        {
+          "text": "Elite",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£250,000",
+          "size": "9px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 350,
+      "navHidden": true
+    },
+    {
+      "person": "jordan",
+      "tab": "you",
+      "name": "portrait",
+      "actions": [
+        "portrait"
+      ],
+      "key": "014-jordan-portrait",
+      "title": "Your money portrait",
+      "text": "Your money portrait\nTAKING SHAPE WITH YOU\nSteady builder\n\nAn interpretation of your approach to money, shaped by what you share and confirm.\n\nRhythm\nA repeating wave represents a regular routine.\nPlanning\nAn arch gives structure: a clear plan to build on.\nSpontaneity\nAn open bloom represents room for the unexpected.\n\nYour answers and recurring spending and saving patterns. More detail reflects a broader understanding, not a better personality.\n\nInformed by 214 money moves and 12 answers\nYour balance and HSBC tier do not shape this artwork.\n\nDoes this feel like you?\n\nSaving on a steady rhythm compounds more than the occasional big deposit ever could. You’ve built the habit that matters most — now let the amount rise gently as your income does.\n\nThis sounds like me\nNot quite",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "Informed by 214 money moves and 12 answersYour balance and HSBC tier do not shape this artwork.",
+          "size": "11px",
+          "class": "portrait-source"
+        }
+      ],
+      "overflow": false,
+      "scroll": 235,
+      "navHidden": true
+    },
+    {
+      "person": "jordan",
+      "tab": "you",
+      "name": "checkin-home",
+      "actions": [
+        "checkin-home"
+      ],
+      "key": "015-jordan-checkin-home",
+      "title": "Money check-in",
+      "text": "Money check-in\nA MOMENT FOR YOU\nA little pause.\nA clearer perspective.\n\nNo right answers. No tasks to tick off.\nChoose what you need today.\n\n3 day streak\nYOUR DAILY PAUSE\nThu\nFri\nSat\nSun\nMon\nTue\nToday\n\nOne small pause, whenever you’re ready.\n\nOne small check-in today · +5 HSBC Points\n\nFeel · 30 seconds\nMoney Feeling\n\nName what’s on your mind.\n\nDiscover · 1 minute\nMoney Instinct\n\nFind what feels like you.\n\nReflect · 1 minute\nWas It Worth It?\n\nNotice what your spending gives you.\n\nImagine · 90 seconds\nAn Ordinary Day Ahead\n\nPicture more of what matters.\n\nOne moment is enough. The rest can wait.\n\nReflection History\nRevisit, keep or forget a reflection",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "YOUR DAILY PAUSE",
+          "size": "8px",
+          "class": ""
+        },
+        {
+          "text": "One small pause, whenever you’re ready.",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 359,
+      "navHidden": true
+    },
+    {
+      "person": "jordan",
+      "tab": "future",
+      "name": "future-expanded",
+      "actions": [],
+      "drawer": "expanded",
+      "key": "016-jordan-future-expanded",
+      "title": "future",
+      "text": "Goal\n3\nFit\nToday\n29\nyears old\nNet worth today\n-£1,141\nExplore your future in months\nWhat if…\nSave £50 on payday\nAn automatic Savings Rule\nHouse deposit · Now within reach\nPause for 6 months\nKeep contributions in cash\nEmergency fund · 6 months later\nMoney Speed\n3 Money Rules\n£222\n/month",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        },
+        {
+          "label": "Emergency fund · May 2027",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "Car loan · Sept 2028",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Your next career chapter · around Sept 2031",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Make space for your life · around Sept 2035",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Time for a different pace · around Sept 2041",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: More choices for later · around Sept 2045",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "",
+          "class": "",
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 64,
+      "navHidden": false
+    },
+    {
+      "person": "sam",
+      "tab": "now",
+      "name": "now",
+      "actions": [],
+      "key": "017-sam-now",
+      "title": "now",
+      "text": "Pay\nTransfer\nAdd money\nMore\nMy numbers\nCustomise\nHouse deposit\n£6,400.00\n\n5.1% fixed\n\n£24,000 goal\nFamily groceries\n£300/mo\n\n£198.10 spent\n\nS\nFamily holiday\n£600.00\n\n4.2% AER\n\nS\nEmergency fund\n£4,200.00\n\n4.4% AER\n\nS\nRoom to invest\n£1,300.44\n\nAfter essentials\n\nGrocery spending\n£198.10\n\nThis month\n\nHSBC Points\n480\nRecent activity\nLocal grocer\n-£22.30\nCard cashback\n£8.00\nCo-op\n-£32.60\nAdd a number\n3 new\nAll accounts and pots · 12\nMy stories\nNEW STORY\nGolden Ratio\n£1,300 of your cash is genuinely safe to invest.\nFOR YOU\nPayday remainder\nWhatever’s left on payday could bring the house from 2031 into 2030.\nIN PLACE\nEight months held\nGrocery challenge → Holiday · £60 when the month holds\nAll HSBC products",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 1487,
+      "navHidden": false
+    },
+    {
+      "person": "sam",
+      "tab": "future",
+      "name": "future",
+      "actions": [],
+      "key": "018-sam-future",
+      "title": "future",
+      "text": "Goal\n3\nSavings\n£72,728\nFit\nToday\n33\nyears old\nNet worth today\n£98,000\nExplore your future in months\nWhat if…\nTry a change",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        },
+        {
+          "label": "Family holiday, £600, target £2,400",
+          "class": "future-orbit has-photo ",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Not decided yet, £850",
+          "class": "future-orbit  ",
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "Time with friends, £500, target £1,500",
+          "class": "future-orbit has-photo ",
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "Emergency fund · May 2028",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "Family holiday · Mar 2029",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "House deposit · Apr 2031",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A bigger family adventure · around Sept 2033",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A little more freedom at work · around Sept 2036",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A head start beyond education · around Sept 2041",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Life with a little less work · around Sept 2045",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "",
+          "class": "",
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": false
+    },
+    {
+      "person": "sam",
+      "tab": "you",
+      "name": "you",
+      "actions": [],
+      "key": "019-sam-you",
+      "title": "you",
+      "text": "Money check-in\nA little space for yourself\n4 day streak\nS\nYou\nRiley\nE\nElla\nTogether\nAdd\nTaking shape with you\nMONEY PERSONALITY\nPlanner\n\nYou like a clear plan that makes room for everyday life.\n\nPlanning\nRhythm\nSpontaneity\nExplore your portrait\nHSBC Status\nHSBC\n£98,000.00\nTotal Relationship Balance\nHSBC\nYour starting point\nPremier\n£100,000\nElite\n£250,000\n£2,000.00\nto Premier\nExplore your access\n480\nHSBC Points\nUse your Points \nYour challenges\nSee all 20\nBefore the first step\n4 weeks\n+100 Points\nBetter together\n2 / 4 money conversations\n+150 Points\n30 days in touch\n14 / 30 daily reviews\n+100 Points\nView Points activity\nYour journey with us\n\nSince 12 January 2026\n\nAugust 2026\nEveryday habits, bigger plans\nEight months of grocery budgeting.\nJuly 2026\nRoom to breathe\nYou reached a 90-day safety buffer.\nMarch 2026\nA plan for your home\nYou committed to your house deposit pot.\nExplore your journey\nOn your behalf\nacts within limits you set\nMoves up to £420 a month between pots, exactly as agreed\nReview your rulesStep everything down\nAsk HSBC AI",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        }
+      ],
+      "smallText": [
+        {
+          "text": "A little space for yourself",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 1786,
+      "navHidden": false
+    },
+    {
+      "person": "sam",
+      "tab": "now",
+      "name": "container-house",
+      "actions": [
+        "pot:house"
+      ],
+      "key": "020-sam-container-house",
+      "title": "House deposit",
+      "text": "House deposit\nAvailable balance\n£6,400.00\nSavings Pot\nPot colour · Slate\nPhoto\n£24,000 goal\n£17,600 to go\nAdd money\nMove money\nAccount info\nMore\nHow it works\nPayment planned\nYour savings rate\n5.1% fixed while committed\n£320 planned automatically.\n1 active rule\nView details\nRecent activity\nView all\nPayday move\n28 Aug 2026\n£320.00",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "savings pot",
+          "size": "11px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 189,
+      "navHidden": true
+    },
+    {
+      "person": "sam",
+      "tab": "now",
+      "name": "container-family-budget",
+      "actions": [
+        "pot:family-budget"
+      ],
+      "key": "021-sam-container-family-budget",
+      "title": "Family groceries",
+      "text": "Family groceries\nLeft to spend\n£101.90\nShared · Budget Wallet\n£198.10 spent\nof £300 monthly budget\n\n£101.90 of your budget unused\n\nS\nSam, Riley\nAdd money\nMove money\nAccount info\nMore\nGrocery spending\nPurchases across accounts and pots\nHow it works\nOn track\nAt your chosen supermarket\n1% cashback\nView your conditions and payments.\nNo rules attached\nView details\nRecent activity\nView all\nLocal grocer\n7 Sept 2026\n-£22.30\nCo-op\n6 Sept 2026\n-£32.60\nLidl\n4 Sept 2026\n-£58.90\nRiley · grocery allowance\n1 Sept 2026\n£150.00\nSam · grocery allowance\n1 Sept 2026\n£150.00\nTesco\n1 Sept 2026\n-£84.30",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "Shared · budget wallet",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£101.90 of your budget unused",
+          "size": "11px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 637,
+      "navHidden": true
+    },
+    {
+      "person": "sam",
+      "tab": "you",
+      "name": "points",
+      "actions": [
+        "points"
+      ],
+      "key": "022-sam-points",
+      "title": "Your rewards",
+      "text": "Your rewards\nHSBC POINTS\n480\n\nEarn Points through everyday money habits, sharing what matters to you and completing challenges.\n\nYour challenges\n20 badges to discover · 0 earned\nUse your Points\nAn hour with a financial coach\nA named human, your numbers, no product agenda\nAvailable with your Points\n400\npoints\nRate boost · +0.25% on one pot\nThree months, on the pot you choose\nAvailable with your Points\n300\npoints\nFee-free international transfers\nThree months, any currency\nAvailable with your Points\n250\npoints\nAirport lounge pass\nTwo guests · Premier only\nAvailable with Premier or Elite\n350\npoints\nView Points activity",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 269,
+      "navHidden": true
+    },
+    {
+      "person": "sam",
+      "tab": "you",
+      "name": "membership",
+      "actions": [
+        "membership"
+      ],
+      "key": "023-sam-membership",
+      "title": "HSBC Status",
+      "text": "HSBC Status\nHSBC\nPremier\nElite\nYour membership\nHSBC\nCurrent membership\n£98,000.00\nYour Total Relationship Balance\nHSBC\nYour starting point\nPremier\n£100,000\nElite\n£250,000\n\n£2,000.00\nto Premier\n\nHSBC AI\n£2,000 from Premier\n\nSet aside £500 from each new payday to build your savings towards Premier.\n\nExplore a saving rule\nYOUR ACCESS\nClarity for your everyday money.\nYour money, together in Atlas\nPersonalised insights and Money Rules\nHSBC Points and rewards\nAT £100,000\nStep into Premier\n\nSpecialist access, family services and three benefits chosen by you.\n\nExplore Premier\nS\nE\nMembership, shared\nSee which benefits can include your household\n\nMembership follows your HSBC relationship balance. View each tier to see what it includes.",
+      "smallTargets": [
+        {
+          "label": "Your Total Relationship Balance",
+          "class": "membership-balance-link",
+          "width": 194,
+          "height": 32
+        }
+      ],
+      "smallText": [
+        {
+          "text": "HSBC",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "Your starting point",
+          "size": "9px",
+          "class": ""
+        },
+        {
+          "text": "Premier",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£100,000",
+          "size": "9px",
+          "class": ""
+        },
+        {
+          "text": "Elite",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£250,000",
+          "size": "9px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 544,
+      "navHidden": true
+    },
+    {
+      "person": "sam",
+      "tab": "you",
+      "name": "portrait",
+      "actions": [
+        "portrait"
+      ],
+      "key": "024-sam-portrait",
+      "title": "Your money portrait",
+      "text": "Your money portrait\nTAKING SHAPE WITH YOU\nPlanner\n\nAn interpretation of your approach to money, shaped by what you share and confirm.\n\nPlanning\nAn arch gives structure: a clear plan to build on.\nRhythm\nA repeating wave represents a regular routine.\nSpontaneity\nAn open bloom represents room for the unexpected.\n\nYour answers, regular routines and plans across several priorities. More detail reflects a broader understanding, not a better personality.\n\nInformed by 431 money moves and 15 answers\nYour balance and HSBC tier do not shape this artwork.\n\nDoes this feel like you?\n\nCareful, likes a route, allergic to nagging. You do the thinking up front so the months can run quietly — the system’s job is to keep your receipts and stay out of the way.\n\nThis sounds like me\nNot quite",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "Informed by 431 money moves and 15 answersYour balance and HSBC tier do not shape this artwork.",
+          "size": "11px",
+          "class": "portrait-source"
+        }
+      ],
+      "overflow": false,
+      "scroll": 235,
+      "navHidden": true
+    },
+    {
+      "person": "sam",
+      "tab": "you",
+      "name": "checkin-home",
+      "actions": [
+        "checkin-home"
+      ],
+      "key": "025-sam-checkin-home",
+      "title": "Money check-in",
+      "text": "Money check-in\nA MOMENT FOR YOU\nA little pause.\nA clearer perspective.\n\nNo right answers. No tasks to tick off.\nChoose what you need today.\n\n4 day streak\nYOUR DAILY PAUSE\nWed\nThu\nFri\nSat\nSun\nMon\nToday\n\nOne small pause, whenever you’re ready.\n\nOne small check-in today · +5 HSBC Points\n\nFeel · 30 seconds\nMoney Feeling\n\nName what’s on your mind.\n\nDiscover · 1 minute\nMoney Instinct\n\nFind what feels like you.\n\nReflect · 1 minute\nWas It Worth It?\n\nNotice what your spending gives you.\n\nImagine · 90 seconds\nAn Ordinary Day Ahead\n\nPicture more of what matters.\n\nOne moment is enough. The rest can wait.\n\nReflection History\nRevisit, keep or forget a reflection",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "YOUR DAILY PAUSE",
+          "size": "8px",
+          "class": ""
+        },
+        {
+          "text": "One small pause, whenever you’re ready.",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 359,
+      "navHidden": true
+    },
+    {
+      "person": "sam",
+      "tab": "future",
+      "name": "future-expanded",
+      "actions": [],
+      "drawer": "expanded",
+      "key": "026-sam-future-expanded",
+      "title": "future",
+      "text": "Goal\n3\nSavings\n£72,728\nFit\nToday\n33\nyears old\nNet worth today\n£98,000\nExplore your future in months\nWhat if…\nSave £50 on payday\nAn automatic Savings Rule\nEmergency fund · 11 months earlier\nRound up your spending\n£20/month estimate · £30 cap\nEmergency fund · 6 months earlier\nPause for 6 months\nKeep contributions in cash\nEmergency fund · 6 months later\nPut emergency fund first\nRedirect £50/month\nEmergency fund · 11 months earlier · Family holiday · 150 months later\nMoney Speed\n3 Money Rules\n£420\n/month",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 92,
+          "height": 24
+        },
+        {
+          "label": "Family holiday, £600, target £2,400",
+          "class": "future-orbit has-photo ",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Not decided yet, £850",
+          "class": "future-orbit  ",
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "Time with friends, £500, target £1,500",
+          "class": "future-orbit has-photo ",
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "Emergency fund · May 2028",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "Family holiday · Mar 2029",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "House deposit · Apr 2031",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A bigger family adventure · around Sept 2033",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A little more freedom at work · around Sept 2036",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A head start beyond education · around Sept 2041",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Life with a little less work · around Sept 2045",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "",
+          "class": "",
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 64,
+      "navHidden": false
+    },
+    {
+      "person": "elena",
+      "tab": "now",
+      "name": "now",
+      "actions": [],
+      "key": "027-elena-now",
+      "title": "now",
+      "text": "Pay\nTransfer\nAdd money\nMore\nMy numbers\nCustomise\nTotal wealth\n£284,600\n\nBefore debt\n\nCash\nPots\nInvested\nFamily holiday\n£1,860.00\n\n4.5% AER\n\n£3,000 goal\nInvestments\n£182,400\n\nInvestment value\n\nHeld in Investments\nRetirement\n£34,140.00\n\n4.6% AER\n\nHSBC Points\n4,050\nRates watch\nWatching\n\nSavings & mortgage rates\n\nAdd a number\n3 new\nAll accounts and pots · 9\nMy stories\nNEW STORY\nLeo’s future\nA pot Leo would own at 18 — £100 a month gets there.\nIN PLACE\nThe rebalance\nRebalanced · signed by Maya · receipt in your feed\nAll HSBC products",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 141,
+          "height": 24
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 1389,
+      "navHidden": false
+    },
+    {
+      "person": "elena",
+      "tab": "future",
+      "name": "future",
+      "actions": [],
+      "key": "028-elena-future",
+      "title": "future",
+      "text": "Goal\n3\nInvestments\n£182,400\nFit\nToday\n47\nyears old\nNet worth today\n£283,360\nExplore your future in months\nWhat if…\nTry a change",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 141,
+          "height": 24
+        },
+        {
+          "label": "Family holiday, £1,860, target £3,000",
+          "class": "future-orbit has-photo ",
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "Family holiday · May 2027",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: More moments together · around Sept 2031",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "House upgrade · Mar 2034",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A new rhythm to your week · around Sept 2035",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "Retirement · Jan 2041",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Help someone take a next step · around Sept 2041",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A home that keeps working for you · around Sept 2045",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "",
+          "class": "",
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": false
+    },
+    {
+      "person": "elena",
+      "tab": "you",
+      "name": "you",
+      "actions": [],
+      "key": "029-elena-you",
+      "title": "you",
+      "text": "Money check-in\nA little space for yourself\n5 day streak\nYou\nAisha\nLeo\nTogether\nAdd\nA richer understanding\nMONEY PERSONALITY\nLong-game architect\n\nYou build for the future, with patience and purpose.\n\nPlanning\nPatience\nSpontaneity\nExplore your portrait\nHSBC Status\nElite\n£284,600.00\nTotal Relationship Balance\nHSBC\nYour starting point\nPremier\n£100,000\nElite\n£250,000\nElite achieved\n5 choices available\n4,050\nHSBC Points\nUse your Points \nYour challenges\nSee all 20\nDear future me\n3 months\n+100 Points\nThe patient investor\n5 / 6 months completed\n+200 Points\nBetter together\n3 / 4 money conversations\n+150 Points\nView Points activity\nYour journey with us\n\nSince October 2014\n\n2024\nTen years of your story\nA decade with HSBC.\n2022\nMore of life, together\nAisha and Leo became part of your household.\n2020\nA new chapter with HSBC\nYou became a Premier customer.\nExplore your journey\nOn your behalf\nacts and reports\nSavings moves and rebalancing inside the mandate Elena and Maya signed\nReview your rulesStep everything down\nPriya, your Relationship Manager",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 141,
+          "height": 24
+        }
+      ],
+      "smallText": [
+        {
+          "text": "A little space for yourself",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 1817,
+      "navHidden": false
+    },
+    {
+      "person": "elena",
+      "tab": "now",
+      "name": "container-inv",
+      "actions": [
+        "pot:inv"
+      ],
+      "key": "030-elena-container-inv",
+      "title": "Investments",
+      "text": "Investments\nInvestment value\n£182,400.00\nInvestment Pot\nPot colour · Plum\nPhoto\nAdd money\nMove money\nAccount info\nMore\nHow it works\nOn track\nAnnual service fee\n0.20%\nView your conditions and payments.\n1 active rule\nView details\nRecent activity\nView all\nRebalance — signed by Maya\n7 Sept 2026\n£0.00\nDividend — index fund (reinvested)\n7 Sept 2026\n£84.20",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "investment pot",
+          "size": "11px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 166,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "you",
+      "name": "points",
+      "actions": [
+        "points"
+      ],
+      "key": "031-elena-points",
+      "title": "Your rewards",
+      "text": "Your rewards\nHSBC POINTS\n4,050\n\nEarn Points through everyday money habits, sharing what matters to you and completing challenges.\n\nYour challenges\n20 badges to discover · 6 earned\nUse your Points\nAn hour with a financial coach\nA named human, your numbers, no product agenda\nAvailable with your Points\n400\npoints\nRate boost · +0.25% on one pot\nThree months, on the pot you choose\nAvailable with your Points\n300\npoints\nFee-free international transfers\nThree months, any currency\nAvailable with your Points\n250\npoints\nAirport lounge pass\nTwo guests · Premier only\nAvailable with your Points\n350\npoints\nView Points activity",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        },
+        {
+          "text": "points",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 269,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "you",
+      "name": "membership",
+      "actions": [
+        "membership"
+      ],
+      "key": "032-elena-membership",
+      "title": "HSBC Status",
+      "text": "HSBC Status\nHSBC\nPremier\nElite\nYour membership\nELITE\nCurrent membership\n£284,600.00\nYour Total Relationship Balance\nHSBC\nYour starting point\nPremier\n£100,000\nElite\n£250,000\n\nYou’ve reached Elite\n\nYOUR ACCESS\nA dedicated relationship. Exceptional access.\nA named Relationship Manager\nSpecialist planning for you and your family\nPrivate invitations and priority opportunities\nPriya, your Relationship Manager\nExpertise around your priorities\nYour membership, your choices\n\n5 included choices · Points stay yours\n\nChoose\nExperiences\nArt & culture\nArts Pass and priority booking.\nFamily\nFamily support\nTutoring, elder-care and will-writing.\nServices\nEveryday protection\nBreakdown and gadget cover options.\nServices\nBusiness & career\nWorkspace and professional learning.\nExperiences\nSport, closer\nHospitality and priority ticket opportunities.\nFamily\nYour family’s future\nSpecialist planning for your family.\nMembership, shared\nSee which benefits can include your household\n\nMembership follows your HSBC relationship balance. Elite includes Premier access.",
+      "smallTargets": [
+        {
+          "label": "Your Total Relationship Balance",
+          "class": "membership-balance-link",
+          "width": 194,
+          "height": 32
+        }
+      ],
+      "smallText": [
+        {
+          "text": "HSBC",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "Your starting point",
+          "size": "9px",
+          "class": ""
+        },
+        {
+          "text": "Premier",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£100,000",
+          "size": "9px",
+          "class": ""
+        },
+        {
+          "text": "Elite",
+          "size": "11px",
+          "class": ""
+        },
+        {
+          "text": "£250,000",
+          "size": "9px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 932,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "you",
+      "name": "portrait",
+      "actions": [
+        "portrait"
+      ],
+      "key": "033-elena-portrait",
+      "title": "Your money portrait",
+      "text": "Your money portrait\nA RICHER UNDERSTANDING\nLong-game architect\n\nAn interpretation of your approach to money, shaped by what you share and confirm.\n\nPlanning\nAn arch gives structure: a clear plan to build on.\nPatience\nConcentric rings represent a longer view.\nSpontaneity\nAn open bloom represents room for the unexpected.\n\nTwelve years of decisions across saving, investing and family plans, including three rehearsals. More detail reflects a broader understanding, not a better personality.\n\nInformed by 12 years of decisions and 3 rehearsals\nYour balance and HSBC tier do not shape this artwork.\n\nDoes this feel like you?\n\nYou build structures and let time do the compounding. Twelve years of evidence says you hold through weather — the rehearsed kind and the real kind.\n\nThis sounds like me\nNot quite",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "Informed by 12 years of decisions and 3 rehearsalsYour balance and HSBC tier do not shape this artwo",
+          "size": "11px",
+          "class": "portrait-source"
+        }
+      ],
+      "overflow": false,
+      "scroll": 235,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "you",
+      "name": "checkin-home",
+      "actions": [
+        "checkin-home"
+      ],
+      "key": "034-elena-checkin-home",
+      "title": "Money check-in",
+      "text": "Money check-in\nA MOMENT FOR YOU\nA little pause.\nA clearer perspective.\n\nNo right answers. No tasks to tick off.\nChoose what you need today.\n\n5 day streak\nYOUR DAILY PAUSE\nWed\nThu\nFri\nSat\nSun\nMon\nToday\n\nOne small pause, whenever you’re ready.\n\nOne small check-in today · +5 HSBC Points\n\nFeel · 30 seconds\nMoney Feeling\n\nName what’s on your mind.\n\nDiscover · 1 minute\nMoney Instinct\n\nFind what feels like you.\n\nReflect · 1 minute\nWas It Worth It?\n\nNotice what your spending gives you.\n\nImagine · 90 seconds\nAn Ordinary Day Ahead\n\nPicture more of what matters.\n\nOne moment is enough. The rest can wait.\n\nReflection History\nRevisit, keep or forget a reflection",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "YOUR DAILY PAUSE",
+          "size": "8px",
+          "class": ""
+        },
+        {
+          "text": "One small pause, whenever you’re ready.",
+          "size": "10px",
+          "class": ""
+        }
+      ],
+      "overflow": false,
+      "scroll": 359,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "future",
+      "name": "future-expanded",
+      "actions": [],
+      "drawer": "expanded",
+      "key": "035-elena-future-expanded",
+      "title": "future",
+      "text": "Goal\n3\nInvestments\n£182,400\nFit\nToday\n47\nyears old\nNet worth today\n£283,360\nExplore your future in months\nWhat if…\nSave £50 on payday\nAn automatic Savings Rule\nHouse upgrade · 18 months earlier\nRound up your spending\n£20/month estimate · £30 cap\nHouse upgrade · 8 months earlier\nPause for 6 months\nKeep contributions in cash\nHouse upgrade · 6 months later\nPut retirement first\nRedirect £50/month\nRetirement · 15 months earlier · House upgrade · 30 months later\nMoney Speed\n3 Money Rules\n£850\n/month",
+      "smallTargets": [
+        {
+          "label": "HSBC Atlas demo options",
+          "class": "bank-brand",
+          "width": 141,
+          "height": 24
+        },
+        {
+          "label": "Family holiday, £1,860, target £3,000",
+          "class": "future-orbit has-photo ",
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "Family holiday · May 2027",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: More moments together · around Sept 2031",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "House upgrade · Mar 2034",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A new rhythm to your week · around Sept 2035",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "Retirement · Jan 2041",
+          "class": "future-milestone  ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: Help someone take a next step · around Sept 2041",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "AI possibility: A home that keeps working for you · around Sept 2045",
+          "class": "future-milestone is-ghost ",
+          "width": 26,
+          "height": 26
+        },
+        {
+          "label": "",
+          "class": "",
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 64,
+      "navHidden": false
+    },
+    {
+      "person": "jordan",
+      "tab": "now",
+      "name": "pay",
+      "actions": [
+        "pay"
+      ],
+      "key": "036-jordan-pay",
+      "title": "Make a payment",
+      "text": "Make a payment\n\nMake a payment between the accounts in this demo. No real payment is sent.\n\nFrom\nHSBC Current · £2,340.18\nEmergency fund · £430.00\nHouse deposit · £150.00\nGrocery budget · £69.70\nEating out budget · £69.00\nFlat utilities · £180.00\nEveryday budget · £0.00\nTo\nChoose an account or pot\nHSBC Current\nCredit card\nEmergency fund\nCar loan\nHouse deposit\nGrocery budget\nEating out budget\nFlat utilities\nEveryday budget\nAmount\n£\nReview payment",
+      "smallTargets": [],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": true
+    },
+    {
+      "person": "jordan",
+      "tab": "future",
+      "name": "future-assumptions",
+      "actions": [
+        "future-assumptions"
+      ],
+      "key": "037-jordan-future-assumptions",
+      "title": "About your future",
+      "text": "About your future\n\nYOUR FUTURE, EXPLAINED\n\nA view of what could be.\n\nBased on your Pots, borrowing and Money Rules on 16 Sept 2026.\n\nRead the picture\n\nSolid circles show balances; dotted circles show targets on the same scale. Grey possibilities are ideas, with no money attached. They join the projection only when you make them real.\n\nPinch to zoom and drag to explore. Labels appear when there is room and stay the same size. With a keyboard, use + or − to zoom and Home to fit.\n\nWhat’s included\nCash and balances\nIncluded in net worth\nEveryday budgets\nIncluded, outside the bubbles\nCompleted goals\nStay saved until you spend them\nInvestment outcomes can vary\n\nThe central estimate uses your illustrative growth assumption. The range explores −2% to +8% annual growth. It is a set of scenarios, not a confidence interval or guarantee. Outcomes can fall outside it, including losses.\n\nProjection assumptions\n\nAI ideas, conversations and life-stage prompts are simulated for this prototype, not based on peer data. No real bank is connected.\n\nBack to my future\n-£1,141",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "YOUR FUTURE, EXPLAINED",
+          "size": "10px",
+          "class": "eyebrow"
+        }
+      ],
+      "overflow": false,
+      "scroll": 289,
+      "navHidden": true
+    },
+    {
+      "person": "jordan",
+      "tab": "you",
+      "name": "checkin-ahead",
+      "actions": [
+        "checkin-tool:ahead"
+      ],
+      "key": "038-jordan-checkin-ahead",
+      "title": "Money check-in",
+      "text": "Money check-in\nIMAGINE · 90 SECONDS\nAn ordinary day.\nA little more yours.\n\nPicture a Tuesday with more room for what matters. No need for a grand plan.\n\nWhen are you imagining?\nSix months from now\nA year from now\nFive years from now",
+      "smallTargets": [],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "now",
+      "name": "pay",
+      "actions": [
+        "pay"
+      ],
+      "key": "039-elena-pay",
+      "title": "Make a payment",
+      "text": "Make a payment\n\nMake a payment between the accounts in this demo. No real payment is sent.\n\nFrom\nHSBC Premier Current · £24,200.00\nInvestments · £182,400.00\nRetirement · £34,140.00\nHouse upgrade · £42,000.00\nFamily holiday · £1,860.00\nTo\nChoose an account or pot\nHSBC Premier Current\nHSBC Premier Card\nInvestments\nRetirement\nHouse upgrade\nFamily holiday\nAmount\n£\nReview payment",
+      "smallTargets": [],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "future",
+      "name": "future-assumptions",
+      "actions": [
+        "future-assumptions"
+      ],
+      "key": "040-elena-future-assumptions",
+      "title": "About your future",
+      "text": "About your future\n\nYOUR FUTURE, EXPLAINED\n\nA view of what could be.\n\nBased on your Pots, borrowing and Money Rules on 8 Sept 2026.\n\nRead the picture\n\nSolid circles show balances; dotted circles show targets on the same scale. Grey possibilities are ideas, with no money attached. They join the projection only when you make them real.\n\nPinch to zoom and drag to explore. Labels appear when there is room and stay the same size. With a keyboard, use + or − to zoom and Home to fit.\n\nWhat’s included\nCash and balances\nIncluded in net worth\nEveryday budgets\nIncluded, outside the bubbles\nCompleted goals\nStay saved until you spend them\nInvestment outcomes can vary\n\nThe central estimate uses your illustrative growth assumption. The range explores −2% to +8% annual growth. It is a set of scenarios, not a confidence interval or guarantee. Outcomes can fall outside it, including losses.\n\nProjection assumptions\n\nAI ideas, conversations and life-stage prompts are simulated for this prototype, not based on peer data. No real bank is connected.\n\nBack to my future\n£283,360",
+      "smallTargets": [],
+      "smallText": [
+        {
+          "text": "YOUR FUTURE, EXPLAINED",
+          "size": "10px",
+          "class": "eyebrow"
+        }
+      ],
+      "overflow": false,
+      "scroll": 289,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "you",
+      "name": "checkin-ahead",
+      "actions": [
+        "checkin-tool:ahead"
+      ],
+      "key": "041-elena-checkin-ahead",
+      "title": "Money check-in",
+      "text": "Money check-in\nIMAGINE · 90 SECONDS\nAn ordinary day.\nA little more yours.\n\nPicture a Tuesday with more room for what matters. No need for a grand plan.\n\nWhen are you imagining?\nSix months from now\nA year from now\nFive years from now",
+      "smallTargets": [],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": true
+    },
+    {
+      "person": "elena",
+      "tab": "future",
+      "name": "make-it-mine",
+      "actions": [
+        "future-horizon:horizon-family-giving"
+      ],
+      "key": "042-elena-make-it-mine",
+      "title": "Make it mine",
+      "text": "Make it mine\nAround Sept 2041 · age 62\nGoal name\n\nAt 62, would you like the option to support someone or a cause you care about?\n\nShape the numbers\nOptional to adjust\nYour target (£)\nEach month (£)\n\nCreates a Pot and monthly Money Rule from today. You can undo this.\n\nMake it real\nNot for me",
+      "smallTargets": [],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": true
+    },
+    {
+      "person": "sam",
+      "tab": "future",
+      "name": "what-if-review",
+      "actions": [
+        "future-review"
+      ],
+      "idea": true,
+      "key": "043-sam-what-if-review",
+      "title": "Your preferred future",
+      "text": "Your preferred future\nYour plan, made practical\nA future you’ve\nmade your own.\n\nHere’s what changes today to make it possible.\n\nSave first on payday\n\nAdd £50/month to Emergency fund. Funded from your current account; check this fits your budget.\n\nEmergency fund · 11mo earlier\n\nProtected commitments remain in place. This applies changes only to the Atlas prototype, with a receipt and Undo.\n\nI’ve reviewed the changes and the extra contributions fit my budget.\nApply to my planKeep experimenting",
+      "smallTargets": [
+        {
+          "label": "",
+          "class": "",
+          "width": 20,
+          "height": 20
+        }
+      ],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 0,
+      "navHidden": true
+    },
+    {
+      "person": "sam",
+      "tab": "now",
+      "name": "pot-photo",
+      "actions": [
+        "pot-personalise:hol"
+      ],
+      "key": "044-sam-pot-photo",
+      "title": "Personalise your Pot",
+      "text": "Personalise your Pot\nMake it feel\nlike yours.\n\nA favourite place. A reason to look forward.\n\nFamily holiday\nA colour for this Pot\nChoose another photoRemove photo\nYour photo stays on this device. Colour and photo never change your money.\nSave appearance",
+      "smallTargets": [],
+      "smallText": [],
+      "overflow": false,
+      "scroll": 88,
+      "navHidden": true
+    }
+  ],
+  "errors": []
+}

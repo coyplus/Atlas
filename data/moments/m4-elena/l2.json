@@ -1,0 +1,815 @@
+{
+ "$schema": "../../schema/schema.json#/definitions/L2",
+ "layer": 2,
+ "moment": {
+  "id": "m4",
+  "name": "Graduate",
+  "stage": "Premier · growing together",
+  "customerId": "elena",
+  "asOf": "2026-09-08",
+  "tenure": "year 12",
+  "segment": "Premier · household",
+  "description": "A twelve-year relationship: a named human, a mandate, a household by consent, wealth compounding."
+ },
+ "customerId": "elena",
+ "asOf": "2026-09-08",
+ "signals": [
+  {
+   "id": "sig-rebalance",
+   "kind": "human-signed",
+   "description": "Maya signed the rebalance back to the 36% floor this morning",
+   "basis": [
+    "l1:transactions/tx-elena-018",
+    "l1:relationship/contactHistory"
+   ],
+   "detectedOn": "2026-09-08"
+  },
+  {
+   "id": "sig-dividend",
+   "kind": "income",
+   "description": "An £84.20 index-fund dividend landed",
+   "basis": [
+    "l1:transactions/tx-elena-011"
+   ],
+   "detectedOn": "2026-09-08"
+  },
+  {
+   "id": "sig-aisha-100",
+   "kind": "household",
+   "description": "Aisha added £100 to the family pot last week",
+   "basis": [
+    "l1:transactions/tx-elena-015",
+    "l1:pots/fam"
+   ],
+   "detectedOn": "2026-09-08"
+  },
+  {
+   "id": "sig-hup-nodate",
+   "kind": "pot-state",
+   "description": "House upgrade has no deadline — allowed; £220/month would give it one",
+   "basis": [
+    "l1:pots/hup",
+    "l1:rules/r-hup-monthly"
+   ],
+   "detectedOn": "2026-09-08"
+  },
+  {
+   "id": "sig-review",
+   "kind": "relationship",
+   "description": "Quarterly review with Priya held for Thursday 2pm",
+   "basis": [
+    "l1:relationship/contactHistory",
+    "l1:relationship/milestones"
+   ],
+   "detectedOn": "2026-09-08"
+  },
+  {
+   "id": "sig-card-full",
+   "kind": "habit",
+   "description": "The Premier card has been paid in full every month for nine years",
+   "basis": [
+    "l1:accounts/ac-cc",
+    "l1:bills/bill-card"
+   ],
+   "detectedOn": "2026-09-08"
+  },
+  {
+   "id": "sig-leo-age",
+   "kind": "household",
+   "description": "Leo is 12; six years to 18",
+   "basis": [
+    "l1:household/members/leo"
+   ],
+   "detectedOn": "2026-09-08"
+  }
+ ],
+ "insights": [
+  {
+   "id": "ins-pot-inv",
+   "scope": "pot:inv",
+   "text": "Inside the mandate and on plan. Maya signed this morning’s rebalance — the floor is back at 36%.",
+   "html": "Inside the mandate and on plan. <b>Maya signed</b> this morning’s rebalance — the floor is back at 36%.",
+   "basis": [
+    "l1:pots/inv"
+   ]
+  },
+  {
+   "id": "ins-pot-ret",
+   "scope": "pot:ret",
+   "text": "On track for 65. If 62 is still on your mind, we can rehearse it with real numbers before Thursday.",
+   "html": "On track for 65. If 62 is still on your mind, we can rehearse it with real numbers before Thursday.",
+   "basis": [
+    "l1:pots/ret"
+   ]
+  },
+  {
+   "id": "ins-pot-hup",
+   "scope": "pot:hup",
+   "text": "No deadline set — that’s allowed. Give it one and I’ll tell you what it asks per month.",
+   "html": "No deadline set — that’s allowed. Give it one and I’ll tell you what it asks per month.",
+   "basis": [
+    "l1:pots/hup",
+    "l2:signals/sig-hup-nodate"
+   ]
+  },
+  {
+   "id": "ins-pot-fam",
+   "scope": "pot:fam",
+   "text": "Aisha added £100 last week — you’re at 62% together. Holding this pace makes the summer window comfortably.",
+   "html": "Aisha added <b>£100</b> last week — you’re at 62% together. Holding this pace makes the summer window comfortably.",
+   "basis": [
+    "l1:pots/fam",
+    "l2:signals/sig-aisha-100"
+   ]
+  },
+  {
+   "id": "ins-acct-ac-cur",
+   "scope": "account:ac-cur",
+   "text": "The household hub — £850 a month deals itself outward, every move receipted.",
+   "html": "The household hub — <b>£850 a month</b> deals itself outward, every move receipted.",
+   "basis": [
+    "l1:accounts/ac-cur"
+   ],
+   "momentAware": null,
+   "cta": null
+  },
+  {
+   "id": "ins-acct-ac-cc",
+   "scope": "account:ac-cc",
+   "text": "Paid in full, every month, for nine years. This card has never cost you a penny of interest.",
+   "html": "Paid in full, every month, for nine years. This card has never cost you a penny of interest.",
+   "basis": [
+    "l1:accounts/ac-cc"
+   ],
+   "momentAware": "Paid in full every month — costing you nothing.",
+   "cta": null
+  },
+  {
+   "id": "ins-work-total-wealth",
+   "scope": "working",
+   "text": "Three numbers, one truth. Every line opens to its receipts.",
+   "figure": [
+    "Total",
+    "£284,600"
+   ],
+   "rows": [
+    [
+     "Invested",
+     "£182,400"
+    ],
+    [
+     "Cash",
+     "£24,200"
+    ],
+    [
+     "In pots",
+     "£78,000"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  },
+  {
+   "id": "ins-work-protected-floor",
+   "scope": "working",
+   "text": "The floor you rehearsed. When markets fall, this is the part that doesn’t.",
+   "figure": [
+    "Protected",
+    "£65,664"
+   ],
+   "rows": [
+    [
+     "Invested",
+     "£182,400"
+    ],
+    [
+     "Floor allocation",
+     "36%"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  },
+  {
+   "id": "ins-work-hsbc-points",
+   "scope": "working",
+   "text": "Twelve years of openness. Redeemable as expert time, fee waivers, rate boosts.",
+   "figure": [
+    "Total",
+    "3,420"
+   ],
+   "rows": [
+    [
+     "Years of weekly check-ins",
+     "2,340"
+    ],
+    [
+     "Consistency",
+     "780"
+    ],
+    [
+     "Openness & corrections",
+     "300"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  },
+  {
+   "id": "ins-work-rates-watch",
+   "scope": "working",
+   "text": "If a better rate exists, you hear it from us first — that’s the deal. Drift never goes unwatched.",
+   "figure": [
+    "Standing job",
+    "running"
+   ],
+   "rows": [
+    [
+     "Savings vs the market",
+     "holding ✓"
+    ],
+    [
+     "Mortgage vs the market",
+     "holding ✓"
+    ],
+    [
+     "Last capture",
+     "+0.2% · March, moved for you"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  }
+ ],
+ "personality": {
+  "name": "Long-game architect",
+  "copy": "You build structures and let time do the compounding. Twelve years of evidence says you hold through weather — the rehearsed kind and the real kind.",
+  "invite": null,
+  "traits": [
+   [
+    "Planning",
+    5
+   ],
+   [
+    "Patience",
+    5
+   ],
+   [
+    "Spontaneity",
+    2
+   ]
+  ],
+  "provenance": "Informed by 12 years of decisions and 3 rehearsals",
+  "status": "named",
+  "basis": [
+   "l1:behaviour/financial",
+   "l1:behaviour/app/quizDone",
+   "l1:transactions"
+  ],
+  "members": [
+   {
+    "memberId": "aisha",
+    "personality": {
+     "name": "Free spirit",
+     "copy": "Aisha decides quickly and rarely regrets it. Her money moves in bursts — generous, then quiet. Shared pots suit her: the receipts do the remembering.",
+     "src": "Informed by 186 money moves and 9 answers · shared by consent",
+     "traits": [
+      [
+       "Spontaneity",
+       5
+      ],
+      [
+       "Generosity",
+       4
+      ],
+      [
+       "Planning",
+       2
+      ]
+     ]
+    }
+   },
+   {
+    "memberId": "leo",
+    "personality": {
+     "name": "Goal getter",
+     "copy": "Leo saves toward one thing at a time and likes to see it grow. He sees his own rows only — nothing of yours.",
+     "src": "Informed by 42 pocket-money moves · shown with your consent",
+     "traits": [
+      [
+       "Focus",
+       5
+      ],
+      [
+       "Patience",
+       3
+      ],
+      [
+       "Spontaneity",
+       2
+      ]
+     ]
+    }
+   },
+   {
+    "memberId": "household",
+    "personality": {
+     "name": "Long game, lived warmly",
+     "copy": "Elena builds the structure. Aisha keeps it human. Leo learns by doing. Three ways with money that fit together — and a family pot where all three show up.",
+     "src": "Three people · one shared pot · every receipt visible to all",
+     "traits": [
+      [
+       "Planning",
+       5
+      ],
+      [
+       "Spontaneity",
+       3
+      ],
+      [
+       "Focus",
+       4
+      ]
+     ],
+     "members": [
+      "you",
+      "aisha",
+      "leo"
+     ]
+    }
+   }
+  ]
+ },
+ "beliefs": [
+  {
+   "id": "belief-1",
+   "claim": "Family first, growth second",
+   "evidence": "Confirmed at your last annual review",
+   "status": "confirmed",
+   "confidence": "strong",
+   "basis": [
+    "l1:behaviour/financial",
+    "l1:behaviour/app"
+   ]
+  },
+  {
+   "id": "belief-2",
+   "claim": "You’d hold through a 20% dip",
+   "evidence": "A belief to revisit together at your next review",
+   "status": "confirmed",
+   "confidence": "strong",
+   "basis": [
+    "l1:behaviour/financial",
+    "l1:behaviour/app"
+   ]
+  }
+ ],
+ "companion": {
+  "contexts": [
+   {
+    "context": "now",
+    "message": "Maya signed your rebalance — receipt in your feed. A dividend landed. Nothing needs you tonight.",
+    "html": "<b>Maya signed</b> your rebalance — receipt in your feed. A dividend landed. Nothing needs you tonight.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-rebalance",
+     "l2:signals/sig-dividend",
+     "l2:signals/sig-aisha-100"
+    ]
+   },
+   {
+    "context": "future",
+    "message": "Every plan is on track at £850 a month. The slider shows the next ten years.",
+    "html": "Every plan is on track at <b>£850 a month</b>. The slider shows the next ten years.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-rebalance",
+     "l2:signals/sig-dividend",
+     "l2:signals/sig-aisha-100"
+    ]
+   },
+   {
+    "context": "me",
+    "message": "Priya holds Thursday 2pm for your review. Twelve years of receipts sit behind this relationship.",
+    "html": "Priya holds <b>Thursday 2pm</b> for your review. Twelve years of receipts sit behind this relationship.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-rebalance",
+     "l2:signals/sig-dividend",
+     "l2:signals/sig-aisha-100"
+    ]
+   },
+   {
+    "context": "you.believe",
+    "message": "Three people, three ways with money. Switch between them above — the household is all three, not an average.",
+    "html": "Three people, three ways with money. <b>Switch between them</b> above — the household is all three, not an average.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-rebalance",
+     "l2:signals/sig-dividend"
+    ]
+   },
+   {
+    "context": "you.built",
+    "message": "Twelve years of receipts: five badges, Premier since 2020, a decade held.",
+    "html": "<b>Twelve years</b> of receipts: five badges, Premier since 2020, a decade held.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-rebalance",
+     "l2:signals/sig-dividend"
+    ]
+   },
+   {
+    "context": "you.behalf",
+    "message": "Inside the mandate you and Maya signed. Stepping down is one tap; Priya is one more.",
+    "html": "Inside the mandate <b>you and Maya signed</b>. Stepping down is one tap; Priya is one more.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-rebalance",
+     "l2:signals/sig-dividend"
+    ]
+   },
+   {
+    "context": "human-takeover",
+    "speaker": "priya",
+    "message": "The quarter looks exactly as we planned. One idea worth ten minutes: Leo’s future pot. See you Thursday 2pm?",
+    "html": "The quarter looks exactly as we planned. One idea worth ten minutes: <b>Leo’s future pot</b>. See you <b>Thursday 2pm</b>?",
+    "actions": [
+     [
+      "rmconfirm",
+      "Confirm Thursday 2pm"
+     ],
+     [
+      "rmlater",
+      "Ask to move it"
+     ]
+    ],
+    "basis": [
+     "l2:signals/sig-review",
+     "l2:signals/sig-leo-age"
+    ]
+   }
+  ],
+  "conversation": {
+   "chips": [
+    "What did Maya sign off?",
+    "Are we still on plan?",
+    "Book time with Priya",
+    "A person, please"
+   ],
+   "answers": {
+    "What did Maya sign off?": "This morning’s rebalance — back to your 36% floor after the market drift. Her signature is on the receipt in your feed.",
+    "Are we still on plan?": "Yes. All four plans on track at £850 a month. Nothing needs you — the quarterly review with Priya covers the rest.",
+    "Book time with Priya": "Priya holds Thursday 2pm for you. Shall I confirm it? She’ll come with the quarter’s numbers already read.",
+    "A person, please": "Of course — Priya is your named contact and holds Thursday 2pm. For anything sooner, a Premier specialist picks up with your context in front of them."
+   },
+   "answersHtml": {
+    "What did Maya sign off?": "This morning’s rebalance — back to your 36% floor after the market drift. Her signature is on the receipt in your feed.",
+    "Are we still on plan?": "Yes. All four plans on track at <b>£850 a month</b>. Nothing needs you — the quarterly review with Priya covers the rest.",
+    "Book time with Priya": "Priya holds <b>Thursday 2pm</b> for you. Shall I confirm it? She’ll come with the quarter’s numbers already read.",
+    "A person, please": "Of course — Priya is your named contact and holds Thursday 2pm. For anything sooner, a Premier specialist picks up with your context in front of them."
+   }
+  }
+ },
+ "stories": [
+  {
+   "id": "e1",
+   "state": "new",
+   "title": "Leo’s future",
+   "claim": "A pot Leo would own at 18 — £100 a month gets there.",
+   "aiLine": "£100 a month reaches £7,200 by Leo’s 18th. At 16 he starts seeing it; at 18 it’s his.",
+   "aiLineHtml": "<b>£100 a month</b> reaches <b>£7,200</b> by Leo’s 18th. At 16 he starts seeing it; at 18 it’s his.",
+   "figure": "£7,200",
+   "rows": [
+    [
+     "Each month",
+     "from you",
+     "£100"
+    ],
+    [
+     "Months to 18",
+     "from today",
+     "72"
+    ],
+    [
+     "His to take",
+     "Sep 2032",
+     "£7,200"
+    ]
+   ],
+   "chart": false,
+   "verb": "Start Leo’s pot.",
+   "residue": "Leo’s future · £100 a month · his at 18",
+   "action": "wifstart:wleo",
+   "cta": "Start it",
+   "basis": [
+    "l2:signals/sig-leo-age"
+   ],
+   "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+  },
+  {
+   "id": "e2",
+   "state": "saved",
+   "title": "The rebalance",
+   "claim": "Maya signed this morning’s rebalance — the floor is back at 36%.",
+   "aiLine": "Markets drifted; Maya signed the rebalance this morning. The 36% floor is back where you set it.",
+   "aiLineHtml": "Markets drifted; <b>Maya signed</b> the rebalance this morning. The <b>36% floor</b> is back where you set it.",
+   "figure": "36%",
+   "rows": [
+    [
+     "Invested",
+     "today",
+     "£182,400"
+    ],
+    [
+     "Floor allocation",
+     "protected",
+     "36%"
+    ],
+    [
+     "Protected",
+     "the part that doesn’t fall",
+     "£65,664"
+    ]
+   ],
+   "chart": false,
+   "verb": "Nothing to do — it’s done.",
+   "residue": "Rebalanced · signed by Maya · receipt in your feed",
+   "action": null,
+   "cta": null,
+   "basis": [
+    "l2:signals/sig-rebalance",
+    "l2:signals/sig-dividend",
+    "l2:signals/sig-card-full"
+   ],
+   "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+  }
+ ],
+ "whatIfs": [
+  {
+   "id": "wleo",
+   "type": "create",
+   "title": "A pot for Leo’s future",
+   "summary": "£100 a month until 18 — his to take.",
+   "explainer": "£100 a month reaches £7,200 by Leo’s 18th. At 16 he starts seeing it; at 18 it’s his.",
+   "cta": null,
+   "effect": {
+    "newPot": {
+     "name": "Leo’s future",
+     "target": 7200,
+     "monthlyRate": 100,
+     "openingBalance": 0,
+     "growthAnnual": null,
+     "icon": "users"
+    }
+   },
+   "graph": {
+    "t": "grow",
+    "target": 7200,
+    "rate": 100
+   },
+   "canCommit": true,
+   "basis": [
+    "l2:signals/sig-leo-age"
+   ]
+  },
+  {
+   "id": "wdead",
+   "type": "attach",
+   "title": "Give the upgrade a date",
+   "summary": "£220 a month gives it a date: mid-2033.",
+   "explainer": "£220 a month — £20 more than today — reaches the £60k in mid-2033, eight months sooner. The slider shows the difference.",
+   "cta": null,
+   "effect": {
+    "potId": "hup",
+    "monthlyRateDelta": 20
+   },
+   "graph": {
+    "t": "compare",
+    "v0": 42000,
+    "vT": 60000,
+    "ra": 200,
+    "rb": 220,
+    "la": "No deadline",
+    "lb": "£220/month",
+    "delta": "8 months sooner"
+   },
+   "canCommit": true,
+   "basis": [
+    "l2:signals/sig-hup-nodate"
+   ]
+  },
+  {
+   "id": "wretire",
+   "type": "rehearsal",
+   "title": "Rehearse retiring at 62",
+   "summary": "Your numbers, three years earlier.",
+   "explainer": "Retiring at 62 instead of 65, rehearsed with your real numbers — before any decision, with Maya’s signature on the plan.",
+   "cta": null,
+   "effect": {},
+   "graph": {
+    "t": "dip",
+    "retire": true
+   },
+   "canCommit": false,
+   "basis": [
+    "l1:pots",
+    "l1:spending"
+   ]
+  }
+ ],
+ "projections": {
+  "horizonMonths": 120,
+  "perPot": [
+   {
+    "potId": "inv",
+    "milestoneMonth": null,
+    "reach": null,
+    "kind": null,
+    "valueAt": {
+     "0": 182400.0,
+     "12": 191520.0,
+     "60": 232793.76,
+     "120": 297110.38
+    },
+    "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+   },
+   {
+    "potId": "ret",
+    "milestoneMonth": null,
+    "reach": null,
+    "kind": "reached",
+    "valueAt": {
+     "0": 34140.0,
+     "12": 40140.0,
+     "60": 64140.0,
+     "120": 94140.0
+    },
+    "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+   },
+   {
+    "potId": "hup",
+    "milestoneMonth": 90,
+    "reach": "2034-03",
+    "kind": "reached",
+    "valueAt": {
+     "0": 42000.0,
+     "12": 44400.0,
+     "60": 54000.0,
+     "120": 60000.0
+    },
+    "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+   },
+   {
+    "potId": "fam",
+    "milestoneMonth": 8,
+    "reach": "2027-05",
+    "kind": "reached",
+    "valueAt": {
+     "0": 1860.0,
+     "12": 3000.0,
+     "60": 3000.0,
+     "120": 3000.0
+    },
+    "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+   }
+  ],
+  "ruleEnds": [],
+  "netWorth": [
+   {
+    "month": 0,
+    "net": 283360.0,
+    "label": "Today"
+   },
+   {
+    "month": 12,
+    "net": 302020.0,
+    "label": "A projection, not a promise"
+   },
+   {
+    "month": 24,
+    "net": 319996.0,
+    "label": "A projection, not a promise"
+   },
+   {
+    "month": 60,
+    "net": 376893.76,
+    "label": "A projection, not a promise"
+   },
+   {
+    "month": 120,
+    "net": 477210.38,
+    "label": "A projection, not a promise"
+   }
+  ],
+  "honestyLine": "A projection, not a promise"
+ },
+ "nextBestActions": [
+  {
+   "id": "nba-human-takeover-rmconfirm",
+   "context": "human-takeover",
+   "action": "rmconfirm",
+   "label": "Confirm Thursday 2pm",
+   "primary": false,
+   "basis": [
+    "l2:signals/sig-review",
+    "l2:signals/sig-leo-age"
+   ]
+  },
+  {
+   "id": "nba-human-takeover-rmlater",
+   "context": "human-takeover",
+   "action": "rmlater",
+   "label": "Ask to move it",
+   "primary": false,
+   "basis": [
+    "l2:signals/sig-review",
+    "l2:signals/sig-leo-age"
+   ]
+  }
+ ],
+ "recommendations": [
+  {
+   "id": "rec-widget-safetydays",
+   "kind": "module-suggestion",
+   "moduleId": "safetydays",
+   "why": "Explore what a dedicated emergency fund could cover.",
+   "basis": [
+    "l1:spending",
+    "l1:bills",
+    "l1:income"
+   ]
+  },
+  {
+   "id": "rec-widget-creditscore",
+   "kind": "module-suggestion",
+   "moduleId": "creditscore",
+   "why": "Quiet monitoring, soft checks only.",
+   "basis": [
+    "l1:spending",
+    "l1:bills",
+    "l1:income"
+   ]
+  }
+ ],
+ "opportunities": [
+  {
+   "id": "opp-leo",
+   "text": "£100/month reaches £7,200 by Leo's 18th",
+   "basis": [
+    "l2:signals/sig-leo-age"
+   ]
+  },
+  {
+   "id": "opp-hup-date",
+   "text": "£220/month gives the upgrade a date: mid-2033, eight months sooner",
+   "basis": [
+    "l2:signals/sig-hup-nodate"
+   ]
+  }
+ ],
+ "risks": [],
+ "householdInsights": [
+  {
+   "id": "hh-1",
+   "text": "Three ways with money that fit together — the household is a superposition, not an average",
+   "basis": [
+    "l1:household",
+    "l2:personality"
+   ]
+  },
+  {
+   "id": "hh-2",
+   "text": "Aisha's £100 brought the family pot to 62%; holding the pace makes the summer window",
+   "basis": [
+    "l2:signals/sig-aisha-100"
+   ]
+  },
+  {
+   "id": "hh-3",
+   "text": "Leo sees his own rows only; consent is Elena's until 16",
+   "basis": [
+    "l1:household/consentModel"
+   ]
+  }
+ ],
+ "rewardsExplanation": {
+  "points": "Total 3,420 — twelve years of openness, never a point for spending.",
+  "cashback": null
+ },
+ "traceability": {
+  "convention": "basis[] holds refs of the form l1:<collection>/<id> (or a path) and l2:<collection>/<id>; every generated item names what it rests on"
+ }
+}

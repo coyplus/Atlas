@@ -1,0 +1,83 @@
+/* Vanilla L2: common dimensions, typography and controls across every feature. */
+body[data-direction='vanilla']
+  .sheet-header:is([data-header-pattern='detail'], [data-header-pattern='journey']) {
+  --screen-header-height: 58px;
+  height: var(--screen-header-height);
+  min-height: var(--screen-header-height);
+  padding: 6px var(--page);
+  gap: 12px;
+  align-items: center;
+  border: 0;
+}
+body[data-direction='vanilla']
+  .sheet-header:is([data-header-pattern='detail'], [data-header-pattern='journey'])
+  > h2 {
+  flex: 1;
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.35px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--ink);
+}
+body[data-direction='vanilla']
+  .sheet-header:is([data-header-pattern='detail'], [data-header-pattern='journey'])
+  > .icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  flex: 0 0 44px;
+  padding: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+}
+body[data-direction='vanilla'] .sheet-header .screen-back > .icon {
+  width: 24px;
+  height: 24px;
+}
+body[data-direction='vanilla'] .sheet-header[data-header-pattern='journey'] > .journey-help {
+  padding: 5px;
+}
+/* Bottom sheets dismiss, rather than navigate; retain the same title/control scale. */
+body[data-direction='vanilla'] .agreement-sheet > header {
+  gap: 12px;
+  padding: 12px var(--page);
+  min-height: 68px;
+}
+body[data-direction='vanilla'] .agreement-sheet > header h2 {
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.35px;
+}
+body[data-direction='vanilla'] .agreement-sheet > header > .icon-btn {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+}
+
+/* Level 2 chrome uses one glass plane across the status area and title.
+   The sheet's backing covers both, so the page behind cannot tint only the status bar. */
+body[data-direction='vanilla'] .phone .sheet.level-two {
+  top: 0;
+  padding-top: var(--status-height, 36px);
+}
+body[data-direction='vanilla'] .phone .level-two > .sheet-header::before {
+  top: calc(-1 * var(--status-height, 36px));
+}
+body[data-direction='vanilla'] .phone[data-active-tab]:has(#overlay > .level-two) .statusbar {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}

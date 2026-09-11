@@ -1,0 +1,222 @@
+/* Atlas data colour. Information roles and exception states are separate.
+   See docs/DATA-COLOUR-SYSTEM.md. Neutral UI and typography remain unchanged. */
+body[data-direction='vanilla'] .phone {
+  --viz-cash: #477895;
+  --viz-savings: #3c8075;
+  --viz-investment: #806899;
+  --viz-borrowing: #a0674f;
+  --viz-reserved: #80909b;
+  --viz-neutral: #8b9194;
+  --viz-caution: #a77320;
+  --viz-attention: #c93246;
+  --viz-positive: var(--viz-savings);
+  --viz-negative: var(--viz-borrowing);
+  --viz-category-housing: #55738e;
+  --viz-category-utilities: #647d86;
+  --viz-category-groceries: #678050;
+  --viz-category-eating-out: #ad617d;
+  --viz-category-transport: #3e7c9f;
+  --viz-category-subscriptions: #88709e;
+  --viz-category-telecoms: #6b728f;
+  --viz-category-family: #a87a39;
+  --viz-category-shopping: #a46950;
+  --viz-category-leisure: #9a6378;
+}
+body[data-direction='vanilla'] .phone.premier {
+  --viz-cash: #88afc8;
+  --viz-savings: #85b5a8;
+  --viz-investment: #b3a0ce;
+  --viz-borrowing: #cb9d86;
+  --viz-reserved: #9ba7b2;
+  --viz-neutral: #929a9e;
+  --viz-caution: #d4af65;
+  --viz-attention: #ff8694;
+  --viz-category-housing: #8ca5c2;
+  --viz-category-utilities: #a1bac4;
+  --viz-category-groceries: #a1b782;
+  --viz-category-eating-out: #d49bb2;
+  --viz-category-transport: #7daecb;
+  --viz-category-subscriptions: #b8a5d0;
+  --viz-category-telecoms: #959ec5;
+  --viz-category-family: #d4b786;
+  --viz-category-shopping: #cba38b;
+  --viz-category-leisure: #b38aab;
+}
+body[data-direction='vanilla'] [data-viz-role='cash'] {
+  --viz-colour: var(--viz-cash);
+}
+body[data-direction='vanilla'] [data-viz-role='savings'] {
+  --viz-colour: var(--viz-savings);
+}
+body[data-direction='vanilla'] [data-viz-role='investment'] {
+  --viz-colour: var(--viz-investment);
+}
+body[data-direction='vanilla'] [data-viz-role='borrowing'] {
+  --viz-colour: var(--viz-borrowing);
+}
+body[data-direction='vanilla'] [data-viz-role='reserved'] {
+  --viz-colour: var(--viz-reserved);
+}
+body[data-direction='vanilla'] [data-viz-role='neutral'] {
+  --viz-colour: var(--viz-neutral);
+}
+body[data-direction='vanilla'] [data-viz-role='category-housing'] {
+  --viz-colour: var(--viz-category-housing);
+}
+body[data-direction='vanilla'] [data-viz-role='category-utilities'] {
+  --viz-colour: var(--viz-category-utilities);
+}
+body[data-direction='vanilla'] [data-viz-role='category-groceries'] {
+  --viz-colour: var(--viz-category-groceries);
+}
+body[data-direction='vanilla'] [data-viz-role='category-eating-out'] {
+  --viz-colour: var(--viz-category-eating-out);
+}
+body[data-direction='vanilla'] [data-viz-role='category-transport'] {
+  --viz-colour: var(--viz-category-transport);
+}
+body[data-direction='vanilla'] [data-viz-role='category-subscriptions'] {
+  --viz-colour: var(--viz-category-subscriptions);
+}
+body[data-direction='vanilla'] [data-viz-role='category-telecoms'] {
+  --viz-colour: var(--viz-category-telecoms);
+}
+body[data-direction='vanilla'] [data-viz-role='category-family'] {
+  --viz-colour: var(--viz-category-family);
+}
+body[data-direction='vanilla'] [data-viz-role='category-shopping'] {
+  --viz-colour: var(--viz-category-shopping);
+}
+body[data-direction='vanilla'] [data-viz-role='category-leisure'] {
+  --viz-colour: var(--viz-category-leisure);
+}
+body[data-direction='vanilla'] [data-viz-state='at-limit'] {
+  --viz-colour: var(--viz-caution);
+}
+body[data-direction='vanilla'] [data-viz-state='over-limit'] {
+  --viz-colour: var(--viz-attention);
+}
+body[data-direction='vanilla'] .number-graphic circle[data-viz-role] {
+  stroke: var(--viz-colour);
+}
+body[data-direction='vanilla'] :is(.number-split, .number-legend) i[data-viz-role] {
+  background: var(--viz-colour);
+}
+body[data-direction='vanilla'] .number-graphic polyline {
+  stroke: var(--viz-colour, var(--ink));
+}
+body[data-direction='vanilla'] .number-blocks span {
+  background: var(--viz-colour, var(--ink));
+}
+body[data-direction='vanilla'] .number-gauge-value {
+  stroke: var(--viz-colour, var(--ink));
+}
+body[data-direction='vanilla'] .phone .progress[data-viz-role] > i {
+  background: var(--viz-colour);
+}
+body[data-direction='vanilla'] .phone .progress[data-viz-state='over-limit'] > i {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--viz-attention) 0 5px,
+    color-mix(in srgb, var(--viz-attention) 58%, var(--surface)) 5px 8px
+  );
+}
+body[data-direction='vanilla'] .viz-state-label {
+  color: var(--viz-colour);
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 10px 0 0;
+}
+body[data-direction='vanilla'] .viz-state-label > span {
+  font-weight: 700;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .status-chip[data-tone='pending'] {
+  --chip-ink: var(--viz-caution);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .pot-condition.is-met .status-chip {
+  --chip-ink: var(--viz-positive);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .status-chip[data-tone='attention'] {
+  --chip-ink: var(--viz-attention);
+}
+/* Story working pages share the same roles as My numbers. */
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-viewer[data-viz-role]
+  .story-mark
+  .story-mark-track
+  i,
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-viewer[data-viz-role]
+  .story-target-bar
+  i,
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-viewer[data-viz-role]
+  .story-milestones
+  i,
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-viewer[data-viz-role]
+  .story-waterfall
+  button
+  i,
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-viewer[data-viz-role]
+  .story-payment-split
+  .story-split
+  button,
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-viewer[data-viz-role]
+  .story-split-key
+  i,
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-viewer[data-viz-role]
+  .story-composition
+  .story-split
+  i {
+  background: var(--viz-colour);
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-viewer[data-viz-role]
+  .story-composition
+  .story-split
+  i
+  + i {
+  background: color-mix(in srgb, var(--viz-colour) 42%, var(--story-ground));
+}
+body[data-direction='vanilla'] .story-viewer[data-viz-role] .story-dumbbell circle {
+  fill: var(--viz-colour);
+}
+body[data-direction='vanilla'] .story-viewer[data-viz-role] .dumbbell-link {
+  stroke: var(--viz-reserved);
+}
+body[data-direction='vanilla'] .story-viewer[data-viz-role] .story-flow > span:last-child > .icon {
+  color: var(--viz-savings);
+}
+
+body[data-direction='vanilla'] .story-viewer[data-viz-role] .story-milestones i {
+  color: var(--story-ground);
+}
+
+/* Structural progress and labels remain available without colour. */
+@media (forced-colors: active) {
+  body[data-direction='vanilla']
+    .number-graphic
+    :is(circle[data-viz-role], polyline, .number-gauge-value) {
+    stroke: CanvasText;
+  }
+  body[data-direction='vanilla'] :is(.number-split, .number-legend) i[data-viz-role],
+  body[data-direction='vanilla'] .number-blocks span,
+  body[data-direction='vanilla'] .phone .progress[data-viz-role] > i {
+    background: CanvasText;
+  }
+  body[data-direction='vanilla'] .viz-state-label {
+    color: CanvasText;
+  }
+}

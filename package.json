@@ -1,0 +1,51 @@
+{
+  "name": "hsbc-atlas-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "prepare:data": "python3 scripts/prepare_data.py",
+    "build": "npm run prepare:data && tsc --noEmit && vite build && node scripts/service-worker.mjs",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "npm run test:prepare && node --test --test-concurrency=4 --test-force-exit tests/*.test.mjs tests/interface-cases/*.test.mjs",
+    "check": "tsc --noEmit",
+    "test:prepare": "npm run prepare:data && node scripts/prepare-tests.mjs",
+    "predev": "npm run prepare:data",
+    "lint": "eslint src",
+    "validate:data": "python3 data/validate.py",
+    "test:browser": "playwright test",
+    "test:production": "ATLAS_TEST_URL=http://localhost:4174 playwright test",
+    "verify": "npm run check && npm run lint && npm run validate:data && npm test && npm run build",
+    "format": "prettier --write src e2e",
+    "qr": "node scripts/qr.mjs"
+  },
+  "dependencies": {
+    "html-react-parser": "5.2.17",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@babel/generator": "8.0.0",
+    "@babel/parser": "8.0.4",
+    "@babel/traverse": "8.0.4",
+    "@babel/types": "8.0.4",
+    "@playwright/test": "1.63.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "agent-browser": "0.37.1",
+    "esbuild": "0.28.2",
+    "eslint": "10.10.0",
+    "globals": "17.12.0",
+    "jsdom": "28.1.0",
+    "prettier": "3.9.6",
+    "qrcode": "1.5.4",
+    "sharp": "0.35.4",
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

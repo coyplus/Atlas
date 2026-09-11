@@ -1,0 +1,1757 @@
+/* A compact field of possibilities. Detail belongs behind a deliberate tap. */
+body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
+  padding-top: calc(
+    var(--status-height, 36px) + var(--app-header-height, 58px) + var(--support-height, 150px) + 6px
+  );
+  padding-bottom: 0;
+}
+.phone .future-studio {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 100%;
+  padding: 0;
+}
+.phone .future-studio button {
+  -webkit-tap-highlight-color: transparent;
+}
+.fg-mode {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 30px;
+  background: var(--soft);
+  margin-top: 8px;
+}
+.fg-mode .btn {
+  flex: 1;
+  min-height: 35px;
+  border: 0;
+  border-radius: 24px;
+  padding: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  background: transparent;
+}
+.fg-mode .btn[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 2px 8px #0001;
+}
+.fg-moment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  min-height: 62px;
+}
+.fg-date,
+.fg-net {
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align: left;
+  color: var(--ink);
+}
+.fg-date > span {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+}
+.fg-date small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 5px;
+}
+.fg-date .icon {
+  width: 11px;
+  height: 11px;
+}
+.fg-net {
+  text-align: right;
+}
+.fg-net > small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.fg-net strong {
+  font-size: 25px;
+  letter-spacing: -0.8px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.fg-range {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.fg-travel {
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  padding-top: 12px;
+}
+.phone .fg-travel input[type='range'] {
+  display: block;
+  width: 100%;
+  height: 24px;
+  accent-color: var(--ink);
+  cursor: ew-resize;
+  margin: 0;
+  touch-action: pan-y;
+}
+.fg-years {
+  display: flex;
+  justify-content: space-between;
+}
+.fg-years .btn {
+  font-size: 10px;
+  min-height: 28px;
+  padding: 0 4px;
+  color: var(--muted);
+}
+.fg-entry {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--line);
+  padding: 16px 0;
+}
+.fg-entry > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.fg-entry b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.fg-entry small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 3px;
+  font-weight: 400;
+}
+.fg-entry strong {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+}
+.fg-entry > .icon {
+  width: 16px;
+  height: 16px;
+}
+.fg-entry-symbol {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--soft);
+}
+.fg-entry-symbol .icon {
+  width: 17px;
+  height: 17px;
+}
+.fg-add {
+  font-size: 12px;
+  padding: 15px 0;
+}
+.fg-footer {
+  position: sticky;
+  bottom: 0;
+  padding: 14px 0 16px;
+  margin-top: auto;
+  background: linear-gradient(transparent, var(--canvas) 14px);
+  z-index: 3;
+}
+.phone .fg-footer > .btn {
+  min-height: 46px;
+  font-size: 13px;
+  border-radius: 28px;
+}
+.fg-footer > small {
+  display: block;
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.fg-ideas-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 8px;
+  font-size: 11px;
+}
+.fg-ideas-head > span {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-weight: 500;
+}
+.fg-ideas-head .icon {
+  height: 15px;
+  width: 15px;
+}
+.fg-ideas-head > small {
+  font-size: 10px;
+  color: var(--muted);
+}
+.fg-ideas {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 9px;
+  padding: 1px 2px 5px;
+  scrollbar-width: none;
+}
+.fg-idea {
+  flex: 0 0 88%;
+  display: grid;
+  grid-template-columns: 1fr 22px;
+  gap: 7px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 13px;
+  scroll-snap-align: start;
+}
+.fg-idea b {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+}
+.fg-idea small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin-top: 5px;
+}
+.fg-idea i .icon {
+  width: 18px;
+  height: 18px;
+}
+.fg-idea em {
+  grid-column: 1/-1;
+  font-size: 9px;
+  font-style: normal;
+  color: var(--muted);
+}
+.fg-idea[aria-pressed='true'] {
+  border-color: var(--viz-savings);
+  background: color-mix(in srgb, var(--viz-savings) 9%, var(--canvas));
+}
+.phone .fg-ask {
+  width: 100%;
+  font-size: 11px;
+  text-align: center;
+  min-height: 36px;
+  padding: 5px;
+}
+.fg-empty {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.fg-empty > .icon {
+  width: 38px;
+  height: 38px;
+  color: var(--viz-savings);
+}
+.fg-empty h2 {
+  font-size: 29px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -1px;
+  margin: 16px 0 6px;
+}
+.fg-empty p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+/* Shared quiet detail language, with navigation glass supplied by Atlas. */
+.phone .fg-detail {
+  padding: 14px 0 30px;
+}
+.fg-detail h2 {
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+  margin: 12px 0 18px;
+}
+.fg-detail h2 small {
+  font-size: 16px;
+  letter-spacing: 0;
+}
+.fg-detail p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.fg-detail .support {
+  font-size: 12px;
+}
+.fg-detail .eyebrow {
+  font-size: 10px;
+}
+.fg-detail-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--viz-colour, var(--ink));
+  background: color-mix(in srgb, var(--viz-colour, var(--ink)) 12%, transparent);
+}
+.fg-detail-icon .icon {
+  width: 28px;
+  height: 28px;
+}
+.fg-detail-value {
+  font-size: 44px;
+  font-weight: 300;
+  letter-spacing: -1.5px;
+}
+.fg-facts {
+  display: grid;
+  gap: 18px;
+  margin: 28px 0;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.fg-facts > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.fg-facts b {
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+}
+.fg-detail-actions {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0;
+}
+.fg-detail .fg-change {
+  padding: 16px;
+  background: var(--soft);
+  border-radius: 14px;
+  color: var(--ink);
+  font-size: 12px;
+}
+.fg-detail .btn {
+  margin-top: 10px;
+}
+.fg-flow-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.fg-flow-row > i {
+  color: var(--viz-colour);
+}
+.fg-flow-row > span {
+  flex: 1;
+}
+.fg-flow-row b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.fg-flow-row small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+.fg-flow-row strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+.fg-review-list article {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  margin-top: 24px;
+}
+.fg-review-list b {
+  font-size: 14px;
+  font-weight: 500;
+}
+.fg-confirm {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 24px 0;
+}
+.fg-confirm input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ink);
+  flex-shrink: 0;
+  margin-top: 0;
+}
+.fg-ai-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.fg-ai-label .icon {
+  width: 18px;
+  height: 18px;
+}
+.fg-chat-messages {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0;
+}
+.fg-detail .fg-message {
+  margin: 0;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--soft);
+  font-size: 13px;
+}
+.fg-detail .fg-message.user {
+  margin-left: 26px;
+  background: var(--ink);
+  color: var(--canvas);
+}
+.fg-proposal {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 22px;
+}
+.fg-proposal b {
+  font-weight: 500;
+  font-size: 14px;
+}
+.fg-detail form {
+  margin-top: 24px;
+}
+@media (max-height: 780px) {
+  .fg-moment {
+    min-height: 50px;
+  }
+  .fg-entry {
+    padding: 11px 0;
+  }
+  .fg-footer {
+    padding: 10px 0 12px;
+  }
+  .fg-footer > small {
+    margin-top: 6px;
+  }
+}
+@media (max-width: 350px) {
+  .fg-date > span {
+    font-size: 20px;
+  }
+  .fg-net strong {
+    font-size: 23px;
+  }
+  .fg-entry small {
+    font-size: 9px;
+  }
+}
+body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.phone .fg-footer > .btn.primary,
+.phone .fg-detail .btn.primary {
+  background: var(--ink);
+  color: var(--canvas);
+  border-color: var(--ink);
+}
+.phone .fg-footer > .btn:disabled {
+  opacity: 0.32;
+}
+.phone .fg-travel input[type='range'] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  height: 34px;
+  outline-offset: 3px;
+}
+.fg-travel input::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line);
+}
+.fg-travel input::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: -8px;
+  background: var(--ink);
+  border: 4px solid var(--canvas);
+  box-shadow:
+    0 0 0 1px var(--muted),
+    0 2px 8px #0002;
+}
+.fg-travel input::-moz-range-track {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line);
+}
+.fg-travel input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 3px solid var(--canvas);
+  box-shadow: 0 0 0 1px var(--muted);
+}
+.phone:has(.fg-detail) #support-slot {
+  display: none;
+}
+@media (max-width: 350px) {
+  body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+/* Type scales with the circle, so compact WebKit layouts never crop a label. */
+.fg-mode {
+  position: sticky;
+  top: 38px;
+  z-index: 5;
+}
+
+body:not([data-direction='vanilla']) .future-studio {
+  --viz-savings: #3c8075;
+  --viz-investment: #806899;
+  --viz-borrowing: #a0674f;
+}
+.fg-field-add {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  border: 1px dashed var(--line);
+  border-radius: 50%;
+  z-index: 2;
+}
+.fg-field-add .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Possibilities borrow Atlas' quiet surfaces and semantic colours. Discovery
+   leads with meaning; amounts belong to the next step, not the invitation. */
+.phone .possibility-count {
+  position: absolute;
+  top: -5px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--canvas);
+  border-radius: 50%;
+  background: #db0011;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+.phone .possibility-discovery,
+.phone .possibility-detail {
+  padding-top: 22px;
+}
+.possibility-discovery > h2,
+.possibility-detail > h2 {
+  font-size: 34px;
+  line-height: 1.12;
+  margin: 18px 0 14px;
+}
+.possibility-discovery > p,
+.possibility-detail > p,
+.possibility-detail .support {
+  font-size: 15px;
+  line-height: 1.55;
+}
+.possibility-discovery .fg-ai-label {
+  font-size: 13px;
+}
+.possibility-discovery .fg-ai-label .icon {
+  color: #db0011;
+}
+.possibility-list {
+  display: grid;
+  gap: 14px;
+  margin: 26px 0;
+}
+.possibility-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--soft) 64%, transparent);
+  overflow: hidden;
+}
+.possibility-open {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  padding: 24px 20px 20px;
+  text-align: left;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+}
+.possibility-art {
+  display: grid;
+  place-items: center;
+  position: relative;
+  width: 44px;
+  height: 52px;
+  margin-top: 19px;
+  flex-shrink: 0;
+  border-radius: 50% 50% 16px 16px;
+  color: var(--viz-colour, var(--muted));
+  background: color-mix(in srgb, var(--viz-colour, var(--muted)) 14%, transparent);
+}
+.possibility-art .icon {
+  width: 25px;
+  height: 25px;
+}
+.possibility-copy {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.possibility-copy > small {
+  padding-right: 19px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.possibility-copy > strong {
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.possibility-copy > span {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.possibility-copy > b {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+.possibility-copy > b .icon {
+  width: 18px;
+  height: 18px;
+}
+.phone .possibility-dismiss {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  color: var(--muted);
+}
+.possibility-dismiss .icon {
+  width: 16px;
+  height: 16px;
+}
+.possibility-own {
+  display: grid;
+  gap: 16px;
+  padding-bottom: 16px;
+  text-align: center;
+}
+.possibility-own-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 4px;
+}
+.possibility-own-link .icon {
+  width: 18px;
+  height: 18px;
+}
+.phone .possibility-own-link .btn {
+  padding: 0;
+  font-size: 15px;
+  min-height: 44px;
+}
+.possibility-own > small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.possibility-detail > .possibility-art {
+  width: 72px;
+  height: 82px;
+  margin: 0 0 24px;
+}
+.possibility-detail > .possibility-art .icon {
+  width: 36px;
+  height: 36px;
+}
+.possibility-detail .field {
+  font-size: 15px;
+}
+.possibility-detail .possibility-numbers {
+  margin: 24px 0;
+  padding: 0 0 4px;
+  border-block: 1px solid var(--line);
+}
+.possibility-numbers h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.possibility-numbers h3 > span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.possibility-detail .possibility-numbers p {
+  font-size: 14px;
+}
+.possibility-detail form > .btn {
+  margin-top: 24px;
+}
+.possibility-open:active {
+  background: var(--soft);
+}
+/* Reset remains beside the primary action when the short viewport scrolls. */
+.fg-mode {
+  position: relative;
+  top: auto;
+  z-index: auto;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.fg-footnote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 3px;
+}
+.fg-footnote small {
+  font-size: 9px;
+  color: var(--muted);
+}
+.phone .fg-footnote .btn {
+  font-size: 10px;
+  min-height: 27px;
+  padding: 5px 0;
+}
+/* Preserve absolute centring through Atlas's global pressed-button treatment. */
+.fg-sandbox-tools {
+  display: flex;
+  gap: 12px;
+}
+.fg-sandbox-tools > .btn {
+  flex: 1;
+}
+.fg-goal-controls {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.fg-goal-controls h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 6px;
+}
+.fg-goal-controls > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.fg-goal-controls .btn {
+  font-size: 12px;
+  min-height: 36px;
+  margin: 0;
+  padding: 6px 0;
+}
+
+/* Balance field: geometry changes; typography is always screen-sized. */
+.phone #future-stage.future-universe {
+  position: relative;
+  height: 320px;
+  min-height: 280px;
+  flex: 0 0 320px;
+  width: calc(100% + 48px);
+  margin: 4px -24px 0;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  isolation: isolate;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--viz-cash) 5%, transparent),
+    transparent 72%
+  );
+}
+.phone .future-orbit {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  transform: translate(-50%, -50%);
+  transition:
+    left var(--duration-spatial) var(--ease-settle),
+    top var(--duration-spatial) var(--ease-settle),
+    width var(--duration-spatial) var(--ease-settle),
+    height var(--duration-spatial) var(--ease-settle);
+  cursor: grab;
+  min-width: 0;
+  min-height: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+.phone .future-orbit:active:not(:disabled) {
+  transform: translate(-50%, -50%);
+}
+.future-target,
+.future-value {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition:
+    width var(--duration-spatial) var(--ease-settle),
+    height var(--duration-spatial) var(--ease-settle);
+}
+.future-target {
+  width: var(--target-d);
+  height: var(--target-d);
+  border: 1.5px dashed color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.future-target[style],
+.future-value[style] {
+  box-sizing: border-box;
+}
+.future-orbit .future-target {
+  opacity: 1;
+}
+.future-orbit .future-target:not(:empty) {
+  display: block;
+}
+.future-value {
+  width: var(--value-d);
+  height: var(--value-d);
+  border: 1.5px solid var(--viz-colour);
+  background: color-mix(in srgb, var(--viz-colour) 13%, var(--surface));
+  box-shadow: inset 0 1px 12px color-mix(in srgb, var(--viz-colour) 9%, transparent);
+}
+body[data-direction='vanilla'] .phone .future-orbit.is-complete,
+body[data-direction='vanilla'] .phone .future-milestone.is-complete {
+  --viz-colour: var(--viz-positive);
+}
+.future-orbit-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: calc(var(--value-d) - 20px);
+  max-width: 160px;
+  pointer-events: none;
+}
+.phone .future-orbit-copy .icon {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  color: var(--viz-colour);
+}
+.phone .future-orbit-copy b {
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 500;
+  text-align: center;
+  max-width: 140px;
+}
+.phone .future-orbit-copy > span {
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.phone .future-orbit-copy em {
+  font-size: 10px;
+  line-height: 1;
+  font-style: normal;
+  color: var(--viz-colour);
+}
+.future-orbit[data-labels='false'] .future-orbit-copy > :not(.icon) {
+  display: none;
+}
+.future-orbit[data-icon='false'] .icon {
+  display: none;
+}
+.future-universe.is-manipulating .future-orbit,
+.future-universe.is-manipulating .future-target,
+.future-universe.is-manipulating .future-value {
+  transition: none;
+  cursor: grabbing;
+}
+.phone .future-universe .fg-field-add {
+  position: absolute;
+  left: 24px;
+  right: auto;
+  top: 12px;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.future-zoom {
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.phone .future-zoom button {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  font-size: 13px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 8px #00000008;
+}
+.future-zoom .icon {
+  width: 16px;
+  height: 16px;
+}
+.future-key {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 10px;
+  margin: 2px 0 8px;
+}
+.future-milestones {
+  position: relative;
+  height: 66px;
+  margin: 0 14px;
+}
+.phone .future-milestone {
+  position: absolute;
+  bottom: calc(4px + var(--lane) * 28px);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  padding: 4px;
+  border: 1px solid color-mix(in srgb, var(--viz-colour) 40%, transparent);
+  background: var(--surface);
+  color: var(--viz-colour);
+  transform: translateX(-50%);
+  transition: left var(--duration-spatial) var(--ease-settle);
+}
+.phone .future-milestone:active:not(:disabled) {
+  transform: translateX(-50%);
+}
+.future-milestone::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: calc(5px + var(--lane) * 28px);
+  background: color-mix(in srgb, var(--viz-colour) 40%, transparent);
+}
+.future-milestone .icon {
+  width: 16px;
+  height: 16px;
+}
+.future-before {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  border: 1px dashed var(--muted);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+.phone .fg-travel {
+  margin-top: 0;
+}
+.phone .fg-mode {
+  margin-top: 10px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .phone .future-orbit,
+  .future-target,
+  .future-value,
+  .phone .future-milestone {
+    transition: none;
+  }
+}
+.phone .future-orbit[data-labels='false'] .future-orbit-copy .icon {
+  width: clamp(10px, calc(var(--value-d) - 8px), 22px);
+  height: clamp(10px, calc(var(--value-d) - 8px), 22px);
+}
+
+/* Future is one continuous canvas, beneath Atlas chrome and a non-modal sheet. */
+body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
+  position: absolute;
+  inset: 0 0 65px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='future'] > .tabbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.phone .future-studio {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  display: block;
+  overflow: hidden;
+  --future-drawer-height: 234px;
+  --future-float-top: calc(
+    var(--status-height, 36px) + var(--app-header-height, 58px) + var(--support-height, 88px) + 6px
+  );
+}
+.phone #future-stage.future-universe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: radial-gradient(
+    ellipse at 55% 45%,
+    color-mix(in srgb, var(--viz-cash) 6%, transparent),
+    transparent 70%
+  );
+}
+.phone .future-studio .fg-mode {
+  position: absolute;
+  top: var(--future-float-top);
+  left: 24px;
+  right: 24px;
+  z-index: 4;
+  margin: 0;
+  background: color-mix(in srgb, var(--surface) 66%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(135%);
+  backdrop-filter: blur(24px) saturate(135%);
+  box-shadow:
+    0 4px 18px #0000000c,
+    inset 0 1px 0 #ffffff08;
+}
+.phone .future-universe .fg-field-add {
+  top: calc(var(--future-float-top) + 60px);
+  left: 20px;
+  width: 40px;
+  height: 40px;
+}
+.phone .future-universe .fg-field-add,
+.phone .future-zoom button {
+  background: color-mix(in srgb, var(--surface) 65%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  backdrop-filter: blur(18px) saturate(130%);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  box-shadow:
+    var(--elevation-floating),
+    inset 0 1px 0 #ffffff09;
+}
+.phone .future-zoom {
+  right: 18px;
+  bottom: calc(var(--future-drawer-height) + 18px);
+  gap: 6px;
+  transition: bottom var(--duration-spatial) var(--ease-settle);
+}
+.phone .future-zoom button {
+  width: 38px;
+  height: 38px;
+}
+.phone .future-key {
+  position: absolute;
+  bottom: calc(var(--future-drawer-height) + 15px);
+  left: 24px;
+  z-index: 2;
+  margin: 0;
+  gap: 12px;
+  pointer-events: none;
+  transition: bottom var(--duration-spatial) var(--ease-settle);
+  font-size: 10px;
+}
+.phone .future-drawer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  height: var(--future-drawer-height);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  border-bottom: 0;
+  border-radius: 28px 28px 0 0;
+  background: color-mix(in srgb, var(--canvas) 84%, transparent);
+  -webkit-backdrop-filter: blur(28px) saturate(130%);
+  backdrop-filter: blur(28px) saturate(130%);
+  box-shadow:
+    0 -10px 40px #00000017,
+    inset 0 1px 0 #ffffff08;
+  transition: height var(--duration-spatial) var(--ease-settle);
+}
+.phone .future-drawer-grip {
+  flex: 0 0 44px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: ns-resize;
+  touch-action: none;
+  user-select: none;
+}
+.future-drawer-grip > span {
+  width: 34px;
+  height: 4px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink) 27%, transparent);
+}
+.phone .future-drawer-grip:active:not(:disabled) {
+  transform: none;
+}
+.phone .future-drawer-summary {
+  flex: none;
+  padding: 0 24px;
+}
+.phone .future-drawer .fg-moment {
+  min-height: 52px;
+  align-items: center;
+}
+.phone .future-drawer .fg-date > span {
+  font-size: 21px;
+}
+.phone .future-drawer .fg-net strong {
+  font-size: 26px;
+}
+.phone .future-drawer .fg-range {
+  font-size: 10px;
+}
+.phone .future-drawer .fg-travel {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.phone .future-drawer .future-milestones {
+  height: 50px;
+  margin: 0 13px;
+}
+.phone .future-drawer .fg-years {
+  margin: 0;
+  min-height: 27px;
+}
+.phone .future-drawer #time-slider {
+  margin: 0;
+  height: 22px;
+  touch-action: pan-y;
+}
+.phone .future-drawer-invitation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 39px;
+  padding: 0 24px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: left;
+}
+.future-drawer-invitation > span:last-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.future-drawer-invitation .icon {
+  width: 14px;
+  height: 14px;
+  transform: rotate(-90deg);
+}
+.phone .future-drawer-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding: 0 24px 18px;
+  flex: 1;
+}
+.phone .future-drawer-body .fg-secondary {
+  margin: 0;
+  padding: 10px 0 0;
+}
+.phone .future-drawer-body .fg-footer {
+  position: static;
+  bottom: auto;
+  margin: 12px 0 0;
+  padding: 0;
+  min-height: 0;
+  background: none;
+  box-shadow: none;
+}
+.phone .future-drawer-body .fg-footer::before,
+.phone .future-drawer-body .fg-footer::after {
+  display: none;
+}
+.phone .future-drawer-body .fg-footer > .btn {
+  min-height: 44px;
+}
+.phone .future-drawer-body .fg-footer > small {
+  margin-bottom: 0;
+}
+.phone .future-drawer-body .fg-ideas-head {
+  margin: 0 0 10px;
+}
+.phone .future-drawer-body .fg-idea {
+  min-height: 125px;
+}
+.phone .future-drawer-body .fg-entry {
+  padding: 14px 0;
+}
+.future-studio[data-drawer='expanded'] .future-drawer-invitation {
+  display: none;
+}
+.future-studio:not([data-drawer='expanded']) .future-drawer-body {
+  visibility: hidden;
+}
+.phone .drawer-dragging .future-drawer,
+.phone .drawer-dragging .future-zoom,
+.phone .drawer-dragging .future-key {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .phone .future-drawer,
+  .phone .future-zoom,
+  .phone .future-key {
+    transition: none;
+  }
+}
+.phone .future-studio[data-drawer='expanded'] .future-zoom {
+  flex-direction: row;
+  gap: 5px;
+  bottom: calc(var(--future-drawer-height) + 14px);
+}
+.phone .future-studio[data-drawer='expanded'] .future-zoom button {
+  width: 34px;
+  height: 34px;
+}
+.phone .future-studio[data-drawer='expanded'] .future-milestones {
+  height: 38px;
+}
+.phone .future-studio[data-drawer='expanded'] .fg-years {
+  display: none;
+}
+.phone .future-studio[data-drawer='expanded'] .fg-ideas-head {
+  padding-top: 2px;
+}
+/* Keep the shared tab bar above the canvas in every Atlas theme. */
+.phone[data-active-tab='future'] > .content {
+  position: absolute;
+  inset: 0 0 var(--future-nav-height, 65px);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
+  bottom: var(--future-nav-height, 65px);
+}
+.phone[data-active-tab='future'] > .tabbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-header {
+  position: relative;
+  z-index: 18;
+}
+.phone .drawer-dragging .future-drawer-body {
+  visibility: visible;
+}
+.phone .future-canvas-reset {
+  position: absolute;
+  top: calc(var(--future-float-top) + 60px);
+  left: 70px;
+  z-index: 3;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 24px;
+  font-size: 12px;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  background: color-mix(in srgb, var(--surface) 65%, transparent);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  color: var(--ink);
+}
+/* An action appears when there is something to review. Ideas lead the empty Sandbox. */
+.phone .future-drawer-body .fg-footer > button:disabled {
+  display: none;
+}
+/* One future, with experiments progressively revealed by the drawer. */
+.phone .future-universe .fg-field-add {
+  top: calc(var(--future-float-top) + 4px);
+  width: auto;
+  min-width: 88px;
+  gap: 7px;
+  display: flex;
+  padding: 0 14px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.phone .future-canvas-reset {
+  top: calc(var(--future-float-top) + 4px);
+  left: 118px;
+}
+.phone .future-zoom {
+  flex-direction: row;
+}
+.phone .future-drawer .fg-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+.phone .future-drawer .fg-date > small {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+}
+.phone .future-drawer .fg-date > .future-age {
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1.2px;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+.future-age em {
+  font-size: 11px;
+  letter-spacing: 0;
+  font-style: normal;
+  color: var(--muted);
+}
+.phone .future-drawer .fg-moment {
+  min-height: 66px;
+  align-items: center;
+}
+.phone .future-drawer .fg-net strong {
+  font-size: 32px;
+  letter-spacing: -1px;
+}
+.phone .future-drawer .future-milestones {
+  height: 45px;
+}
+.phone .future-time-track {
+  position: relative;
+  height: 38px;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+  margin: 5px 0 4px;
+  isolation: isolate;
+}
+.future-time-fill {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: max(38px, calc(var(--time-progress) + var(--time-inset)));
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 24px;
+  background: linear-gradient(105deg, var(--viz-cash), var(--viz-investment));
+  opacity: 0.9;
+}
+.future-time-track::after {
+  content: '';
+  position: absolute;
+  inset: 0 18px;
+  pointer-events: none;
+  z-index: 1;
+  background-image: radial-gradient(circle, #fff 2px, transparent 2.5px);
+  background-size: 25% 100%;
+  background-position: center;
+}
+.phone .future-drawer #time-slider {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 38px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 24px;
+  padding: 0;
+  margin: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  box-shadow: none;
+}
+.phone .future-drawer #time-slider::-webkit-slider-runnable-track {
+  height: 38px;
+  border: 0;
+  background: transparent;
+  border-radius: 24px;
+}
+.phone .future-drawer #time-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 38px;
+  height: 38px;
+  margin-top: 0;
+  border: 2px solid color-mix(in srgb, var(--ink) 10%, white);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px #0003;
+  transition: box-shadow 0.18s;
+}
+.phone .future-drawer #time-slider::-moz-range-track {
+  height: 38px;
+  background: transparent;
+  border: 0;
+}
+.phone .future-drawer #time-slider::-moz-range-thumb {
+  width: 34px;
+  height: 34px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px #0003;
+}
+.phone .future-drawer #time-slider:active::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 5px color-mix(in srgb, var(--viz-cash) 22%, transparent),
+    0 3px 12px #0003;
+}
+.phone .future-drawer #time-slider:focus-visible {
+  outline: 2px solid var(--viz-cash);
+  outline-offset: 4px;
+}
+.phone .future-studio[data-drawer='expanded'] .future-milestones {
+  height: 45px;
+}
+.phone .future-studio[data-drawer='expanded'] .fg-years {
+  display: flex;
+}
+.phone .future-drawer-invitation > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.phone .future-commitments {
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+  padding-top: 18px;
+}
+.phone .future-commitments > .eyebrow {
+  font-size: 10px;
+  margin: 0 0 3px;
+}
+.phone .future-commitments .fg-entry {
+  border: 0;
+  margin: 0;
+}
+.phone .future-commitments .fg-entry strong {
+  font-size: 19px;
+}
+.phone .future-commitments del {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.phone .future-drawer-body .fg-footer {
+  padding-bottom: 8px;
+}
+.phone .future-drawer .future-milestones {
+  margin-left: 19px;
+  margin-right: 19px;
+}
+/* Let the drawer breathe: the date, decision and consequence are the hierarchy. */
+.phone .future-drawer-summary {
+  padding: 0 24px 16px;
+}
+.phone .future-studio[data-drawer='expanded'] .future-drawer-summary {
+  padding-bottom: 8px;
+}
+.phone .future-drawer .fg-moment {
+  min-height: 82px;
+  gap: 12px;
+}
+.phone .future-drawer .fg-date > small,
+.phone .future-drawer .fg-net > small,
+.phone .future-drawer .fg-range,
+.phone .future-drawer .future-age em {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.phone .future-drawer .fg-date > .future-age {
+  font-size: 42px;
+  gap: 6px;
+}
+.phone .future-drawer .fg-net strong {
+  font-size: 30px;
+  white-space: nowrap;
+}
+.phone .future-drawer-invitation {
+  min-height: 48px;
+  font-size: 14px;
+}
+.phone .future-drawer-invitation > span:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+.phone .future-drawer-body .fg-secondary {
+  padding-top: 8px;
+}
+.phone .future-drawer-body .fg-ideas-head {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.phone .future-drawer-body .fg-ideas-head > small {
+  font-size: 13px;
+}
+.phone .future-drawer-body .fg-ideas-head .icon {
+  display: none;
+}
+.phone .future-drawer-body .fg-ideas {
+  gap: 12px;
+  padding: 2px 0 6px;
+}
+.phone .future-drawer-body .fg-idea {
+  flex-basis: 88%;
+  min-height: 160px;
+  padding: 20px;
+  gap: 16px 8px;
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+.phone .future-drawer-body .fg-idea b {
+  font-size: 18px;
+  line-height: 1.3;
+}
+.phone .future-drawer-body .fg-idea small {
+  font-size: 14px;
+  line-height: 1.45;
+  margin-top: 8px;
+}
+.phone .future-drawer-body .fg-idea em {
+  align-self: end;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.phone .future-drawer-body .fg-idea i {
+  font-style: normal;
+  padding-top: 2px;
+}
+.phone .future-drawer-body .fg-idea[aria-pressed='true'] {
+  border-color: var(--viz-investment);
+  background: color-mix(in srgb, var(--viz-investment) 10%, var(--canvas));
+}
+.phone .future-commitments {
+  margin-top: 16px;
+  padding-top: 4px;
+}
+.phone .future-commitments .fg-entry {
+  padding: 18px 0;
+  gap: 10px;
+}
+.phone .future-commitments .fg-entry-symbol {
+  display: none;
+}
+.phone .future-commitments .fg-entry b {
+  font-size: 16px;
+}
+.phone .future-commitments .fg-entry small,
+.phone .future-commitments del {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.phone .future-commitments .fg-entry strong {
+  font-size: 21px;
+}
+.phone .future-drawer-body .fg-footer {
+  margin-top: 8px;
+  padding-bottom: 14px;
+}
+.phone .future-drawer-body .fg-footer > .btn {
+  min-height: 52px;
+  font-size: 16px;
+}
+.phone .future-universe .fg-field-add,
+.phone .future-canvas-reset,
+.phone .future-zoom button,
+.phone .future-studio[data-drawer='expanded'] .future-zoom button {
+  min-height: 44px;
+  font-size: 14px;
+}
+.phone .future-zoom button,
+.phone .future-studio[data-drawer='expanded'] .future-zoom button {
+  width: 44px;
+  height: 44px;
+}
+.future-starlight {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(100% + 160px);
+  opacity: 0.85;
+  background:
+    radial-gradient(ellipse 12px 1.3px at 24px 10px, #fff, transparent),
+    radial-gradient(ellipse 6px 1.2px at 84px 27px, #fff, transparent),
+    radial-gradient(ellipse 16px 1.3px at 136px 19px, #fffd, transparent);
+  background-size: 160px 38px;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .future-starlight {
+    display: none;
+  }
+}
+.phone .future-drawer .future-milestones,
+.phone .future-studio[data-drawer='expanded'] .future-milestones {
+  height: auto;
+  min-height: 45px;
+}
+.future-milestone-space {
+  display: block;
+  pointer-events: none;
+}
+
+/* Keep the glossy drawer lip visible when its controls are docked. */
+.phone .future-studio[data-drawer='docked'] .future-drawer-grip {
+  min-height: 44px;
+  flex-basis: 44px;
+}
+.phone .future-studio[data-drawer='docked'] .future-drawer-summary,
+.phone .future-studio[data-drawer='docked'] .future-drawer-invitation,
+.phone .future-studio[data-drawer='docked'] .future-drawer-body {
+  visibility: hidden;
+}
+
+.future-explainer > h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 28px 0 10px;
+}
+.future-explainer .terms p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 12px 0;
+}
+
+/* Short screens change the scroll model, never the reading size. The grip stays
+   available while the timeline and experiments share one scroll surface. */
+.phone .future-studio[data-short='true'] .future-drawer-summary {
+  padding-bottom: 8px;
+}
+.phone .future-studio[data-short='true'] .fg-moment {
+  min-height: 66px;
+}
+.phone .future-studio[data-short='true'] .future-time-track {
+  margin-block: 0;
+}
+.phone .future-studio[data-short='true'][data-drawer='expanded'] .future-drawer {
+  display: block;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.phone .future-studio[data-short='true'][data-drawer='expanded'] .future-drawer-grip {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--canvas);
+}
+.phone .future-studio[data-short='true'][data-drawer='expanded'] .future-drawer-body {
+  overflow: visible;
+}

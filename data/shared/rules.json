@@ -1,0 +1,90 @@
+{
+ "ruleTypes": [
+  {
+   "id": "payday-fixed",
+   "label": "A fixed amount on payday"
+  },
+  {
+   "id": "round-up",
+   "label": "Round-ups from card payments"
+  },
+  {
+   "id": "percentage",
+   "label": "A share of pay"
+  },
+  {
+   "id": "remaining-on-payday",
+   "label": "Whatever is left on payday, moved (never 'sweep')"
+  },
+  {
+   "id": "challenge",
+   "label": "An amount when a healthy month holds"
+  },
+  {
+   "id": "repayment",
+   "label": "A loan repayment on a schedule"
+  },
+  {
+   "id": "cap",
+   "label": "A soft spending line — asked, never enforced — that frees money for a pot"
+  },
+  {
+   "id": "later",
+   "label": "A rule that starts when another one ends (a redirect)"
+  }
+ ],
+ "whatIfTypes": [
+  {
+   "id": "create",
+   "label": "Start a new pot with a rule"
+  },
+  {
+   "id": "attach",
+   "label": "Give an existing pot a rule"
+  },
+  {
+   "id": "redirect",
+   "label": "Move a rule's money from one pot to another"
+  },
+  {
+   "id": "cap",
+   "label": "A spending line that funds a pot"
+  },
+  {
+   "id": "illustration",
+   "label": "Shows a delta (e.g. Premier rates) — nothing to commit"
+  },
+  {
+   "id": "rehearsal",
+   "label": "Shows the shape of a decision — moves nothing"
+  }
+ ],
+ "doctrine": [
+  "Evidence precedes every ask",
+  "Facts and possibility never blur: forward numbers carry 'projected' / 'A projection, not a promise'",
+  "Every side-effect is receipted and undoable",
+  "A rule that reaches its end stops; the AI asks where its money goes next (Data/04 §8.5)",
+  "No shame: no streaks that break, no scores to game, no lectures",
+  "HSBC Points never attach to spending; cashback is a card fact",
+  "Status cannot be bought with points",
+  "The customer's corrections outrank the model's observations, and are dated",
+  "Household by consent: everyone sees the shared pot, each person's own money stays their own",
+  "No internal codes or banned words in customer copy (Data/03 §G, Convergence/07)"
+ ],
+ "bannedInCustomerCopy": [
+  "pod",
+  "sweep",
+  "ladder",
+  "breach",
+  "first step",
+  "aspiring",
+  "L0-L4",
+  "M1-M4",
+  "module",
+  "lens",
+  "the verb",
+  "ASSISTANT",
+  "RECEIPT",
+  "Moment aware"
+ ]
+}

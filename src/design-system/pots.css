@@ -1,0 +1,1164 @@
+/* Vanilla money containers: the supplied IA, expressed with shared type and surfaces. */
+body[data-direction='vanilla'] .container-system {
+  padding-top: 10px;
+  container-type: inline-size;
+}
+.container-amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 4px 0 6px;
+}
+.container-value-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+body[data-direction='vanilla'] .container-amount .detail-number {
+  font-size: 49px;
+  line-height: 1.12;
+  letter-spacing: -1.8px;
+  margin: 10px 0 0;
+  white-space: nowrap;
+}
+.container-amount .detail-number small {
+  font-size: 0.44em;
+  letter-spacing: -0.5px;
+  color: var(--muted);
+}
+body[data-direction='vanilla'] .container-system[data-large-number='true'] .detail-number {
+  font-size: 44px;
+}
+.container-facts {
+  width: 120px;
+  flex-shrink: 0;
+  text-align: right;
+}
+.container-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  margin-bottom: 0;
+}
+.container-meta b {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  display: block;
+  text-transform: capitalize;
+}
+.container-meta small {
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-top: 3px;
+}
+.container-meta .bank-avatar {
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  padding: 3px;
+}
+.container-meta .bank-avatar img,
+.module-top .bank-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.module-top .bank-avatar {
+  display: inline-flex;
+  width: 21px;
+  height: 21px;
+  min-width: 21px;
+  background: none;
+  padding: 0;
+}
+/* A goal is a small supporting graphic, not another card. */
+.container-target {
+  margin-top: 22px;
+  padding: 0;
+  background: none;
+}
+.target-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.target-heading b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.target-heading > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.container-target .progress {
+  height: 4px;
+  margin: 12px 0 0;
+  border-radius: 4px;
+  background: var(--soft);
+}
+.container-target .progress i {
+  border-radius: 4px;
+}
+/* The commitment and benefit read as a short agreement, not a field list. */
+.agreement-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 26px;
+}
+.agreement-heading b {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+}
+#agreement-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 70;
+  isolation: isolate;
+}
+.agreement-scrim {
+  position: absolute;
+  inset: 0;
+  background: #0007;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: fade-in var(--duration-feedback) var(--ease-settle);
+}
+.agreement-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 85%;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -12px 40px #0003;
+  animation: slide-up var(--duration-surface) var(--ease-settle);
+  overflow: hidden;
+}
+.agreement-handle {
+  width: 32px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+  margin: 10px auto 0;
+  flex-shrink: 0;
+}
+.agreement-sheet > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px 18px;
+  flex-shrink: 0;
+}
+.agreement-sheet h2 {
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+}
+.agreement-sheet .icon-btn {
+  flex-shrink: 0;
+  background: var(--soft);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+.agreement-sheet-body {
+  padding: 0 24px 32px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.agreement-line small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.agreement-line p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 8px 0 24px;
+}
+.agreement-benefit strong {
+  font-size: 27px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  font-weight: 400;
+  display: block;
+}
+.agreement-terms {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.agreement-terms h3 {
+  font-size: 13px;
+  font-weight: 500;
+}
+.agreement-terms p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 10px 0 20px;
+}
+.agreement-disclaimer {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+@media (prefers-reduced-motion: reduce) {
+  .agreement-sheet,
+  .agreement-scrim {
+    animation: none;
+  }
+}
+
+/* Exactly the Now Quick Action component; only the containing section's insets differ. */
+body[data-direction='vanilla'] .container-system .quick-actions.container-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 24px 0 4px;
+  margin: 0;
+}
+.container-section {
+  padding-top: 28px;
+}
+.container-section > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.container-section h3 {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+.container-section > header .btn {
+  font-size: 12px;
+  padding: 8px 0;
+  min-height: 44px;
+  text-decoration: none;
+}
+.container-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: var(--canvas);
+  border: 0;
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  margin-top: 10px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.container-rule:hover {
+  background: var(--soft);
+}
+.container-rule-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.container-rule-icon .icon {
+  width: 19px;
+  height: 19px;
+}
+.container-rule-copy {
+  flex: 1;
+  min-width: 0;
+}
+.rule-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.container-rule b {
+  font-size: 14px;
+  font-weight: 500;
+}
+.container-rule em {
+  font-size: 10px;
+  color: var(--muted);
+  font-style: normal;
+}
+.container-rule small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+.container-rule > .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+}
+.container-empty {
+  background: var(--canvas);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  color: var(--muted);
+}
+.container-empty p {
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+.container-empty small {
+  font-size: 12px;
+  line-height: 1.5;
+  display: block;
+}
+.container-empty > .icon {
+  margin-bottom: 14px;
+  width: 24px;
+}
+.container-members {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  padding: 22px 0 0;
+  text-align: left;
+  cursor: pointer;
+  min-height: 60px;
+}
+.container-members > span:nth-last-child(2) {
+  flex: 1;
+  font-size: 13px;
+}
+.container-members small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.member-initials {
+  display: flex;
+  padding-left: 5px;
+}
+.member-initials i {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--soft);
+  border: 2px solid var(--surface);
+  margin-left: -5px;
+  font-size: 12px;
+  font-style: normal;
+}
+.container-members > .icon {
+  width: 18px;
+}
+.container-invitation {
+  padding: 20px;
+  background: var(--canvas);
+  border-radius: var(--radius);
+  margin-top: 16px;
+}
+.container-invitation small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.container-ledger > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+}
+.activity-symbol {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: var(--canvas);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.activity-symbol > .icon {
+  width: 19px;
+  height: 19px;
+}
+.container-ledger span {
+  flex: 1;
+  min-width: 0;
+}
+.container-ledger b {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  display: block;
+}
+.container-ledger small {
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-top: 4px;
+}
+.container-ledger strong {
+  font-size: 13px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+/* Supporting account information and access use the same calm, readable rhythm. */
+.rows.container-fact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 24px 0;
+}
+.rows.container-fact-grid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border: 0;
+  background: var(--canvas);
+  padding: 16px;
+  border-radius: var(--radius);
+}
+.rows.container-fact-grid dt {
+  font-size: 11px;
+}
+.rows.container-fact-grid dd {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  text-align: left;
+}
+.container-people {
+  margin: 24px 0;
+  display: grid;
+  gap: 18px;
+}
+.container-people > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.container-people i {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--soft);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-style: normal;
+}
+.container-people b {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+}
+.container-people small {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.container-lab {
+  display: grid;
+  gap: 10px;
+}
+.container-lab .btn {
+  text-align: left;
+}
+.container-lab-note {
+  font-size: 12px;
+  color: #606568;
+}
+@container (max-width:320px) {
+  .container-facts {
+    width: 100px;
+  }
+  .container-facts .container-meta {
+    flex-wrap: wrap;
+  }
+  body[data-direction='vanilla'] .container-amount .detail-number {
+    font-size: 38px;
+  }
+  body[data-direction='vanilla'] .container-system[data-large-number='true'] .detail-number {
+    font-size: 34px;
+  }
+  .container-amount {
+    gap: 8px;
+  }
+  .container-section > header .btn {
+    font-size: 11px;
+  }
+  body[data-direction='vanilla'] .container-system .quick-actions.container-actions {
+    gap: 4px;
+  }
+  .agreement-heading {
+    gap: 6px;
+  }
+  .agreement-benefit strong {
+    font-size: 20px;
+  }
+}
+/* Household identity is shared across Numbers, details, access and You. */
+.household-avatar {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--soft);
+  font-size: 12px;
+  font-weight: 500;
+  vertical-align: middle;
+}
+.household-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.household-avatar[data-member='leo'] img {
+  object-position: 50% 28%;
+}
+.household-avatar[data-member='aisha'] img {
+  object-position: 50% 35%;
+}
+.household-stack {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 5px;
+  flex-shrink: 0;
+}
+.household-stack .household-avatar {
+  margin-left: -5px;
+  border: 2px solid var(--surface);
+}
+.module-household {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.module-household .household-avatar {
+  width: 28px;
+  height: 28px;
+  font-size: 10px;
+}
+.size-S .module-household {
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.container-people .household-avatar {
+  width: 42px;
+  height: 42px;
+  font-size: 14px;
+}
+.container-members .household-stack {
+  font-size: 12px;
+}
+.member-picker .household-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.avatar > .household-avatar {
+  width: 100%;
+  height: 100%;
+}
+.holding-shared {
+  width: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.holding-shared .household-stack {
+  padding-left: 3px;
+}
+.holding-shared .household-avatar {
+  width: 22px;
+  height: 22px;
+  margin-left: -5px;
+  border-width: 1px;
+}
+.holding-shared .household-avatar:first-child {
+  margin-left: 0;
+}
+/* The arrangement is one composition: benefit, conditions, fulfilment. */
+.pot-arrangement {
+  padding-top: 30px;
+}
+.pot-arrangement > header {
+  margin-bottom: 16px;
+}
+.pot-arrangement h3 {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+.arrangement-surface {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+.arrangement-benefit {
+  padding: 20px;
+  background: var(--canvas);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.arrangement-benefit > span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.arrangement-benefit > strong {
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+}
+.arrangement-conditions {
+  padding: 0 20px;
+}
+.pot-condition {
+  padding: 20px 0 12px;
+}
+.pot-condition + .pot-condition {
+  border-top: 1px solid var(--line);
+}
+.condition-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+.condition-heading h4 {
+  margin: 0;
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+.condition-heading > small {
+  font-size: 10px;
+  line-height: 1.4;
+  padding-top: 3px;
+  color: var(--muted);
+  text-align: right;
+  max-width: 70px;
+}
+.condition-content {
+  padding-left: 0;
+}
+.condition-content > p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 10px 0;
+}
+.condition-content .progress {
+  height: 3px;
+  border-radius: 3px;
+  margin: 14px 0;
+}
+.condition-content .condition-method {
+  margin-top: 14px;
+  color: var(--ink);
+}
+.condition-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.condition-content .btn {
+  font-size: 11px;
+  min-height: 44px;
+  padding: 10px 12px;
+}
+.condition-content .btn.text {
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: none;
+}
+.arrangement-surface > footer {
+  padding: 6px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+}
+.arrangement-surface > footer .btn {
+  font-size: 11px;
+  text-decoration: none;
+  min-height: 44px;
+}
+.arrangement-simple {
+  padding: 20px 22px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.arrangement-optional {
+  padding: 18px 20px;
+  border-top: 1px solid var(--line);
+}
+.arrangement-optional > h4 {
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+.arrangement-optional .container-rule {
+  margin: 0;
+  padding: 12px 0;
+  border-radius: 0;
+  background: none;
+}
+.arrangement-optional .container-rule + .container-rule {
+  border-top: 1px solid var(--line);
+}
+.arrangement-optional .container-rule-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--canvas);
+}
+.arrangement-optional .container-rule b {
+  font-size: 12px;
+}
+.arrangement-optional .container-rule small {
+  font-size: 11px;
+  margin-top: 5px;
+}
+.method-overview {
+  padding: 22px 20px;
+  margin: 16px 0 24px;
+  background: var(--canvas);
+  border-radius: var(--radius);
+}
+.method-overview > small {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.method-overview h3 {
+  font-size: 23px;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  font-weight: 400;
+  margin: 10px 0 14px;
+}
+.method-overview p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 12px 0;
+}
+.method-change {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin: 18px 0;
+}
+.method-change span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.method-change b {
+  font-size: 23px;
+  letter-spacing: -0.4px;
+  font-weight: 400;
+}
+@container (max-width:320px) {
+  .arrangement-benefit {
+    padding: 20px 16px;
+  }
+  .arrangement-benefit > strong {
+    font-size: 26px;
+  }
+  .arrangement-conditions {
+    padding: 0 14px;
+  }
+  .condition-content {
+    padding-left: 0;
+  }
+  .condition-heading > small {
+    max-width: 58px;
+  }
+}
+
+.activity-empty {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 4px 0 20px;
+}
+.condition-heading h4 {
+  line-height: 1.5;
+}
+.condition-heading > small {
+  padding-top: 3px;
+}
+.arrangement-surface > footer .btn {
+  width: 100%;
+  justify-content: flex-start;
+}
+/* A money container and a spending insight share the grid, but name their amounts. */
+body[data-direction='vanilla'] .insight-link {
+  gap: 12px;
+  margin: 8px 0 24px;
+  padding: 16px;
+  background: var(--canvas);
+  border: 0;
+  border-radius: var(--radius);
+}
+body[data-direction='vanilla'] .insight-link > .icon {
+  width: 22px;
+  flex-shrink: 0;
+}
+.arrangement-benefit > small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.arrangement-recovery {
+  padding: 0 20px 18px;
+}
+.arrangement-recovery > b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.arrangement-recovery p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 6px 0;
+}
+.arrangement-recovery .btn {
+  padding: 8px 0;
+  min-height: 40px;
+  font-size: 12px;
+}
+.recovery-detail > p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 12px 0 22px;
+}
+.recovery-detail > h3:not(.idea-title) {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 26px;
+}
+.recovery-change {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--canvas);
+  border-radius: var(--radius);
+  margin: 24px 0;
+}
+.recovery-change span {
+  flex: 1;
+}
+.recovery-change small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.recovery-change b {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+}
+.recovery-detail > .btn {
+  margin-bottom: 10px;
+}
+
+/* Agreement disclosure: one benefit, one status, one explanation at a glance. */
+.arrangement-disclosure summary {
+  list-style: none;
+  cursor: pointer;
+}
+.arrangement-disclosure summary::-webkit-details-marker {
+  display: none;
+}
+.arrangement-disclosure .arrangement-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+.arrangement-disclosure[data-status='attention'] {
+  border-inline-start: 3px solid var(--red);
+}
+.arrangement-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.arrangement-status .icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.arrangement-status b {
+  font-weight: 500;
+}
+[data-status='attention'] > .arrangement-overview .arrangement-status {
+  color: var(--red);
+}
+.arrangement-disclosure .arrangement-benefit {
+  padding: 0;
+  background: none;
+  gap: 5px;
+}
+.arrangement-disclosure .arrangement-benefit > strong {
+  font-size: 27px;
+  letter-spacing: -0.6px;
+}
+.arrangement-summary {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.arrangement-explore {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  padding-top: 4px;
+}
+.arrangement-explore .icon,
+.condition-heading > .icon,
+.arrangement-optional summary > .icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+.arrangement-disclosure[open] > .arrangement-overview .arrangement-explore > .icon,
+.pot-condition[open] > .condition-heading > .icon,
+.arrangement-optional[open] > summary > .icon {
+  transform: rotate(90deg);
+}
+.arrangement-disclosure:not([open]) .when-open,
+.arrangement-disclosure[open] .when-closed {
+  display: none;
+}
+.arrangement-expanded {
+  border-top: 1px solid var(--line);
+}
+.arrangement-expanded .arrangement-recovery {
+  padding: 18px 20px 6px;
+}
+.arrangement-expanded .pot-condition {
+  padding: 0;
+}
+.arrangement-expanded .condition-heading {
+  min-height: 58px;
+  align-items: center;
+  padding: 14px 0;
+}
+.arrangement-expanded .condition-heading h4 {
+  font-size: 13px;
+}
+.arrangement-expanded .condition-heading small {
+  padding-top: 0;
+}
+.arrangement-expanded .condition-content {
+  padding-bottom: 16px;
+}
+.arrangement-expanded .condition-content > p:first-child {
+  margin-top: 0;
+}
+.arrangement-expanded > footer {
+  border-top: 1px solid var(--line);
+  padding: 6px 20px;
+}
+.arrangement-expanded > footer .btn {
+  font-size: 12px;
+  text-decoration: none;
+  padding-left: 0;
+}
+.arrangement-optional > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 28px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.arrangement-disclosure summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -4px;
+  border-radius: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .arrangement-disclosure .icon {
+    transition: none;
+  }
+}
+
+/* Quiet automation context, independent of benefit eligibility. */
+.arrangement-rule-summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.arrangement-rule-summary > .icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* One complete How it works sheet; the parent remains a compact entry point. */
+button.arrangement-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+button.arrangement-overview[data-status='attention'] .arrangement-status,
+.how-sheet[data-status='attention'] .arrangement-status {
+  color: var(--red);
+}
+.agreement-sheet > header > div {
+  flex: 1;
+  min-width: 0;
+}
+.agreement-context {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+.how-benefit {
+  padding: 4px 0 18px;
+}
+.how-benefit .arrangement-benefit {
+  padding: 12px 0 0;
+  background: none;
+}
+.how-benefit .arrangement-benefit > strong {
+  font-size: 28px;
+}
+.how-sheet .arrangement-recovery {
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--canvas);
+  border-inline-start: 3px solid var(--red);
+  margin-bottom: 24px;
+}
+.how-sheet .arrangement-recovery p:first-child {
+  margin-top: 0;
+}
+.how-sheet .arrangement-recovery b {
+  display: block;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+.how-sheet .how-section-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 12px 0 4px;
+}
+.how-sheet .pot-condition {
+  padding: 18px 0 12px;
+}
+.how-sheet .condition-heading {
+  align-items: flex-start;
+}
+.how-sheet .condition-heading > small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 95px;
+}
+.how-sheet .condition-heading > small .icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.how-sheet .condition-heading h4 {
+  font-size: 14px;
+}
+.how-sheet .is-met .condition-heading h4 {
+  font-weight: 400;
+}
+.how-sheet .condition-method {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+}
+.how-sheet .condition-method .icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.how-sheet .how-optional {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+.how-sheet footer {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+  margin-top: 12px;
+}
+.how-sheet footer > .btn {
+  text-align: left;
+  justify-content: flex-start;
+  padding-left: 0;
+  font-size: 12px;
+  text-decoration: none;
+}

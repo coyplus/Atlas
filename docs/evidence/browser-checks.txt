@@ -1,0 +1,48 @@
+
+> hsbc-atlas-app@0.1.0 test:production
+> ATLAS_TEST_URL=http://localhost:4174 playwright test
+
+
+Running 30 tests using 2 workers
+
+(node:47340) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:47339) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium-mobile] › e2e/delivery.spec.ts:2:1 › saved preferences survive reload; reset restores the seed (847ms)
+  ✓   3 [chromium-mobile] › e2e/delivery.spec.ts:15:1 › offline production launch includes fonts, portraits, data and routes (498ms)
+  ✓   4 [chromium-mobile] › e2e/delivery.spec.ts:51:1 › unavailable device storage still permits the demonstration (383ms)
+  ✓   5 [chromium-mobile] › e2e/delivery.spec.ts:64:1 › workbench and blueprint resolve using the same app and local specifications (466ms)
+  ✓   6 [chromium-mobile] › e2e/delivery.spec.ts:80:1 › demo controls keep keyboard focus inside the menu and restore it (367ms)
+  ✓   7 [chromium-mobile] › e2e/delivery.spec.ts:96:1 › history stores view metadata, not customer financial snapshots (344ms)
+  ✓   8 [chromium-mobile] › e2e/update.spec.ts:5:1 › an available release waits for consent, then saves and restarts (1.6s)
+(node:47406) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [webkit-mobile] › e2e/delivery.spec.ts:2:1 › saved preferences survive reload; reset restores the seed (1.1s)
+  -  10 [webkit-mobile] › e2e/delivery.spec.ts:15:1 › offline production launch includes fonts, portraits, data and routes
+  ✓  11 [webkit-mobile] › e2e/delivery.spec.ts:51:1 › unavailable device storage still permits the demonstration (372ms)
+  ✓  12 [webkit-mobile] › e2e/delivery.spec.ts:64:1 › workbench and blueprint resolve using the same app and local specifications (652ms)
+  ✓  13 [webkit-mobile] › e2e/delivery.spec.ts:80:1 › demo controls keep keyboard focus inside the menu and restore it (446ms)
+  ✓  14 [webkit-mobile] › e2e/delivery.spec.ts:96:1 › history stores view metadata, not customer financial snapshots (450ms)
+  ✓   2 [chromium-mobile] › e2e/migration.spec.ts:12:1 › all personas, themes and tabs fit a phone and load local media (11.8s)
+  ✓  16 [chromium-mobile] › e2e/migration.spec.ts:41:1 › Jordan recovery preserves current benefit and supports a manual payment (1.2s)
+  ✓  17 [chromium-mobile] › e2e/migration.spec.ts:60:1 › quiz help preserves draft; chat, header and sheet fit viewport (1.3s)
+  ✓  18 [chromium-mobile] › e2e/migration.spec.ts:79:1 › quick action customisation saves and cancel discards draft (980ms)
+  ✓  19 [chromium-mobile] › e2e/migration.spec.ts:94:1 › top restores AI and browser back closes the current sheet (3.0s)
+  ✓  15 [webkit-mobile] › e2e/migration.spec.ts:12:1 › all personas, themes and tabs fit a phone and load local media (12.1s)
+  ✓  20 [chromium-mobile] › e2e/migration.spec.ts:114:1 › shared members, photos and neutral cards survive small and landscape layouts (3.5s)
+  ✓  21 [webkit-mobile] › e2e/migration.spec.ts:41:1 › Jordan recovery preserves current benefit and supports a manual payment (2.3s)
+  ✓  22 [chromium-mobile] › e2e/migration.spec.ts:150:1 › direct links, theme aliases and browser forward preserve navigation (1.2s)
+  ✓  23 [webkit-mobile] › e2e/migration.spec.ts:60:1 › quiz help preserves draft; chat, header and sheet fit viewport (1.6s)
+  ✓  25 [webkit-mobile] › e2e/migration.spec.ts:79:1 › quick action customisation saves and cancel discards draft (1.2s)
+  ✓  24 [chromium-mobile] › e2e/migration.spec.ts:174:1 › persistent recap plays across tabs and an account detail (3.4s)
+(node:47488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  27 [webkit-mobile] › e2e/update.spec.ts:5:1 › an available release waits for consent, then saves and restarts
+  ✓  26 [webkit-mobile] › e2e/migration.spec.ts:94:1 › top restores AI and browser back closes the current sheet (3.0s)
+  ✓  28 [webkit-mobile] › e2e/migration.spec.ts:114:1 › shared members, photos and neutral cards survive small and landscape layouts (3.5s)
+  ✓  29 [webkit-mobile] › e2e/migration.spec.ts:150:1 › direct links, theme aliases and browser forward preserve navigation (1.4s)
+  ✓  30 [webkit-mobile] › e2e/migration.spec.ts:174:1 › persistent recap plays across tabs and an account detail (3.5s)
+
+  2 skipped
+  28 passed (37.1s)

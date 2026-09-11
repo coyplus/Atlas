@@ -1,0 +1,967 @@
+{
+  "$schema": "../../schema/schema.json#/definitions/L2",
+  "layer": 2,
+  "moment": {
+    "id": "m3",
+    "name": "Grow",
+    "stage": "Ready to invest · nearly Premier",
+    "customerId": "sam",
+    "asOf": "2026-09-08",
+    "tenure": "month 8",
+    "segment": "Everyday · nearly Premier",
+    "description": "A young family balancing shared spending, a holiday and a safety net before considering investing spare money."
+  },
+  "customerId": "sam",
+  "asOf": "2026-09-08",
+  "signals": [
+    {
+      "id": "sig-house-payday",
+      "kind": "rule-ran",
+      "description": "£320 reached the house pot on payday, as agreed",
+      "basis": [
+        "l1:transactions/tx-sam-002",
+        "l1:rules/r-house-payday"
+      ],
+      "detectedOn": "2026-09-08"
+    },
+    {
+      "id": "sig-idle-cash",
+      "kind": "opportunity",
+      "description": "£1,300.44 of cash sits beyond the safety net and this month's commitments — the Golden Ratio",
+      "basis": [
+        "l1:accounts/ac-cur",
+        "l1:bills",
+        "l1:rules"
+      ],
+      "detectedOn": "2026-09-08"
+    },
+    {
+      "id": "sig-safety-90",
+      "kind": "stability",
+      "description": "Emergency fund covers ~90 days of essentials (£4,200 ÷ £1,400)",
+      "basis": [
+        "l1:pots/ef",
+        "l1:bills"
+      ],
+      "detectedOn": "2026-09-08"
+    },
+    {
+      "id": "sig-ef-stops",
+      "kind": "rule-end",
+      "description": "The £40 rule stops itself at £5,000 — 20 months away (May 2028)",
+      "basis": [
+        "l1:pots/ef",
+        "l1:rules/r-ef-payday"
+      ],
+      "detectedOn": "2026-09-08"
+    },
+    {
+      "id": "sig-grocery-8",
+      "kind": "habit",
+      "description": "Groceries under £220 for eight months running; the challenge funded the holiday pot",
+      "basis": [
+        "l1:spending/comparisons/groceries",
+        "l1:rules/r-hol-challenge",
+        "l1:transactions/tx-sam-004"
+      ],
+      "detectedOn": "2026-09-08"
+    },
+    {
+      "id": "sig-payday-remainder",
+      "kind": "spending-pattern",
+      "description": "The last six paydays left £85 on average unspent",
+      "basis": [
+        "l1:income/inc-salary",
+        "l1:behaviour/financial"
+      ],
+      "detectedOn": "2026-09-08"
+    },
+    {
+      "id": "sig-near-premier",
+      "kind": "relationship",
+      "description": "A committed plan, eight months kept — close to Premier",
+      "basis": [
+        "l1:relationship",
+        "l1:pots/house"
+      ],
+      "detectedOn": "2026-09-08"
+    }
+  ],
+  "insights": [
+    {
+      "id": "ins-pot-house",
+      "scope": "pot:house",
+      "text": "On track for 2031, eight months kept. The 5.1% holds while the plan does.",
+      "html": "On track for <b>2031</b>, eight months kept. The 5.1% holds while the plan does.",
+      "basis": [
+        "l1:pots/house",
+        "l2:signals/sig-house-payday",
+        "l2:signals/sig-near-premier"
+      ]
+    },
+    {
+      "id": "ins-pot-ef",
+      "scope": "pot:ef",
+      "text": "£800 to go. When it fills, the £40 rule stops itself — I’ll ask you then where that £40 should go next.",
+      "html": "£800 to go. When it fills, the £40 rule stops itself — I’ll ask you then where that £40 should go next.",
+      "basis": [
+        "l1:pots/ef",
+        "l2:signals/sig-safety-90",
+        "l2:signals/sig-ef-stops"
+      ]
+    },
+    {
+      "id": "ins-pot-hol",
+      "scope": "pot:hol",
+      "text": "£600 set aside for your family holiday. Sam and Riley can both contribute.",
+      "html": "£600 set aside for your family holiday. Sam and Riley can both contribute.",
+      "basis": [
+        "l1:pots/hol",
+        "l2:signals/sig-grocery-8"
+      ]
+    },
+    {
+      "id": "ins-pot-un",
+      "scope": "pot:un",
+      "text": "Money that hasn’t chosen a job. No rush — but if it’s still here in autumn, I’ll ask again, gently.",
+      "html": "Money that hasn’t chosen a job. No rush — but if it’s still here in autumn, I’ll ask again, gently.",
+      "basis": [
+        "l1:pots/un",
+        "l2:signals/sig-idle-cash"
+      ]
+    },
+    {
+      "id": "ins-acct-ac-cur",
+      "scope": "account:ac-cur",
+      "text": "Money lands, commitments leave, £1,300 stays genuinely investable. The Golden Ratio watches the line.",
+      "html": "Money lands, commitments leave, <b>£1,300</b> stays genuinely investable. The Golden Ratio watches the line.",
+      "basis": [
+        "l1:accounts/ac-cur"
+      ],
+      "momentAware": null,
+      "cta": null
+    },
+    {
+      "id": "ins-work-safety-net",
+      "scope": "working",
+      "text": "Three months of essentials, held. The quiet number behind calm.",
+      "figure": [
+        "Covered",
+        "~90 days"
+      ],
+      "rows": [
+        [
+          "Emergency fund",
+          "£4,200"
+        ],
+        [
+          "Essential spending",
+          "£1,400 / month"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-hsbc-points",
+      "scope": "working",
+      "text": "Earned only for openness and consistency — never for spending, checking, or trading.",
+      "figure": [
+        "Total",
+        "480"
+      ],
+      "rows": [
+        [
+          "Money personality quiz",
+          "25"
+        ],
+        [
+          "52 weekly check-ins",
+          "260"
+        ],
+        [
+          "8 months of consistency",
+          "160"
+        ],
+        [
+          "Beliefs corrected & confirmed",
+          "35"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-cashback",
+      "scope": "working",
+      "text": "A feature of the card, shown as a fact. It never becomes a reason to spend more — that’s what HSBC Points are for: healthy habits, never spending.",
+      "figure": [
+        "Earned back",
+        "£64.00"
+      ],
+      "rows": [
+        [
+          "Card spending this year",
+          "£3,200.00"
+        ],
+        [
+          "Cashback rate",
+          "2%"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-groceries",
+      "scope": "working",
+      "text": "The pot holds when the month stays under £220. Eight in a row so far.",
+      "figure": [
+        "This month",
+        "£198.10"
+      ],
+      "rows": [
+        [
+          "Tesco",
+          "£84.30"
+        ],
+        [
+          "Lidl",
+          "£58.90"
+        ],
+        [
+          "Co-op",
+          "£32.60"
+        ],
+        [
+          "Everything else",
+          "£22.30"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-balance",
+      "scope": "working",
+      "text": "Commitments leave first, quietly. What remains is genuinely yours.",
+      "figure": [
+        "Balance",
+        "£3,120.44"
+      ],
+      "rows": [
+        [
+          "After commitments",
+          "£420/month already moved"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-golden-ratio",
+      "scope": "working",
+      "text": "Your 90-day safety net stays separate. Explore whether some of the cash beyond your commitments could work towards a longer-term goal. Investment outcomes vary, so compare the possibilities before deciding.",
+      "figure": [
+        "Safe to invest",
+        "£1,300.44"
+      ],
+      "rows": [
+        [
+          "Balance",
+          "£3,120.44"
+        ],
+        [
+          "One month of essentials",
+          "−£1,400.00"
+        ],
+        [
+          "This month’s commitments",
+          "−£420.00"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    }
+  ],
+  "personality": {
+    "name": "Planner",
+    "copy": "Careful, likes a route, allergic to nagging. You do the thinking up front so the months can run quietly — the system’s job is to keep your receipts and stay out of the way.",
+    "invite": null,
+    "traits": [
+      [
+        "Planning",
+        5
+      ],
+      [
+        "Rhythm",
+        4
+      ],
+      [
+        "Spontaneity",
+        1
+      ]
+    ],
+    "provenance": "Informed by 431 money moves and 15 answers",
+    "status": "named",
+    "basis": [
+      "l1:behaviour/financial",
+      "l1:behaviour/app/quizDone",
+      "l1:transactions"
+    ],
+    "members": [
+      {
+        "memberId": "riley",
+        "personality": {
+          "name": "Thoughtful nurturer",
+          "copy": "Riley makes room for family life while keeping everyday spending steady. Shared routines leave space for the things that matter.",
+          "src": "Money personality answers shared by Riley · shared by consent",
+          "traits": [
+            [
+              "Generosity",
+              5
+            ],
+            [
+              "Rhythm",
+              4
+            ],
+            [
+              "Spontaneity",
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "memberId": "household",
+        "personality": {
+          "name": "A plan with room for life",
+          "copy": "Sam plans ahead. Riley brings everyday balance. Together, you make room for family priorities.",
+          "src": "Sam and Riley’s shared money personalities · shared by consent",
+          "traits": [
+            [
+              "Planning",
+              5
+            ],
+            [
+              "Generosity",
+              4
+            ],
+            [
+              "Rhythm",
+              4
+            ]
+          ],
+          "members": [
+            "you",
+            "riley"
+          ]
+        }
+      }
+    ]
+  },
+  "beliefs": [
+    {
+      "id": "belief-1",
+      "claim": "Planner — careful, likes a route",
+      "evidence": "From your quiz · confirmed by you, Mar 2026",
+      "status": "confirmed",
+      "confidence": "strong",
+      "basis": [
+        "l1:behaviour/financial",
+        "l1:behaviour/app"
+      ]
+    },
+    {
+      "id": "belief-2",
+      "claim": "Rainy-day first, then goals",
+      "evidence": "You built the fund before the house pot grew",
+      "status": "open",
+      "confidence": "fair",
+      "basis": [
+        "l1:behaviour/financial",
+        "l1:behaviour/app"
+      ]
+    }
+  ],
+  "companion": {
+    "contexts": [
+      {
+        "context": "now",
+        "message": "Your house plan has a £320 monthly rule. Beyond your safety net, £1,300 could be a starting point to explore investing.",
+        "html": "Your house plan has a <b>£320</b> monthly rule. Beyond your safety net, <b>£1,300</b> could be a starting point to explore investing.",
+        "actions": [
+          [
+            "wwork:goldenratio",
+            "See the working"
+          ]
+        ],
+        "basis": [
+          "l2:signals/sig-house-payday",
+          "l2:signals/sig-idle-cash",
+          "l2:signals/sig-safety-90"
+        ]
+      },
+      {
+        "context": "future",
+        "message": "On track at £420 a month. Your Golden Ratio says £1,300 could work harder — the ideas below show what investing, and Premier, would add.",
+        "html": "On track at <b>£420 a month</b>. Your <b>Golden Ratio</b> says £1,300 could work harder — the ideas below show what investing, and Premier, would add.",
+        "actions": [
+          [
+            "wifopen:winvest",
+            "Start investing",
+            1
+          ]
+        ],
+        "basis": [
+          "l2:signals/sig-house-payday",
+          "l2:signals/sig-idle-cash",
+          "l2:signals/sig-safety-90"
+        ]
+      },
+      {
+        "context": "me",
+        "message": "480 points and nearly Premier — the tier where the same habits compound faster.",
+        "html": "<b>480 points</b> and <b>nearly Premier</b> — the tier where the same habits compound faster.",
+        "actions": [],
+        "basis": [
+          "l2:signals/sig-house-payday",
+          "l2:signals/sig-idle-cash",
+          "l2:signals/sig-safety-90"
+        ]
+      },
+      {
+        "context": "you.believe",
+        "message": "A Planner, confirmed by you in March. One belief still open below.",
+        "html": "A <b>Planner</b>, confirmed by you in March. One belief still open below.",
+        "actions": [],
+        "basis": [
+          "l2:signals/sig-house-payday",
+          "l2:signals/sig-idle-cash"
+        ]
+      },
+      {
+        "context": "you.built",
+        "message": "Three promises kept, each dated. Nearly Premier — the tier where the same habits compound faster.",
+        "html": "Three promises kept, each dated. <b>Nearly Premier</b> — the tier where the same habits compound faster.",
+        "actions": [],
+        "basis": [
+          "l2:signals/sig-house-payday",
+          "l2:signals/sig-idle-cash"
+        ]
+      },
+      {
+        "context": "you.behalf",
+        "message": "I move up to £420 a month between your pots, exactly as agreed. One tap steps it down.",
+        "html": "I move up to <b>£420 a month</b> between your pots, exactly as agreed. One tap steps it down.",
+        "actions": [],
+        "basis": [
+          "l2:signals/sig-house-payday",
+          "l2:signals/sig-idle-cash"
+        ]
+      }
+    ],
+    "conversation": {
+      "chips": [
+        "Am I on track for the house?",
+        "What happens when the fund is full?",
+        "Show me my receipts",
+        "A person, please"
+      ],
+      "answers": {
+        "Am I on track for the house?": "Yes — £6,400 of £24,000, £320 each payday, on course for 2031. The rate stays 5.1% while the plan holds.",
+        "What happens when the fund is full?": "The £40 rule stops itself at £5,000. My suggestion — point it at the house; that brings 2031 about three months closer. Your call, and I’ll ask again when it happens.",
+        "Show me my receipts": "Every automated move sits in your feed as an ordinary row — 14 to the house pot so far, each with its receipt attached.",
+        "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+      },
+      "answersHtml": {
+        "Am I on track for the house?": "Yes — <b>£6,400 of £24,000</b>, £320 each payday, on course for <b>2031</b>. The rate stays 5.1% while the plan holds.",
+        "What happens when the fund is full?": "The £40 rule stops itself at £5,000. My suggestion — point it at the house; that brings 2031 about three months closer. Your call, and I’ll ask again when it happens.",
+        "Show me my receipts": "Every automated move sits in your feed as an ordinary row — 14 to the house pot so far, each with its receipt attached.",
+        "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+      }
+    }
+  },
+  "stories": [
+    {
+      "id": "s1",
+      "state": "new",
+      "title": "Golden Ratio",
+      "claim": "Explore what £1,300 could do beyond your safety net.",
+      "aiLine": "Your safety net stays separate. Explore investing £1,300 and adding £200 a month, if that fits your budget.",
+      "aiLineHtml": "Your safety net stays separate. Explore investing <b>£1,300</b> and adding <b>£200 a month</b>, if that fits your budget.",
+      "figure": "£1,300",
+      "rows": [
+        [
+          "Balance",
+          "today",
+          "£3,120.44"
+        ],
+        [
+          "One month of essentials",
+          "kept back",
+          "−£1,400.00"
+        ],
+        [
+          "This month’s commitments",
+          "already moving",
+          "−£420.00"
+        ]
+      ],
+      "chart": false,
+      "verb": "Start investing £200 a month, floor-protected.",
+      "residue": "First investments · £200 a month · rehearsed first",
+      "action": "wifstart:winvest",
+      "cta": "Start investing",
+      "basis": [
+        "l2:signals/sig-near-premier"
+      ],
+      "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+    },
+    {
+      "id": "s2",
+      "state": "pending",
+      "title": "Payday remainder",
+      "claim": "Whatever’s left on payday could bring the house from 2031 into 2030.",
+      "aiLine": "Your last six paydays left £85 on average. Moved automatically, the house lands 11 months sooner.",
+      "aiLineHtml": "Your last six paydays left <b>£85</b> on average. Moved automatically, the house lands <b>11 months sooner</b>.",
+      "figure": "£85/mo",
+      "rows": [
+        [
+          "Payday remainder",
+          "6-month average",
+          "£85"
+        ],
+        [
+          "House deposit",
+          "today",
+          "£6,400 of £24,000"
+        ],
+        [
+          "Payday rule",
+          "each month",
+          "£320"
+        ]
+      ],
+      "chart": false,
+      "verb": "Move whatever’s left on payday — nothing moves if nothing’s spare.",
+      "residue": "Payday remainder → House deposit · done May 2030",
+      "action": "wifstart:wleft",
+      "cta": "Start it",
+      "basis": [
+        "l2:signals/sig-near-premier"
+      ],
+      "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+    },
+    {
+      "id": "s3",
+      "state": "saved",
+      "title": "Eight months held",
+      "claim": "Eight grocery months in a row — no lecture needed.",
+      "aiLine": "Eight months under £220. The grocery challenge now sends £60 to the holiday each time a month holds.",
+      "aiLineHtml": "Eight months under <b>£220</b>. The grocery challenge now sends <b>£60</b> to the holiday each time a month holds.",
+      "figure": "8 months",
+      "rows": [
+        [
+          "Months held",
+          "since Jan",
+          "8"
+        ],
+        [
+          "This month",
+          "Tesco, Lidl, Co-op…",
+          "£198.10"
+        ],
+        [
+          "The line",
+          "the pot holds under",
+          "£220"
+        ]
+      ],
+      "chart": false,
+      "verb": "Keep going.",
+      "residue": "Grocery challenge → Holiday · £60 when the month holds",
+      "action": null,
+      "cta": null,
+      "basis": [
+        "l2:signals/sig-near-premier"
+      ],
+      "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+    }
+  ],
+  "whatIfs": [
+    {
+      "id": "winvest",
+      "type": "create",
+      "title": "Start investing £200 a month",
+      "summary": "Floor-protected · your Golden Ratio says it’s safe.",
+      "explainer": "Explore £1,300 to start and £200 a month, with a separate cash allocation. Compare illustrative five-year outcomes before deciding; investment values can fall.",
+      "cta": null,
+      "effect": {
+        "newPot": {
+          "name": "First investments",
+          "target": null,
+          "monthlyRate": 200,
+          "openingBalance": 1300,
+          "growthAnnual": 0.05,
+          "icon": "trend"
+        }
+      },
+      "graph": {
+        "t": "fan",
+        "M": 60,
+        "va": 13300,
+        "vb": 15300,
+        "la": "Saved · £13,300",
+        "lb": "Invested · ~£15,300",
+        "delta": "illustration at 5%"
+      },
+      "canCommit": true,
+      "basis": [
+        "l1:pots",
+        "l1:spending"
+      ]
+    },
+    {
+      "id": "wprem",
+      "type": "illustration",
+      "title": "Run this at Premier speed",
+      "summary": "Preferential rates · 1.5× points on the same habits.",
+      "explainer": "Premier layers preferential rates over the pots you already run — the house lands about three months sooner — and every healthy habit earns 1.5× points. Same behaviour, more speed. That’s the Premier delta.",
+      "cta": null,
+      "effect": {
+        "potId": "house",
+        "monthlyRateDelta": 20
+      },
+      "graph": {
+        "t": "compare",
+        "v0": 6400,
+        "vT": 24000,
+        "ra": 320,
+        "rb": 340,
+        "la": "Everyday",
+        "lb": "At Premier rates",
+        "delta": "~3 months sooner · the Premier delta"
+      },
+      "canCommit": false,
+      "basis": [
+        "l2:signals/sig-near-premier"
+      ]
+    },
+    {
+      "id": "wleft",
+      "type": "attach",
+      "title": "Whatever’s left on payday, saved",
+      "summary": "Averages £85 — house lands in 2030.",
+      "explainer": "Your last six paydays left £85 on average. Moving the remainder automatically brings the house from 2031 into 2030 — and it flexes when the month was tight. Nothing moves if nothing’s spare.",
+      "cta": null,
+      "effect": {
+        "potId": "house",
+        "monthlyRateDelta": 85
+      },
+      "graph": {
+        "t": "compare",
+        "v0": 6400,
+        "vT": 24000,
+        "ra": 320,
+        "rb": 405,
+        "la": "£320/month",
+        "lb": "+ payday remainder",
+        "delta": "2030, not 2031"
+      },
+      "canCommit": true,
+      "basis": [
+        "l2:signals/sig-payday-remainder"
+      ]
+    },
+    {
+      "id": "wshare",
+      "type": "create",
+      "title": "A shared pot with flatmates",
+      "summary": "One utility pot, three people, receipts for all.",
+      "explainer": "Three flatmates, £100 a month, every bill receipted to everyone. Money between friends, made boring — in the good way.",
+      "cta": null,
+      "effect": {
+        "newPot": {
+          "name": "Flat utilities",
+          "target": 900,
+          "monthlyRate": 100,
+          "openingBalance": 0,
+          "growthAnnual": null,
+          "icon": "users"
+        }
+      },
+      "graph": {
+        "t": "grow",
+        "target": 900,
+        "rate": 100
+      },
+      "canCommit": true,
+      "basis": [
+        "l1:pots",
+        "l1:spending"
+      ]
+    }
+  ],
+  "projections": {
+    "horizonMonths": 120,
+    "perPot": [
+      {
+        "potId": "house",
+        "milestoneMonth": 55,
+        "reach": "2031-04",
+        "kind": "reached",
+        "valueAt": {
+          "0": 6400.0,
+          "12": 10240.0,
+          "60": 24000.0,
+          "120": 24000.0
+        },
+        "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+      },
+      {
+        "potId": "ef",
+        "milestoneMonth": 20,
+        "reach": "2028-05",
+        "kind": "reached",
+        "valueAt": {
+          "0": 4200.0,
+          "12": 4680.0,
+          "60": 5000.0,
+          "120": 5000.0
+        },
+        "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+      },
+      {
+        "potId": "hol",
+        "milestoneMonth": 30,
+        "reach": "2029-03",
+        "kind": "reached",
+        "valueAt": {
+          "0": 600,
+          "12": 1320,
+          "60": 2400,
+          "120": 2400
+        },
+        "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+      },
+      {
+        "potId": "un",
+        "milestoneMonth": null,
+        "reach": null,
+        "kind": null,
+        "valueAt": {
+          "0": 850.0,
+          "12": 1210.0,
+          "60": 2650.0,
+          "120": 4450.0
+        },
+        "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+      },
+      {
+        "potId": "ella-next",
+        "milestoneMonth": null,
+        "reach": null,
+        "kind": null,
+        "valueAt": {
+          "0": 6000,
+          "12": 6000,
+          "60": 6000,
+          "120": 6000
+        },
+        "model": "No monthly contribution selected; balance remains set aside."
+      },
+      {
+        "potId": "my-own",
+        "milestoneMonth": null,
+        "reach": null,
+        "kind": null,
+        "valueAt": {
+          "0": 3500,
+          "12": 3500,
+          "60": 3500,
+          "120": 3500
+        },
+        "model": "No monthly contribution selected; balance remains set aside."
+      },
+      {
+        "potId": "friends",
+        "milestoneMonth": null,
+        "reach": null,
+        "kind": null,
+        "valueAt": {
+          "0": 500,
+          "12": 500,
+          "60": 500,
+          "120": 500
+        },
+        "model": "No monthly contribution selected; balance remains set aside."
+      }
+    ],
+    "ruleEnds": [
+      {
+        "month": 20,
+        "reach": "2028-05",
+        "potId": "ef",
+        "kind": "reached",
+        "then": "the rule stops; the AI asks where its money goes next (new pot or existing goal)"
+      }
+    ],
+    "netWorth": [
+      {
+        "month": 0,
+        "net": 15272.34,
+        "label": "Today"
+      },
+      {
+        "month": 12,
+        "net": 20672.34,
+        "label": "A projection, not a promise"
+      },
+      {
+        "month": 24,
+        "net": 25912.34,
+        "label": "A projection, not a promise"
+      },
+      {
+        "month": 60,
+        "net": 37872.34,
+        "label": "A projection, not a promise"
+      },
+      {
+        "month": 120,
+        "net": 39672.34,
+        "label": "A projection, not a promise"
+      }
+    ],
+    "honestyLine": "A projection, not a promise"
+  },
+  "nextBestActions": [
+    {
+      "id": "nba-now-wwork:goldenratio",
+      "context": "now",
+      "action": "wwork:goldenratio",
+      "label": "See the working",
+      "primary": false,
+      "basis": [
+        "l2:signals/sig-house-payday",
+        "l2:signals/sig-idle-cash",
+        "l2:signals/sig-safety-90"
+      ]
+    },
+    {
+      "id": "nba-future-wifopen:winvest",
+      "context": "future",
+      "action": "wifopen:winvest",
+      "label": "Start investing",
+      "primary": true,
+      "basis": [
+        "l2:signals/sig-house-payday",
+        "l2:signals/sig-idle-cash",
+        "l2:signals/sig-safety-90"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "rec-widget-subs",
+      "kind": "module-suggestion",
+      "moduleId": "subs",
+      "why": "See your recurring subscriptions in one place.",
+      "basis": [
+        "l1:spending",
+        "l1:bills",
+        "l1:income"
+      ]
+    },
+    {
+      "id": "rec-widget-creditscore",
+      "kind": "module-suggestion",
+      "moduleId": "creditscore",
+      "why": "Monitored with a soft check — useful before a mortgage.",
+      "basis": [
+        "l1:spending",
+        "l1:bills",
+        "l1:income"
+      ]
+    },
+    {
+      "id": "rec-widget-safespend",
+      "kind": "module-suggestion",
+      "moduleId": "safespend",
+      "why": "One honest number for the day-to-day, bills set aside.",
+      "basis": [
+        "l1:spending",
+        "l1:bills",
+        "l1:income"
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp-invest",
+      "text": "Explore £1,300 to start and £200/month if affordable, keeping the safety net separate; investment outcomes are illustrative",
+      "basis": [
+        "l2:signals/sig-idle-cash"
+      ]
+    },
+    {
+      "id": "opp-remainder",
+      "text": "Moving the payday remainder (~£85) brings the house from 2031 into 2030",
+      "basis": [
+        "l2:signals/sig-payday-remainder"
+      ]
+    },
+    {
+      "id": "opp-premier",
+      "text": "Premier rates would bring the house ~3 months closer and points 1.5×",
+      "basis": [
+        "l2:signals/sig-near-premier"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "id": "risk-ef-stop",
+      "text": "When the fund fills in May 2028 its £40 stops — decide where it goes before then",
+      "severity": "low",
+      "basis": [
+        "l2:signals/sig-ef-stops"
+      ]
+    }
+  ],
+  "householdInsights": [
+    {
+      "id": "shared-pots-only",
+      "text": "Shared pot activity is visible to the participating adults. Other accounts and private money personalities remain private.",
+      "basis": [
+        "l1:household"
+      ]
+    }
+  ],
+  "rewardsExplanation": {
+    "points": "Total 480 — earned only for openness and consistency.",
+    "cashback": "Shown as a fact of the card; never a reason to spend more"
+  },
+  "traceability": {
+    "convention": "basis[] holds refs of the form l1:<collection>/<id> (or a path) and l2:<collection>/<id>; every generated item names what it rests on"
+  }
+}

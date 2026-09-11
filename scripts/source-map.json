@@ -1,0 +1,18 @@
+{
+  "core": "domain/money",
+  "arrangements": "domain/agreements",
+  "container-model": "domain/containers",
+  "models": "domain/numbers",
+  "icons": "design-system/icons",
+  "primitives": "design-system/templates",
+  "now-system": "features/now/actions",
+  "accounts-system": "features/accounts/accounts",
+  "screens": "features/screens",
+  "dialogs": "features/dialogs",
+  "container-views": "features/pots/views",
+  "workbench": "features/workbench",
+  "support": "features/support/model",
+  "support-system": "features/support/specimens",
+  "support-controller": "features/support/controller",
+  "app": "app/runtime"
+}

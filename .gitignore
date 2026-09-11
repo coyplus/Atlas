@@ -1,0 +1,31 @@
+node_modules/
+dist/
+public/assets/
+public/scenarios.json
+public/media.json
+public/scenario-version.json
+public/*.md
+tests/generated-runtime.js
+tests/fixtures/
+tests/interface-cases/
+tests/interface.reference.mjs
+tests/*.test.mjs
+!tests/platform.test.mjs
+reports/
+test-results/
+.DS_Store
+
+# Local authentication, configuration and caches
+.vercel/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+playwright-report/
+
+# Visual review archives stay in the local handover, not the source repository
+docs/screenshots/
+docs/audit/**/*.png
+docs/audit/**/*.jpg
+docs/audit/**/*.webp

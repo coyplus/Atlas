@@ -1,0 +1,99 @@
+/* Compact, non-interactive status: icon + text, never colour alone. */
+.status-chip {
+  --chip-ink: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in srgb, var(--chip-ink) 16%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--chip-ink) 7%, var(--surface));
+  color: var(--chip-ink);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+}
+.status-chip[data-tone='pending'] {
+  --chip-ink: var(--ink);
+}
+.status-chip[data-tone='attention'] {
+  --chip-ink: var(--red);
+}
+.premier .status-chip[data-tone='attention'] {
+  --chip-ink: #ff9ba4;
+}
+.status-chip .icon,
+.arrangement-status.status-chip .icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+}
+.how-sheet .condition-heading > .status-chip {
+  flex-shrink: 0;
+  max-width: 112px;
+}
+.rule-row .status-chip {
+  margin-top: 6px;
+}
+.rule-row .status-chip > span {
+  display: inline;
+}
+.phone .status-chip[data-tone='attention'] {
+  color: var(--chip-ink);
+}
+
+.phone .header-actions .header-settings {
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  width: 44px;
+  height: 44px;
+}
+.header-settings .icon {
+  width: 22px;
+  height: 22px;
+}
+.settings-list {
+  display: grid;
+}
+.settings-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.settings-row:last-child {
+  border-bottom: 0;
+}
+.settings-row > span {
+  flex: 1;
+  min-width: 0;
+}
+.settings-row b {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+}
+.settings-row small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.settings-row > .icon {
+  flex-shrink: 0;
+  width: 22px;
+}
+.settings-row > .icon:last-child {
+  color: var(--muted);
+  width: 18px;
+}

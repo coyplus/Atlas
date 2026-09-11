@@ -1,0 +1,3 @@
+import fs from 'node:fs';import path from 'node:path';import {parse} from '@babel/parser';import traverse_ from '@babel/traverse';import generate_ from '@babel/generator';
+const traverse=traverse_.default||traverse_,generate=generate_.default||generate_;
+for(const file of fs.readdirSync('src/features/commands')){const p=path.join('src/features/commands',file),ast=parse(fs.readFileSync(p,'utf8'),{sourceType:'module'});traverse(ast,{Program(p){for(const statement of p.get('body'))if(statement.isImportDeclaration()){for(const spec of statement.get('specifiers'))if(!p.scope.getBinding(spec.node.local.name)?.referenced)spec.remove();if(!statement.node.specifiers.length)statement.remove();}}});fs.writeFileSync(p,generate(ast,{comments:true}).code+'\n');}

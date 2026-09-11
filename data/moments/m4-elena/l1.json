@@ -1,0 +1,928 @@
+{
+  "$schema": "../../schema/schema.json#/definitions/L1",
+  "layer": 1,
+  "moment": {
+    "id": "m4",
+    "name": "Graduate",
+    "stage": "Premier · growing together",
+    "customerId": "elena",
+    "asOf": "2026-09-08",
+    "tenure": "year 12",
+    "segment": "Premier · household",
+    "description": "A twelve-year relationship: a named human, a mandate, a household by consent, wealth compounding."
+  },
+  "asOf": "2026-09-08",
+  "customer": {
+    "id": "elena",
+    "firstName": "Elena",
+    "age": 47,
+    "birthYear": 1979,
+    "occupation": "Director, architecture practice",
+    "employer": "Self-employed (practice partner)",
+    "city": "London",
+    "joined": "2014-10",
+    "tenureMonths": 143,
+    "segment": "Premier · household",
+    "tier": "Premier",
+    "tierSince": "2020",
+    "rmId": "priya"
+  },
+  "household": {
+    "id": "hh-elena",
+    "name": "Elena's household",
+    "consentModel": "Both ways, withdrawable in a tap; a child sees their own rows only; consent is the parent's until 16 and the child's from 18",
+    "members": [
+      {
+        "id": "elena",
+        "name": "Elena",
+        "relation": "self",
+        "age": 47,
+        "initials": "E"
+      },
+      {
+        "id": "aisha",
+        "name": "Aisha",
+        "relation": "partner",
+        "initials": "A",
+        "sees": "The pots we share — never each other's other money",
+        "shares": [
+          "fam"
+        ]
+      },
+      {
+        "id": "leo",
+        "name": "Leo",
+        "relation": "child",
+        "age": 12,
+        "initials": "L",
+        "sees": "His own rows in Family holiday",
+        "shares": [
+          "fam"
+        ],
+        "consent": "Elena's until 16; Leo's from 18"
+      }
+    ]
+  },
+  "productsHeld": [
+    {
+      "productId": "premier-current",
+      "since": "2014-10"
+    },
+    {
+      "productId": "premier-card",
+      "since": "2014-10"
+    },
+    {
+      "productId": "pot",
+      "count": 4
+    },
+    {
+      "productId": "points"
+    },
+    {
+      "productId": "investment-portfolio",
+      "potId": "inv"
+    },
+    {
+      "productId": "premier",
+      "since": "2020"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "ac-cur",
+      "productId": "premier-current",
+      "name": "HSBC Premier Current",
+      "kind": "current",
+      "masked": "2201",
+      "balance": 24200.0,
+      "owed": null,
+      "description": "Household hub"
+    },
+    {
+      "id": "ac-cc",
+      "productId": "premier-card",
+      "name": "HSBC Premier Card",
+      "kind": "credit",
+      "masked": "9944",
+      "balance": null,
+      "owed": 1240.0,
+      "description": "Paid in full monthly",
+      "limit": 15000,
+      "cardScheme": "Visa",
+      "paidInFull": true,
+      "interestMonthly": 0.0
+    }
+  ],
+  "pots": [
+    {
+      "id": "inv",
+      "name": "Investments",
+      "kind": "investment",
+      "balance": 182400.0,
+      "target": null,
+      "monthlyRate": 0,
+      "isDebt": false,
+      "growthAnnual": 0.05,
+      "stopsAtTarget": false,
+      "description": "36% floor-protected · Maya reviews",
+      "terms": null,
+      "members": null,
+      "rules": [
+        "r-inv-drift"
+      ],
+      "createdOn": "2018"
+    },
+    {
+      "id": "ret",
+      "name": "Retirement",
+      "kind": "goal",
+      "balance": 34140.0,
+      "target": 120000,
+      "monthlyRate": 500,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": false,
+      "description": "£500/month · rehearsed at 62 and 65",
+      "terms": null,
+      "members": null,
+      "rules": [
+        "r-ret-monthly"
+      ],
+      "createdOn": "2018"
+    },
+    {
+      "id": "hup",
+      "name": "House upgrade",
+      "kind": "goal",
+      "balance": 42000.0,
+      "target": 60000,
+      "monthlyRate": 200,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": false,
+      "description": "£200/month · no deadline set",
+      "terms": null,
+      "members": null,
+      "rules": [
+        "r-hup-monthly"
+      ],
+      "createdOn": "2023"
+    },
+    {
+      "id": "fam",
+      "name": "Family holiday",
+      "kind": "shared",
+      "balance": 1860.0,
+      "target": 3000,
+      "monthlyRate": 150,
+      "isDebt": false,
+      "growthAnnual": null,
+      "stopsAtTarget": false,
+      "description": "3 of you · everyone sees the receipts",
+      "terms": null,
+      "members": [
+        {
+          "memberId": "elena",
+          "role": "Owner · £150/mo"
+        },
+        {
+          "memberId": "aisha",
+          "role": "Adds her own"
+        },
+        {
+          "memberId": "leo",
+          "role": "Sees his rows"
+        }
+      ],
+      "rules": [
+        "r-fam-monthly"
+      ],
+      "createdOn": "2022",
+      "appearance": {
+        "colour": "peach",
+        "photo": "/assets/backgrounds/elena-family.png"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "r-ret-monthly",
+      "potId": "ret",
+      "type": "payday-fixed",
+      "amount": 500,
+      "source": "ac-cur",
+      "since": "2018",
+      "active": true,
+      "reviewed": "quarterly with Priya"
+    },
+    {
+      "id": "r-hup-monthly",
+      "potId": "hup",
+      "type": "payday-fixed",
+      "amount": 200,
+      "source": "ac-cur",
+      "since": "2023",
+      "active": true,
+      "pauseAnyTime": true
+    },
+    {
+      "id": "r-fam-monthly",
+      "potId": "fam",
+      "type": "payday-fixed",
+      "amount": 150,
+      "source": "ac-cur",
+      "since": "2022",
+      "active": true,
+      "note": "Aisha adds her own"
+    },
+    {
+      "id": "r-inv-drift",
+      "potId": "inv",
+      "type": "standing-watch",
+      "amount": 0,
+      "source": null,
+      "since": "2018",
+      "active": true,
+      "note": "Drift-watch keeps the floor at 36%; Maya signs rebalances"
+    }
+  ],
+  "income": [
+    {
+      "id": "inc-drawings",
+      "source": "Partner drawings",
+      "employer": "Practice",
+      "netMonthly": 6400.0,
+      "frequency": "monthly",
+      "payDay": 1,
+      "lastPaid": "2026-09-01",
+      "nextPay": "2026-10-01"
+    },
+    {
+      "id": "inc-dividends",
+      "source": "Portfolio dividends",
+      "netMonthly": 84.2,
+      "frequency": "irregular",
+      "lastPaid": "2026-09-07",
+      "note": "Latest: index fund dividend £84.20 (Mon 7 Sep)"
+    }
+  ],
+  "bills": [
+    {
+      "id": "bill-mortgage",
+      "name": "Mortgage",
+      "category": "housing",
+      "amount": 1850.0,
+      "frequency": "monthly",
+      "day": 1,
+      "method": "Direct Debit",
+      "note": "Watched by Rates watch; +0.2% captured in March"
+    },
+    {
+      "id": "bill-council",
+      "name": "Council tax",
+      "category": "housing",
+      "amount": 240.0,
+      "frequency": "monthly",
+      "day": 1
+    },
+    {
+      "id": "bill-energy",
+      "name": "Energy",
+      "category": "utilities",
+      "amount": 210.0,
+      "frequency": "monthly",
+      "day": 4
+    },
+    {
+      "id": "bill-water",
+      "name": "Water",
+      "category": "utilities",
+      "amount": 48.0,
+      "frequency": "monthly",
+      "day": 4
+    },
+    {
+      "id": "bill-school",
+      "name": "Leo — school club & activities",
+      "category": "family",
+      "amount": 180.0,
+      "frequency": "monthly",
+      "day": 5
+    },
+    {
+      "id": "bill-insurance",
+      "name": "Home, life & GP cover",
+      "category": "insurance",
+      "amount": 160.0,
+      "frequency": "monthly",
+      "day": 8,
+      "note": "24/7 GP is a Premier household benefit"
+    },
+    {
+      "id": "bill-card",
+      "name": "Premier Card — paid in full",
+      "category": "card",
+      "amount": null,
+      "frequency": "monthly",
+      "day": 1,
+      "method": "Direct Debit",
+      "accountId": "ac-cc",
+      "note": "Statement paid in full every month for nine years; last: £1,310.00 on 1 Aug"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx-elena-001",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Partner drawings",
+      "category": "income",
+      "amount": 6400.0,
+      "direction": "in",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-002",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Monthly move → Retirement",
+      "category": "rule",
+      "amount": -500.0,
+      "direction": "out",
+      "ruleId": "r-ret-monthly",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-003",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Monthly move → House upgrade",
+      "category": "rule",
+      "amount": -200.0,
+      "direction": "out",
+      "ruleId": "r-hup-monthly",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-004",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Monthly move → Family holiday",
+      "category": "rule",
+      "amount": -150.0,
+      "direction": "out",
+      "ruleId": "r-fam-monthly",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-005",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Mortgage",
+      "category": "housing",
+      "amount": -1850.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-006",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Council tax",
+      "category": "housing",
+      "amount": -240.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-007",
+      "date": "2026-09-01",
+      "ledger": "ac-cur",
+      "counterparty": "Premier Card — statement paid in full",
+      "category": "card",
+      "amount": -1310.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-008",
+      "date": "2026-09-04",
+      "ledger": "ac-cur",
+      "counterparty": "Energy",
+      "category": "utilities",
+      "amount": -210.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-009",
+      "date": "2026-09-04",
+      "ledger": "ac-cur",
+      "counterparty": "Water",
+      "category": "utilities",
+      "amount": -48.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-010",
+      "date": "2026-09-05",
+      "ledger": "ac-cur",
+      "counterparty": "Leo — school club",
+      "category": "family",
+      "amount": -180.0,
+      "direction": "out",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-011",
+      "date": "2026-09-07",
+      "ledger": "ac-cur",
+      "counterparty": "Dividend — index fund",
+      "category": "dividend",
+      "amount": 84.2,
+      "direction": "in",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-012",
+      "date": "2026-09-01",
+      "ledger": "ret",
+      "counterparty": "Monthly move",
+      "category": "rule",
+      "amount": 500.0,
+      "direction": "in",
+      "ruleId": "r-ret-monthly",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-013",
+      "date": "2026-09-01",
+      "ledger": "hup",
+      "counterparty": "Monthly move",
+      "category": "rule",
+      "amount": 200.0,
+      "direction": "in",
+      "ruleId": "r-hup-monthly",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-014",
+      "date": "2026-08-01",
+      "ledger": "fam",
+      "counterparty": "Your monthly move",
+      "category": "rule",
+      "amount": 150.0,
+      "direction": "in",
+      "ruleId": "r-fam-monthly",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-015",
+      "date": "2026-07-28",
+      "ledger": "fam",
+      "counterparty": "Aisha added — her own move",
+      "category": "member-contribution",
+      "amount": 100.0,
+      "direction": "in",
+      "ruleId": null,
+      "memberId": "aisha",
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-016",
+      "date": "2026-09-01",
+      "ledger": "fam",
+      "counterparty": "Your monthly move",
+      "category": "rule",
+      "amount": 150.0,
+      "direction": "in",
+      "ruleId": "r-fam-monthly",
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-017",
+      "date": "2026-09-07",
+      "ledger": "inv",
+      "counterparty": "Dividend — index fund (reinvested)",
+      "category": "dividend",
+      "amount": 84.2,
+      "direction": "in",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    },
+    {
+      "id": "tx-elena-018",
+      "date": "2026-09-07",
+      "ledger": "inv",
+      "counterparty": "Rebalance — signed by Maya",
+      "category": "rebalance",
+      "amount": 0.0,
+      "direction": "note",
+      "ruleId": null,
+      "memberId": null,
+      "receipt": true
+    }
+  ],
+  "ledgerOpeningBalances": {
+    "note": "Balance at the start of the transaction window, derived so that opening + Σ transactions = balance as of asOf",
+    "values": {
+      "ac-cur": 22403.8,
+      "ac-cc": 1240.0,
+      "inv": 182315.8,
+      "ret": 33640.0,
+      "hup": 41800.0,
+      "fam": 1460.0
+    }
+  },
+  "spending": {
+    "month": "2026-09",
+    "monthToDate": true,
+    "byCategory": {
+      "housing": 2090.0,
+      "utilities": 258.0,
+      "family": 180.0
+    },
+    "cardSpendingMonthlyAvg": 1300.0,
+    "note": "Household spending runs through the Premier card and is paid in full; the current account is the hub that deals £850 a month outward."
+  },
+  "credit": {
+    "score": null,
+    "status": "not needed",
+    "debts": [
+      {
+        "ref": "accounts/ac-cc",
+        "name": "HSBC Premier Card",
+        "balance": 1240.0,
+        "limit": 15000.0,
+        "paidInFull": true,
+        "interestMonthly": 0.0
+      }
+    ],
+    "mortgage": {
+      "lender": "HSBC",
+      "outstanding": null,
+      "note": "Amount not held in the prototype; only that Rates watch monitors it — flagged, not invented"
+    }
+  },
+  "savingsAndInvestments": {
+    "cash": 24200.0,
+    "inPots": 78000.0,
+    "invested": 182400.0,
+    "floorProtectedPct": 0.36,
+    "floorProtected": 65664.0,
+    "illustratedGrowthAnnual": 0.05
+  },
+  "netWorth": {
+    "held": 284600.0,
+    "owed": 1240.0,
+    "net": 283360.0,
+    "engineNetWorth": 283360.0,
+    "asOf": "2026-09-08"
+  },
+  "moneySpeed": {
+    "monthly": 850,
+    "prototypeFigure": 850,
+    "note": "Σ active rules that move money on a schedule (repayments included, as the prototype counts them)"
+  },
+  "goals": [
+    {
+      "id": "goal-ret",
+      "statement": "£120,000 retirement pot; retiring at 62 rehearsed against 65",
+      "potId": "ret",
+      "target": 120000,
+      "priority": 1
+    },
+    {
+      "id": "goal-hup",
+      "statement": "£60,000 house upgrade — no deadline set, allowed",
+      "potId": "hup",
+      "target": 60000,
+      "priority": 2
+    },
+    {
+      "id": "goal-fam",
+      "statement": "£3,000 family holiday, shared with Aisha and Leo",
+      "potId": "fam",
+      "target": 3000,
+      "priority": 3
+    },
+    {
+      "id": "goal-leo",
+      "statement": "A pot for Leo's future — his at 18",
+      "potId": null,
+      "target": 7200,
+      "priority": 4
+    }
+  ],
+  "rewards": {
+    "points": {
+      "balance": 4050,
+      "ledger": [
+        {
+          "date": "2014..2026",
+          "reason": "Years of weekly check-ins",
+          "points": 2340
+        },
+        {
+          "date": "2014..2026",
+          "reason": "Consistency",
+          "points": 780
+        },
+        {
+          "date": "2014..2026",
+          "reason": "Openness & corrections",
+          "points": 300
+        },
+        {
+          "date": "2026-08-28",
+          "reason": "30 days in touch · badge bonus",
+          "points": 100
+        },
+        {
+          "date": "2026-08-28",
+          "reason": "Spending detective · badge bonus",
+          "points": 80
+        },
+        {
+          "date": "2026-08-28",
+          "reason": "Ready for a rainy day · badge bonus",
+          "points": 100
+        },
+        {
+          "date": "2026-08-28",
+          "reason": "First hundred · badge bonus",
+          "points": 150
+        },
+        {
+          "date": "2026-08-28",
+          "reason": "Pay yourself first · badge bonus",
+          "points": 120
+        },
+        {
+          "date": "2026-08-28",
+          "reason": "Keep your guard up · badge bonus",
+          "points": 80
+        }
+      ],
+      "note": "Total 3,420 — twelve years of openness, never a point for spending."
+    },
+    "cashback": null,
+    "activeBenefits": [],
+    "challenges": {
+      "steady-investor": {
+        "count": 5,
+        "joinedAt": "2026-03-08",
+        "confirmedDates": [
+          "2026-08-08"
+        ],
+        "source": "Illustrative scenario progress; steps recorded by the customer."
+      },
+      "money-date": {
+        "count": 3,
+        "joinedAt": "2026-06-01",
+        "confirmedDates": [
+          "2026-08-01"
+        ],
+        "source": "Illustrative scenario progress; steps recorded by the customer."
+      },
+      "interest-explorer": {
+        "count": 2,
+        "joinedAt": "2026-08-01",
+        "confirmedDates": [
+          "2026-08-24"
+        ],
+        "source": "Illustrative scenario progress; steps recorded by the customer."
+      },
+      "in-touch": {
+        "count": 30,
+        "joinedAt": "2026-01-01",
+        "earnedAt": "2026-08-28",
+        "confirmedDates": [],
+        "source": "Illustrative completed challenge."
+      },
+      "spending-detective": {
+        "count": 4,
+        "joinedAt": "2026-01-01",
+        "earnedAt": "2026-08-28",
+        "confirmedDates": [],
+        "source": "Illustrative completed challenge."
+      },
+      "rainy-day-ready": {
+        "count": 4,
+        "joinedAt": "2026-01-01",
+        "earnedAt": "2026-08-28",
+        "confirmedDates": [],
+        "source": "Illustrative completed challenge."
+      },
+      "goal-getter": {
+        "count": 10,
+        "joinedAt": "2026-01-01",
+        "earnedAt": "2026-08-28",
+        "confirmedDates": [],
+        "source": "Illustrative completed challenge."
+      },
+      "payday-first": {
+        "count": 3,
+        "joinedAt": "2026-01-01",
+        "earnedAt": "2026-08-28",
+        "confirmedDates": [],
+        "source": "Illustrative completed challenge."
+      },
+      "scam-spotter": {
+        "count": 5,
+        "joinedAt": "2026-01-01",
+        "earnedAt": "2026-08-28",
+        "confirmedDates": [],
+        "source": "Illustrative completed challenge."
+      }
+    }
+  },
+  "relationship": {
+    "joined": "2014-10",
+    "tenureMonths": 143,
+    "tier": "Premier",
+    "tierSince": "2020",
+    "nearPremier": false,
+    "relationshipManagerId": "priya",
+    "experts": [
+      "priya",
+      "maya"
+    ],
+    "milestones": [
+      {
+        "date": "2014-10",
+        "event": "Joined",
+        "story": {
+          "id": "joined",
+          "title": "Where your story started",
+          "summary": "You joined HSBC in October 2014.",
+          "detail": "October 2014 marked the beginning of your relationship with HSBC.",
+          "category": "Beginning",
+          "icon": "sun",
+          "figure": null,
+          "figureLabel": null,
+          "action": null,
+          "actionLabel": null
+        }
+      },
+      {
+        "date": "2015",
+        "event": "First pot",
+        "story": {
+          "id": "first-pot",
+          "title": "A goal had its own place",
+          "summary": "You opened your first pot.",
+          "detail": "Your first pot created a separate place for a goal, alongside your everyday money.",
+          "category": "Your goals",
+          "icon": "target",
+          "figure": null,
+          "figureLabel": null,
+          "action": null,
+          "actionLabel": null
+        }
+      },
+      {
+        "date": "2018",
+        "event": "First rehearsal, then first investment",
+        "badge": "First rehearsal",
+        "story": {
+          "id": "first-investment",
+          "title": "A first step into investing",
+          "summary": "You explored the possibilities before investing.",
+          "detail": "You tried a projection before making your first investment, giving you a way to explore the decision before committing.",
+          "category": "Your goals",
+          "icon": "trend",
+          "figure": null,
+          "figureLabel": null,
+          "action": "pot:inv",
+          "actionLabel": "Your investments today"
+        }
+      },
+      {
+        "date": "2020",
+        "event": "Premier — the app went dark",
+        "story": {
+          "id": "premier",
+          "title": "A new chapter with HSBC",
+          "summary": "You became a Premier customer.",
+          "detail": "You qualified for Premier in 2020. This marks your membership at that time; you can explore your current status and access below.",
+          "category": "Your relationship",
+          "icon": "card",
+          "figure": null,
+          "figureLabel": null,
+          "action": "membership",
+          "actionLabel": "Your membership today"
+        }
+      },
+      {
+        "date": "2022",
+        "event": "Household by consent — Aisha, then Leo",
+        "badge": "Household by consent",
+        "story": {
+          "id": "household",
+          "title": "More of life, together",
+          "summary": "Aisha and Leo became part of your household.",
+          "detail": "Your household grew to include Aisha, then Leo. Sharing was by consent, bringing your family into the picture while keeping individual choices private.",
+          "category": "People who matter",
+          "icon": "users",
+          "figure": null,
+          "figureLabel": null,
+          "action": "portrait",
+          "actionLabel": "Explore your household portrait"
+        }
+      },
+      {
+        "date": "2024",
+        "event": "A decade held",
+        "badge": "A decade held",
+        "story": {
+          "id": "decade",
+          "title": "Ten years of your story",
+          "summary": "A decade with HSBC.",
+          "detail": "In October 2024, you reached ten years with HSBC — a chapter that included your first pot, your first investment and your household coming together.",
+          "category": "Your relationship",
+          "icon": "clock",
+          "figure": "10",
+          "figureLabel": "years together · October 2024",
+          "action": null,
+          "actionLabel": null
+        }
+      },
+      {
+        "date": "2026-09-10",
+        "event": "Quarterly review with Priya (Thursday 2pm)",
+        "future": true
+      }
+    ],
+    "statusNote": "Premier since 2020 — a named human, priority experts, and a 1.5× earn rate on points.",
+    "contactHistory": [
+      {
+        "date": "2026-09-08",
+        "who": "priya",
+        "channel": "AI card (human takeover)",
+        "summary": "Reviewed the quarter; proposed Leo's future pot; offered Thursday 2pm"
+      },
+      {
+        "date": "2026-09-07",
+        "who": "maya",
+        "channel": "receipt",
+        "summary": "Signed the rebalance back to the 36% floor"
+      }
+    ]
+  },
+  "behaviour": {
+    "financial": [
+      "Builds structures and lets time compound",
+      "Holds through weather — rehearsed a 20% dip in 2031 and held for real in 2033 (authored future history in the You timeline)",
+      "Pays the card in full for nine years",
+      "Delegates rebalancing inside a signed mandate"
+    ],
+    "app": {
+      "sessionsPerWeek": 2,
+      "lastOpened": "2026-09-08",
+      "featuresUsed": [
+        "Now",
+        "Future ten-year view",
+        "Family pot",
+        "You — household",
+        "Conversation with Priya"
+      ],
+      "quizDone": true,
+      "quizDate": "2014",
+      "checkIns": "weekly for years",
+      "beliefsConfirmed": 2,
+      "notifications": "receipts, dividends, review reminders"
+    }
+  },
+  "autonomy": {
+    "level": "acts and reports",
+    "limits": "Savings moves and rebalancing inside the mandate Elena and Maya signed",
+    "paused": false
+  }
+}

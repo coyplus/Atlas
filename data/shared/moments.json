@@ -1,0 +1,45 @@
+{
+ "moments": [
+  {
+   "id": "m1",
+   "name": "Join",
+   "stage": "Just switched",
+   "customerId": "alex",
+   "asOf": "2026-08-20",
+   "tenure": "day 9",
+   "segment": "Everyday · new to HSBC",
+   "description": "The relationship begins. Evidence before any ask: bonus paid, Direct Debits moved, nothing automated yet."
+  },
+  {
+   "id": "m2",
+   "name": "Stabilise",
+   "stage": "Breaking the cycle · first goals",
+   "customerId": "jordan",
+   "asOf": "2026-09-16",
+   "tenure": "month 7",
+   "segment": "Everyday",
+   "description": "Leaks closing, a fund building, a car loan on plan, a house-deposit pot just started with no rules."
+  },
+  {
+   "id": "m3",
+   "name": "Grow",
+   "stage": "Ready to invest · nearly Premier",
+   "customerId": "sam",
+   "asOf": "2026-09-08",
+   "tenure": "month 8",
+   "segment": "Everyday · nearly Premier",
+   "description": "Three plans running quietly; idle cash identified; the first investment rehearsed."
+  },
+  {
+   "id": "m4",
+   "name": "Graduate",
+   "stage": "Premier · growing together",
+   "customerId": "elena",
+   "asOf": "2026-09-08",
+   "tenure": "year 12",
+   "segment": "Premier · household",
+   "description": "A twelve-year relationship: a named human, a mandate, a household by consent, wealth compounding."
+  }
+ ],
+ "note": "Four moments = four life stages with a representative customer each (Data/04 §5.4). Each moment is a snapshot with history: change over time lives inside each customer's ledger, rules (since dates), milestones and projections. See README §Design decision."
+}

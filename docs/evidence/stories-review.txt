@@ -1,0 +1,14 @@
+Stories review · 10 September 2026
+
+TypeScript check: passed
+ESLint: passed
+Production build: passed
+Data validation: 176 passed
+Behaviour/platform checks: 92 passed
+Production Playwright: 42 passed, 2 skipped
+Includes 14 new Story tests in Chromium and WebKit; all 11 stories and all three frames.
+The two skipped tests are existing WebKit service-worker offline/update tests. Physical-device Safari/Android review remains separate from browser emulation.
+
+Reviewed screenshots: claim and choice photography, ranked payments, deductions, allocation split, evidence bottom sheets, Premier, 320px and landscape controls.
+Docs: STORIES.md, SUPPORT-BAR.md, NOW-TAB.md and ASSET-CREDITS.md.
+Source Metro specification preserved; original prototype unchanged.

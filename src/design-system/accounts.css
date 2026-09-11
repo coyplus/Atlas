@@ -1,0 +1,344 @@
+body[data-direction='vanilla'] .now-entry.pots-entry {
+  margin-top: 18px;
+}
+body[data-direction='vanilla'] .now-page .quick-actions {
+  padding-bottom: 6px;
+}
+body[data-direction='vanilla'] .now-page > .section-head:first-of-type {
+  margin-top: 18px;
+}
+.accounts-collection {
+  padding-bottom: 8px;
+}
+.holdings-overview {
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 20px 16px;
+}
+.overview-kicker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.overview-kicker .eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.overview-kicker > span:last-child {
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.overview-label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 25px;
+}
+.overview-value {
+  font-size: 42px;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  font-weight: 300;
+  margin: 8px 0 22px;
+  font-variant-numeric: tabular-nums;
+}
+.holdings-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  padding-top: 15px;
+  gap: 15px;
+}
+.holdings-split > div + div {
+  border-left: 1px solid var(--line);
+  padding-left: 16px;
+}
+.holdings-split small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+.holdings-split b {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.25px;
+}
+.overview-footnote {
+  font-size: 10px !important;
+  line-height: 1.5 !important;
+  color: var(--muted);
+  margin: 18px 0 0 !important;
+}
+.holdings-group {
+  margin-top: 28px;
+}
+.holdings-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 40px;
+  margin-bottom: 10px;
+}
+.holdings-heading h3 {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.25px;
+}
+.holdings-heading h3 > span {
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 7px;
+  font-weight: 400;
+}
+.holdings-heading .btn {
+  padding: 5px 0;
+  min-height: 40px;
+  font-size: 12px;
+}
+.holdings-list {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+.holding-row {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  gap: 10px;
+  padding: 18px 12px;
+  min-height: 84px;
+}
+.holding-row + .holding-row {
+  border-top: 1px solid var(--line);
+}
+.holding-row > .icon {
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.holding-icon {
+  width: 34px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--ink);
+  background: var(--soft);
+  border-radius: 8px;
+}
+.holding-icon .icon {
+  width: 19px;
+  height: 19px;
+}
+.holding-copy {
+  flex: 1;
+  min-width: 0;
+}
+.holding-copy > b {
+  display: block;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+.holding-copy > small,
+.holding-value > small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-top: 5px;
+}
+.holding-value {
+  text-align: right;
+  flex-shrink: 0;
+}
+.holding-value > b {
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.holding-copy .progress {
+  margin-top: 10px;
+  height: 3px;
+  max-width: 130px;
+}
+.pot-holding {
+  min-height: 95px;
+}
+.pots-empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  text-align: center;
+}
+.pots-empty > .icon {
+  display: block;
+  margin: 0 auto 14px;
+  color: var(--muted);
+}
+.pots-empty > b {
+  font-size: 15px;
+}
+.pots-empty > p {
+  font-size: 12px !important;
+  color: var(--muted);
+}
+.connect-entry {
+  padding: 24px 20px;
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-top: 14px;
+}
+.connect-mark {
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-bottom: 18px;
+}
+.connect-mark .icon {
+  width: 22px;
+  height: 22px;
+}
+.connect-entry h3 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+}
+.connect-entry p {
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  margin: 12px 0 20px !important;
+  color: var(--muted);
+}
+.connect-entry > small {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.bank-initial {
+  font-weight: 500;
+  font-size: 17px;
+}
+.connection-sample {
+  display: flex;
+  gap: 10px;
+  background: var(--canvas);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin: 22px 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.connection-sample > .icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.connection-bank {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+}
+.connection-bank small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+.consent-accounts {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin: 24px 0;
+  overflow: hidden;
+}
+.consent-accounts label {
+  display: flex;
+  gap: 12px;
+  padding: 20px 16px;
+  align-items: center;
+  cursor: pointer;
+}
+.consent-accounts label + label {
+  border-top: 1px solid var(--line);
+}
+.consent-accounts input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ink);
+  flex-shrink: 0;
+}
+.consent-accounts b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.consent-accounts small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 6px;
+}
+.connection-permissions h4 {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+.connection-permissions p {
+  font-size: 12px !important;
+  color: var(--muted);
+  line-height: 1.6 !important;
+  margin: 8px 0 20px !important;
+}
+.connection-error {
+  font-size: 12px !important;
+  color: var(--ink);
+  font-weight: 500;
+}
+.holding-row:disabled {
+  opacity: 0.55;
+}
+.holdings-overview .overview-value {
+  overflow-wrap: anywhere;
+}
+/* Public bank identity assets retain their own colours in light and Premier. */
+.holding-icon.bank-avatar {
+  width: 38px;
+  height: 38px;
+  background: #fff;
+  border: 1px solid #e7e8e9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.bank-avatar img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+.bank-avatar[data-bank='hsbc'] img,
+.bank-avatar[data-bank='natwest'] img {
+  width: 36px;
+  height: 36px;
+}
+.bank-avatar[data-bank='starling'] img {
+  width: 34px;
+  height: 34px;
+}

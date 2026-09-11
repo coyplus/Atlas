@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Univers Next for HSBC';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/assets/hsbc-1.ttf) format('opentype');
+}
+@font-face {
+  font-family: 'Univers Next for HSBC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/hsbc-2.ttf) format('opentype');
+}
+@font-face {
+  font-family: 'Univers Next for HSBC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/hsbc-3.ttf) format('opentype');
+}
+@font-face {
+  font-family: 'Univers Next for HSBC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/assets/hsbc-4.ttf) format('opentype');
+}

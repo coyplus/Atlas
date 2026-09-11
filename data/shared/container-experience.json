@@ -1,0 +1,114 @@
+{
+  "notes": "Prototype extension. The empty budget wallet adds no money or scheduled contribution. Benefit copy in the container model is illustrative, not a live product offer. Personalised rates are illustrative scenario offers, not live HSBC pricing. Loan interest is 0% to preserve the existing £150 × 24 repayment example. These display terms do not change the projection engine or credit interest ledger. Arrangements use calendar-month demo assessments. Manual and automated receipts qualify equally. Lock and merchant choices require explicit review. No automatic missed-condition penalties are implemented. September story expansion: fictional opening snapshots include spending wallets and shared households. The grocery-wallet recovery example alone defines a missed-month cashback change and a next-month route back; it is not a general HSBC policy.",
+  "jordan": [
+    {
+      "id": "budget",
+      "name": "Everyday budget",
+      "kind": "budget",
+      "balance": 0,
+      "target": null,
+      "budgetLimit": 220,
+      "budgetAlert": 80,
+      "isDebt": false,
+      "stopsAtTarget": false,
+      "rules": [],
+      "description": "Your everyday spending, with its own limit"
+    }
+  ],
+  "offers": {
+    "jordan": {
+      "ef": {
+        "rate": "4.2% AER variable",
+        "condition": "Keep this pot for your emergency savings. Add or withdraw whenever you need."
+      },
+      "house": {
+        "rate": "4.0% AER variable",
+        "condition": "Keep your house deposit separate while you decide your saving pace.",
+        "lockOffer": {
+          "rate": "4.6% AER fixed",
+          "months": 3
+        }
+      },
+      "loan": {
+        "rate": "0% fixed",
+        "condition": "Keep your agreed £150 monthly repayment running."
+      },
+      "ac-cc": {
+        "rate": "29.9% annual purchase rate · variable"
+      },
+      "grocery-wallet": {
+        "monthlyFunding": 320,
+        "recovery": {
+          "assessmentStart": "2026-08-01",
+          "assessmentEnd": "2026-08-31",
+          "required": 320,
+          "changedOn": "2026-09-01",
+          "qualifyStart": "2026-09-01",
+          "qualifyEnd": "2026-09-30",
+          "restoreOn": "2026-10-01",
+          "normalBenefit": "1% cashback",
+          "changedBenefit": "0% cashback"
+        }
+      },
+      "social": {
+        "cashback": {
+          "benefit": "0.5% cashback",
+          "label": "On eligible eating-out payments",
+          "category": "eating-out",
+          "cap": 3
+        }
+      },
+      "flat": {
+        "cashback": {
+          "benefit": "1% cashback",
+          "label": "On eligible household utility bills",
+          "category": "utilities",
+          "cap": 5
+        }
+      }
+    },
+    "sam": {
+      "ef": {
+        "rate": "4.4% AER variable",
+        "condition": "Keep your emergency savings separate, with access whenever you need them."
+      },
+      "hol": {
+        "rate": "4.2% AER variable",
+        "condition": "Keep a dedicated holiday goal. Contributions can follow your own pace."
+      },
+      "un": {
+        "rate": "3.8% AER variable",
+        "condition": "Keep spare money in this flexible savings pot while you choose its purpose."
+      },
+      "house": {
+        "rate": "5.1% fixed while committed",
+        "monthlyContribution": 320
+      }
+    },
+    "elena": {
+      "ret": {
+        "rate": "4.6% AER variable",
+        "condition": "Keep a dedicated retirement savings goal. Your money stays accessible."
+      },
+      "hup": {
+        "rate": "4.5% AER variable",
+        "condition": "Keep your home upgrade savings in this dedicated pot."
+      },
+      "fam": {
+        "rate": "4.5% AER variable",
+        "condition": "Save together towards your holiday goal. Each person agrees their own contribution and access."
+      },
+      "ac-cc": {
+        "rate": "23.9% annual purchase rate · variable"
+      },
+      "inv": {
+        "capitalOffer": {
+          "minimum": 100000,
+          "fee": "0.20%",
+          "standardFee": "0.30%"
+        }
+      }
+    }
+  },
+  "sam": []
+}

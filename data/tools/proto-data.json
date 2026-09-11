@@ -1,0 +1,3325 @@
+{
+ "P": {
+  "alex": {
+   "key": "alex",
+   "name": "Alex",
+   "desc": "Just switched · day 9",
+   "premier": false,
+   "greet": "Good morning, Alex",
+   "sub": "Make our app yours?",
+   "comp": {
+    "now": {
+     "msg": "Your <b>£200</b> switch bonus landed. Answer a few quick questions and this page starts working your way.",
+     "cta": {
+      "label": "Take the 2-min quiz",
+      "act": "quiz"
+     },
+     "later": true
+    },
+    "future": {
+     "msg": "No plans here yet — that’s normal. Below are three easy ways people usually start."
+    },
+    "me": {
+     "msg": "Nothing here yet but a promise: whatever we learn about you, you can see it — and correct it."
+    }
+   },
+   "compDone": {
+    "now": {
+     "msg": "Thanks — this page is yours now. Pin the numbers that matter with <b>+ Add</b>, and drag them into your order."
+    },
+    "me": {
+     "msg": "Your first belief is below. It came from your answers — and it stays correctable, always."
+    }
+   },
+   "order": [
+    "balance",
+    "activity"
+   ],
+   "wsize": {
+    "balance": "L"
+   },
+   "widgets": {
+    "balance": {
+     "hv": "£1,180<span class=\"pence\">.62</span>",
+     "chips": [
+      "8 days to payday",
+      "<b>£200</b> bonus in"
+     ],
+     "cap": "Current account",
+     "work": {
+      "t": "Balance",
+      "rows": [
+       [
+        "Opening today",
+        "£1,000.22"
+       ],
+       [
+        "Switch bonus in",
+        "+£200.00"
+       ],
+       [
+        "Coffee & lunch",
+        "−£19.60"
+       ]
+      ],
+      "tot": [
+       "Balance now",
+       "£1,180.62"
+      ],
+      "note": "Every automated move would appear here as an ordinary row, receipt attached."
+     }
+    },
+    "safespend": {
+     "hv": "£742",
+     "cap": "Until payday · bills set aside",
+     "work": {
+      "t": "Safe to spend",
+      "rows": [
+       [
+        "Balance",
+        "£1,180.62"
+       ],
+       [
+        "Bills before payday",
+        "−£438.62"
+       ]
+      ],
+      "tot": [
+       "Truly spendable",
+       "£742.00"
+      ],
+      "note": "The bank’s first small promise: this number is honest, or it says it’s still learning."
+     }
+    },
+    "grocery": {
+     "hv": "£61<span class=\"pence\">.20</span>",
+     "cap": "This month so far",
+     "work": {
+      "t": "Groceries",
+      "rows": [
+       [
+        "Tesco",
+        "£38.40"
+       ],
+       [
+        "Co-op",
+        "£22.80"
+       ]
+      ],
+      "tot": [
+       "This month",
+       "£61.20"
+      ],
+      "note": "Counted from card payments tagged as groceries. Correct a tag and the number follows."
+     }
+    },
+    "creditscore": {
+     "hv": "—",
+     "cap": "Learning · ready in ~2 weeks",
+     "track": 34,
+     "work": {
+      "t": "Credit score",
+      "rows": [
+       [
+        "Soft check",
+        "no effect on your score"
+       ],
+       [
+        "Sources",
+        "2 of 3 connected"
+       ]
+      ],
+      "tot": [
+       "Ready",
+       "~2 weeks"
+      ],
+      "note": "A promise date beats a spinner. Nothing here affects your score."
+     }
+    },
+    "activity": {
+     "ledger": [
+      {
+       "t": "Switch bonus",
+       "s": "HSBC promise kept · Tue 19 Aug",
+       "a": "+£200.00",
+       "in": true
+      },
+      {
+       "t": "Acme Ltd — salary",
+       "s": "Mon 18 Aug",
+       "a": "+£1,000.00",
+       "in": true
+      },
+      {
+       "t": "Coffee & lunch",
+       "s": "Card · Mon 18 Aug",
+       "a": "£19.60"
+      }
+     ]
+    },
+    "chat": {},
+    "dd": {
+     "hv": "£86<span class=\"pence\">.20</span>",
+     "cap": "3 Direct Debits · all landed safely",
+     "work": {
+      "t": "Direct Debits",
+      "rows": [
+       [
+        "Phone",
+        "£25.00"
+       ],
+       [
+        "Energy",
+        "£48.40"
+       ],
+       [
+        "Streaming",
+        "£12.80"
+       ]
+      ],
+      "tot": [
+       "Each month",
+       "£86.20"
+      ],
+      "note": "All three moved over in the switch — each one is checked the first time it runs here, receipt attached."
+     }
+    }
+   },
+   "suggestions": [
+    {
+     "id": "safespend",
+     "why": "Payday is in 8 days. Want one number that says what’s truly spendable?"
+    },
+    {
+     "id": "dd",
+     "why": "Your Direct Debits just moved house. One number watches all of them."
+    },
+    {
+     "id": "creditscore",
+     "why": "Monitored with a soft check. Nothing affects your score."
+    }
+   ],
+   "browse": {
+    "Spend": [
+     "Safe to spend",
+     "Groceries",
+     "Subscriptions"
+    ],
+    "Save": [
+     "Safety net",
+     "Next holiday",
+     "Emergency fund"
+    ],
+    "Invest": [
+     "First investment",
+     "Protected floor"
+    ]
+   },
+   "C": 1.63,
+   "addXY": [
+    60,
+    60
+   ],
+   "ghostXY": [
+    285,
+    255
+   ],
+   "pots": [
+    {
+     "id": "net",
+     "t": "Net worth",
+     "icon": "wallet",
+     "v": 1180,
+     "target": null,
+     "rate": 0,
+     "x": 170,
+     "y": 195,
+     "sub": "Everything, in one place",
+     "txns": [
+      {
+       "t": "Switch bonus",
+       "s": "Tue 19 Aug",
+       "a": "+£200.00",
+       "in": true
+      },
+      {
+       "t": "Salary",
+       "s": "Mon 18 Aug",
+       "a": "+£1,000.00",
+       "in": true
+      }
+     ],
+     "linked": [],
+     "insight": "Everything you have, in one place. When you’re ready to give some of it a job, I’m here.",
+     "root": true
+    }
+   ],
+   "whatifs": [
+    {
+     "id": "wef",
+     "t": "An emergency fund",
+     "s": "£25 each payday → £300 within a year.",
+     "target": 300,
+     "rate": 25,
+     "icon": "shield",
+     "pt": "Emergency fund",
+     "prev": "£25 a month builds a £300 cushion by next summer. Small on purpose — it just has to start."
+    },
+    {
+     "id": "whol",
+     "t": "A holiday pot",
+     "s": "£50 a month → £600 by next summer.",
+     "target": 600,
+     "rate": 50,
+     "icon": "plane",
+     "pt": "Holiday",
+     "prev": "£50 a month reaches £600 in a year. The slider shows it growing."
+    },
+    {
+     "id": "winv",
+     "t": "A first investment",
+     "s": "£20 a month, with a protected floor.",
+     "target": 240,
+     "rate": 20,
+     "icon": "trend",
+     "pt": "First investment",
+     "prev": "£20 a month, floor-protected — rehearsed with your numbers before a penny moves."
+    },
+    {
+     "id": "wchal",
+     "t": "Try a savings challenge",
+     "s": "Round-up October — playful, cancel any time.",
+     "target": 120,
+     "rate": 28,
+     "icon": "zap",
+     "pt": "Round-up October",
+     "prev": "Every card payment rounds up to the pound for one month — people typically gather ~£28. A game with a receipt, and quitting is free."
+    }
+   ],
+   "commitments": [],
+   "speed": 0,
+   "me": {
+    "points": 0,
+    "pointsWork": [
+     [
+      "Points come from openness and consistency",
+      ""
+     ]
+    ],
+    "pointsNote": "Never from spending, checking the app, or trading. That’s a rule, not a setting.",
+    "badges": [
+     {
+      "t": "Quiz taken",
+      "i": "i-spark",
+      "e": false
+     },
+     {
+      "t": "First pot",
+      "i": "i-target",
+      "e": false
+     },
+     {
+      "t": "First month held",
+      "i": "i-cal",
+      "e": false
+     }
+    ],
+    "beliefs": [],
+    "beliefsEmpty": "No beliefs yet. When the app thinks it knows something about you, it appears here — with its evidence, and a button to correct it.",
+    "autonomy": {
+     "line": "The AI watches nothing yet. You choose what it sees, and every step up is reversible in one tap.",
+     "paused": false
+    },
+    "human": {
+     "init": "H",
+     "name": "A human, 24/7",
+     "sub": "Chat any time — no phone tree, no starting over."
+    }
+   },
+   "persona14": {
+    "name": null,
+    "invite": "Take the 2-minute quiz and your money personality appears here — with its evidence.",
+    "traits": [],
+    "src": null
+   },
+   "story": [
+    {
+     "t": "Switched to HSBC",
+     "s": "Aug 2026 · £200 bonus, paid same week",
+     "done": true
+    },
+    {
+     "t": "The app learns you",
+     "s": "Your quiz, whenever you’re ready",
+     "done": false
+    },
+    {
+     "t": "Your first pot",
+     "s": "When a plan gets a name",
+     "done": false
+    }
+   ],
+   "status": {
+    "tier": 0,
+    "note": "Status grows with the relationship — how much of your picture lives here, and for how long. Points never buy it; they’re yours to spend below."
+   },
+   "npXY": [
+    300,
+    300
+   ],
+   "accounts": [
+    {
+     "id": "ac-cur",
+     "kind": "current",
+     "t": "HSBC Current.",
+     "card": "8842",
+     "v": 1180.62,
+     "sub": "Everyday spending",
+     "txns": [
+      {
+       "t": "Switch bonus",
+       "s": "Tue 19 Aug",
+       "a": "+£200.00",
+       "in": true
+      },
+      {
+       "t": "Acme Ltd — salary",
+       "s": "Mon 18 Aug",
+       "a": "+£1,000.00",
+       "in": true
+      },
+      {
+       "t": "Coffee & lunch",
+       "s": "Mon 18 Aug",
+       "a": "£19.60"
+      }
+     ],
+     "linked": [],
+     "insight": "Your <b>£200</b> bonus landed here. When a pot gets a job, money moves out of this one — receipts attached."
+    }
+   ],
+   "age": 24,
+   "stories": [
+    {
+     "id": "a1",
+     "state": "new",
+     "chart": true,
+     "title": "Direct Debits",
+     "claim": "All three Direct Debits moved over — and landed.",
+     "ai": "Your <b>three Direct Debits</b> came with you and each landed safely. One number can watch them all.",
+     "figure": "£86.20",
+     "rows": [
+      [
+       "Phone",
+       "monthly",
+       "£25.00"
+      ],
+      [
+       "Energy",
+       "monthly",
+       "£48.40"
+      ],
+      [
+       "Streaming",
+       "monthly",
+       "£12.80"
+      ]
+     ],
+     "verb": "Pin the number that watches them.",
+     "residue": "Direct Debits · pinned to Now",
+     "act": "pin:dd",
+     "cta": "Pin it"
+    },
+    {
+     "id": "a2",
+     "state": "pending",
+     "title": "Safe to spend",
+     "claim": "Payday is in 8 days. One number says what’s truly spendable.",
+     "ai": "Bills set aside first: <b>£742</b> is genuinely spendable until payday.",
+     "figure": "£742",
+     "rows": [
+      [
+       "Balance",
+       "today",
+       "£1,180.62"
+      ],
+      [
+       "Bills before payday",
+       "set aside",
+       "−£438.62"
+      ]
+     ],
+     "verb": "Keep that number on your page.",
+     "residue": "Safe to spend · pinned to Now",
+     "act": "pin:safespend",
+     "cta": "Pin it"
+    }
+   ]
+  },
+  "jordan": {
+   "key": "jordan",
+   "name": "Jordan",
+   "desc": "Breaking the cycle · first goals",
+   "premier": false,
+   "greet": "Good afternoon, Jordan",
+   "sub": "Month 7 · quietly on top of it",
+   "comp": {
+    "now": {
+     "msg": "Groceries are <b>£38 under</b> last month, and £22 of round-ups reached your fund. Receipts attached."
+    },
+    "future": {
+     "msg": "<b>£72 a month</b> now moves by itself. At this speed your fund is done by <b>spring</b>."
+    },
+    "me": {
+     "msg": "140 points — every one from openness and consistency. Never from spending."
+    }
+   },
+   "order": [
+    "safespend",
+    "grocery",
+    "efpot",
+    "subs",
+    "balance",
+    "activity"
+   ],
+   "wsize": {
+    "safespend": "L"
+   },
+   "widgets": {
+    "safespend": {
+     "hv": "£820<span class=\"pence\">.00</span>",
+     "chips": [
+      "12 days to payday",
+      "Bills set aside"
+     ],
+     "cap": "Safe to spend",
+     "work": {
+      "t": "Safe to spend",
+      "rows": [
+       [
+        "Balance",
+        "£2,340.18"
+       ],
+       [
+        "Rent",
+        "−£950.00"
+       ],
+       [
+        "Energy & water",
+        "−£214.28"
+       ],
+       [
+        "Car & insurance",
+        "−£225.00"
+       ],
+       [
+        "Subscriptions",
+        "−£58.90"
+       ],
+       [
+        "Committed to your fund",
+        "−£72.00"
+       ]
+      ],
+      "tot": [
+       "Truly spendable",
+       "£820.00"
+      ],
+      "note": "Committed money is set aside first — so spending this number is always safe."
+     }
+    },
+    "grocery": {
+     "hv": "£212<span class=\"pence\">.40</span>",
+     "cap": "£38 under last month",
+     "bar": 85,
+     "work": {
+      "t": "Groceries",
+      "rows": [
+       [
+        "Tesco",
+        "£86.20"
+       ],
+       [
+        "Lidl",
+        "£64.10"
+       ],
+       [
+        "Co-op",
+        "£31.40"
+       ],
+       [
+        "Everything else",
+        "£30.70"
+       ]
+      ],
+      "tot": [
+       "This month",
+       "£212.40"
+      ],
+      "note": "14 card payments tagged as groceries. Last month: £250.40."
+     }
+    },
+    "subs": {
+     "hv": "£58<span class=\"pence\">.90</span>",
+     "cap": "4 subscriptions / month",
+     "work": {
+      "t": "Subscriptions",
+      "rows": [
+       [
+        "Netflix",
+        "£17.99"
+       ],
+       [
+        "Spotify",
+        "£11.99"
+       ],
+       [
+        "iCloud",
+        "£2.99"
+       ],
+       [
+        "Gym",
+        "£25.93"
+       ]
+      ],
+      "tot": [
+       "Each month",
+       "£58.90"
+      ],
+      "note": "The gym went unused for 6 weeks once — if that happens again, you’ll be asked, not lectured."
+     }
+    },
+    "balance": {
+     "hv": "£2,340<span class=\"pence\">.18</span>",
+     "cap": "Current account",
+     "work": {
+      "t": "Balance",
+      "rows": [
+       [
+        "After bills set aside",
+        "£820.00 spendable"
+       ]
+      ],
+      "tot": [
+       "Balance",
+       "£2,340.18"
+      ],
+      "note": "The full number, for when you want it. Safe to spend is the honest one."
+     }
+    },
+    "activity": {
+     "ledger": [
+      {
+       "t": "Acme Ltd — salary",
+       "s": "Fri 28 Aug",
+       "a": "+£2,200.00",
+       "in": true
+      },
+      {
+       "t": "Round-ups → your fund",
+       "s": "This month · receipt attached",
+       "a": "→ £22.00"
+      },
+      {
+       "t": "Tesco",
+       "s": "Card · Sat 29 Aug",
+       "a": "£86.20"
+      }
+     ]
+    },
+    "chat": {},
+    "efpot": {
+     "pot": "ef"
+    },
+    "freedom": {
+     "hv": "Sep 2028",
+     "cap": "Car loan · £150 a month · 24 to go",
+     "work": {
+      "t": "Freedom date",
+      "rows": [
+       [
+        "Left on the car loan",
+        "£3,600"
+       ],
+       [
+        "Each month",
+        "£150"
+       ],
+       [
+        "Months to zero",
+        "24"
+       ]
+      ],
+      "tot": [
+       "Zero",
+       "Sep 2028"
+      ],
+      "note": "The date moves the moment a rule changes — point your round-ups here and it comes three months closer."
+     }
+    }
+   },
+   "suggestions": [
+    {
+     "id": "holiday",
+     "why": "You mentioned Lisbon once. A pot makes it a date, not a wish."
+    },
+    {
+     "id": "creditscore",
+     "why": "Monitored with a soft check — nothing affects your score."
+    },
+    {
+     "id": "dd",
+     "why": "Every recurring payment in one number — the leaks show up here first."
+    }
+   ],
+   "browse": {
+    "Spend": [
+     "Safe to spend",
+     "Groceries",
+     "Subscriptions"
+    ],
+    "Save": [
+     "Safety net",
+     "Next holiday",
+     "Emergency fund"
+    ],
+    "Invest": [
+     "First investment",
+     "Protected floor"
+    ]
+   },
+   "C": 1.26,
+   "addXY": [
+    60,
+    245
+   ],
+   "ghostXY": [
+    90,
+    330
+   ],
+   "pots": [
+    {
+     "id": "ef",
+     "t": "Emergency fund",
+     "icon": "shield",
+     "v": 430,
+     "target": 1000,
+     "rate": 72,
+     "x": 270,
+     "y": 120,
+     "sub": "£72/month · round-ups + payday",
+     "txns": [
+      {
+       "t": "Payday move",
+       "s": "Fri 28 Aug · as agreed",
+       "a": "+£50.00",
+       "in": true
+      },
+      {
+       "t": "Round-ups",
+       "s": "This month",
+       "a": "+£22.00",
+       "in": true
+      },
+      {
+       "t": "Opened",
+       "s": "Feb 2026",
+       "a": "+£100.00",
+       "in": true
+      }
+     ],
+     "linked": [
+      {
+       "t": "£50 on payday",
+       "s": "Running since Feb · stop any time"
+      },
+      {
+       "t": "Round-ups",
+       "s": "~£22/month · stop any time"
+      }
+     ],
+     "insight": "On track — <b>£72 a month</b>, done by spring. Round-ups did £22 of the work this month.",
+     "stops": true
+    },
+    {
+     "id": "loan",
+     "t": "Car loan",
+     "icon": "wallet",
+     "v": 3600,
+     "rate": -150,
+     "debt": true,
+     "x": 100,
+     "y": 100,
+     "sub": "£150/month · gone Sep 2028",
+     "terms": [
+      [
+       "Left",
+       "£3,600"
+      ],
+      [
+       "Plan",
+       "£150 a month · ends Sep 2028"
+      ],
+      [
+       "Overpay",
+       "any time · free"
+      ]
+     ],
+     "txns": [
+      {
+       "t": "Repayment",
+       "s": "1 Aug · as agreed",
+       "a": "−£150.00"
+      },
+      {
+       "t": "Repayment",
+       "s": "1 Jul",
+       "a": "−£150.00"
+      },
+      {
+       "t": "…22 more to go",
+       "s": "each one receipted",
+       "a": ""
+      }
+     ],
+     "linked": [
+      {
+       "t": "£150 monthly repayment",
+       "s": "Runs on the 1st · overpaying is free"
+      }
+     ],
+     "insight": "On plan — gone by <b>Sep 2028</b>. Pointing your round-ups here would bring that three months closer."
+    },
+    {
+     "id": "house",
+     "t": "House deposit",
+     "icon": "home",
+     "v": 150,
+     "target": 3000,
+     "rate": 0,
+     "x": 280,
+     "y": 300,
+     "sub": "Just started — no rules yet",
+     "txns": [
+      {
+       "t": "First deposit",
+       "s": "Saturday · you, by hand",
+       "a": "+£150.00",
+       "in": true
+      }
+     ],
+     "linked": [],
+     "insight": "Started with <b>£150</b> — no rules yet, and that’s fine. The ideas below can give it a rhythm."
+    }
+   ],
+   "whatifs": [
+    {
+     "id": "whouse",
+     "t": "Give the deposit a rhythm",
+     "s": "£150 a month → the first £3,000 by spring 2028.",
+     "attachTo": "house",
+     "attachRate": 150,
+     "icon": "home",
+     "cta": "Start the rhythm",
+     "prev": "Your first £150 is already in. £150 a month — much of it freed by the leaks you’ve closed — reaches the first £3,000 in 19 months. The pot exists; this just gives it a heartbeat. Stop it any time."
+    },
+    {
+     "id": "wcc",
+     "t": "Round-ups toward the car loan",
+     "s": "Same £22, sharper job — gone three months sooner.",
+     "redirect": true,
+     "icon": "percent",
+     "cta": "Point them at the loan",
+     "prev": "Your round-ups currently feed the emergency fund. Pointing them at the loan instead clears it about three months sooner — same money, sharper job, every payment receipted. The fund keeps its £50 payday move."
+    },
+    {
+     "id": "weat",
+     "t": "Eating out capped at £200",
+     "s": "Frees about £45 a month for the fund.",
+     "target": null,
+     "rate": 45,
+     "icon": "basket",
+     "pt": null,
+     "prev": "You average £245 a month eating out. A soft £200 line — asked, never enforced — frees ~£45 and finishes your fund three months sooner.",
+     "to": "ef"
+    },
+    {
+     "id": "whol",
+     "t": "A holiday pot",
+     "s": "£60 a month → Lisbon by June.",
+     "target": 600,
+     "rate": 60,
+     "icon": "plane",
+     "pt": "Lisbon",
+     "prev": "£60 a month reaches £600 by June. The slider shows both goals growing side by side."
+    }
+   ],
+   "commitments": [
+    {
+     "t": "£50 on payday → Emergency fund",
+     "s": "Running since Feb"
+    },
+    {
+     "t": "Round-ups → Emergency fund",
+     "s": "~£22 a month"
+    },
+    {
+     "t": "£150 monthly → Car loan",
+     "s": "Runs on the 1st"
+    }
+   ],
+   "speed": 222,
+   "me": {
+    "points": 140,
+    "pointsWork": [
+     [
+      "Money personality quiz",
+      "25"
+     ],
+     [
+      "15 weekly check-ins",
+      "75"
+     ],
+     [
+      "2 months of consistency",
+      "40"
+     ]
+    ],
+    "pointsNote": "Total 140 — earned for openness and consistency, never for spending.",
+    "badges": [
+     {
+      "t": "Quiz taken",
+      "i": "i-spark",
+      "e": true,
+      "d": "Feb 2026"
+     },
+     {
+      "t": "Budgeter",
+      "i": "i-basket",
+      "e": true,
+      "d": "Jun 2026"
+     },
+     {
+      "t": "First month held",
+      "i": "i-cal",
+      "e": false
+     },
+     {
+      "t": "Shared a pot",
+      "i": "i-users",
+      "e": false
+     }
+    ],
+    "beliefs": [
+     {
+      "t": "Groceries matter to you",
+      "ev": "You’ve checked the number weekly for 7 weeks",
+      "done": false
+     },
+     {
+      "t": "You’d rather smooth than binge-fix",
+      "ev": "From your quiz · confirmed by 5 months of steady moves",
+      "done": true
+     },
+     {
+      "t": "A place of your own, someday",
+      "ev": "You said so in March — the deposit habit is shaped around it",
+      "done": true
+     }
+    ],
+    "autonomy": {
+     "line": "Round-ups move automatically, up to £30 a month. One tap stops it — no penalty, no questions.",
+     "paused": false
+    },
+    "human": {
+     "init": "H",
+     "name": "A human, 24/7",
+     "sub": "Chat any time — your context comes with you."
+    }
+   },
+   "persona14": {
+    "name": "Steady builder",
+    "copy": "Saving on a steady rhythm compounds more than the occasional big deposit ever could. You’ve built the habit that matters most — now let the amount rise gently as your income does.",
+    "src": "Informed by 214 money moves and 12 answers",
+    "traits": [
+     [
+      "Rhythm",
+      4
+     ],
+     [
+      "Planning",
+      3
+     ],
+     [
+      "Spontaneity",
+      2
+     ]
+    ]
+   },
+   "story": [
+    {
+     "t": "Joined",
+     "s": "Feb 2026",
+     "done": true
+    },
+    {
+     "t": "Money personality quiz",
+     "s": "Feb 2026 · Steady builder",
+     "done": true,
+     "badge": "i-spark"
+    },
+    {
+     "t": "Emergency fund opened",
+     "s": "Mar 2026 · first pot",
+     "done": true
+    },
+    {
+     "t": "Budgeter — a habit kept",
+     "s": "Jun 2026 · badge earned",
+     "done": true,
+     "badge": "i-basket"
+    },
+    {
+     "t": "Fund complete",
+     "s": "Spring 2027, at this speed",
+     "done": false
+    }
+   ],
+   "status": {
+    "tier": 0,
+    "note": "Status grows with the relationship. Yours is building — the fund, the rhythm, the openness all count."
+   },
+   "npXY": [
+    200,
+    205
+   ],
+   "accounts": [
+    {
+     "id": "ac-cur",
+     "kind": "current",
+     "t": "HSBC Current.",
+     "card": "4472",
+     "v": 2340.18,
+     "sub": "Everyday spending",
+     "txns": [
+      {
+       "t": "Acme Ltd — salary",
+       "s": "Fri 28 Aug",
+       "a": "+£2,200.00",
+       "in": true
+      },
+      {
+       "t": "Round-ups → your fund",
+       "s": "This month",
+       "a": "→ £22.00"
+      },
+      {
+       "t": "Tesco",
+       "s": "Sat 29 Aug",
+       "a": "£86.20"
+      }
+     ],
+     "linked": [],
+     "insight": "Everything arrives here first. Your rules deal it outward — <b>£222 a month</b>, receipted."
+    },
+    {
+     "id": "ac-cc",
+     "kind": "credit",
+     "t": "HSBC Classic.",
+     "card": "3307",
+     "cardLabel": "Visa",
+     "v": 780,
+     "limit": 2000,
+     "sub": "Credit card",
+     "txns": [
+      {
+       "t": "Repayment",
+       "s": "1 Aug · minimum",
+       "a": "−£60.00"
+      },
+      {
+       "t": "Interest",
+       "s": "1 Aug",
+       "a": "£18.90"
+      }
+     ],
+     "linked": [],
+     "moment": "This is costing <b>~£19 a month</b> in interest.",
+     "momentCta": "Ways to pay less",
+     "insight": "<b>£780</b> at ~£19 a month in interest. Clearing it beats every savings rate you could earn — want a plan shaped around your round-ups?"
+    }
+   ],
+   "age": 29,
+   "stories": [
+    {
+     "id": "j1",
+     "state": "new",
+     "chart": true,
+     "title": "Eating out",
+     "claim": "Eating out is the biggest leak — about £245 a month.",
+     "ai": "Eating out averages <b>£245</b> a month. A soft <b>£200</b> line would free about £45 for the fund.",
+     "figure": "£245",
+     "rows": [
+      [
+       "Eating out",
+       "average · 6 months",
+       "£245"
+      ],
+      [
+       "Groceries",
+       "this month",
+       "£212"
+      ],
+      [
+       "Subscriptions",
+       "each month",
+       "£59"
+      ]
+     ],
+     "verb": "Cap eating out at £200 — asked, never enforced.",
+     "residue": "£45 a month more into the fund · done Feb 2027",
+     "act": "wifstart:weat",
+     "cta": "Start the cap"
+    },
+    {
+     "id": "j2",
+     "state": "pending",
+     "title": "Round-ups",
+     "claim": "Your round-ups could clear the car loan three months sooner.",
+     "ai": "Round-ups do <b>£22</b> a month. Pointed at the loan instead, it clears <b>three months sooner</b> — the fund keeps its payday move.",
+     "figure": "£22/mo",
+     "rows": [
+      [
+       "Round-ups",
+       "this month",
+       "£22"
+      ],
+      [
+       "Car loan",
+       "left",
+       "£3,600"
+      ],
+      [
+       "Repayment",
+       "each month",
+       "£150"
+      ]
+     ],
+     "verb": "Point round-ups at the car loan.",
+     "residue": "Round-ups → Car loan · gone Jun 2028",
+     "act": "wifstart:wcc",
+     "cta": "Point them at the loan"
+    },
+    {
+     "id": "j3",
+     "state": "saved",
+     "title": "The payday rule",
+     "claim": "The £50 payday move has held seven months.",
+     "ai": "<b>Seven paydays</b>, seven moves, seven receipts. The rule has held since February.",
+     "figure": "£350",
+     "rows": [
+      [
+       "Payday moves",
+       "since Feb",
+       "7 × £50"
+      ],
+      [
+       "Round-ups",
+       "this month",
+       "£22"
+      ]
+     ],
+     "verb": "Keep it running.",
+     "residue": "£50 on payday · running since Feb",
+     "act": null
+    }
+   ]
+  },
+  "sam": {
+   "key": "sam",
+   "name": "Sam",
+   "desc": "Ready to invest · nearly Premier",
+   "premier": false,
+   "greet": "Good morning, Sam",
+   "sub": "Everything running as agreed",
+   "comp": {
+    "now": {
+     "msg": "<b>£320</b> reached your house pot on payday, as agreed. 90 safety days held. Nothing needs you today."
+    },
+    "future": {
+     "msg": "All three plans are on track at <b>£420 a month</b>. Your fund finishes in 20 months — then its £40 could join the house. Want to see?"
+    },
+    "me": {
+     "msg": "480 points, three badges, one confirmed belief. All of it from openness — none of it from spending."
+    }
+   },
+   "order": [
+    "housepot",
+    "efpot",
+    "goldenratio",
+    "safetydays",
+    "points",
+    "cashback",
+    "activity"
+   ],
+   "wsize": {
+    "housepot": "L"
+   },
+   "widgets": {
+    "housepot": {
+     "pot": "house",
+     "chips": [
+      "<b>5.1%</b> — the rate your plan earned"
+     ],
+     "work": null
+    },
+    "safetydays": {
+     "hv": "90 days",
+     "cap": "£4,200 ÷ £1,400/mo essentials",
+     "work": {
+      "t": "Safety net",
+      "rows": [
+       [
+        "Emergency fund",
+        "£4,200"
+       ],
+       [
+        "Essential spending",
+        "£1,400 / month"
+       ]
+      ],
+      "tot": [
+       "Covered",
+       "~90 days"
+      ],
+      "note": "Three months of essentials, held. The quiet number behind calm."
+     }
+    },
+    "points": {
+     "hv": "480",
+     "cap": "For openness — never spending",
+     "work": {
+      "t": "HSBC Points",
+      "rows": [
+       [
+        "Money personality quiz",
+        "25"
+       ],
+       [
+        "52 weekly check-ins",
+        "260"
+       ],
+       [
+        "8 months of consistency",
+        "160"
+       ],
+       [
+        "Beliefs corrected & confirmed",
+        "35"
+       ]
+      ],
+      "tot": [
+       "Total",
+       "480"
+      ],
+      "note": "Earned only for openness and consistency — never for spending, checking, or trading."
+     }
+    },
+    "cashback": {
+     "hv": "£64",
+     "cap": "2% back on card spending · this year",
+     "work": {
+      "t": "Cashback",
+      "rows": [
+       [
+        "Card spending this year",
+        "£3,200.00"
+       ],
+       [
+        "Cashback rate",
+        "2%"
+       ]
+      ],
+      "tot": [
+       "Earned back",
+       "£64.00"
+      ],
+      "note": "A feature of the card, shown as a fact. It never becomes a reason to spend more — that’s what HSBC Points are for: healthy habits, never spending."
+     }
+    },
+    "grocery": {
+     "hv": "£198<span class=\"pence\">.10</span>",
+     "cap": "Held for 8 months running",
+     "bar": 78,
+     "work": {
+      "t": "Groceries",
+      "rows": [
+       [
+        "Tesco",
+        "£84.30"
+       ],
+       [
+        "Lidl",
+        "£58.90"
+       ],
+       [
+        "Co-op",
+        "£32.60"
+       ],
+       [
+        "Everything else",
+        "£22.30"
+       ]
+      ],
+      "tot": [
+       "This month",
+       "£198.10"
+      ],
+      "note": "The pot holds when the month stays under £220. Eight in a row so far."
+     }
+    },
+    "balance": {
+     "hv": "£3,120<span class=\"pence\">.44</span>",
+     "cap": "Current account",
+     "work": {
+      "t": "Balance",
+      "rows": [
+       [
+        "After commitments",
+        "£420/month already moved"
+       ]
+      ],
+      "tot": [
+       "Balance",
+       "£3,120.44"
+      ],
+      "note": "Commitments leave first, quietly. What remains is genuinely yours."
+     }
+    },
+    "activity": {
+     "ledger": [
+      {
+       "t": "Acme Ltd — salary",
+       "s": "Fri 28 Aug",
+       "a": "+£2,600.00",
+       "in": true
+      },
+      {
+       "t": "To your house pot",
+       "s": "As agreed · receipt attached",
+       "a": "→ £320.00"
+      },
+      {
+       "t": "Card cashback",
+       "s": "Monthly · 2% of card spending",
+       "a": "+£8.00",
+       "in": true
+      }
+     ]
+    },
+    "chat": {},
+    "efpot": {
+     "pot": "ef"
+    },
+    "goldenratio": {
+     "hv": "£1,300<span class=\"pence\">.44</span>",
+     "cap": "Genuinely safe to invest",
+     "work": {
+      "t": "Golden Ratio",
+      "rows": [
+       [
+        "Balance",
+        "£3,120.44"
+       ],
+       [
+        "One month of essentials",
+        "−£1,400.00"
+       ],
+       [
+        "This month’s commitments",
+        "−£420.00"
+       ]
+      ],
+      "tot": [
+       "Safe to invest",
+       "£1,300.44"
+      ],
+      "note": "Your 90-day safety net already stands apart. This is what cash can do more with — left idle, it loses about £65 a year to standing still. That’s the Golden Ratio: not how much you could invest, but how much is genuinely safe to."
+     }
+    }
+   },
+   "suggestions": [
+    {
+     "id": "subs",
+     "why": "Worth a glance — one subscription looks unused."
+    },
+    {
+     "id": "creditscore",
+     "why": "Monitored with a soft check — useful before a mortgage."
+    },
+    {
+     "id": "safespend",
+     "why": "One honest number for the day-to-day, bills set aside."
+    }
+   ],
+   "browse": {
+    "Spend": [
+     "Safe to spend",
+     "Groceries",
+     "Subscriptions"
+    ],
+    "Save": [
+     "Safety net",
+     "Next holiday",
+     "Emergency fund"
+    ],
+    "Invest": [
+     "First investment",
+     "Protected floor"
+    ]
+   },
+   "C": 0.6,
+   "addXY": [
+    60,
+    60
+   ],
+   "ghostXY": [
+    100,
+    318
+   ],
+   "pots": [
+    {
+     "id": "house",
+     "t": "House deposit",
+     "icon": "home",
+     "v": 6400,
+     "target": 24000,
+     "rate": 320,
+     "x": 140,
+     "y": 180,
+     "sub": "£320/month · 5.1% earned rate",
+     "terms": [
+      [
+       "Rate",
+       "5.1% fixed while committed"
+      ],
+      [
+       "Why",
+       "3-yr plan shared · 8 months kept"
+      ],
+      [
+       "Exit",
+       "withdraw any time · free"
+      ]
+     ],
+     "txns": [
+      {
+       "t": "Payday move",
+       "s": "Fri 28 Aug · as agreed",
+       "a": "+£320.00",
+       "in": true
+      },
+      {
+       "t": "Payday move",
+       "s": "Fri 31 Jul",
+       "a": "+£320.00",
+       "in": true
+      },
+      {
+       "t": "…12 more receipts",
+       "s": "since Jan 2026",
+       "a": ""
+      }
+     ],
+     "linked": [
+      {
+       "t": "£320 on payday",
+       "s": "Running since Jan · stop any time"
+      }
+     ],
+     "insight": "On track for <b>2031</b>, eight months kept. The 5.1% holds while the plan does."
+    },
+    {
+     "id": "ef",
+     "t": "Emergency fund",
+     "icon": "shield",
+     "v": 4200,
+     "target": 5000,
+     "rate": 40,
+     "x": 300,
+     "y": 110,
+     "sub": "£40/month · 90 safety days",
+     "txns": [
+      {
+       "t": "Payday move",
+       "s": "Fri 28 Aug",
+       "a": "+£40.00",
+       "in": true
+      },
+      {
+       "t": "Payday move",
+       "s": "Fri 31 Jul",
+       "a": "+£40.00",
+       "in": true
+      }
+     ],
+     "linked": [
+      {
+       "t": "£40 on payday",
+       "s": "Stops automatically at £5,000"
+      }
+     ],
+     "insight": "£800 to go. When it fills, the £40 rule stops itself — I’ll ask you then where that £40 should go next.",
+     "stops": true
+    },
+    {
+     "id": "hol",
+     "t": "Holiday",
+     "icon": "plane",
+     "v": 0,
+     "target": 2400,
+     "rate": 60,
+     "x": 318,
+     "y": 262,
+     "sub": "Challenge-funded · £60/month",
+     "txns": [],
+     "linked": [
+      {
+       "t": "Grocery challenge",
+       "s": "Holding the month funds £60 here"
+      }
+     ],
+     "insight": "Nothing in here yet — also fine. Tell me when you want to go and I’ll shape the challenge around it."
+    },
+    {
+     "id": "un",
+     "t": "Not decided yet",
+     "icon": "target",
+     "v": 850,
+     "target": null,
+     "rate": 30,
+     "x": 200,
+     "y": 338,
+     "sub": "Money that hasn’t chosen a job — spare cash gathers here",
+     "txns": [
+      {
+       "t": "Moved in",
+       "s": "Jun 2026",
+       "a": "+£850.00",
+       "in": true
+      }
+     ],
+     "linked": [],
+     "insight": "Money that hasn’t chosen a job. No rush — but if it’s still here in autumn, I’ll ask again, gently."
+    }
+   ],
+   "whatifs": [
+    {
+     "id": "winvest",
+     "t": "Start investing £200 a month",
+     "s": "Floor-protected · your Golden Ratio says it’s safe.",
+     "target": null,
+     "rate": 200,
+     "icon": "trend",
+     "pt": "First investments",
+     "grow": true,
+     "prev": "£1,300 is genuinely safe to start with, and £200 a month keeps it fed. Floor-protected, rehearsed before a penny moves — and in five years the gap between saving and investing is real.",
+     "v0": 1300
+    },
+    {
+     "id": "wprem",
+     "t": "Run this at Premier speed",
+     "s": "Preferential rates · 1.5× points on the same habits.",
+     "target": null,
+     "rate": 20,
+     "icon": "award",
+     "pt": null,
+     "prev": "Premier layers preferential rates over the pots you already run — the house lands about three months sooner — and every healthy habit earns 1.5× points. Same behaviour, more speed. That’s the Premier delta.",
+     "to": "house",
+     "noStart": true
+    },
+    {
+     "id": "wleft",
+     "t": "Whatever’s left on payday, saved",
+     "s": "Averages £85 — house lands in 2030.",
+     "target": null,
+     "rate": 85,
+     "icon": "up",
+     "pt": null,
+     "prev": "Your last six paydays left £85 on average. Moving the remainder automatically brings the house from 2031 into 2030 — and it flexes when the month was tight. Nothing moves if nothing’s spare.",
+     "to": "house"
+    },
+    {
+     "id": "wshare",
+     "t": "A shared pot with flatmates",
+     "s": "One utility pot, three people, receipts for all.",
+     "target": 900,
+     "rate": 100,
+     "icon": "users",
+     "pt": "Flat utilities",
+     "prev": "Three flatmates, £100 a month, every bill receipted to everyone. Money between friends, made boring — in the good way."
+    }
+   ],
+   "commitments": [
+    {
+     "t": "£320 on payday → House deposit",
+     "s": "Running since Jan"
+    },
+    {
+     "t": "£40 on payday → Emergency fund",
+     "s": "Stops at £5,000"
+    },
+    {
+     "t": "Grocery challenge → Holiday",
+     "s": "£60 when the month holds"
+    }
+   ],
+   "speed": 420,
+   "me": {
+    "points": 480,
+    "pointsWork": [
+     [
+      "Money personality quiz",
+      "25"
+     ],
+     [
+      "52 weekly check-ins",
+      "260"
+     ],
+     [
+      "8 months of consistency",
+      "160"
+     ],
+     [
+      "Beliefs corrected & confirmed",
+      "35"
+     ]
+    ],
+    "pointsNote": "Total 480 — earned only for openness and consistency.",
+    "badges": [
+     {
+      "t": "Quiz taken",
+      "i": "i-spark",
+      "e": true,
+      "d": "Jan 2026"
+     },
+     {
+      "t": "First month held",
+      "i": "i-cal",
+      "e": true,
+      "d": "Feb 2026"
+     },
+     {
+      "t": "90 safety days",
+      "i": "i-shield",
+      "e": true,
+      "d": "Jul 2026"
+     },
+     {
+      "t": "First rehearsal",
+      "i": "i-trend",
+      "e": false
+     },
+     {
+      "t": "Shared a pot",
+      "i": "i-users",
+      "e": false
+     }
+    ],
+    "beliefs": [
+     {
+      "t": "Planner — careful, likes a route",
+      "ev": "From your quiz · confirmed by you, Mar 2026",
+      "done": true
+     },
+     {
+      "t": "Rainy-day first, then goals",
+      "ev": "You built the fund before the house pot grew",
+      "done": false
+     }
+    ],
+    "autonomy": {
+     "line": "The AI moves up to £420 a month between your pots, exactly as agreed. One tap steps it down — no penalty.",
+     "paused": false
+    },
+    "human": {
+     "init": "H",
+     "name": "A human, 24/7",
+     "sub": "When something needs judgement, a named human signs it."
+    }
+   },
+   "persona14": {
+    "name": "Planner",
+    "copy": "Careful, likes a route, allergic to nagging. You do the thinking up front so the months can run quietly — the system’s job is to keep your receipts and stay out of the way.",
+    "src": "Informed by 431 money moves and 15 answers",
+    "traits": [
+     [
+      "Planning",
+      5
+     ],
+     [
+      "Rhythm",
+      4
+     ],
+     [
+      "Spontaneity",
+      1
+     ]
+    ]
+   },
+   "story": [
+    {
+     "t": "Joined",
+     "s": "Jan 2026",
+     "done": true
+    },
+    {
+     "t": "Quiz — Planner",
+     "s": "Jan 2026",
+     "done": true,
+     "badge": "i-spark"
+    },
+    {
+     "t": "House pot committed",
+     "s": "Mar 2026 · earned 5.1%",
+     "done": true
+    },
+    {
+     "t": "90 safety days held",
+     "s": "Jul 2026 · badge earned",
+     "done": true,
+     "badge": "i-shield"
+    },
+    {
+     "t": "Eight grocery months held",
+     "s": "Aug 2026 · the challenge funds the holiday pot",
+     "done": true
+    },
+    {
+     "t": "House deposit ready",
+     "s": "2031, at this speed",
+     "done": false
+    }
+   ],
+   "status": {
+    "tier": 0,
+    "near": true,
+    "note": "You’re close: a committed plan, eight months kept. Premier follows the relationship, not a form."
+   },
+   "npXY": [
+    330,
+    70
+   ],
+   "accounts": [
+    {
+     "id": "ac-cur",
+     "kind": "current",
+     "t": "HSBC Current.",
+     "card": "6118",
+     "v": 3120.44,
+     "sub": "Everyday spending",
+     "txns": [
+      {
+       "t": "Acme Ltd — salary",
+       "s": "Fri 28 Aug",
+       "a": "+£2,600.00",
+       "in": true
+      },
+      {
+       "t": "To your house pot",
+       "s": "As agreed",
+       "a": "→ £320.00"
+      },
+      {
+       "t": "Card cashback",
+       "s": "Mon",
+       "a": "+£8.00",
+       "in": true
+      }
+     ],
+     "linked": [],
+     "insight": "Money lands, commitments leave, <b>£1,300</b> stays genuinely investable. The Golden Ratio watches the line."
+    }
+   ],
+   "age": 33,
+   "stories": [
+    {
+     "id": "s1",
+     "state": "new",
+     "title": "Golden Ratio",
+     "claim": "£1,300 of your cash is genuinely safe to invest.",
+     "ai": "Your safety net stands apart. <b>£1,300</b> is genuinely safe to put to work — <b>£200 a month</b> would keep it fed.",
+     "figure": "£1,300",
+     "rows": [
+      [
+       "Balance",
+       "today",
+       "£3,120.44"
+      ],
+      [
+       "One month of essentials",
+       "kept back",
+       "−£1,400.00"
+      ],
+      [
+       "This month’s commitments",
+       "already moving",
+       "−£420.00"
+      ]
+     ],
+     "verb": "Start investing £200 a month, floor-protected.",
+     "residue": "First investments · £200 a month · rehearsed first",
+     "act": "wifstart:winvest",
+     "cta": "Start investing"
+    },
+    {
+     "id": "s2",
+     "state": "pending",
+     "title": "Payday remainder",
+     "claim": "Whatever’s left on payday could bring the house from 2031 into 2030.",
+     "ai": "Your last six paydays left <b>£85</b> on average. Moved automatically, the house lands <b>11 months sooner</b>.",
+     "figure": "£85/mo",
+     "rows": [
+      [
+       "Payday remainder",
+       "6-month average",
+       "£85"
+      ],
+      [
+       "House deposit",
+       "today",
+       "£6,400 of £24,000"
+      ],
+      [
+       "Payday rule",
+       "each month",
+       "£320"
+      ]
+     ],
+     "verb": "Move whatever’s left on payday — nothing moves if nothing’s spare.",
+     "residue": "Payday remainder → House deposit · done May 2030",
+     "act": "wifstart:wleft",
+     "cta": "Start it"
+    },
+    {
+     "id": "s3",
+     "state": "saved",
+     "title": "Eight months held",
+     "claim": "Eight grocery months in a row — no lecture needed.",
+     "ai": "Eight months under <b>£220</b>. The grocery challenge now sends <b>£60</b> to the holiday each time a month holds.",
+     "figure": "8 months",
+     "rows": [
+      [
+       "Months held",
+       "since Jan",
+       "8"
+      ],
+      [
+       "This month",
+       "Tesco, Lidl, Co-op…",
+       "£198.10"
+      ],
+      [
+       "The line",
+       "the pot holds under",
+       "£220"
+      ]
+     ],
+     "verb": "Keep going.",
+     "residue": "Grocery challenge → Holiday · £60 when the month holds",
+     "act": null
+    }
+   ]
+  },
+  "elena": {
+   "key": "elena",
+   "name": "Elena",
+   "desc": "Premier · growing together",
+   "premier": true,
+   "greet": "Good evening, Elena",
+   "sub": "Premier · quarterly review soon",
+   "comp": {
+    "now": {
+     "msg": "<b>Maya signed</b> your rebalance this morning — receipt in your feed. A dividend landed. Nothing needs you tonight."
+    },
+    "future": {
+     "msg": "Every plan is on track at <b>£850 a month</b>. The slider shows the next ten years."
+    },
+    "me": {
+     "msg": "Priya holds <b>Thursday 2pm</b> for your quarterly review. Twelve years of receipts sit behind this relationship."
+    }
+   },
+   "order": [
+    "wealth",
+    "ratio",
+    "familypot",
+    "retpot",
+    "rateswatch",
+    "points",
+    "activity"
+   ],
+   "wsize": {
+    "wealth": "L"
+   },
+   "widgets": {
+    "wealth": {
+     "hv": "£284,600",
+     "chips": [
+      "Quarterly review · 12 Sep",
+      "On track"
+     ],
+     "cap": "Total wealth",
+     "work": {
+      "t": "Total wealth",
+      "rows": [
+       [
+        "Invested",
+        "£182,400"
+       ],
+       [
+        "Cash",
+        "£24,200"
+       ],
+       [
+        "In pots",
+        "£78,000"
+       ]
+      ],
+      "tot": [
+       "Total",
+       "£284,600"
+      ],
+      "note": "Three numbers, one truth. Every line opens to its receipts."
+     }
+    },
+    "ratio": {
+     "hv": "36%",
+     "cap": "£65,664 of £182,400 protected",
+     "work": {
+      "t": "Protected floor",
+      "rows": [
+       [
+        "Invested",
+        "£182,400"
+       ],
+       [
+        "Floor allocation",
+        "36%"
+       ]
+      ],
+      "tot": [
+       "Protected",
+       "£65,664"
+      ],
+      "note": "The floor you rehearsed. When markets fall, this is the part that doesn’t."
+     }
+    },
+    "familypot": {
+     "pot": "fam"
+    },
+    "points": {
+     "hv": "3,420",
+     "cap": "Twelve years of openness",
+     "work": {
+      "t": "HSBC Points",
+      "rows": [
+       [
+        "Years of weekly check-ins",
+        "2,340"
+       ],
+       [
+        "Consistency",
+        "780"
+       ],
+       [
+        "Openness & corrections",
+        "300"
+       ]
+      ],
+      "tot": [
+       "Total",
+       "3,420"
+      ],
+      "note": "Twelve years of openness. Redeemable as expert time, fee waivers, rate boosts."
+     }
+    },
+    "activity": {
+     "ledger": [
+      {
+       "t": "Dividend — index fund",
+       "s": "Receipt attached · Mon",
+       "a": "+£84.20",
+       "in": true
+      },
+      {
+       "t": "To the family pot",
+       "s": "As agreed",
+       "a": "→ £150.00"
+      },
+      {
+       "t": "Rebalance",
+       "s": "Signed · Maya, HSBC Wealth",
+       "a": ""
+      }
+     ]
+    },
+    "chat": {},
+    "retpot": {
+     "pot": "ret"
+    },
+    "rateswatch": {
+     "hv": "All honest",
+     "cap": "Checked Tuesday · nothing to move",
+     "work": {
+      "t": "Rates watch",
+      "rows": [
+       [
+        "Savings vs the market",
+        "holding ✓"
+       ],
+       [
+        "Mortgage vs the market",
+        "holding ✓"
+       ],
+       [
+        "Last capture",
+        "+0.2% · March, moved for you"
+       ]
+      ],
+      "tot": [
+       "Standing job",
+       "running"
+      ],
+      "note": "If a better rate exists, you hear it from us first — that’s the deal. Drift never goes unwatched."
+     }
+    }
+   },
+   "suggestions": [
+    {
+     "id": "safetydays",
+     "why": "A household-level safety number, across both of you."
+    },
+    {
+     "id": "creditscore",
+     "why": "Quiet monitoring, soft checks only."
+    }
+   ],
+   "browse": {
+    "Spend": [
+     "Safe to spend",
+     "Groceries",
+     "Subscriptions"
+    ],
+    "Save": [
+     "Safety net",
+     "Family pots"
+    ],
+    "Invest": [
+     "Protected floor",
+     "Drawdown rehearsal"
+    ]
+   },
+   "C": 0.2,
+   "addXY": [
+    60,
+    60
+   ],
+   "ghostXY": [
+    90,
+    300
+   ],
+   "pots": [
+    {
+     "id": "inv",
+     "t": "Investments",
+     "icon": "trend",
+     "v": 182400,
+     "target": null,
+     "rate": 0,
+     "growth": 0.05,
+     "x": 140,
+     "y": 170,
+     "sub": "36% floor-protected · Maya reviews",
+     "txns": [
+      {
+       "t": "Dividend",
+       "s": "Mon · receipt attached",
+       "a": "+£84.20",
+       "in": true
+      },
+      {
+       "t": "Rebalance",
+       "s": "Signed · Maya",
+       "a": ""
+      }
+     ],
+     "linked": [
+      {
+       "t": "Drift-watch",
+       "s": "Keeping your rates honest · standing"
+      }
+     ],
+     "insight": "Inside the mandate and on plan. <b>Maya signed</b> this morning’s rebalance — the floor is back at 36%."
+    },
+    {
+     "id": "ret",
+     "t": "Retirement",
+     "icon": "target",
+     "v": 34140,
+     "target": 120000,
+     "rate": 500,
+     "x": 282,
+     "y": 290,
+     "sub": "£500/month · rehearsed at 62 and 65",
+     "txns": [
+      {
+       "t": "Monthly move",
+       "s": "1 Aug · as agreed",
+       "a": "+£500.00",
+       "in": true
+      }
+     ],
+     "linked": [
+      {
+       "t": "£500 monthly",
+       "s": "Reviewed each quarter with Priya"
+      }
+     ],
+     "insight": "On track for 65. If 62 is still on your mind, we can rehearse it with real numbers before Thursday."
+    },
+    {
+     "id": "hup",
+     "t": "House upgrade",
+     "icon": "home",
+     "v": 42000,
+     "target": 60000,
+     "rate": 200,
+     "x": 318,
+     "y": 120,
+     "sub": "£200/month · no deadline set",
+     "txns": [
+      {
+       "t": "Monthly move",
+       "s": "1 Aug",
+       "a": "+£200.00",
+       "in": true
+      }
+     ],
+     "linked": [
+      {
+       "t": "£200 monthly",
+       "s": "Pause any time"
+      }
+     ],
+     "insight": "No deadline set — that’s allowed. Give it one and I’ll tell you what it asks per month."
+    },
+    {
+     "id": "fam",
+     "t": "Family holiday",
+     "icon": "users",
+     "v": 1860,
+     "target": 3000,
+     "rate": 150,
+     "x": 205,
+     "y": 330,
+     "sub": "3 of you · everyone sees the receipts",
+     "txns": [
+      {
+       "t": "Your monthly move",
+       "s": "1 Aug · as agreed",
+       "a": "+£150.00",
+       "in": true
+      },
+      {
+       "t": "Aisha added",
+       "s": "28 Jul · her own move",
+       "a": "+£100.00",
+       "in": true
+      },
+      {
+       "t": "Target raised to £3,000",
+       "s": "By Aisha · agreed by you · receipt kept",
+       "a": ""
+      },
+      {
+       "t": "Leo peeked",
+       "s": "His view shows his rows only",
+       "a": ""
+      }
+     ],
+     "linked": [
+      {
+       "t": "£150 monthly",
+       "s": "Yours · Aisha adds her own"
+      }
+     ],
+     "members": [
+      {
+       "init": "E",
+       "name": "You",
+       "role": "Owner · £150/mo"
+      },
+      {
+       "init": "A",
+       "name": "Aisha",
+       "role": "Adds her own"
+      },
+      {
+       "init": "L",
+       "name": "Leo",
+       "role": "Sees his rows"
+      }
+     ],
+     "insight": "Aisha added <b>£100</b> last week — you’re at 62% together. Holding this pace makes the summer window comfortably."
+    }
+   ],
+   "whatifs": [
+    {
+     "id": "wleo",
+     "t": "A pot for Leo’s future",
+     "s": "£100 a month until 18 — his to take.",
+     "target": 7200,
+     "rate": 100,
+     "icon": "users",
+     "pt": "Leo’s future",
+     "prev": "£100 a month reaches £7,200 by Leo’s 18th. At 16 he starts seeing it; at 18 it’s his."
+    },
+    {
+     "id": "wdead",
+     "t": "Give the upgrade a date",
+     "s": "£220 a month gives it a date: mid-2033.",
+     "target": null,
+     "rate": 20,
+     "icon": "home",
+     "pt": null,
+     "prev": "£220 a month — £20 more than today — reaches the £60k in mid-2033, eight months sooner. The slider shows the difference.",
+     "to": "hup"
+    },
+    {
+     "id": "wretire",
+     "t": "Rehearse retiring at 62",
+     "s": "Your numbers, three years earlier.",
+     "target": null,
+     "rate": 0,
+     "icon": "target",
+     "pt": null,
+     "prev": "Retiring at 62 instead of 65, rehearsed with your real numbers — before any decision, with Maya’s signature on the plan.",
+     "rehearse": true
+    }
+   ],
+   "commitments": [
+    {
+     "t": "£500 monthly → Retirement",
+     "s": "Quarterly review with Priya"
+    },
+    {
+     "t": "£200 monthly → House upgrade",
+     "s": "Pause any time"
+    },
+    {
+     "t": "£150 monthly → Family holiday",
+     "s": "Aisha adds her own"
+    }
+   ],
+   "speed": 850,
+   "me": {
+    "points": 3420,
+    "pointsWork": [
+     [
+      "Years of weekly check-ins",
+      "2,340"
+     ],
+     [
+      "Consistency",
+      "780"
+     ],
+     [
+      "Openness & corrections",
+      "300"
+     ]
+    ],
+    "pointsNote": "Total 3,420 — twelve years of openness, never a point for spending.",
+    "badges": [
+     {
+      "t": "Quiz taken",
+      "i": "i-spark",
+      "e": true,
+      "d": "2014"
+     },
+     {
+      "t": "First rehearsal",
+      "i": "i-trend",
+      "e": true,
+      "d": "2018"
+     },
+     {
+      "t": "Shared a pot",
+      "i": "i-users",
+      "e": true,
+      "d": "2022"
+     },
+     {
+      "t": "Household by consent",
+      "i": "i-home",
+      "e": true,
+      "d": "2022"
+     },
+     {
+      "t": "A decade held",
+      "i": "i-award",
+      "e": true,
+      "d": "2024"
+     }
+    ],
+    "beliefs": [
+     {
+      "t": "Family first, growth second",
+      "ev": "Confirmed at your last annual review",
+      "done": true
+     },
+     {
+      "t": "You’d hold through a 20% dip",
+      "ev": "Rehearsed 2031 · held for real in 2033",
+      "done": true
+     }
+    ],
+    "autonomy": {
+     "line": "The AI acts and reports on savings and rebalancing, inside the mandate you and Maya signed. Stepping down is one tap.",
+     "paused": false
+    },
+    "human": {
+     "init": "P",
+     "name": "Priya — your named contact",
+     "sub": "Holds Thursday 2pm for your quarterly review."
+    }
+   },
+   "rm": {
+    "name": "Priya",
+    "init": "P",
+    "role": "Your Relationship Manager",
+    "msg": "The quarter looks exactly as we planned. One idea worth ten minutes: <b>Leo’s future pot</b>. See you <b>Thursday 2pm</b>?",
+    "actions": [
+     [
+      "rmconfirm",
+      "Confirm Thursday 2pm"
+     ],
+     [
+      "rmlater",
+      "Ask to move it"
+     ]
+    ]
+   },
+   "persona14": {
+    "name": "Long-game architect",
+    "copy": "You build structures and let time do the compounding. Twelve years of evidence says you hold through weather — the rehearsed kind and the real kind.",
+    "src": "Informed by 12 years of decisions and 3 rehearsals",
+    "traits": [
+     [
+      "Planning",
+      5
+     ],
+     [
+      "Patience",
+      5
+     ],
+     [
+      "Spontaneity",
+      2
+     ]
+    ]
+   },
+   "story": [
+    {
+     "t": "Joined",
+     "s": "2014",
+     "done": true
+    },
+    {
+     "t": "First pot",
+     "s": "2015",
+     "done": true
+    },
+    {
+     "t": "First rehearsal, then first investment",
+     "s": "2018 · badge earned",
+     "done": true,
+     "badge": "i-trend"
+    },
+    {
+     "t": "Premier",
+     "s": "2020 · the app went dark",
+     "done": true
+    },
+    {
+     "t": "Household by consent",
+     "s": "2022 · Aisha, then Leo",
+     "done": true,
+     "badge": "i-home"
+    },
+    {
+     "t": "A decade held",
+     "s": "2024 · badge earned",
+     "done": true,
+     "badge": "i-award"
+    },
+    {
+     "t": "Retirement, rehearsed at 62 and 65",
+     "s": "Next quarter, with Maya",
+     "done": false
+    }
+   ],
+   "status": {
+    "tier": 1,
+    "note": "Premier since 2020 — a named human, priority experts, and a 1.5× earn rate on points."
+   },
+   "npXY": [
+    62,
+    372
+   ],
+   "accounts": [
+    {
+     "id": "ac-cur",
+     "kind": "current",
+     "t": "HSBC Premier Current.",
+     "card": "2201",
+     "v": 24200,
+     "sub": "Household hub",
+     "txns": [
+      {
+       "t": "Dividend — index fund",
+       "s": "Mon",
+       "a": "+£84.20",
+       "in": true
+      },
+      {
+       "t": "To the family pot",
+       "s": "As agreed",
+       "a": "→ £150.00"
+      }
+     ],
+     "linked": [],
+     "insight": "The household hub — <b>£850 a month</b> deals itself outward, every move receipted."
+    },
+    {
+     "id": "ac-cc",
+     "kind": "credit",
+     "t": "HSBC Premier Card.",
+     "card": "9944",
+     "cardLabel": "Visa",
+     "v": 1240,
+     "limit": 15000,
+     "sub": "Paid in full monthly",
+     "txns": [
+      {
+       "t": "Paid in full",
+       "s": "1 Aug · as always",
+       "a": "−£1,310.00"
+      }
+     ],
+     "linked": [],
+     "moment": "Paid in full every month — <b>costing you nothing</b>.",
+     "momentCta": null,
+     "insight": "Paid in full, every month, for nine years. This card has never cost you a penny of interest."
+    }
+   ],
+   "age": 47,
+   "stories": [
+    {
+     "id": "e1",
+     "state": "new",
+     "title": "Leo’s future",
+     "claim": "A pot Leo would own at 18 — £100 a month gets there.",
+     "ai": "<b>£100 a month</b> reaches <b>£7,200</b> by Leo’s 18th. At 16 he starts seeing it; at 18 it’s his.",
+     "figure": "£7,200",
+     "rows": [
+      [
+       "Each month",
+       "from you",
+       "£100"
+      ],
+      [
+       "Months to 18",
+       "from today",
+       "72"
+      ],
+      [
+       "His to take",
+       "Sep 2032",
+       "£7,200"
+      ]
+     ],
+     "verb": "Start Leo’s pot.",
+     "residue": "Leo’s future · £100 a month · his at 18",
+     "act": "wifstart:wleo",
+     "cta": "Start it"
+    },
+    {
+     "id": "e2",
+     "state": "saved",
+     "title": "The rebalance",
+     "claim": "Maya signed this morning’s rebalance — the floor is back at 36%.",
+     "ai": "Markets drifted; <b>Maya signed</b> the rebalance this morning. The <b>36% floor</b> is back where you set it.",
+     "figure": "36%",
+     "rows": [
+      [
+       "Invested",
+       "today",
+       "£182,400"
+      ],
+      [
+       "Floor allocation",
+       "protected",
+       "36%"
+      ],
+      [
+       "Protected",
+       "the part that doesn’t fall",
+       "£65,664"
+      ]
+     ],
+     "verb": "Nothing to do — it’s done.",
+     "residue": "Rebalanced · signed by Maya · receipt in your feed",
+     "act": null
+    }
+   ],
+   "household": [
+    {
+     "id": "you",
+     "name": "You",
+     "init": "E"
+    },
+    {
+     "id": "aisha",
+     "name": "Aisha",
+     "init": "A",
+     "p14": {
+      "name": "Free spirit",
+      "copy": "Aisha decides quickly and rarely regrets it. Her money moves in bursts — generous, then quiet. Shared pots suit her: the receipts do the remembering.",
+      "src": "Informed by 186 money moves and 9 answers · shared by consent",
+      "traits": [
+       [
+        "Spontaneity",
+        5
+       ],
+       [
+        "Generosity",
+        4
+       ],
+       [
+        "Planning",
+        2
+       ]
+      ]
+     }
+    },
+    {
+     "id": "leo",
+     "name": "Leo",
+     "init": "L",
+     "child": true,
+     "p14": {
+      "name": "Goal getter",
+      "copy": "Leo saves toward one thing at a time and likes to see it grow. He sees his own rows only — nothing of yours.",
+      "src": "Informed by 42 pocket-money moves · shown with your consent",
+      "traits": [
+       [
+        "Focus",
+        5
+       ],
+       [
+        "Patience",
+        3
+       ],
+       [
+        "Spontaneity",
+        2
+       ]
+      ]
+     }
+    },
+    {
+     "id": "household",
+     "name": "Household",
+     "init": "⌂",
+     "p14": {
+      "name": "Long game, lived warmly",
+      "copy": "Elena builds the structure. Aisha keeps it human. Leo learns by doing. Three ways with money that fit together — and a family pot where all three show up.",
+      "src": "Three people · one shared pot · every receipt visible to all",
+      "traits": [
+       [
+        "Planning",
+        5
+       ],
+       [
+        "Spontaneity",
+        3
+       ],
+       [
+        "Focus",
+        4
+       ]
+      ],
+      "members": [
+       "you",
+       "aisha",
+       "leo"
+      ]
+     }
+    }
+   ]
+  }
+ },
+ "CATALOG": {
+  "balance": {
+   "t": "Balance",
+   "i": "wallet",
+   "desc": "The full number, when you want it",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "safespend": {
+   "t": "Safe to spend",
+   "i": "safespend",
+   "desc": "What’s truly spendable, bills set aside",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "grocery": {
+   "t": "Groceries",
+   "i": "grocery",
+   "desc": "This month’s food spend, from your own payments",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "subs": {
+   "t": "Subscriptions",
+   "i": "subs",
+   "desc": "Everything on repeat, in one number",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "points": {
+   "t": "HSBC Points",
+   "i": "points",
+   "desc": "Earned for openness — never for spending",
+   "cat": "Rewards",
+   "sizes": "SWTF"
+  },
+  "cashback": {
+   "t": "Cashback",
+   "i": "cashback",
+   "desc": "Earned back on your card spending — a fact, not a nudge",
+   "cat": "Rewards",
+   "sizes": "SWTF"
+  },
+  "safetydays": {
+   "t": "Safety net",
+   "i": "safetydays",
+   "desc": "How long your cushion would carry you",
+   "cat": "Save",
+   "sizes": "SWTF"
+  },
+  "creditscore": {
+   "t": "Credit score",
+   "i": "creditscore",
+   "desc": "Quietly monitored — soft checks only",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "holiday": {
+   "t": "Next holiday",
+   "i": "holiday",
+   "desc": "Your next trip, becoming a date",
+   "cat": "Save",
+   "sizes": "SWTF"
+  },
+  "housepot": {
+   "t": "House pot",
+   "i": "housepot",
+   "desc": "A committed pot, with the rate your plan earned",
+   "cat": "Save",
+   "sizes": "SWTF"
+  },
+  "wealth": {
+   "t": "Total wealth",
+   "i": "wealth",
+   "desc": "Everything, in one honest number",
+   "cat": "Invest",
+   "sizes": "SWTF"
+  },
+  "ratio": {
+   "t": "Protected floor",
+   "i": "ratio",
+   "desc": "How much of your investing is floor-protected",
+   "cat": "Invest",
+   "sizes": "SWTF"
+  },
+  "familypot": {
+   "t": "Family pot",
+   "i": "familypot",
+   "desc": "A shared pot — everyone sees the receipts",
+   "cat": "Save",
+   "sizes": "SWTF"
+  },
+  "activity": {
+   "t": "Recent activity",
+   "i": "activity",
+   "full": true,
+   "sizes": "W"
+  },
+  "dd": {
+   "t": "Direct Debits",
+   "i": "dd",
+   "desc": "Every recurring commitment, in one number",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "efpot": {
+   "t": "Emergency fund",
+   "i": "shield",
+   "desc": "Your cushion — a pot you chose to watch",
+   "cat": "Save",
+   "sizes": "SWTF"
+  },
+  "retpot": {
+   "t": "Retirement",
+   "i": "target",
+   "desc": "The long game, quietly on course",
+   "cat": "Save",
+   "sizes": "SWTF"
+  },
+  "goldenratio": {
+   "t": "Golden Ratio",
+   "i": "goldenratio",
+   "desc": "What’s genuinely safe to invest — and what idle cash costs",
+   "cat": "Invest",
+   "sizes": "SWTF"
+  },
+  "rateswatch": {
+   "t": "Rates watch",
+   "i": "rateswatch",
+   "desc": "A standing check that your rates stay honest",
+   "cat": "Save",
+   "sizes": "SWTF"
+  },
+  "afterbills": {
+   "t": "Left after bills",
+   "i": "wallet",
+   "desc": "Balance minus the bills still to come",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "spent": {
+   "t": "Spent this month",
+   "i": "basket",
+   "desc": "The month so far — a fact, never a verdict",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "whereitgoes": {
+   "t": "Where it goes",
+   "i": "grid",
+   "desc": "What the month’s money did, by kind",
+   "cat": "Spend",
+   "sizes": "SWTF"
+  },
+  "freedom": {
+   "t": "Freedom date",
+   "i": "cal",
+   "desc": "The month your debt reaches zero",
+   "cat": "Save",
+   "sizes": "SWTF"
+  },
+  "investments": {
+   "t": "Investments",
+   "i": "trend",
+   "desc": "What’s invested and how it’s protected — guidance, never “move £X”",
+   "cat": "Invest",
+   "sizes": "SWTF"
+  }
+ },
+ "CONVO": {
+  "alex": {
+   "chips": [
+    "What can you see about me?",
+    "Is my money safe with you?",
+    "What happens if I say no?"
+   ],
+   "answers": {
+    "What can you see about me?": "Only what you’ve allowed: this account’s transactions. Everything I learn appears in <b>You</b>, with its evidence — and your corrections outrank my observations.",
+    "Is my money safe with you?": "I never move money without an agreement you’ve made, every move leaves a receipt, and one tap steps my permissions back down. No penalty, ever.",
+    "What happens if I say no?": "Nothing. Declining is always free here — the quiz, the ideas, all of it stays optional. I’ll still keep your receipts in order.",
+    "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+   }
+  },
+  "jordan": {
+   "chips": [
+    "Why is groceries under last month?",
+    "Where did my round-ups go?",
+    "Can I pause the payday rule?"
+   ],
+   "answers": {
+    "Why is groceries under last month?": "You’ve made 14 grocery payments totalling <b>£212.40</b> — last month it was £250.40 by this date. No trick to it: two fewer big shops.",
+    "Where did my round-ups go?": "<b>£22.00</b> went to your Emergency fund this month — receipt attached to each move. It’s at £430 of £1,000.",
+    "Can I pause the payday rule?": "Done in one tap, whenever you like — no penalty, nothing lost. It’s your rule; I just run it.",
+    "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+   }
+  },
+  "sam": {
+   "chips": [
+    "Am I on track for the house?",
+    "What happens when the fund is full?",
+    "Show me my receipts"
+   ],
+   "answers": {
+    "Am I on track for the house?": "Yes — <b>£6,400 of £24,000</b>, £320 each payday, on course for <b>2031</b>. The rate stays 5.1% while the plan holds.",
+    "What happens when the fund is full?": "The £40 rule stops itself at £5,000. My suggestion — point it at the house; that brings 2031 about three months closer. Your call, and I’ll ask again when it happens.",
+    "Show me my receipts": "Every automated move sits in your feed as an ordinary row — 14 to the house pot so far, each with its receipt attached.",
+    "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+   }
+  },
+  "elena": {
+   "chips": [
+    "What did Maya sign off?",
+    "Are we still on plan?",
+    "Book time with Priya"
+   ],
+   "answers": {
+    "What did Maya sign off?": "This morning’s rebalance — back to your 36% floor after the market drift. Her signature is on the receipt in your feed.",
+    "Are we still on plan?": "Yes. All four plans on track at <b>£850 a month</b>. Nothing needs you — the quarterly review with Priya covers the rest.",
+    "Book time with Priya": "Priya holds <b>Thursday 2pm</b> for you. Shall I confirm it? She’ll come with the quarter’s numbers already read.",
+    "A person, please": "Of course — Priya is your named contact and holds Thursday 2pm. For anything sooner, a Premier specialist picks up with your context in front of them."
+   }
+  }
+ },
+ "NP_INTENTS": [
+  {
+   "id": "aside",
+   "icon": "i-wallet",
+   "t": "Set some money aside",
+   "s": "No target, no pressure — it just leaves the current account"
+  },
+  {
+   "id": "goal",
+   "icon": "i-target",
+   "t": "Save for something specific",
+   "s": "A thing, a number, a date"
+  },
+  {
+   "id": "grow",
+   "icon": "i-trend",
+   "t": "Grow it long-term",
+   "s": "Investing, floor-protected, rehearsed first"
+  },
+  {
+   "id": "together",
+   "icon": "i-users",
+   "t": "Do it with other people",
+   "s": "A pot everyone can see — receipts for all"
+  },
+  {
+   "id": "auto",
+   "icon": "i-zap",
+   "t": "Automate a good habit",
+   "s": "A rule that runs quietly and leaves receipts"
+  }
+ ],
+ "NP_RECS": {
+  "aside": {
+   "title": "A simple pot",
+   "pt": "Set aside",
+   "target": null,
+   "rate": 50,
+   "icon": "wallet",
+   "copy": "Money that’s decided to wait. <b>£50 a month</b> moves itself — no target, no deadline, withdraw whenever. If it’s still undecided in autumn, I’ll ask again, gently."
+  },
+  "goal": {
+   "title": "A goal pot",
+   "pt": "New goal",
+   "target": 1000,
+   "rate": 100,
+   "icon": "target",
+   "copy": "A pot with a ring around it: <b>£1,000</b>, fed <b>£100 a month</b>, reached in ten months. Name it what you like — change the target or the date any time, both free."
+  },
+  "grow": {
+   "title": "An investment pot",
+   "pt": "First investments",
+   "target": null,
+   "rate": 150,
+   "icon": "trend",
+   "grow": true,
+   "copy": "Long-term money, working: <b>£150 a month</b>, floor-protected, rehearsed with your numbers before a penny moves. Judgement stays human-signed."
+  },
+  "together": {
+   "title": "A shared pot",
+   "pt": "Shared pot",
+   "target": 900,
+   "rate": 100,
+   "icon": "users",
+   "shared": true,
+   "copy": "One pot, several people, receipts for everyone. You choose who’s in; each person’s own money stays their own. Invites go out when you’re ready."
+  }
+ },
+ "BENEFITS": [
+  {
+   "id": "coach",
+   "t": "An hour with a financial coach",
+   "s": "A named human, your numbers, no product agenda",
+   "cost": 400,
+   "icon": "user"
+  },
+  {
+   "id": "boost",
+   "t": "Rate boost · +0.25% on one pot",
+   "s": "Three months, on the pot you choose",
+   "cost": 300,
+   "icon": "trend"
+  },
+  {
+   "id": "fx",
+   "t": "Fee-free international transfers",
+   "s": "Three months, any currency",
+   "cost": 250,
+   "icon": "swap"
+  },
+  {
+   "id": "lounge",
+   "t": "Airport lounge pass",
+   "s": "Two guests · Premier only",
+   "cost": 350,
+   "icon": "plane",
+   "premier": true
+  }
+ ],
+ "TIERS": [
+  "Everyday",
+  "Premier",
+  "Premier Elite"
+ ],
+ "QUIZ": [
+  {
+   "q": "It’s three days to payday and £60 is left. What’s your instinct?",
+   "o": [
+    "Fine — that’s roughly the plan",
+    "Check what’s due, then relax",
+    "How did that happen?"
+   ]
+  },
+  {
+   "q": "A windfall of £500 lands. First feeling?",
+   "o": [
+    "Park it before it burns a hole",
+    "Half sensible, half fun",
+    "Finally — breathing room"
+   ]
+  },
+  {
+   "q": "Money apps usually feel…",
+   "o": [
+    "Useful but nagging",
+    "Fine in small doses",
+    "Like homework"
+   ]
+  }
+ ],
+ "SAMPLES": {
+  "balance": {
+   "hv": "£2,340<span class=\"pence\">.18</span>",
+   "cap": "Current account"
+  },
+  "safespend": {
+   "hv": "£820",
+   "cap": "Until payday · bills set aside"
+  },
+  "grocery": {
+   "hv": "£212<span class=\"pence\">.40</span>",
+   "cap": "This month · £38 under last",
+   "bar": 85
+  },
+  "subs": {
+   "hv": "£58<span class=\"pence\">.90</span>",
+   "cap": "4 subscriptions / month"
+  },
+  "creditscore": {
+   "hv": "—",
+   "cap": "Learning · soft checks only",
+   "track": 34
+  },
+  "safetydays": {
+   "hv": "90 days",
+   "cap": "Of essential spending, covered"
+  },
+  "holiday": {
+   "hv": "£340",
+   "cap": "Lisbon · June at this speed"
+  },
+  "housepot": {
+   "hv": "£6,400",
+   "cap": "Of £24,000 · 5.1% earned rate",
+   "trackPct": 27
+  },
+  "wealth": {
+   "hv": "£284,600",
+   "cap": "Cash, pots and investments"
+  },
+  "ratio": {
+   "hv": "36%",
+   "cap": "Floor-protected"
+  },
+  "points": {
+   "hv": "480",
+   "cap": "For openness — never spending"
+  },
+  "cashback": {
+   "hv": "£64",
+   "cap": "2% back on card spending"
+  },
+  "familypot": {
+   "hv": "£1,860",
+   "cap": "Holiday · 3 of you",
+   "trackPct": 62
+  },
+  "dd": {
+   "hv": "£86<span class=\"pence\">.20</span>",
+   "cap": "3 Direct Debits · all landed safely"
+  },
+  "goldenratio": {
+   "hv": "£1,300",
+   "cap": "Genuinely safe to invest"
+  },
+  "efpot": {
+   "hv": "£4,200",
+   "cap": "Of £5,000 · a cushion you watch"
+  },
+  "retpot": {
+   "hv": "£34,140",
+   "cap": "Retirement · quietly on course"
+  },
+  "rateswatch": {
+   "hv": "All honest",
+   "cap": "A standing check on your rates"
+  },
+  "afterbills": {
+   "hv": "£1,738<span class=\"pence\">.62</span>",
+   "cap": "Balance minus bills to come"
+  },
+  "spent": {
+   "hv": "£1,860",
+   "cap": "This month so far"
+  },
+  "whereitgoes": {
+   "hv": "4 kinds",
+   "cap": "Bills · food · travel · the rest"
+  },
+  "freedom": {
+   "hv": "Sep 2028",
+   "cap": "The month the debt reaches zero"
+  },
+  "investments": {
+   "hv": "£12,100",
+   "cap": "36% floor-protected"
+  }
+ },
+ "WG": {
+  "alex:wef": {
+   "t": "grow",
+   "target": 300,
+   "rate": 25
+  },
+  "alex:whol": {
+   "t": "grow",
+   "target": 600,
+   "rate": 50
+  },
+  "alex:winv": {
+   "t": "grow",
+   "target": 240,
+   "rate": 20,
+   "floor": "a floor under it, always"
+  },
+  "alex:wchal": {
+   "t": "grow",
+   "target": 120,
+   "rate": 28
+  },
+  "jordan:weat": {
+   "t": "compare",
+   "v0": 430,
+   "vT": 1000,
+   "ra": 72,
+   "rb": 117,
+   "la": "As things are",
+   "lb": "With a £200 cap",
+   "delta": "3 months sooner"
+  },
+  "jordan:whol": {
+   "t": "grow",
+   "target": 600,
+   "rate": 60
+  },
+  "jordan:wnet": {
+   "t": "grow",
+   "target": 1400,
+   "rate": 72,
+   "mark": 1000,
+   "markLabel": "today’s target"
+  },
+  "jordan:wcc": {
+   "t": "compare",
+   "v0": 3600,
+   "vT": 0,
+   "ra": 150,
+   "rb": 172,
+   "la": "£150 plan",
+   "lb": "+ round-ups",
+   "delta": "3 months sooner"
+  },
+  "sam:wleft": {
+   "t": "compare",
+   "v0": 6400,
+   "vT": 24000,
+   "ra": 320,
+   "rb": 405,
+   "la": "£320/month",
+   "lb": "+ payday remainder",
+   "delta": "2030, not 2031"
+  },
+  "sam:wredir": {
+   "t": "compare",
+   "v0": 6400,
+   "vT": 24000,
+   "ra": 320,
+   "rb": 320,
+   "kinkM": 20,
+   "rb2": 360,
+   "la": "£320/month",
+   "lb": "£360 from month 20",
+   "delta": "5 months sooner"
+  },
+  "sam:wreh": {
+   "t": "dip"
+  },
+  "jordan:whouse": {
+   "t": "grow",
+   "target": 3000,
+   "rate": 150,
+   "v0": 150
+  },
+  "sam:winvest": {
+   "t": "fan",
+   "M": 60,
+   "va": 13300,
+   "vb": 15300,
+   "la": "Saved · £13,300",
+   "lb": "Invested · ~£15,300",
+   "delta": "illustration at 5%"
+  },
+  "sam:wprem": {
+   "t": "compare",
+   "v0": 6400,
+   "vT": 24000,
+   "ra": 320,
+   "rb": 340,
+   "la": "Everyday",
+   "lb": "At Premier rates",
+   "delta": "~3 months sooner · the Premier delta"
+  },
+  "sam:wshare": {
+   "t": "grow",
+   "target": 900,
+   "rate": 100
+  },
+  "elena:wleo": {
+   "t": "grow",
+   "target": 7200,
+   "rate": 100
+  },
+  "elena:wdead": {
+   "t": "compare",
+   "v0": 42000,
+   "vT": 60000,
+   "ra": 200,
+   "rb": 220,
+   "la": "No deadline",
+   "lb": "£220/month",
+   "delta": "8 months sooner"
+  },
+  "elena:wretire": {
+   "t": "dip",
+   "retire": true
+  }
+ },
+ "ICONS": {
+  "balance": "i-wallet",
+  "wallet": "i-wallet",
+  "safespend": "i-shieldcheck",
+  "grocery": "i-basket",
+  "subs": "i-repeat",
+  "points": "i-award",
+  "cashback": "i-percent",
+  "safetydays": "i-cal",
+  "creditscore": "i-gauge",
+  "holiday": "i-plane",
+  "activity": "i-receipt",
+  "chat": "i-chat",
+  "wealth": "i-trend",
+  "ratio": "i-shield",
+  "familypot": "i-users",
+  "housepot": "i-home",
+  "shield": "i-shield",
+  "target": "i-target",
+  "zap": "i-zap",
+  "users": "i-users",
+  "home": "i-home",
+  "plane": "i-plane",
+  "trend": "i-trend",
+  "dd": "i-cal",
+  "efpot": "i-shield",
+  "retpot": "i-target",
+  "goldenratio": "i-gauge",
+  "rateswatch": "i-shieldcheck",
+  "afterbills": "i-wallet",
+  "spent": "i-basket",
+  "whereitgoes": "i-grid",
+  "freedom": "i-cal",
+  "investments": "i-trend"
+ },
+ "COMP2": {
+  "alex": {
+   "now": {
+    "msg": "Your <b>£200</b> switch bonus landed. Answer <b>three quick questions</b> and this page starts working your way.",
+    "actions": [
+     [
+      "quiz",
+      "Take the 2-min quiz",
+      1
+     ],
+     [
+      "later",
+      "Later"
+     ]
+    ]
+   },
+   "nowDone": {
+    "msg": "This page is yours now. Pin the numbers that matter with <b>+ Add</b>, and drag them into your order."
+   },
+   "future": {
+    "msg": "No plans here yet — that’s normal. <b>Three easy ways to start</b> are just below."
+   },
+   "me": {
+    "msg": "Whatever this app learns about you appears here — <b>with its evidence</b>, and a button to correct it."
+   },
+   "meDone": {
+    "msg": "Your first belief is below — <b>from your answers</b>, and correctable, always."
+   },
+   "futureT": {
+    "msg": "By then this could be more than one number: a <b>cushion that sleeps well</b>, a <b>trip with a date</b>, a <b>first investment</b>. Each starts smaller than a takeaway — pick one below."
+   },
+   "you": {
+    "believe": "Nothing believed yet — <b>the quiz</b> gives me a first, correctable guess.",
+    "built": "Your first promise kept was the <b>switch itself</b>. The rest is ahead, and none of it is required.",
+    "behalf": "I can do <b>nothing</b> on your behalf yet. Every step up is yours to grant, and one tap undoes it."
+   }
+  },
+  "jordan": {
+   "now": {
+    "msg": "Groceries <b>£38 under</b> last month, and round-ups moved <b>£22</b> to your fund. The leaks are closing — receipts attached.",
+    "actions": [
+     [
+      "wwork:grocery",
+      "See the working"
+     ]
+    ]
+   },
+   "future": {
+    "msg": "<b>£222 a month</b> now works by itself across 3 commitments. Next: give the new <b>deposit pot</b> its rhythm.",
+    "actions": [
+     [
+      "wifopen:whouse",
+      "Start the rhythm",
+      1
+     ]
+    ]
+   },
+   "me": {
+    "msg": "<b>140 points</b> — every one from openness and consistency. Never from spending."
+   },
+   "you": {
+    "believe": "Two beliefs, both with evidence. <b>Correct either</b> and your word outranks mine.",
+    "built": "<b>Two badges</b>, dated — the quiz, and a budgeting habit kept since June.",
+    "behalf": "Round-ups move up to <b>£30 a month</b> by themselves. Step it down any time — no penalty."
+   }
+  },
+  "sam": {
+   "now": {
+    "msg": "<b>£320</b> reached your house pot, as agreed. And <b>£1,300</b> of your cash is genuinely safe to invest — want to see what it could do?",
+    "actions": [
+     [
+      "wwork:goldenratio",
+      "See the working"
+     ]
+    ]
+   },
+   "future": {
+    "msg": "On track at <b>£420 a month</b>. Your <b>Golden Ratio</b> says £1,300 could work harder — the ideas below show what investing, and Premier, would add.",
+    "actions": [
+     [
+      "wifopen:winvest",
+      "Start investing",
+      1
+     ]
+    ]
+   },
+   "me": {
+    "msg": "<b>480 points</b> and <b>nearly Premier</b> — the tier where the same habits compound faster."
+   },
+   "you": {
+    "believe": "A <b>Planner</b>, confirmed by you in March. One belief still open below.",
+    "built": "Three promises kept, each dated. <b>Nearly Premier</b> — the tier where the same habits compound faster.",
+    "behalf": "I move up to <b>£420 a month</b> between your pots, exactly as agreed. One tap steps it down."
+   }
+  },
+  "elena": {
+   "now": {
+    "msg": "<b>Maya signed</b> your rebalance — receipt in your feed. A dividend landed. Nothing needs you tonight."
+   },
+   "future": {
+    "msg": "Every plan is on track at <b>£850 a month</b>. The slider shows the next ten years."
+   },
+   "me": {
+    "msg": "Priya holds <b>Thursday 2pm</b> for your review. Twelve years of receipts sit behind this relationship."
+   },
+   "you": {
+    "believe": "Three people, three ways with money. <b>Switch between them</b> above — the household is all three, not an average.",
+    "built": "<b>Twelve years</b> of receipts: five badges, Premier since 2020, a decade held.",
+    "behalf": "Inside the mandate <b>you and Maya signed</b>. Stepping down is one tap; Priya is one more."
+   }
+  }
+ },
+ "milestones": {
+  "alex": {
+   "net": null,
+   "netWorth": 1180.62
+  },
+  "jordan": {
+   "ef": 8,
+   "loan": 24,
+   "house": null,
+   "netWorth": -1459.8200000000002
+  },
+  "sam": {
+   "house": 55,
+   "ef": 20,
+   "hol": 40,
+   "un": null,
+   "netWorth": 14570.44
+  },
+  "elena": {
+   "inv": null,
+   "ret": null,
+   "hup": 90,
+   "fam": 8,
+   "netWorth": 283360
+  }
+ }
+}

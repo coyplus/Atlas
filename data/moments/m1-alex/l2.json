@@ -1,0 +1,697 @@
+{
+ "$schema": "../../schema/schema.json#/definitions/L2",
+ "layer": 2,
+ "moment": {
+  "id": "m1",
+  "name": "Join",
+  "stage": "Just switched",
+  "customerId": "alex",
+  "asOf": "2026-08-20",
+  "tenure": "day 9",
+  "segment": "Everyday · new to HSBC",
+  "description": "The relationship begins. Evidence before any ask: bonus paid, Direct Debits moved, nothing automated yet."
+ },
+ "customerId": "alex",
+ "asOf": "2026-08-20",
+ "signals": [
+  {
+   "id": "sig-bonus",
+   "kind": "promise-kept",
+   "description": "The £200 switch bonus landed within the week",
+   "basis": [
+    "l1:transactions/tx-alex-004"
+   ],
+   "detectedOn": "2026-08-20"
+  },
+  {
+   "id": "sig-dd-moved",
+   "kind": "switch",
+   "description": "All three Direct Debits moved and each landed once",
+   "basis": [
+    "l1:bills/bill-energy",
+    "l1:bills/bill-phone",
+    "l1:bills/bill-streaming"
+   ],
+   "detectedOn": "2026-08-20"
+  },
+  {
+   "id": "sig-no-quiz",
+   "kind": "cold-start",
+   "description": "No personality yet; no beliefs; nothing automated",
+   "basis": [
+    "l1:behaviour/app/quizDone",
+    "l1:autonomy"
+   ],
+   "detectedOn": "2026-08-20"
+  },
+  {
+   "id": "sig-payday-8",
+   "kind": "cadence",
+   "description": "Payday in 8 days; £438.62 of bills fall before it",
+   "basis": [
+    "l1:income/inc-salary",
+    "l1:bills"
+   ],
+   "detectedOn": "2026-08-20"
+  },
+  {
+   "id": "sig-learning",
+   "kind": "data-depth",
+   "description": "Nine days of data — not enough for patterns or a credit score",
+   "basis": [
+    "l1:credit",
+    "l1:spending"
+   ],
+   "detectedOn": "2026-08-20"
+  }
+ ],
+ "insights": [
+  {
+   "id": "ins-acct-ac-cur",
+   "scope": "account:ac-cur",
+   "text": "Your £200 bonus landed here. When a pot gets a job, money moves out of this one — receipts attached.",
+   "html": "Your <b>£200</b> bonus landed here. When a pot gets a job, money moves out of this one — receipts attached.",
+   "basis": [
+    "l1:accounts/ac-cur"
+   ],
+   "momentAware": null,
+   "cta": null
+  },
+  {
+   "id": "ins-work-balance",
+   "scope": "working",
+   "text": "Every automated move would appear here as an ordinary row, receipt attached.",
+   "figure": [
+    "Balance now",
+    "£1,180.62"
+   ],
+   "rows": [
+    [
+     "Opening today",
+     "£1,000.22"
+    ],
+    [
+     "Switch bonus in",
+     "+£200.00"
+    ],
+    [
+     "Coffee & lunch",
+     "−£19.60"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  },
+  {
+   "id": "ins-work-safe-to-spend",
+   "scope": "working",
+   "text": "The bank’s first small promise: this number is honest, or it says it’s still learning.",
+   "figure": [
+    "Truly spendable",
+    "£742.00"
+   ],
+   "rows": [
+    [
+     "Balance",
+     "£1,180.62"
+    ],
+    [
+     "Bills before payday",
+     "−£438.62"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  },
+  {
+   "id": "ins-work-groceries",
+   "scope": "working",
+   "text": "Counted from card payments tagged as groceries. Correct a tag and the number follows.",
+   "figure": [
+    "This month",
+    "£61.20"
+   ],
+   "rows": [
+    [
+     "Tesco",
+     "£38.40"
+    ],
+    [
+     "Co-op",
+     "£22.80"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  },
+  {
+   "id": "ins-work-credit-score",
+   "scope": "working",
+   "text": "A promise date beats a spinner. Nothing here affects your score.",
+   "figure": [
+    "Ready",
+    "~2 weeks"
+   ],
+   "rows": [
+    [
+     "Soft check",
+     "no effect on your score"
+    ],
+    [
+     "Sources",
+     "2 of 3 connected"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  },
+  {
+   "id": "ins-work-direct-debits",
+   "scope": "working",
+   "text": "All three moved over in the switch — each one is checked the first time it runs here, receipt attached.",
+   "figure": [
+    "Each month",
+    "£86.20"
+   ],
+   "rows": [
+    [
+     "Phone",
+     "£25.00"
+    ],
+    [
+     "Energy",
+     "£48.40"
+    ],
+    [
+     "Streaming",
+     "£12.80"
+    ]
+   ],
+   "basis": [
+    "l1:transactions",
+    "l1:bills",
+    "l1:pots"
+   ]
+  }
+ ],
+ "personality": {
+  "name": null,
+  "copy": null,
+  "invite": "Take the 2-minute quiz and your money personality appears here — with its evidence.",
+  "traits": [],
+  "provenance": null,
+  "status": "unnamed",
+  "basis": [
+   "l1:behaviour/financial",
+   "l1:behaviour/app/quizDone",
+   "l1:transactions"
+  ]
+ },
+ "beliefs": [],
+ "companion": {
+  "contexts": [
+   {
+    "context": "now",
+    "message": "Your £200 switch bonus landed. Answer three quick questions and this page starts working your way.",
+    "html": "Your <b>£200</b> switch bonus landed. Answer <b>three quick questions</b> and this page starts working your way.",
+    "actions": [
+     [
+      "quiz",
+      "Take the 2-min quiz",
+      1
+     ],
+     [
+      "later",
+      "Later"
+     ]
+    ],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved",
+     "l2:signals/sig-no-quiz"
+    ]
+   },
+   {
+    "context": "nowDone",
+    "message": "This page is yours now. Pin the numbers that matter with + Add, and drag them into your order.",
+    "html": "This page is yours now. Pin the numbers that matter with <b>+ Add</b>, and drag them into your order.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved",
+     "l2:signals/sig-no-quiz"
+    ]
+   },
+   {
+    "context": "future",
+    "message": "No plans here yet — that’s normal. Three easy ways to start are just below.",
+    "html": "No plans here yet — that’s normal. <b>Three easy ways to start</b> are just below.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved",
+     "l2:signals/sig-no-quiz"
+    ]
+   },
+   {
+    "context": "me",
+    "message": "Whatever this app learns about you appears here — with its evidence, and a button to correct it.",
+    "html": "Whatever this app learns about you appears here — <b>with its evidence</b>, and a button to correct it.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved",
+     "l2:signals/sig-no-quiz"
+    ]
+   },
+   {
+    "context": "meDone",
+    "message": "Your first belief is below — from your answers, and correctable, always.",
+    "html": "Your first belief is below — <b>from your answers</b>, and correctable, always.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved",
+     "l2:signals/sig-no-quiz"
+    ]
+   },
+   {
+    "context": "futureT",
+    "message": "By then this could be more than one number: a cushion that sleeps well, a trip with a date, a first investment. Each starts smaller than a takeaway — pick one below.",
+    "html": "By then this could be more than one number: a <b>cushion that sleeps well</b>, a <b>trip with a date</b>, a <b>first investment</b>. Each starts smaller than a takeaway — pick one below.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved",
+     "l2:signals/sig-no-quiz"
+    ]
+   },
+   {
+    "context": "you.believe",
+    "message": "Nothing believed yet — the quiz gives me a first, correctable guess.",
+    "html": "Nothing believed yet — <b>the quiz</b> gives me a first, correctable guess.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved"
+    ]
+   },
+   {
+    "context": "you.built",
+    "message": "Your first promise kept was the switch itself. The rest is ahead, and none of it is required.",
+    "html": "Your first promise kept was the <b>switch itself</b>. The rest is ahead, and none of it is required.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved"
+    ]
+   },
+   {
+    "context": "you.behalf",
+    "message": "I can do nothing on your behalf yet. Every step up is yours to grant, and one tap undoes it.",
+    "html": "I can do <b>nothing</b> on your behalf yet. Every step up is yours to grant, and one tap undoes it.",
+    "actions": [],
+    "basis": [
+     "l2:signals/sig-bonus",
+     "l2:signals/sig-dd-moved"
+    ]
+   }
+  ],
+  "conversation": {
+   "chips": [
+    "What can you see about me?",
+    "Is my money safe with you?",
+    "What happens if I say no?",
+    "A person, please"
+   ],
+   "answers": {
+    "What can you see about me?": "Only what you’ve allowed: this account’s transactions. Everything I learn appears in You, with its evidence — and your corrections outrank my observations.",
+    "Is my money safe with you?": "I never move money without an agreement you’ve made, every move leaves a receipt, and one tap steps my permissions back down. No penalty, ever.",
+    "What happens if I say no?": "Nothing. Declining is always free here — the quiz, the ideas, all of it stays optional. I’ll still keep your receipts in order.",
+    "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+   },
+   "answersHtml": {
+    "What can you see about me?": "Only what you’ve allowed: this account’s transactions. Everything I learn appears in <b>You</b>, with its evidence — and your corrections outrank my observations.",
+    "Is my money safe with you?": "I never move money without an agreement you’ve made, every move leaves a receipt, and one tap steps my permissions back down. No penalty, ever.",
+    "What happens if I say no?": "Nothing. Declining is always free here — the quiz, the ideas, all of it stays optional. I’ll still keep your receipts in order.",
+    "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+   }
+  }
+ },
+ "stories": [
+  {
+   "id": "a-quiz",
+   "state": "new",
+   "title": "Your money personality",
+   "claim": "Discover your money habits and a way forward that feels like you.",
+   "aiLine": "Three questions reveal your money personality: how you plan, find a rhythm and make room for spontaneity. You can review and correct your profile. Completing the quiz earns 25 HSBC Points once.",
+   "figure": "Your money. Your way.",
+   "rows": [
+    [
+     "Your money style",
+     "A profile shaped by your answers",
+     "Personal"
+    ],
+    [
+     "Your habits",
+     "See your planning, rhythm and spontaneity",
+     "3 traits"
+    ],
+    [
+     "HSBC Points",
+     "Awarded once when you complete the quiz",
+     "25"
+    ]
+   ],
+   "chart": false,
+   "verb": "Discover your money personality",
+   "residue": "Your money profile is ready to review.",
+   "action": "quiz",
+   "cta": "Discover my style",
+   "basis": [
+    "l2:signals/sig-no-quiz"
+   ],
+   "trigger": "Invite while Alex has not completed the money personality quiz"
+  },
+  {
+   "id": "a1",
+   "state": "new",
+   "title": "Direct Debits",
+   "claim": "All three Direct Debits moved over — and landed.",
+   "aiLine": "Your three Direct Debits came with you and each landed safely. One number can watch them all.",
+   "aiLineHtml": "Your <b>three Direct Debits</b> came with you and each landed safely. One number can watch them all.",
+   "figure": "£86.20",
+   "rows": [
+    [
+     "Phone",
+     "monthly",
+     "£25.00"
+    ],
+    [
+     "Energy",
+     "monthly",
+     "£48.40"
+    ],
+    [
+     "Streaming",
+     "monthly",
+     "£12.80"
+    ]
+   ],
+   "chart": true,
+   "verb": "Pin the number that watches them.",
+   "residue": "Direct Debits · pinned to Now",
+   "action": "pin:dd",
+   "cta": "Pin it",
+   "basis": [
+    "l2:signals/sig-dd-moved"
+   ],
+   "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+  },
+  {
+   "id": "a2",
+   "state": "pending",
+   "title": "Safe to spend",
+   "claim": "Payday is in 8 days. One number says what’s truly spendable.",
+   "aiLine": "Bills set aside first: £742 is genuinely spendable until payday.",
+   "aiLineHtml": "Bills set aside first: <b>£742</b> is genuinely spendable until payday.",
+   "figure": "£742",
+   "rows": [
+    [
+     "Balance",
+     "today",
+     "£1,180.62"
+    ],
+    [
+     "Bills before payday",
+     "set aside",
+     "−£438.62"
+    ]
+   ],
+   "chart": false,
+   "verb": "Keep that number on your page.",
+   "residue": "Safe to spend · pinned to Now",
+   "action": "pin:safespend",
+   "cta": "Pin it",
+   "basis": [
+    "l1:transactions"
+   ],
+   "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+  }
+ ],
+ "whatIfs": [
+  {
+   "id": "wef",
+   "type": "create",
+   "title": "An emergency fund",
+   "summary": "£25 each payday → £300 within a year.",
+   "explainer": "£25 a month builds a £300 cushion by next summer. Small on purpose — it just has to start.",
+   "cta": null,
+   "effect": {
+    "newPot": {
+     "name": "Emergency fund",
+     "target": 300,
+     "monthlyRate": 25,
+     "openingBalance": 0,
+     "growthAnnual": null,
+     "icon": "shield"
+    }
+   },
+   "graph": {
+    "t": "grow",
+    "target": 300,
+    "rate": 25
+   },
+   "canCommit": true,
+   "basis": [
+    "l1:pots",
+    "l1:spending"
+   ]
+  },
+  {
+   "id": "whol",
+   "type": "create",
+   "title": "A holiday pot",
+   "summary": "£50 a month → £600 by next summer.",
+   "explainer": "£50 a month reaches £600 in a year. The slider shows it growing.",
+   "cta": null,
+   "effect": {
+    "newPot": {
+     "name": "Holiday",
+     "target": 600,
+     "monthlyRate": 50,
+     "openingBalance": 0,
+     "growthAnnual": null,
+     "icon": "plane"
+    }
+   },
+   "graph": {
+    "t": "grow",
+    "target": 600,
+    "rate": 50
+   },
+   "canCommit": true,
+   "basis": [
+    "l1:pots",
+    "l1:spending"
+   ]
+  },
+  {
+   "id": "winv",
+   "type": "create",
+   "title": "A first investment",
+   "summary": "£20 a month, with a protected floor.",
+   "explainer": "£20 a month, floor-protected — rehearsed with your numbers before a penny moves.",
+   "cta": null,
+   "effect": {
+    "newPot": {
+     "name": "First investment",
+     "target": 240,
+     "monthlyRate": 20,
+     "openingBalance": 0,
+     "growthAnnual": null,
+     "icon": "trend"
+    }
+   },
+   "graph": {
+    "t": "grow",
+    "target": 240,
+    "rate": 20,
+    "floor": "a floor under it, always"
+   },
+   "canCommit": true,
+   "basis": [
+    "l1:pots",
+    "l1:spending"
+   ]
+  },
+  {
+   "id": "wchal",
+   "type": "create",
+   "title": "Try a savings challenge",
+   "summary": "Round-up October — playful, cancel any time.",
+   "explainer": "Every card payment rounds up to the pound for one month — people typically gather ~£28. A game with a receipt, and quitting is free.",
+   "cta": null,
+   "effect": {
+    "newPot": {
+     "name": "Round-up October",
+     "target": 120,
+     "monthlyRate": 28,
+     "openingBalance": 0,
+     "growthAnnual": null,
+     "icon": "zap"
+    }
+   },
+   "graph": {
+    "t": "grow",
+    "target": 120,
+    "rate": 28
+   },
+   "canCommit": true,
+   "basis": [
+    "l1:pots",
+    "l1:spending"
+   ]
+  }
+ ],
+ "projections": {
+  "horizonMonths": 120,
+  "perPot": [],
+  "ruleEnds": [],
+  "netWorth": [
+   {
+    "month": 0,
+    "net": 1180.62,
+    "label": "Today"
+   },
+   {
+    "month": 12,
+    "net": 1180.62,
+    "label": "A projection, not a promise"
+   },
+   {
+    "month": 24,
+    "net": 1180.62,
+    "label": "A projection, not a promise"
+   },
+   {
+    "month": 60,
+    "net": 1180.62,
+    "label": "A projection, not a promise"
+   },
+   {
+    "month": 120,
+    "net": 1180.62,
+    "label": "A projection, not a promise"
+   }
+  ],
+  "honestyLine": "A projection, not a promise"
+ },
+ "nextBestActions": [
+  {
+   "id": "nba-now-quiz",
+   "context": "now",
+   "action": "quiz",
+   "label": "Take the 2-min quiz",
+   "primary": true,
+   "basis": [
+    "l2:signals/sig-bonus",
+    "l2:signals/sig-dd-moved",
+    "l2:signals/sig-no-quiz"
+   ]
+  },
+  {
+   "id": "nba-now-later",
+   "context": "now",
+   "action": "later",
+   "label": "Later",
+   "primary": false,
+   "basis": [
+    "l2:signals/sig-bonus",
+    "l2:signals/sig-dd-moved",
+    "l2:signals/sig-no-quiz"
+   ]
+  }
+ ],
+ "recommendations": [
+  {
+   "id": "rec-widget-safespend",
+   "kind": "module-suggestion",
+   "moduleId": "safespend",
+   "why": "Payday is in 8 days. Want one number that says what’s truly spendable?",
+   "basis": [
+    "l1:spending",
+    "l1:bills",
+    "l1:income"
+   ]
+  },
+  {
+   "id": "rec-widget-dd",
+   "kind": "module-suggestion",
+   "moduleId": "dd",
+   "why": "Your Direct Debits just moved house. One number watches all of them.",
+   "basis": [
+    "l1:spending",
+    "l1:bills",
+    "l1:income"
+   ]
+  },
+  {
+   "id": "rec-widget-creditscore",
+   "kind": "module-suggestion",
+   "moduleId": "creditscore",
+   "why": "Monitored with a soft check. Nothing affects your score.",
+   "basis": [
+    "l1:spending",
+    "l1:bills",
+    "l1:income"
+   ]
+  }
+ ],
+ "opportunities": [
+  {
+   "id": "opp-safe",
+   "text": "One honest number for what's truly spendable until payday: £742",
+   "basis": [
+    "l2:signals/sig-payday-8"
+   ]
+  },
+  {
+   "id": "opp-cushion",
+   "text": "£25 each payday builds a £300 cushion within a year",
+   "basis": [
+    "l2:signals/sig-no-quiz"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "id": "risk-thin-data",
+   "text": "Nine days of data: any pattern claim would be premature — the app says 'learning'",
+   "severity": "info",
+   "basis": [
+    "l2:signals/sig-learning"
+   ]
+  }
+ ],
+ "householdInsights": [],
+ "rewardsExplanation": {
+  "points": "Never from spending, checking the app, or trading. That’s a rule, not a setting.",
+  "cashback": null
+ },
+ "traceability": {
+  "convention": "basis[] holds refs of the form l1:<collection>/<id> (or a path) and l2:<collection>/<id>; every generated item names what it rests on"
+ }
+}

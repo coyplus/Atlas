@@ -1,0 +1,353 @@
+/* Final Now pass. Explicit scope leaves Future and You presentation untouched. */
+body[data-direction='vanilla'] .phone[data-active-tab='now'] {
+  --now-glass: color-mix(in srgb, var(--surface) 86%, transparent);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] :is(.tabbar, .recap-player) {
+  background: var(--now-glass);
+  backdrop-filter: blur(18px) saturate(115%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  border-color: color-mix(in srgb, var(--ink) 9%, transparent);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .support-bar.ai-card {
+  background: color-mix(in srgb, var(--surface) 93%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--elevation-companion);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .support-avatar {
+  position: relative;
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  [data-attention='unread']
+  .support-avatar::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 3px var(--surface);
+  pointer-events: none;
+}
+/* Routine thinking stays neutral. An unread benefit change uses the same travelling rim, in red. */
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .is-thinking .support-bar::after {
+  background: conic-gradient(
+    from var(--support-angle),
+    transparent 0deg,
+    var(--muted) 55deg,
+    transparent 125deg
+  );
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .is-attention-pulse
+  .support-bar::after {
+  background: conic-gradient(
+    from var(--support-angle),
+    transparent 0deg,
+    var(--red) 35deg,
+    #fff 55deg,
+    var(--red) 80deg,
+    transparent 125deg
+  );
+  opacity: 1;
+  animation: now-attention-breathe 8s ease-in-out infinite;
+}
+@keyframes now-attention-breathe {
+  0% {
+    --support-angle: 0deg;
+    opacity: 0.55;
+  }
+  50% {
+    --support-angle: 180deg;
+    opacity: 1;
+  }
+  100% {
+    --support-angle: 360deg;
+    opacity: 0.55;
+  }
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .is-attention-pulse .support-bar {
+  box-shadow:
+    0 10px 24px -12px #0005,
+    0 0 18px -7px color-mix(in srgb, var(--red) 38%, transparent);
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  :is(.quick-action, .action-tile)
+  > span {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--surface) 60%, var(--soft)),
+    var(--soft)
+  );
+  border: 1px solid color-mix(in srgb, var(--ink) 4%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--surface) 75%, transparent);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .products-grid .icon,
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .product-mark {
+  color: var(--ink);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .shortcut-instruction:empty {
+  display: none;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .primary-actions {
+  padding-top: 18px;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .catalogue-heading:first-child {
+  margin-top: 0;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .overview-kicker {
+  justify-content: flex-end;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .overview-footnote {
+  font-size: 11px;
+  line-height: 1.5;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .container-budget {
+  margin-top: 22px;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .container-budget > p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .container-budget .progress {
+  height: 5px;
+  border-radius: 4px;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .progress i {
+  background: var(--ink);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .number-detail > .number-detail-note {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 10px 0 24px;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .number-visual.is-expanded {
+  padding: 20px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .number-visual.is-expanded[data-visual='ring'] {
+  grid-template-columns: 90px minmax(0, 1fr);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .number-visual.is-expanded h3 {
+  font-weight: 500;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .number-visual.is-expanded .support {
+  font-size: 11px;
+  color: var(--muted);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .number-legend {
+  row-gap: 8px;
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .size-W
+  .number-visual[data-visual='split']
+  .number-legend {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 16px;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .container-section {
+  margin-top: 32px;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .arrangement-benefit strong {
+  text-wrap: balance;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .agreement-sheet > header {
+  background: var(--now-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 7%, transparent);
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .story-mark.is-accent
+  .story-mark-track
+  i,
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .story-target-bar i,
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .story-waterfall button:last-child i {
+  background: var(--story-ink);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .story-split button:first-child,
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .story-split-key .part-0 {
+  background: var(--story-ink);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .story-split button:nth-child(2),
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .story-split-key .part-1 {
+  background: color-mix(in srgb, var(--story-ink) 55%, var(--story-ground));
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-direction='vanilla'] .phone[data-active-tab='now'] .is-attention-pulse .support-bar,
+  body[data-direction='vanilla']
+    .phone[data-active-tab='now']
+    .is-attention-pulse
+    .support-bar::after {
+    animation: none;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  body[data-direction='vanilla']
+    .phone[data-active-tab='now']
+    :is(.tabbar, .recap-player, .support-bar.ai-card, .agreement-sheet > header) {
+    background: var(--surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .number-goal {
+  margin-top: 18px;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .number-goal > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .number-goal .progress {
+  margin-top: 8px;
+}
+/* Feather the scroll edge without covering the navigation hit targets. */
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .tabbar {
+  position: relative;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='now'] .tabbar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 14px;
+  background: linear-gradient(transparent, var(--now-glass));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  mask-image: linear-gradient(transparent, #000);
+  pointer-events: none;
+}
+@media (prefers-reduced-transparency: reduce) {
+  body[data-direction='vanilla'] .phone[data-active-tab='now'] .tabbar::after {
+    display: none;
+  }
+}
+
+/* Shared phone chrome: readable glass in every tab, sheet and Story. */
+body[data-direction] .phone[data-active-tab] .statusbar {
+  background: color-mix(in srgb, var(--canvas) 28%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(115%);
+  backdrop-filter: blur(16px) saturate(115%);
+  border: 0;
+}
+/* The companion already supplies a continuous glass plane through the status area.
+   Avoid a second rectangular filter that creates a visible seam at its lower edge. */
+body[data-direction='vanilla'] .phone:has(#support-dock:not([hidden])) .statusbar {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+body[data-direction] .phone.has-story-plate[data-active-tab] .statusbar {
+  background: #15191826;
+  color: #fff;
+}
+body[data-direction] .phone[data-active-tab] .tabbar {
+  border-top: 1px solid color-mix(in srgb, var(--ink) 13%, transparent);
+  box-shadow: 0 -5px 18px -10px color-mix(in srgb, var(--ink) 25%, transparent);
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  .module[data-attention='benefit-changed'] {
+  border-color: color-mix(in srgb, var(--red) 45%, var(--line));
+}
+.number-attention {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 4px;
+  padding: 3px 6px;
+  margin-top: 8px;
+  border-radius: 5px;
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 7%, var(--surface));
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.number-attention .icon {
+  width: 12px;
+  height: 12px;
+}
+body[data-direction='vanilla']
+  .phone[data-active-tab='now']
+  [data-attention='unread']
+  .support-avatar::after {
+  background: var(--red);
+}
+.story-profile {
+  display: grid;
+  margin-top: 26px;
+}
+.story-profile > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+.story-profile-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--soft);
+}
+.story-profile strong {
+  font-size: 17px;
+  font-weight: 500;
+}
+.story-profile p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.story-profile > div > b {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+@media (prefers-reduced-transparency: reduce) {
+  body[data-direction] .phone[data-active-tab] .statusbar {
+    background: var(--canvas);
+    backdrop-filter: none;
+  }
+  body[data-direction] .phone.has-story-plate[data-active-tab] .statusbar {
+    background: #1b201f;
+  }
+}
+
+/* The header scrolls away below the glass, never through its status text. */
+body[data-direction='vanilla'] .app-header {
+  clip-path: inset(var(--header-scroll, 0px) 0 0 0);
+}
+.number-ideas-badge {
+  font-size: 12px;
+  gap: 6px;
+  padding: 5px 9px;
+  min-height: 26px;
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 8%, var(--surface));
+}
+.number-ideas-badge .icon {
+  width: 16px;
+  height: 16px;
+}

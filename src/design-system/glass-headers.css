@@ -1,0 +1,71 @@
+/* One translucent navigation plane, feathered into the scrolling content.
+   The status area and title share the same backdrop instead of two solid strips. */
+body[data-direction='vanilla'] .phone .sheet > .sheet-header {
+  background: transparent;
+  isolation: isolate;
+  box-shadow: none;
+  border-bottom: 0;
+}
+body[data-direction='vanilla'] .phone .sheet.level-two > .sheet-header {
+  margin-bottom: -58px;
+}
+body[data-direction='vanilla'] .phone .sheet > .sheet-header::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0 0 -24px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    color-mix(in srgb, var(--surface) 18%, transparent),
+    color-mix(in srgb, var(--surface) 6%, transparent)
+  );
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(115%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(115%);
+  mask-image: linear-gradient(#000 calc(100% - 24px), transparent);
+  -webkit-mask-image: linear-gradient(#000 calc(100% - 24px), transparent);
+}
+body[data-direction='vanilla'] .phone .sheet.level-two > .sheet-header::before {
+  top: calc(-1 * var(--status-height, 36px));
+}
+body[data-direction='vanilla']
+  .phone
+  .sheet.level-two:has(.toolkit-home, .checkin-saved-detail, .checkin-saved-list)
+  > .sheet-body {
+  padding-top: 58px;
+}
+body[data-direction='vanilla'] .phone .app-header {
+  background: transparent;
+  -webkit-backdrop-filter: blur(16px) saturate(115%);
+  backdrop-filter: blur(16px) saturate(115%);
+  box-shadow: none;
+}
+body[data-direction='vanilla'] .phone .agreement-sheet > header {
+  background: color-mix(in srgb, var(--surface) 35%, transparent);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(115%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(115%);
+  border-bottom: 0;
+}
+/* Story and conversation controls retain their own contrast context. */
+body[data-direction='vanilla'] .phone .story-shell > .sheet-header::before {
+  background: #0002;
+}
+@media (prefers-reduced-transparency: reduce) {
+  body[data-direction='vanilla'] .phone .sheet > .sheet-header::before,
+  body[data-direction='vanilla'] .phone .app-header,
+  body[data-direction='vanilla'] .phone .agreement-sheet > header {
+    background: var(--canvas);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+/* Detail screens already have navigation glass. A second, clipped glass slab
+   behind the companion created a hard seam immediately below the title. */
+body[data-direction='vanilla'] .phone[data-support-surface='detail'] #support-slot::before {
+  display: none;
+}
+body[data-direction='vanilla'] .phone[data-support-surface='detail'] .support-bar.ai-card {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}

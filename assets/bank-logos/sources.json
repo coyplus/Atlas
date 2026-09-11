@@ -1,0 +1,30 @@
+[
+  {
+    "bank": "monzo",
+    "url": "https://static-assets.monzo.com/monzo-com/3b4a74510bc19e185a118c14b82f2311d6eab2c6/_next/static/media/favicon.4c6ebc6f.svg",
+    "file": "monzo.svg",
+    "mime": "image/svg+xml",
+    "sha256": "ac1aa7a41d4f28504811029e77948c698d188a7f43d8dfa6b97aadf4ca2ca430"
+  },
+  {
+    "bank": "natwest",
+    "url": "https://www.natwest.com/content/dam/championlogos/nw-champ-smartbanner.png",
+    "file": "natwest.png",
+    "mime": "image/png",
+    "sha256": "8bc4bcf8871fdf5ecbebc3d171ac57f2ea2ca9eac2b343affae423813ecf0738"
+  },
+  {
+    "bank": "starling",
+    "url": "https://www.starlingbank.com/favicon.ico",
+    "file": "starling.ico",
+    "mime": "image/vnd.microsoft.icon",
+    "sha256": "8cbea0093b1831b77b9c02b54cf015dca7fa9999f29dc1fce747565f0da18684"
+  },
+  {
+    "bank": "hsbc",
+    "url": "https://www.hsbc.co.uk/etc.clientlibs/dpws/clientlibs-public/clientlib-site/resources/favicons/apple-touch-icon.png",
+    "file": "hsbc.png",
+    "mime": "image/png",
+    "sha256": "d258f7e2ad662d73ec5c4a2c9e0b7d514b353df351bb8880b9b4731682788766"
+  }
+]

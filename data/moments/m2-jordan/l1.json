@@ -1,0 +1,1159 @@
+{
+ "$schema": "../../schema/schema.json#/definitions/L1",
+ "layer": 1,
+ "moment": {
+  "id": "m2",
+  "name": "Stabilise",
+  "stage": "Breaking the cycle · first goals",
+  "customerId": "jordan",
+  "asOf": "2026-09-16",
+  "tenure": "month 7",
+  "segment": "Everyday",
+  "description": "Leaks closing, a fund building, a car loan on plan, a house-deposit pot just started with no rules."
+ },
+ "asOf": "2026-09-16",
+ "customer": {
+  "id": "jordan",
+  "firstName": "Jordan",
+  "age": 29,
+  "birthYear": 1997,
+  "occupation": "Team lead, logistics",
+  "employer": "Acme Ltd",
+  "city": "Leeds",
+  "joined": "2026-02-10",
+  "tenureMonths": 7,
+  "segment": "Everyday",
+  "tier": "Everyday"
+ },
+ "household": {
+  "id": "hh-jordan",
+  "members": [
+   {
+    "id": "jordan",
+    "name": "Jordan",
+    "relation": "self",
+    "age": 29,
+    "initials": "J"
+   },
+   {
+    "id": "ben",
+    "name": "Ben",
+    "relation": "flatmate",
+    "age": 28,
+    "initials": "B"
+   },
+   {
+    "id": "nia",
+    "name": "Nia",
+    "relation": "flatmate",
+    "age": 29,
+    "initials": "N"
+   }
+  ],
+  "consentModel": "Only the Flat utilities pot is shared; each flatmate keeps other accounts private."
+ },
+ "productsHeld": [
+  {
+   "productId": "current",
+   "since": "2026-02-10"
+  },
+  {
+   "productId": "classic-card",
+   "since": "2026-02-10"
+  },
+  {
+   "productId": "pot",
+   "count": 3
+  },
+  {
+   "productId": "points"
+  }
+ ],
+ "accounts": [
+  {
+   "id": "ac-cur",
+   "productId": "current",
+   "name": "HSBC Current",
+   "kind": "current",
+   "masked": "4472",
+   "balance": 2340.18,
+   "owed": null,
+   "description": "Everyday spending"
+  },
+  {
+   "id": "ac-cc",
+   "productId": "classic-card",
+   "name": "Credit card",
+   "kind": "credit",
+   "masked": "3307",
+   "balance": null,
+   "owed": 780.0,
+   "description": "Credit card",
+   "limit": 2000,
+   "cardScheme": "Visa",
+   "paidInFull": false,
+   "interestMonthly": 18.9,
+   "statement": {
+    "minimum": 60,
+    "due": "2026-09-30",
+    "periodStart": "2026-09-01"
+   }
+  }
+ ],
+ "pots": [
+  {
+   "id": "ef",
+   "name": "Emergency fund",
+   "kind": "goal",
+   "balance": 430.0,
+   "target": 1000,
+   "monthlyRate": 72,
+   "isDebt": false,
+   "growthAnnual": null,
+   "stopsAtTarget": true,
+   "description": "£72/month · round-ups + payday",
+   "terms": null,
+   "members": null,
+   "rules": [
+    "r-ef-payday",
+    "r-ef-roundups"
+   ],
+   "createdOn": "2026-03"
+  },
+  {
+   "id": "loan",
+   "name": "Car loan",
+   "kind": "loan",
+   "balance": 3600.0,
+   "target": null,
+   "monthlyRate": -150,
+   "isDebt": true,
+   "growthAnnual": null,
+   "stopsAtTarget": true,
+   "description": "£150/month · gone Sep 2028",
+   "terms": [
+    [
+     "Left",
+     "£3,600"
+    ],
+    [
+     "Plan",
+     "£150 a month · ends Sep 2028"
+    ],
+    [
+     "Overpay",
+     "any time · free"
+    ]
+   ],
+   "members": null,
+   "rules": [
+    "r-loan-repay"
+   ],
+   "createdOn": "2024-09"
+  },
+  {
+   "id": "house",
+   "name": "House deposit",
+   "kind": "goal",
+   "balance": 150.0,
+   "target": 3000,
+   "monthlyRate": 0,
+   "isDebt": false,
+   "growthAnnual": null,
+   "stopsAtTarget": false,
+   "description": "Just started — no rules yet",
+   "terms": null,
+   "members": null,
+   "rules": [],
+   "createdOn": "2026-09-13"
+  },
+  {
+   "id": "grocery-wallet",
+   "name": "Grocery budget",
+   "kind": "budget",
+   "balance": 69.7,
+   "target": null,
+   "budgetLimit": 320,
+   "budgetAlert": 80,
+   "isDebt": false,
+   "stopsAtTarget": false,
+   "rules": [],
+   "members": null,
+   "spendingCategory": "groceries",
+   "description": "Money set aside to spend",
+   "arrangementState": {
+    "merchant": "Tesco",
+    "merchantSince": "2026-08-01"
+   }
+  },
+  {
+   "id": "social",
+   "name": "Eating out budget",
+   "kind": "budget",
+   "balance": 69,
+   "target": null,
+   "budgetLimit": 200,
+   "budgetAlert": 80,
+   "isDebt": false,
+   "stopsAtTarget": false,
+   "rules": [],
+   "members": null,
+   "spendingCategory": "eating-out",
+   "description": "Money set aside to spend"
+  },
+  {
+   "id": "flat",
+   "name": "Flat utilities",
+   "kind": "budget",
+   "balance": 180,
+   "target": null,
+   "budgetLimit": 450,
+   "budgetAlert": 80,
+   "isDebt": false,
+   "stopsAtTarget": false,
+   "rules": [],
+   "members": [
+    {
+     "memberId": "jordan",
+     "role": "Owner"
+    },
+    {
+     "memberId": "ben",
+     "role": "Contributor"
+    },
+    {
+     "memberId": "nia",
+     "role": "Contributor"
+    }
+   ],
+   "spendingCategory": "utilities",
+   "description": "Money set aside to spend"
+  }
+ ],
+ "rules": [
+  {
+   "id": "r-ef-payday",
+   "potId": "ef",
+   "type": "payday-fixed",
+   "amount": 50,
+   "source": "ac-cur",
+   "since": "2026-02",
+   "active": true,
+   "stopsAt": 1000
+  },
+  {
+   "id": "r-ef-roundups",
+   "potId": "ef",
+   "type": "round-up",
+   "amount": 22,
+   "source": "ac-cur",
+   "since": "2026-02",
+   "active": true,
+   "amountIsAverage": true,
+   "limitMonthly": 30,
+   "stopsAt": 1000
+  },
+  {
+   "id": "r-loan-repay",
+   "potId": "loan",
+   "type": "repayment",
+   "amount": 150,
+   "source": "ac-cur",
+   "since": "2024-09",
+   "active": true,
+   "dayOfMonth": 1,
+   "overpayFree": true
+  }
+ ],
+ "income": [
+  {
+   "id": "inc-salary",
+   "source": "Salary",
+   "employer": "Acme Ltd",
+   "netMonthly": 2200.0,
+   "frequency": "monthly",
+   "payDay": 28,
+   "lastPaid": "2026-08-28",
+   "nextPay": "2026-09-28"
+  }
+ ],
+ "bills": [
+  {
+   "id": "bill-rent",
+   "name": "Rent",
+   "category": "housing",
+   "amount": 950.0,
+   "frequency": "monthly",
+   "day": 1,
+   "method": "standing order"
+  },
+  {
+   "id": "bill-energy",
+   "name": "Energy",
+   "category": "utilities",
+   "amount": 168.28,
+   "frequency": "monthly",
+   "day": 5,
+   "method": "Direct Debit"
+  },
+  {
+   "id": "bill-water",
+   "name": "Water",
+   "category": "utilities",
+   "amount": 46.0,
+   "frequency": "monthly",
+   "day": 5,
+   "method": "Direct Debit"
+  },
+  {
+   "id": "bill-carloan",
+   "name": "Car loan repayment",
+   "category": "debt",
+   "amount": 150.0,
+   "frequency": "monthly",
+   "day": 1,
+   "method": "Direct Debit",
+   "potId": "loan"
+  },
+  {
+   "id": "bill-carins",
+   "name": "Car insurance",
+   "category": "insurance",
+   "amount": 75.0,
+   "frequency": "monthly",
+   "day": 1,
+   "method": "Direct Debit"
+  },
+  {
+   "id": "bill-netflix",
+   "name": "Netflix",
+   "category": "subscriptions",
+   "amount": 17.99,
+   "frequency": "monthly",
+   "day": 12,
+   "method": "card"
+  },
+  {
+   "id": "bill-spotify",
+   "name": "Spotify",
+   "category": "subscriptions",
+   "amount": 11.99,
+   "frequency": "monthly",
+   "day": 12,
+   "method": "card"
+  },
+  {
+   "id": "bill-icloud",
+   "name": "iCloud",
+   "category": "subscriptions",
+   "amount": 2.99,
+   "frequency": "monthly",
+   "day": 15,
+   "method": "card"
+  },
+  {
+   "id": "bill-gym",
+   "name": "Gym",
+   "category": "subscriptions",
+   "amount": 25.93,
+   "frequency": "monthly",
+   "day": 15,
+   "method": "Direct Debit",
+   "note": "Unused for 6 weeks once — asked, not lectured"
+  },
+  {
+   "id": "bill-cardmin",
+   "name": "HSBC Classic — minimum payment",
+   "category": "debt",
+   "amount": 60.0,
+   "frequency": "monthly",
+   "day": 1,
+   "method": "Direct Debit",
+   "accountId": "ac-cc"
+  }
+ ],
+ "transactions": [
+  {
+   "id": "tx-jordan-001",
+   "date": "2026-08-28",
+   "ledger": "ac-cur",
+   "counterparty": "Acme Ltd — salary",
+   "category": "income",
+   "amount": 2200.0,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-002",
+   "date": "2026-08-28",
+   "ledger": "ac-cur",
+   "counterparty": "Payday move → Emergency fund",
+   "category": "rule",
+   "amount": -50.0,
+   "direction": "out",
+   "ruleId": "r-ef-payday",
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-003",
+   "date": "2026-09-01",
+   "ledger": "grocery-wallet",
+   "counterparty": "Tesco",
+   "category": "groceries",
+   "amount": -86.2,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-004",
+   "date": "2026-09-01",
+   "ledger": "ac-cur",
+   "counterparty": "Rent",
+   "category": "housing",
+   "amount": -950.0,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-005",
+   "date": "2026-09-01",
+   "ledger": "ac-cur",
+   "counterparty": "Car loan repayment",
+   "category": "debt",
+   "amount": -150.0,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-006",
+   "date": "2026-09-01",
+   "ledger": "ac-cur",
+   "counterparty": "Car insurance",
+   "category": "insurance",
+   "amount": -75.0,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-007",
+   "date": "2026-09-01",
+   "ledger": "ac-cur",
+   "counterparty": "HSBC Classic — minimum payment",
+   "category": "debt",
+   "amount": -60.0,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-008",
+   "date": "2026-09-02",
+   "ledger": "grocery-wallet",
+   "counterparty": "Lidl",
+   "category": "groceries",
+   "amount": -64.1,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-009",
+   "date": "2026-09-03",
+   "ledger": "social",
+   "counterparty": "Nando's",
+   "category": "eating-out",
+   "amount": -28.4,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-010",
+   "date": "2026-09-05",
+   "ledger": "ac-cur",
+   "counterparty": "Energy",
+   "category": "utilities",
+   "amount": -168.28,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-011",
+   "date": "2026-09-05",
+   "ledger": "ac-cur",
+   "counterparty": "Water",
+   "category": "utilities",
+   "amount": -46.0,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-012",
+   "date": "2026-09-06",
+   "ledger": "ac-cur",
+   "counterparty": "Co-op",
+   "category": "groceries",
+   "amount": -31.4,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-013",
+   "date": "2026-09-06",
+   "ledger": "ac-cur",
+   "counterparty": "Fuel",
+   "category": "transport",
+   "amount": -52.0,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-014",
+   "date": "2026-09-07",
+   "ledger": "social",
+   "counterparty": "Deliveroo",
+   "category": "eating-out",
+   "amount": -24.9,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-015",
+   "date": "2026-09-09",
+   "ledger": "ac-cur",
+   "counterparty": "Local grocer",
+   "category": "groceries",
+   "amount": -30.7,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-016",
+   "date": "2026-09-10",
+   "ledger": "social",
+   "counterparty": "Pizza Express",
+   "category": "eating-out",
+   "amount": -41.5,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-017",
+   "date": "2026-09-12",
+   "ledger": "ac-cur",
+   "counterparty": "Netflix",
+   "category": "subscriptions",
+   "amount": -17.99,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-018",
+   "date": "2026-09-12",
+   "ledger": "ac-cur",
+   "counterparty": "Spotify",
+   "category": "subscriptions",
+   "amount": -11.99,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-019",
+   "date": "2026-09-13",
+   "ledger": "social",
+   "counterparty": "Pub",
+   "category": "eating-out",
+   "amount": -36.2,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-020",
+   "date": "2026-09-15",
+   "ledger": "ac-cur",
+   "counterparty": "iCloud",
+   "category": "subscriptions",
+   "amount": -2.99,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-021",
+   "date": "2026-09-15",
+   "ledger": "ac-cur",
+   "counterparty": "Gym",
+   "category": "subscriptions",
+   "amount": -25.93,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-022",
+   "date": "2026-09-15",
+   "ledger": "ac-cur",
+   "counterparty": "Round-ups → Emergency fund (month to date)",
+   "category": "rule",
+   "amount": -22.0,
+   "direction": "out",
+   "ruleId": "r-ef-roundups",
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-023",
+   "date": "2026-09-01",
+   "ledger": "ac-cc",
+   "counterparty": "Interest",
+   "category": "interest",
+   "amount": 18.9,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-024",
+   "date": "2026-09-01",
+   "ledger": "ac-cc",
+   "counterparty": "Minimum payment received",
+   "category": "payment",
+   "amount": -60.0,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-025",
+   "date": "2026-09-01",
+   "ledger": "loan",
+   "counterparty": "Repayment",
+   "category": "repayment",
+   "amount": -150.0,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-026",
+   "date": "2026-08-28",
+   "ledger": "ef",
+   "counterparty": "Payday move",
+   "category": "rule",
+   "amount": 50.0,
+   "direction": "in",
+   "ruleId": "r-ef-payday",
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-027",
+   "date": "2026-09-15",
+   "ledger": "ef",
+   "counterparty": "Round-ups (month to date)",
+   "category": "rule",
+   "amount": 22.0,
+   "direction": "in",
+   "ruleId": "r-ef-roundups",
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-jordan-028",
+   "date": "2026-09-13",
+   "ledger": "house",
+   "counterparty": "First deposit — by hand",
+   "category": "manual",
+   "amount": 150.0,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-grocery-wallet-fund",
+   "date": "2026-09-01",
+   "ledger": "grocery-wallet",
+   "counterparty": "September allowance",
+   "category": "transfer",
+   "amount": 220,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-grocery-wallet-source",
+   "date": "2026-09-01",
+   "ledger": "ac-cur",
+   "counterparty": "Set aside → grocery-wallet",
+   "category": "transfer",
+   "amount": -220,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-social-fund",
+   "date": "2026-09-01",
+   "ledger": "social",
+   "counterparty": "September allowance",
+   "category": "transfer",
+   "amount": 200,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-social-source",
+   "date": "2026-09-01",
+   "ledger": "ac-cur",
+   "counterparty": "Set aside → social",
+   "category": "transfer",
+   "amount": -200,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-grocery-aug-fund",
+   "date": "2026-08-01",
+   "ledger": "grocery-wallet",
+   "counterparty": "August allowance",
+   "category": "transfer",
+   "amount": 220,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-grocery-aug-source",
+   "date": "2026-08-01",
+   "ledger": "ac-cur",
+   "counterparty": "Set aside → Grocery budget",
+   "category": "transfer",
+   "amount": -220,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-grocery-aug-spend",
+   "date": "2026-08-31",
+   "ledger": "grocery-wallet",
+   "counterparty": "August grocery spending",
+   "category": "groceries",
+   "amount": -220,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-flat-jordan",
+   "date": "2026-09-01",
+   "ledger": "flat",
+   "counterparty": "Jordan · monthly share",
+   "category": "transfer",
+   "amount": 150,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": "jordan",
+   "receipt": true
+  },
+  {
+   "id": "tx-flat-ben",
+   "date": "2026-09-01",
+   "ledger": "flat",
+   "counterparty": "Ben · monthly share",
+   "category": "transfer",
+   "amount": 150,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": "ben",
+   "receipt": true
+  },
+  {
+   "id": "tx-flat-nia",
+   "date": "2026-09-01",
+   "ledger": "flat",
+   "counterparty": "Nia · monthly share",
+   "category": "transfer",
+   "amount": 150,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": "nia",
+   "receipt": true
+  },
+  {
+   "id": "tx-flat-source",
+   "date": "2026-09-01",
+   "ledger": "ac-cur",
+   "counterparty": "Your share → Flat utilities",
+   "category": "transfer",
+   "amount": -150,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-flat-energy",
+   "date": "2026-09-05",
+   "ledger": "flat",
+   "counterparty": "Octopus Energy",
+   "category": "utilities",
+   "amount": -240,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-flat-broadband",
+   "date": "2026-09-06",
+   "ledger": "flat",
+   "counterparty": "Broadband",
+   "category": "telecoms",
+   "amount": -30,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  }
+ ],
+ "ledgerOpeningBalances": {
+  "note": "Reconciled fictional opening balances for the expanded household story; balances already include recorded transfers and spending.",
+  "values": {
+   "ac-cur": 2624.46,
+   "ac-cc": 821.1,
+   "ef": 358.0,
+   "loan": 3750.0,
+   "house": 0.0,
+   "grocery-wallet": 0.0,
+   "social": 0.0,
+   "flat": 0
+  }
+ },
+ "spending": {
+  "month": "2026-09",
+  "monthToDate": true,
+  "byCategory": {
+   "groceries": 212.4,
+   "eating-out": 131.0,
+   "subscriptions": 58.9,
+   "transport": 52.0
+  },
+  "comparisons": {
+   "groceries": {
+    "lastMonthToDate": 250.4,
+    "delta": -38.0
+   },
+   "eatingOut": {
+    "sixMonthAverage": 245.0
+   }
+  },
+  "merchantClasses": {
+   "groceries": [
+    "Tesco",
+    "Lidl",
+    "Co-op",
+    "Local grocer"
+   ]
+  },
+  "note": "Eating out averages £245/month over six months — the biggest discretionary line and the basis of the £200 cap idea."
+ },
+ "credit": {
+  "score": null,
+  "status": "not monitored yet",
+  "softChecksOnly": true,
+  "debts": [
+   {
+    "ref": "pots/loan",
+    "name": "Car loan",
+    "balance": 3600.0,
+    "monthly": 150.0,
+    "endsMonth": 24,
+    "ends": "2028-09"
+   },
+   {
+    "ref": "accounts/ac-cc",
+    "name": "HSBC Classic",
+    "balance": 780.0,
+    "limit": 2000.0,
+    "interestMonthly": 18.9,
+    "minimumPayment": 60.0
+   }
+  ]
+ },
+ "savingsAndInvestments": {
+  "cash": 2340.18,
+  "inPots": 898.7,
+  "invested": 0.0,
+  "floorProtectedPct": null,
+  "floorProtected": null,
+  "illustratedGrowthAnnual": null
+ },
+ "netWorth": {
+  "held": 3238.88,
+  "owed": 4380.0,
+  "net": -1141.12,
+  "engineNetWorth": -1141.12,
+  "asOf": "2026-09-16"
+ },
+ "moneySpeed": {
+  "monthly": 222,
+  "prototypeFigure": 222,
+  "note": "Σ active rules that move money on a schedule (repayments included, as the prototype counts them)"
+ },
+ "goals": [
+  {
+   "id": "goal-ef",
+   "statement": "A £1,000 emergency fund",
+   "potId": "ef",
+   "target": 1000,
+   "priority": 1
+  },
+  {
+   "id": "goal-loan",
+   "statement": "Clear the car loan on plan",
+   "potId": "loan",
+   "priority": 2
+  },
+  {
+   "id": "goal-house",
+   "statement": "A place of your own, someday — start the first £3,000",
+   "potId": "house",
+   "target": 3000,
+   "priority": 3
+  },
+  {
+   "id": "goal-card",
+   "statement": "Stop paying interest on the card",
+   "ref": "accounts/ac-cc",
+   "priority": 4
+  }
+ ],
+ "rewards": {
+  "points": {
+   "balance": 140,
+   "ledger": [
+    {
+     "date": "2026-02",
+     "reason": "Money personality quiz",
+     "points": 25
+    },
+    {
+     "date": "2026-02..2026-09",
+     "reason": "15 weekly check-ins",
+     "points": 75
+    },
+    {
+     "date": "2026-07",
+     "reason": "2 months of consistency",
+     "points": 40
+    }
+   ],
+   "note": "Total 140 — earned for openness and consistency, never for spending."
+  },
+  "cashback": null,
+  "activeBenefits": [],
+  "challenges": {
+   "in-touch": {
+    "count": 21,
+    "joinedAt": "2026-08-01",
+    "confirmedDates": [
+     "2026-09-01"
+    ],
+    "source": "Illustrative scenario progress; steps recorded by the customer."
+   },
+   "little-often": {
+    "count": 7,
+    "joinedAt": "2026-08-20",
+    "confirmedDates": [
+     "2026-09-01"
+    ],
+    "source": "Illustrative scenario progress; steps recorded by the customer."
+   },
+   "budget-rhythm": {
+    "count": 2,
+    "joinedAt": "2026-08-15",
+    "confirmedDates": [
+     "2026-08-30"
+    ],
+    "source": "Illustrative scenario progress; steps recorded by the customer."
+   }
+  }
+ },
+ "relationship": {
+  "joined": "2026-02-10",
+  "tenureMonths": 7,
+  "tier": "Everyday",
+  "tierSince": null,
+  "nearPremier": false,
+  "relationshipManagerId": null,
+  "experts": [
+   "human247"
+  ],
+  "milestones": [
+   {
+    "date": "2026-02-10",
+    "event": "Joined",
+    "story": {
+     "id": "joined",
+     "title": "A new beginning",
+     "summary": "You joined HSBC.",
+     "detail": "Your relationship with HSBC began on 10 February 2026.",
+     "category": "Beginning",
+     "icon": "sun",
+     "figure": null,
+     "figureLabel": null,
+     "action": null,
+     "actionLabel": null
+    }
+   },
+   {
+    "date": "2026-02",
+    "event": "Money personality quiz — Steady builder",
+    "badge": "Quiz taken",
+    "story": {
+     "id": "personality",
+     "title": "A clearer picture of you",
+     "summary": "You explored your money personality.",
+     "detail": "Your first quiz described you as a Steady builder. It gave us a starting point for understanding how you approach money — one you can revisit as life changes.",
+     "category": "Understanding you",
+     "icon": "spark",
+     "figure": null,
+     "figureLabel": null,
+     "action": "portrait",
+     "actionLabel": "Your portrait today"
+    }
+   },
+   {
+    "date": "2026-03",
+    "event": "Emergency fund opened — first pot",
+    "story": {
+     "id": "first-pot",
+     "title": "Your safety net began",
+     "summary": "You opened your first emergency fund.",
+     "detail": "You created a separate place for unexpected costs. This was the first pot in your HSBC journey.",
+     "category": "Your goals",
+     "icon": "shield",
+     "figure": null,
+     "figureLabel": null,
+     "action": "pot:ef",
+     "actionLabel": "Your emergency fund today"
+    }
+   },
+   {
+    "date": "2026-06",
+    "event": "Budgeter — a habit kept",
+    "badge": "Budgeter",
+    "story": {
+     "id": "budget-habit",
+     "title": "Finding your rhythm",
+     "summary": "Budgeting became a habit.",
+     "detail": "June marked a budgeting milestone in your journey: making a plan and returning to it regularly.",
+     "category": "Everyday progress",
+     "icon": "repeat",
+     "figure": null,
+     "figureLabel": null,
+     "action": null,
+     "actionLabel": null
+    }
+   },
+   {
+    "date": "2026-09-13",
+    "event": "House deposit pot started by hand",
+    "story": {
+     "id": "home-goal",
+     "title": "A place of your own, in the plan",
+     "summary": "You started a house deposit pot.",
+     "detail": "You opened your house deposit pot on 13 September, taking a first step towards a home of your own.",
+     "category": "Your goals",
+     "icon": "home",
+     "figure": null,
+     "figureLabel": null,
+     "action": "pot:house",
+     "actionLabel": "Your house deposit today"
+    }
+   }
+  ],
+  "statusNote": "Status grows with the relationship. Yours is building — the fund, the rhythm, the openness all count.",
+  "contactHistory": []
+ },
+ "behaviour": {
+  "financial": [
+   "Pays rent and the loan on the 1st without fail",
+   "Grocery spend checked weekly for 7 weeks",
+   "Round-ups running since Feb; payday move held 7 months",
+   "Eating out is the largest discretionary line",
+   "Card carries a balance; interest posts monthly"
+  ],
+  "app": {
+   "sessionsPerWeek": 5,
+   "lastOpened": "2026-09-16",
+   "featuresUsed": [
+    "Now",
+    "Groceries working",
+    "Future slider",
+    "Emergency fund detail",
+    "Conversation"
+   ],
+   "quizDone": true,
+   "quizDate": "2026-02",
+   "checkIns": 15,
+   "beliefsConfirmed": 1,
+   "notifications": "receipts, weekly summary"
+  }
+ },
+ "autonomy": {
+  "level": "acts within limits you set",
+  "limits": "Round-ups move automatically, up to £30 a month",
+  "paused": false
+ }
+}

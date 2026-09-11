@@ -1,0 +1,69 @@
+{
+ "products": [
+  {
+   "id": "current",
+   "name": "HSBC Current",
+   "kind": "current",
+   "displayName": "HSBC Current."
+  },
+  {
+   "id": "premier-current",
+   "name": "HSBC Premier Current",
+   "kind": "current",
+   "displayName": "HSBC Premier Current.",
+   "premierOnly": true
+  },
+  {
+   "id": "classic-card",
+   "name": "HSBC Classic",
+   "kind": "credit",
+   "cardScheme": "Visa",
+   "displayName": "HSBC Classic.",
+   "aprIllustrative": 0.29
+  },
+  {
+   "id": "premier-card",
+   "name": "HSBC Premier Card",
+   "kind": "credit",
+   "cardScheme": "Visa",
+   "displayName": "HSBC Premier Card.",
+   "premierOnly": true
+  },
+  {
+   "id": "pot",
+   "name": "Pot",
+   "kind": "pot",
+   "note": "The single container behind saving, goal, locked, budget, credit, loan, shared and investment money (contract 07)."
+  },
+  {
+   "id": "committed-plan",
+   "name": "Committed plan",
+   "kind": "pot-terms",
+   "note": "A pot with agreed terms earns a personal rate while the plan holds; exit is free (Sam's house deposit: 5.1%)."
+  },
+  {
+   "id": "investment-portfolio",
+   "name": "Investment portfolio",
+   "kind": "investment",
+   "note": "Floor-protected allocation; guidance never regulated advice; growth illustrated at 5%/yr."
+  },
+  {
+   "id": "points",
+   "name": "HSBC Points",
+   "kind": "rewards",
+   "rule": "Earned for openness and healthy habits — never for spending, balances, engagement volume or trading (FCA boundary, Data/04 §8.5)."
+  },
+  {
+   "id": "cashback",
+   "name": "Card cashback",
+   "kind": "card-feature",
+   "rule": "A feature of the card, earned on card spending, shown as a fact and never promoted by the AI (Data/04 §8.5)."
+  },
+  {
+   "id": "premier",
+   "name": "Premier",
+   "kind": "status",
+   "rule": "Status follows the relationship; points never buy it (Data/04 §6.9)."
+  }
+ ]
+}

@@ -1,0 +1,376 @@
+/* Portrait is its own visual plane; all styles stay within this component. */
+body[data-direction='vanilla'] .money-portrait.personality {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  padding: 0;
+  margin: 0 0 32px;
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+.money-portrait .portrait-canvas {
+  position: relative;
+  height: 290px;
+  overflow: visible;
+}
+.portrait-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.portrait-form {
+  animation: portrait-arrive 1100ms cubic-bezier(0.2, 0.65, 0.2, 1) both;
+  animation-delay: var(--form-delay);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes portrait-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.money-portrait .portrait-glass {
+  position: relative;
+  margin: -64px var(--page) 0;
+  padding: 24px;
+  border-radius: 22px;
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--surface) 54%, transparent),
+    color-mix(in srgb, var(--surface) 88%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+  box-shadow:
+    0 12px 32px -24px #0005,
+    inset 0 1px 0 color-mix(in srgb, var(--surface) 75%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(110%);
+  backdrop-filter: blur(14px) saturate(110%);
+}
+.money-portrait .portrait-glass .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.3px;
+}
+.money-portrait .portrait-glass h1 {
+  font-size: clamp(30px, 7vw, 36px);
+  line-height: 1.06;
+  letter-spacing: -1px;
+  font-weight: 400;
+  margin: 12px 0;
+  text-wrap: balance;
+}
+.money-portrait .portrait-summary {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--muted);
+}
+.portrait-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 16px;
+  margin: 20px 0;
+}
+.portrait-traits span {
+  font-size: 11px;
+  color: var(--ink);
+}
+.portrait-traits span::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--muted);
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 6px 2px 0;
+}
+.portrait-link {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-top: 1px solid var(--line);
+  padding: 14px 0 0;
+  text-align: left;
+}
+.portrait-link .icon {
+  width: 20px;
+  flex-shrink: 0;
+}
+.money-portrait .portrait-glass .btn {
+  margin-top: 22px;
+  padding: 12px 18px;
+  font-size: 13px;
+}
+.portrait-reward {
+  display: block;
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.money-portrait .portrait-members {
+  margin: 12px var(--page) 0;
+  justify-content: center;
+  gap: 20px;
+}
+.portrait-members button {
+  min-width: 48px;
+  min-height: 62px;
+}
+.portrait-members button.selected > span {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+.portrait-detail {
+  padding-bottom: 24px;
+}
+.portrait-detail > .portrait-art {
+  height: 260px;
+  margin: -20px 0 4px;
+}
+.portrait-detail > .eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+}
+.portrait-detail h3 {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.7px;
+  margin: 12px 0;
+}
+.portrait-detail > p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.portrait-key {
+  margin: 26px 0;
+  display: grid;
+  gap: 20px;
+}
+.portrait-key > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.portrait-swatch {
+  width: 34px;
+  height: 30px;
+  background: var(--facet);
+  clip-path: polygon(0 50%, 25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%);
+  flex-shrink: 0;
+}
+.portrait-key b {
+  font-size: 13px;
+  font-weight: 600;
+}
+.portrait-key small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.portrait-detail > .portrait-source {
+  font-size: 11px;
+  line-height: 1.7;
+}
+.portrait-review {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 24px;
+}
+.portrait-review h4 {
+  font-size: 18px;
+  margin: 0;
+}
+.portrait-review p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.portrait-review .button-row {
+  flex-wrap: wrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait-form {
+    animation: none;
+  }
+}
+/* A persistent add control anchors a horizontally scrollable household rail. */
+.money-portrait .portrait-members {
+  display: flex;
+  align-items: start;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+.portrait-people {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 5px;
+  margin: -5px;
+  min-width: 0;
+  scrollbar-width: none;
+}
+.portrait-people::-webkit-scrollbar {
+  display: none;
+}
+.portrait-people > button {
+  flex: 0 0 48px;
+}
+.portrait-members button small {
+  max-width: 64px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-caption);
+}
+.portrait-members .portrait-add {
+  flex: 0 0 48px;
+  margin-left: 4px;
+}
+.portrait-members .portrait-add > span {
+  background: transparent;
+  border: 1px dashed var(--muted);
+}
+.portrait-members .portrait-pending > span {
+  position: relative;
+  background: transparent;
+  border: 1px dashed var(--muted);
+}
+.portrait-pending i {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  border: 2px solid var(--canvas);
+}
+.portrait-depth {
+  position: absolute;
+  bottom: 51px;
+  left: var(--page);
+  font-size: 10px;
+  color: var(--muted);
+}
+.portrait-traits {
+  gap: 12px;
+}
+.portrait-traits span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.portrait-traits span::before {
+  display: none;
+}
+.portrait-glyph {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+.portrait-key .portrait-glyph {
+  width: 36px;
+  height: 36px;
+}
+.portrait-detail > .portrait-evidence {
+  font-size: 12px;
+}
+.portrait-unshared {
+  padding: 36px 0;
+}
+.portrait-unshared > span {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--soft);
+}
+.portrait-unshared > span .icon {
+  width: 28px;
+}
+.portrait-unshared h3 {
+  font-size: 26px;
+  font-weight: 400;
+  margin: 24px 0 12px;
+}
+.portrait-unshared p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Independent, slow breathing inside the entry reveal preserves each silhouette. */
+.portrait-drift {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: portrait-breathe var(--drift-period, 36s) ease-in-out infinite;
+  animation-delay: var(--drift-phase, 0s);
+}
+@keyframes portrait-breathe {
+  0%,
+  100% {
+    transform: translate(-6px, 5px) rotate(-3deg) scale(0.985);
+  }
+  50% {
+    transform: translate(8px, -7px) rotate(3.5deg) scale(1.045);
+  }
+}
+.money-portrait .portrait-canvas > .portrait-art {
+  position: absolute;
+  inset: -6px 0 auto;
+  height: 340px;
+  transform: scale(1.24);
+  transform-origin: 50% 48%;
+}
+.money-portrait .portrait-glass {
+  z-index: 1;
+}
+.money-portrait .portrait-depth {
+  top: 12px;
+  bottom: auto;
+  padding: 6px 9px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--canvas) 72%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.phone.has-modal #content .portrait-drift {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait-drift {
+    animation: none;
+    transform: none;
+  }
+}
+
+.money-portrait .portrait-members {
+  position: relative;
+  z-index: 2;
+}
+
+/* Household artwork fills the screen and bleeds gently beyond its edges. */
+.money-portrait[data-portrait-member='household'] .portrait-canvas > .portrait-art {
+  inset-block-start: -16px;
+  transform: scale(1.38);
+  transform-origin: 50% 40%;
+}

@@ -1,0 +1,882 @@
+{
+  "$schema": "../../schema/schema.json#/definitions/L2",
+  "layer": 2,
+  "moment": {
+    "id": "m2",
+    "name": "Stabilise",
+    "stage": "Breaking the cycle · first goals",
+    "customerId": "jordan",
+    "asOf": "2026-09-16",
+    "tenure": "month 7",
+    "segment": "Everyday",
+    "description": "Control day-to-day spending, repay the card and car loan, build a safety net, and share flat utility costs."
+  },
+  "customerId": "jordan",
+  "asOf": "2026-09-16",
+  "signals": [
+    {
+      "id": "sig-grocery-under",
+      "kind": "spending-change",
+      "description": "Groceries £212.40 month to date vs £250.40 at the same point last month (−£38)",
+      "basis": [
+        "l1:spending/comparisons/groceries",
+        "l1:transactions/tx-jordan-003",
+        "l1:transactions/tx-jordan-008",
+        "l1:transactions/tx-jordan-012",
+        "l1:transactions/tx-jordan-015"
+      ],
+      "detectedOn": "2026-09-16"
+    },
+    {
+      "id": "sig-roundups",
+      "kind": "rule-ran",
+      "description": "Round-ups moved £22 to the Emergency fund this month",
+      "basis": [
+        "l1:rules/r-ef-roundups",
+        "l1:transactions/tx-jordan-022"
+      ],
+      "detectedOn": "2026-09-16"
+    },
+    {
+      "id": "sig-eating-out",
+      "kind": "spending-pattern",
+      "description": "Eating out averages £245 a month over six months — the largest discretionary line",
+      "basis": [
+        "l1:spending/comparisons/eatingOut",
+        "l1:transactions/tx-jordan-009",
+        "l1:transactions/tx-jordan-014",
+        "l1:transactions/tx-jordan-016",
+        "l1:transactions/tx-jordan-019"
+      ],
+      "detectedOn": "2026-09-16"
+    },
+    {
+      "id": "sig-card-interest",
+      "kind": "cost",
+      "description": "£18.90 of interest posted on the HSBC Classic card on 1 Sep",
+      "basis": [
+        "l1:transactions/tx-jordan-023",
+        "l1:accounts/ac-cc"
+      ],
+      "detectedOn": "2026-09-16"
+    },
+    {
+      "id": "sig-loan-plan",
+      "kind": "schedule",
+      "description": "Car loan £3,600 at £150/month clears in 24 months (Sep 2028); overpaying is free",
+      "basis": [
+        "l1:pots/loan",
+        "l1:rules/r-loan-repay"
+      ],
+      "detectedOn": "2026-09-16"
+    },
+    {
+      "id": "sig-house-no-rule",
+      "kind": "pot-state",
+      "description": "House deposit started by hand (£150) with no rule attached",
+      "basis": [
+        "l1:pots/house",
+        "l1:transactions/tx-jordan-027"
+      ],
+      "detectedOn": "2026-09-16"
+    },
+    {
+      "id": "sig-ef-stops",
+      "kind": "rule-end",
+      "description": "The Emergency fund rules stop at £1,000 — reached in 8 months (May 2027)",
+      "basis": [
+        "l1:pots/ef",
+        "l1:rules/r-ef-payday"
+      ],
+      "detectedOn": "2026-09-16"
+    },
+    {
+      "id": "sig-payday-held",
+      "kind": "habit",
+      "description": "The £50 payday move has run seven months without a miss",
+      "basis": [
+        "l1:rules/r-ef-payday",
+        "l1:behaviour/financial"
+      ],
+      "detectedOn": "2026-09-16"
+    }
+  ],
+  "insights": [
+    {
+      "id": "ins-pot-ef",
+      "scope": "pot:ef",
+      "text": "On track — £72 a month, done by spring. Round-ups did £22 of the work this month.",
+      "html": "On track — <b>£72 a month</b>, done by spring. Round-ups did £22 of the work this month.",
+      "basis": [
+        "l1:pots/ef",
+        "l2:signals/sig-roundups",
+        "l2:signals/sig-ef-stops",
+        "l2:signals/sig-payday-held"
+      ]
+    },
+    {
+      "id": "ins-pot-loan",
+      "scope": "pot:loan",
+      "text": "On plan — gone by Sep 2028. Pointing your round-ups here would bring that three months closer.",
+      "html": "On plan — gone by <b>Sep 2028</b>. Pointing your round-ups here would bring that three months closer.",
+      "basis": [
+        "l1:pots/loan",
+        "l2:signals/sig-loan-plan"
+      ]
+    },
+    {
+      "id": "ins-pot-house",
+      "scope": "pot:house",
+      "text": "Started with £150 — no rules yet, and that’s fine. The ideas below can give it a rhythm.",
+      "html": "Started with <b>£150</b> — no rules yet, and that’s fine. The ideas below can give it a rhythm.",
+      "basis": [
+        "l1:pots/house",
+        "l2:signals/sig-house-no-rule"
+      ]
+    },
+    {
+      "id": "ins-acct-ac-cur",
+      "scope": "account:ac-cur",
+      "text": "Everything arrives here first. Your rules deal it outward — £222 a month, receipted.",
+      "html": "Everything arrives here first. Your rules deal it outward — <b>£222 a month</b>, receipted.",
+      "basis": [
+        "l1:accounts/ac-cur"
+      ],
+      "momentAware": null,
+      "cta": null
+    },
+    {
+      "id": "ins-acct-ac-cc",
+      "scope": "account:ac-cc",
+      "text": "£780 at ~£19 a month in interest. Clearing it beats every savings rate you could earn — want a plan shaped around your round-ups?",
+      "html": "<b>£780</b> at ~£19 a month in interest. Clearing it beats every savings rate you could earn — want a plan shaped around your round-ups?",
+      "basis": [
+        "l1:accounts/ac-cc"
+      ],
+      "momentAware": "This is costing ~£19 a month in interest.",
+      "cta": "Ways to pay less"
+    },
+    {
+      "id": "ins-work-safe-to-spend",
+      "scope": "working",
+      "text": "Committed money is set aside first — so spending this number is always safe.",
+      "figure": [
+        "Truly spendable",
+        "£820.00"
+      ],
+      "rows": [
+        [
+          "Balance",
+          "£2,340.18"
+        ],
+        [
+          "Rent",
+          "−£950.00"
+        ],
+        [
+          "Energy & water",
+          "−£214.28"
+        ],
+        [
+          "Car & insurance",
+          "−£225.00"
+        ],
+        [
+          "Subscriptions",
+          "−£58.90"
+        ],
+        [
+          "Committed to your fund",
+          "−£72.00"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-groceries",
+      "scope": "working",
+      "text": "14 card payments tagged as groceries. Last month: £250.40.",
+      "figure": [
+        "This month",
+        "£212.40"
+      ],
+      "rows": [
+        [
+          "Tesco",
+          "£86.20"
+        ],
+        [
+          "Lidl",
+          "£64.10"
+        ],
+        [
+          "Co-op",
+          "£31.40"
+        ],
+        [
+          "Everything else",
+          "£30.70"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-subscriptions",
+      "scope": "working",
+      "text": "The gym went unused for 6 weeks once — if that happens again, you’ll be asked, not lectured.",
+      "figure": [
+        "Each month",
+        "£58.90"
+      ],
+      "rows": [
+        [
+          "Netflix",
+          "£17.99"
+        ],
+        [
+          "Spotify",
+          "£11.99"
+        ],
+        [
+          "iCloud",
+          "£2.99"
+        ],
+        [
+          "Gym",
+          "£25.93"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-balance",
+      "scope": "working",
+      "text": "The full number, for when you want it. Safe to spend is the honest one.",
+      "figure": [
+        "Balance",
+        "£2,340.18"
+      ],
+      "rows": [
+        [
+          "After bills set aside",
+          "£820.00 spendable"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    },
+    {
+      "id": "ins-work-freedom-date",
+      "scope": "working",
+      "text": "The date moves the moment a rule changes — point your round-ups here and it comes three months closer.",
+      "figure": [
+        "Zero",
+        "Sep 2028"
+      ],
+      "rows": [
+        [
+          "Left on the car loan",
+          "£3,600"
+        ],
+        [
+          "Each month",
+          "£150"
+        ],
+        [
+          "Months to zero",
+          "24"
+        ]
+      ],
+      "basis": [
+        "l1:transactions",
+        "l1:bills",
+        "l1:pots"
+      ]
+    }
+  ],
+  "personality": {
+    "name": "Steady builder",
+    "copy": "Saving on a steady rhythm compounds more than the occasional big deposit ever could. You’ve built the habit that matters most — now let the amount rise gently as your income does.",
+    "invite": null,
+    "traits": [
+      [
+        "Rhythm",
+        4
+      ],
+      [
+        "Planning",
+        3
+      ],
+      [
+        "Spontaneity",
+        2
+      ]
+    ],
+    "provenance": "Informed by 214 money moves and 12 answers",
+    "status": "named",
+    "basis": [
+      "l1:behaviour/financial",
+      "l1:behaviour/app/quizDone",
+      "l1:transactions"
+    ]
+  },
+  "beliefs": [
+    {
+      "id": "belief-1",
+      "claim": "Groceries matter to you",
+      "evidence": "You’ve checked the number weekly for 7 weeks",
+      "status": "open",
+      "confidence": "fair",
+      "basis": [
+        "l1:behaviour/financial",
+        "l1:behaviour/app"
+      ]
+    },
+    {
+      "id": "belief-2",
+      "claim": "You’d rather smooth than binge-fix",
+      "evidence": "From your quiz · confirmed by 5 months of steady moves",
+      "status": "confirmed",
+      "confidence": "strong",
+      "basis": [
+        "l1:behaviour/financial",
+        "l1:behaviour/app"
+      ]
+    },
+    {
+      "id": "belief-3",
+      "claim": "A place of your own, someday",
+      "evidence": "You said so in March — the deposit habit is shaped around it",
+      "status": "confirmed",
+      "confidence": "strong",
+      "basis": [
+        "l1:behaviour/financial",
+        "l1:behaviour/app"
+      ]
+    }
+  ],
+  "companion": {
+    "contexts": [
+      {
+        "context": "now",
+        "message": "Groceries £38 under last month, and round-ups moved £22 to your fund. The leaks are closing — receipts attached.",
+        "html": "Groceries <b>£38 under</b> last month, and round-ups moved <b>£22</b> to your fund. The leaks are closing — receipts attached.",
+        "actions": [
+          [
+            "wwork:grocery",
+            "See the working"
+          ]
+        ],
+        "basis": [
+          "l2:signals/sig-grocery-under",
+          "l2:signals/sig-roundups",
+          "l2:signals/sig-eating-out"
+        ]
+      },
+      {
+        "context": "future",
+        "message": "£222 a month now works by itself across 3 commitments. Next: give the new deposit pot its rhythm.",
+        "html": "<b>£222 a month</b> now works by itself across 3 commitments. Next: give the new <b>deposit pot</b> its rhythm.",
+        "actions": [
+          [
+            "wifopen:whouse",
+            "Start the rhythm",
+            1
+          ]
+        ],
+        "basis": [
+          "l2:signals/sig-grocery-under",
+          "l2:signals/sig-roundups",
+          "l2:signals/sig-eating-out"
+        ]
+      },
+      {
+        "context": "me",
+        "message": "140 points — every one from openness and consistency. Never from spending.",
+        "html": "<b>140 points</b> — every one from openness and consistency. Never from spending.",
+        "actions": [],
+        "basis": [
+          "l2:signals/sig-grocery-under",
+          "l2:signals/sig-roundups",
+          "l2:signals/sig-eating-out"
+        ]
+      },
+      {
+        "context": "you.believe",
+        "message": "Two beliefs, both with evidence. Correct either and your word outranks mine.",
+        "html": "Two beliefs, both with evidence. <b>Correct either</b> and your word outranks mine.",
+        "actions": [],
+        "basis": [
+          "l2:signals/sig-grocery-under",
+          "l2:signals/sig-roundups"
+        ]
+      },
+      {
+        "context": "you.built",
+        "message": "Two badges, dated — the quiz, and a budgeting habit kept since June.",
+        "html": "<b>Two badges</b>, dated — the quiz, and a budgeting habit kept since June.",
+        "actions": [],
+        "basis": [
+          "l2:signals/sig-grocery-under",
+          "l2:signals/sig-roundups"
+        ]
+      },
+      {
+        "context": "you.behalf",
+        "message": "Round-ups move up to £30 a month by themselves. Step it down any time — no penalty.",
+        "html": "Round-ups move up to <b>£30 a month</b> by themselves. Step it down any time — no penalty.",
+        "actions": [],
+        "basis": [
+          "l2:signals/sig-grocery-under",
+          "l2:signals/sig-roundups"
+        ]
+      }
+    ],
+    "conversation": {
+      "chips": [
+        "Why is groceries under last month?",
+        "Where did my round-ups go?",
+        "Can I pause the payday rule?",
+        "A person, please"
+      ],
+      "answers": {
+        "Why is groceries under last month?": "You’ve made 14 grocery payments totalling £212.40 — last month it was £250.40 by this date. No trick to it: two fewer big shops.",
+        "Where did my round-ups go?": "£22.00 went to your Emergency fund this month — receipt attached to each move. It’s at £430 of £1,000.",
+        "Can I pause the payday rule?": "Done in one tap, whenever you like — no penalty, nothing lost. It’s your rule; I just run it.",
+        "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+      },
+      "answersHtml": {
+        "Why is groceries under last month?": "You’ve made 14 grocery payments totalling <b>£212.40</b> — last month it was £250.40 by this date. No trick to it: two fewer big shops.",
+        "Where did my round-ups go?": "<b>£22.00</b> went to your Emergency fund this month — receipt attached to each move. It’s at £430 of £1,000.",
+        "Can I pause the payday rule?": "Done in one tap, whenever you like — no penalty, nothing lost. It’s your rule; I just run it.",
+        "A person, please": "Of course. A named person picks this up with your context already in front of them — no phone tree, no starting over. Usually under two minutes at this time of day."
+      }
+    }
+  },
+  "stories": [
+    {
+      "id": "j1",
+      "state": "new",
+      "title": "Eating out",
+      "claim": "Eating out averages £245. A little less could help your fund.",
+      "aiLine": "Eating out averages £245 a month. A soft £200 line would free about £45 for the fund.",
+      "aiLineHtml": "Eating out averages <b>£245</b> a month. A soft <b>£200</b> line would free about £45 for the fund.",
+      "figure": "£245",
+      "rows": [
+        [
+          "Eating out",
+          "average · 6 months",
+          "£245"
+        ],
+        [
+          "Groceries",
+          "this month",
+          "£212"
+        ],
+        [
+          "Subscriptions",
+          "each month",
+          "£59"
+        ]
+      ],
+      "chart": true,
+      "verb": "Cap eating out at £200 — asked, never enforced.",
+      "residue": "£45 a month more into the fund · done Feb 2027",
+      "action": "wifstart:weat",
+      "cta": "Start the cap",
+      "basis": [
+        "l2:signals/sig-eating-out",
+        "l2:signals/sig-loan-plan"
+      ],
+      "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+    },
+    {
+      "id": "j2",
+      "state": "pending",
+      "title": "Round-ups",
+      "claim": "Your round-ups could clear the car loan three months sooner.",
+      "aiLine": "Round-ups do £22 a month. Pointed at the loan instead, it clears three months sooner — the fund keeps its payday move.",
+      "aiLineHtml": "Round-ups do <b>£22</b> a month. Pointed at the loan instead, it clears <b>three months sooner</b> — the fund keeps its payday move.",
+      "figure": "£22/mo",
+      "rows": [
+        [
+          "Round-ups",
+          "this month",
+          "£22"
+        ],
+        [
+          "Car loan",
+          "left",
+          "£3,600"
+        ],
+        [
+          "Repayment",
+          "each month",
+          "£150"
+        ]
+      ],
+      "chart": false,
+      "verb": "Point round-ups at the car loan.",
+      "residue": "Round-ups → Car loan · gone Jun 2028",
+      "action": "wifstart:wcc",
+      "cta": "Point them at the loan",
+      "basis": [
+        "l2:signals/sig-roundups"
+      ],
+      "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+    },
+    {
+      "id": "j3",
+      "state": "saved",
+      "title": "The payday rule",
+      "claim": "The £50 payday move has held seven months.",
+      "aiLine": "Seven paydays, seven moves, seven receipts. The rule has held since February.",
+      "aiLineHtml": "<b>Seven paydays</b>, seven moves, seven receipts. The rule has held since February.",
+      "figure": "£350",
+      "rows": [
+        [
+          "Payday moves",
+          "since Feb",
+          "7 × £50"
+        ],
+        [
+          "Round-ups",
+          "this month",
+          "£22"
+        ]
+      ],
+      "chart": false,
+      "verb": "Keep it running.",
+      "residue": "£50 on payday · running since Feb",
+      "action": null,
+      "cta": null,
+      "basis": [
+        "l2:signals/sig-ef-stops",
+        "l2:signals/sig-payday-held"
+      ],
+      "trigger": "Authored for the moment; in production a story is generated when its signal crosses a threshold"
+    }
+  ],
+  "whatIfs": [
+    {
+      "id": "whouse",
+      "type": "attach",
+      "title": "Give the deposit a rhythm",
+      "summary": "£150 a month → the first £3,000 by spring 2028.",
+      "explainer": "Your first £150 is already in. £150 a month — much of it freed by the leaks you’ve closed — reaches the first £3,000 in 19 months. The pot exists; this just gives it a heartbeat. Stop it any time.",
+      "cta": "Start the rhythm",
+      "effect": {
+        "potId": "house",
+        "monthlyRateDelta": 150
+      },
+      "graph": {
+        "t": "grow",
+        "target": 3000,
+        "rate": 150,
+        "v0": 150
+      },
+      "canCommit": true,
+      "basis": [
+        "l2:signals/sig-house-no-rule"
+      ]
+    },
+    {
+      "id": "wcc",
+      "type": "redirect",
+      "title": "Round-ups toward the car loan",
+      "summary": "Same £22, sharper job — gone three months sooner.",
+      "explainer": "Your round-ups currently feed the emergency fund. Pointing them at the loan instead clears it about three months sooner — same money, sharper job, every payment receipted. The fund keeps its £50 payday move.",
+      "cta": "Point them at the loan",
+      "effect": {
+        "from": "ef",
+        "to": "loan",
+        "monthlyAmount": 22
+      },
+      "graph": {
+        "t": "compare",
+        "v0": 3600,
+        "vT": 0,
+        "ra": 150,
+        "rb": 172,
+        "la": "£150 plan",
+        "lb": "+ round-ups",
+        "delta": "3 months sooner"
+      },
+      "canCommit": true,
+      "basis": [
+        "l2:signals/sig-roundups"
+      ]
+    },
+    {
+      "id": "weat",
+      "type": "cap",
+      "title": "Eating out capped at £200",
+      "summary": "Frees about £45 a month for the fund.",
+      "explainer": "You average £245 a month eating out. A soft £200 line — asked, never enforced — frees ~£45 and finishes your fund three months sooner.",
+      "cta": null,
+      "effect": {
+        "potId": "ef",
+        "monthlyRateDelta": 45
+      },
+      "graph": {
+        "t": "compare",
+        "v0": 430,
+        "vT": 1000,
+        "ra": 72,
+        "rb": 117,
+        "la": "As things are",
+        "lb": "With a £200 cap",
+        "delta": "3 months sooner"
+      },
+      "canCommit": true,
+      "basis": [
+        "l2:signals/sig-roundups",
+        "l2:signals/sig-eating-out",
+        "l2:signals/sig-ef-stops"
+      ]
+    },
+    {
+      "id": "whol",
+      "type": "create",
+      "title": "A holiday pot",
+      "summary": "£60 a month → Lisbon by July.",
+      "explainer": "£60 a month reaches £600 by June. The slider shows both goals growing side by side.",
+      "cta": null,
+      "effect": {
+        "newPot": {
+          "name": "Lisbon",
+          "target": 600,
+          "monthlyRate": 60,
+          "openingBalance": 0,
+          "growthAnnual": null,
+          "icon": "plane"
+        }
+      },
+      "graph": {
+        "t": "grow",
+        "target": 600,
+        "rate": 60
+      },
+      "canCommit": true,
+      "basis": [
+        "l1:pots",
+        "l1:spending"
+      ]
+    }
+  ],
+  "projections": {
+    "horizonMonths": 120,
+    "perPot": [
+      {
+        "potId": "ef",
+        "milestoneMonth": 8,
+        "reach": "2027-05",
+        "kind": "reached",
+        "valueAt": {
+          "0": 430.0,
+          "12": 1000.0,
+          "60": 1000.0,
+          "120": 1000.0
+        },
+        "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+      },
+      {
+        "potId": "loan",
+        "milestoneMonth": 24,
+        "reach": "2028-09",
+        "kind": "paidOff",
+        "valueAt": {
+          "0": 3600.0,
+          "12": 1800.0,
+          "60": 0.0,
+          "120": 0.0
+        },
+        "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+      },
+      {
+        "potId": "house",
+        "milestoneMonth": null,
+        "reach": null,
+        "kind": "reached",
+        "valueAt": {
+          "0": 150.0,
+          "12": 150.0,
+          "60": 150.0,
+          "120": 150.0
+        },
+        "model": "potVal (contract 15): saving v+rate·t capped at target; debt max(0, v−|rate|·t); growth v(1+g)^(t/12)+rate·t(1+g)^(t/24)"
+      }
+    ],
+    "ruleEnds": [
+      {
+        "month": 8,
+        "reach": "2027-05",
+        "potId": "ef",
+        "kind": "reached",
+        "then": "the rule stops; the AI asks where its money goes next (new pot or existing goal)"
+      },
+      {
+        "month": 24,
+        "reach": "2028-09",
+        "potId": "loan",
+        "kind": "paidOff",
+        "then": "the rule stops; the AI asks where its money goes next (new pot or existing goal)"
+      }
+    ],
+    "netWorth": [
+      {
+        "month": 0,
+        "net": -1141.12,
+        "label": "Today"
+      },
+      {
+        "month": 12,
+        "net": 1228.88,
+        "label": "A projection, not a promise"
+      },
+      {
+        "month": 24,
+        "net": 3028.88,
+        "label": "A projection, not a promise"
+      },
+      {
+        "month": 60,
+        "net": 3028.88,
+        "label": "A projection, not a promise"
+      },
+      {
+        "month": 120,
+        "net": 3028.88,
+        "label": "A projection, not a promise"
+      }
+    ],
+    "honestyLine": "A projection, not a promise"
+  },
+  "nextBestActions": [
+    {
+      "id": "nba-now-wwork:grocery",
+      "context": "now",
+      "action": "wwork:grocery",
+      "label": "See the working",
+      "primary": false,
+      "basis": [
+        "l2:signals/sig-grocery-under",
+        "l2:signals/sig-roundups",
+        "l2:signals/sig-eating-out"
+      ]
+    },
+    {
+      "id": "nba-future-wifopen:whouse",
+      "context": "future",
+      "action": "wifopen:whouse",
+      "label": "Start the rhythm",
+      "primary": true,
+      "basis": [
+        "l2:signals/sig-grocery-under",
+        "l2:signals/sig-roundups",
+        "l2:signals/sig-eating-out"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "rec-widget-holiday",
+      "kind": "module-suggestion",
+      "moduleId": "holiday",
+      "why": "You mentioned Lisbon once. A pot makes it a date, not a wish.",
+      "basis": [
+        "l1:spending",
+        "l1:bills",
+        "l1:income"
+      ]
+    },
+    {
+      "id": "rec-widget-creditscore",
+      "kind": "module-suggestion",
+      "moduleId": "creditscore",
+      "why": "Monitored with a soft check — nothing affects your score.",
+      "basis": [
+        "l1:spending",
+        "l1:bills",
+        "l1:income"
+      ]
+    },
+    {
+      "id": "rec-widget-dd",
+      "kind": "module-suggestion",
+      "moduleId": "dd",
+      "why": "Every recurring payment in one number — the leaks show up here first.",
+      "basis": [
+        "l1:spending",
+        "l1:bills",
+        "l1:income"
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp-cap",
+      "text": "A £200 eating-out line frees ~£45/month for the fund (done 3 months sooner)",
+      "basis": [
+        "l2:signals/sig-eating-out"
+      ]
+    },
+    {
+      "id": "opp-roundups-loan",
+      "text": "Round-ups pointed at the car loan clear it ~3 months sooner",
+      "basis": [
+        "l2:signals/sig-roundups",
+        "l2:signals/sig-loan-plan"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "id": "risk-card-interest",
+      "text": "The card costs ~£19/month in interest; clearing it beats any savings rate",
+      "severity": "medium",
+      "basis": [
+        "l2:signals/sig-card-interest"
+      ]
+    },
+    {
+      "id": "risk-house-no-rule",
+      "text": "A pot with no rule tends to stall — the deposit habit matters before the amount",
+      "severity": "low",
+      "basis": [
+        "l2:signals/sig-house-no-rule"
+      ]
+    }
+  ],
+  "householdInsights": [
+    {
+      "id": "shared-pots-only",
+      "text": "Shared pot activity is visible to the participating adults. Other accounts and private money personalities remain private.",
+      "basis": [
+        "l1:household"
+      ]
+    }
+  ],
+  "rewardsExplanation": {
+    "points": "Total 140 — earned for openness and consistency, never for spending.",
+    "cashback": null
+  },
+  "traceability": {
+    "convention": "basis[] holds refs of the form l1:<collection>/<id> (or a path) and l2:<collection>/<id>; every generated item names what it rests on"
+  }
+}

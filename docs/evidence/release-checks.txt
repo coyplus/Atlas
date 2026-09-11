@@ -1,0 +1,159 @@
+
+> hsbc-atlas-app@0.1.0 verify
+> npm run check && npm run lint && npm run validate:data && npm test && npm run build
+
+
+> hsbc-atlas-app@0.1.0 check
+> tsc --noEmit
+
+
+> hsbc-atlas-app@0.1.0 lint
+> eslint src
+
+
+> hsbc-atlas-app@0.1.0 validate:data
+> python3 data/validate.py
+
+## m1-alex — Alex · Join · as of 2026-08-20
+## m2-jordan — Jordan · Stabilise · as of 2026-09-16
+## m3-sam — Sam · Grow · as of 2026-09-08
+## m4-elena — Elena · Graduate · as of 2026-09-08
+## Known inconsistencies in the source prototype (recorded, not silently fixed)
+
+176 passed, 0 failed → CROSS-CHECK.md
+
+> hsbc-atlas-app@0.1.0 test
+> npm run test:prepare && node --test --test-concurrency=4 --test-force-exit tests/*.test.mjs tests/interface-cases/*.test.mjs
+
+
+> hsbc-atlas-app@0.1.0 test:prepare
+> npm run prepare:data && node scripts/prepare-tests.mjs
+
+
+> hsbc-atlas-app@0.1.0 prepare:data
+> python3 scripts/prepare_data.py
+
+Prepared 4 scenarios, independently cached media and fonts
+✔ five variations share identity and amounts; wallet extension creates no money or schedules (25.125542ms)
+✔ actual contributions fulfil savings conditions regardless of automation (2.626459ms)
+✔ fixed rule review is inert; execution respects protected balances, caps, ledger conservation and undo (2.322541ms)
+✔ variable rules never invent a fixed contribution; round-ups cannot overpay a debt (1.225625ms)
+✔ sweeps respect the protected remainder, global pause and monthly cap (1.225792ms)
+✔ invalid rules reject self transfers, debt sources, external accounts and invalid caps (1.105041ms)
+✔ savings evolution preserves ledger, amount and rule links; no shared or debt relabelling (4.780292ms)
+✔ invitation has no sharing permission until explicit acceptance; undo restores privacy (3.085459ms)
+✔ pausing loan automation keeps the instalment obligation and rate (1.633583ms)
+✔ editing an existing challenge retains its condition and cannot silently turn it into unconditional funding (1.127084ms)
+✔ all container variants expose their economics and conditions through one model (11.171417ms)
+✔ money rules are fulfilment methods; choices, locks and capital are independent conditions (4.211667ms)
+✔ impact previews preserve evidence and separate scheduled from received money (4.3515ms)
+✔ a chosen lock blocks all withdrawals, outgoing rules and evolution until its end (1.727125ms)
+✔ payment evidence resets by month; capital monitoring cannot guarantee or silently reprice (2.298042ms)
+✔ household story variants are explicit money containers, and visible in My Numbers (3.894792ms)
+✔ missed agreement is dated evidence, not the presence of automation (2.983667ms)
+✔ recovery respects date, merchant choice and spending; changing a limit cannot erase assessment (1.587792ms)
+✔ all four snapshots reconcile today without truncating target balances (25.301542ms)
+✔ opening an investment preserves net worth and writes both ledger entries; undo is exact (2.428375ms)
+✔ preview stacking never mutates live money, rules or receipts (1.46825ms)
+✔ committing and undoing each supported idea for all moments (19.04425ms)
+✔ redirecting £22 changes its destination without increasing money speed (0.986084ms)
+✔ insufficient funds rolls back pot creation and every state field (1.576ms)
+✔ transfers conserve net worth, debt payments reduce both held and owed (1.120125ms)
+✔ global pause preserves individual choices and prevents projected contributions (0.92775ms)
+✔ targets stop only where specified; debt never goes negative (2.828583ms)
+✔ future redirection starts after payoff and pauses with permissions (1.010458ms)
+✔ quiz uses answers and points cannot be farmed or awarded again to an existing customer (3.161958ms)
+✔ belief correction preserves evidence and awards once (1.00125ms)
+✔ rewards enforce funds and tier; undo restores points and benefits (1.259209ms)
+✔ sequential undo restores complete prior data after dependent changes (1.486667ms)
+✔ Premier illustration can be previewed but cannot be committed (1.56625ms)
+✔ soft budget follows the chosen saving amount without altering recorded spending (0.995625ms)
+✔ grocery insight aggregates accounts and pots, excluding top-ups and other months (2.906791ms)
+✔ index: four moments, all tabs, view modes, modules, stories and sheets render without exceptions (2043.935375ms)
+✔ bento: four moments, all tabs, view modes, modules, stories and sheets render without exceptions (1078.231042ms)
+✔ metro: four moments, all tabs, view modes, modules, stories and sheets render without exceptions (1083.11725ms)
+✔ workbench: four moments, all tabs, view modes, modules, stories and sheets render without exceptions (3929.890875ms)
+✔ Alex quiz → confirm → points → undo uses real event wiring (317.234125ms)
+✔ Jordan previews, commits a changed amount, transfers, and undoes (445.112125ms)
+✔ Sam investment review requires acknowledgement, then debits opening cash (349.69725ms)
+✔ Elena shared personality, beliefs, booking and permission pause (426.905417ms)
+✔ presentation API supports its scripted scenes and future zoom (523.528333ms)
+✔ every rendered interactive control has an accessible name (396.165375ms)
+✔ gallery uses a shared size preview, pins the chosen size and restores it on undo (295.529542ms)
+✔ Future companion responds to time and a pot can enter the shared conversation (325.414208ms)
+✔ current, credit, saving, loan and investment share a container structure and contextual AI (555.143083ms)
+✔ one persistent support portal belongs to main/detail, and disappears during full-screen conversation (305.45175ms)
+✔ scroll changes context without rebuilding controls, and page scrolling cannot replace an open conversation (764.462167ms)
+✔ bar text opens AI even for Priya’s note, while only Premier exposes direct human access (378.754583ms)
+✔ play avatar starts persistent bottom audio; scroll collapses support without interrupting playback (321.011375ms)
+✔ support follows story steps, idea review and a household selection (362.044209ms)
+✔ AI triages a non-Premier request before human handover; audio failure keeps the icon transcript route (350.257375ms)
+✔ system workbench and blueprint expose the same production review states (1786.986042ms)
+✔ expanded CTAs hide on attention to content; conversation uses a consistent vendored AI identity (252.1365ms)
+✔ details start compact without audio offers; ongoing audio stays in its independent player (297.065833ms)
+✔ main headers scroll away and top restores initial support on all three tabs; details stay fixed (304.881125ms)
+✔ trailing upward wheel and touch-end events cannot leave the top card minimised (393.515208ms)
+✔ audio is offered only by the Now summary; contextual chat actions share the quick-response group (329.704875ms)
+✔ Now thinking lasts two seconds, yields to intent, and never leaks into other screens (418.32225ms)
+✔ journey CTA owns its header; AI help preserves quiz step and form drafts (409.072042ms)
+✔ Now numbers share one grid; first number can resize, move, remove and be restored (297.607667ms)
+✔ shortcut editor saves replacements, supports removal, cancellation, per-person preferences and undo (386.663625ms)
+✔ More actions and products open usable local screens and preserve catalogue return paths (338.091583ms)
+✔ accounts collection connects chosen sample accounts, reconciles its count and disconnects without changing HSBC money (339.842583ms)
+✔ Open Banking consent stays a draft when cancelled; collection details restore their parent (300.921916ms)
+✔ Sam and Elena start with distinct connected banks and reset restores their sample picture (496.332875ms)
+✔ five container variants follow the supplied IA; wallet rules require review and update the same Number (1055.344542ms)
+✔ editing a payment changes fulfilment while cancellation and rate are preserved (632.537ms)
+✔ sharing waits for explicit demo acceptance; evolution keeps amount, identity, and updates the widget (733.692541ms)
+✔ connected Numbers retain bank identity and become unavailable on disconnect (382.120458ms)
+✔ agreement bottom sheet preserves the underlying pot, scroll, context and focus (293.317083ms)
+✔ pause, cancel, remove and manual fulfilment preserve one agreement (661.981208ms)
+✔ global pause preserves current benefit and discloses manual responsibility (543.529042ms)
+✔ merchant choice is reviewed, cancellable and does not count as earned cashback (571.427333ms)
+✔ lock requires consent and blocks withdrawal in the real transfer flow (532.131625ms)
+✔ Jordan cashback recovery uses reviewed manual payment and leaves September benefit unchanged (383.331208ms)
+✔ grocery insight and money pot link both ways without looking like the same number (339.37525ms)
+✔ shared household review entries and Jordan card repayment work through the shared components (733.30225ms)
+✔ agreement overview progressively discloses conditions without hiding the benefit change (307.652ms)
+✔ compact arrangement distinguishes active rules, global pause and payment evidence (334.992333ms)
+✔ pot More shares Now customisation while keeping selections scoped to each container (503.4105ms)
+✔ credit More offers repayment and applicable actions; cancelling edits preserves shortcuts (336.348041ms)
+✔ how sheet terms and follow-up task return preserve overview scroll with one sheet (310.927708ms)
+✔ persisted sessions reject missing people and malformed navigation before boot (1.613416ms)
+✔ all media references are local files with preserved assets (0.442209ms)
+✔ drag swaps and removals conserve unique shortcuts with at most three positions (0.669875ms)
+✔ conversation replaces support while independently started audio remains available (0.433167ms)
+✔ detail defaults to compact regardless of playback (0.0795ms)
+✔ audio does not hide main-page copy or actions (0.056334ms)
+✔ journeys expose help without a card or thinking state, independently of audio (0.068792ms)
+ℹ tests 92
+ℹ suites 0
+ℹ pass 92
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10759.114
+
+> hsbc-atlas-app@0.1.0 build
+> npm run prepare:data && tsc --noEmit && vite build && node scripts/service-worker.mjs
+
+
+> hsbc-atlas-app@0.1.0 prepare:data
+> python3 scripts/prepare_data.py
+
+Prepared 4 scenarios, independently cached media and fonts
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 77 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                       0.74 kB │ gzip:  0.42 kB
+dist/assets/index-DSR90s3b.css      121.21 kB │ gzip: 22.59 kB
+dist/assets/navigation-CiZNS2lP.js    2.11 kB │ gzip:  1.01 kB │ map:     6.61 kB
+dist/assets/index-BzZRbzh3.js        11.38 kB │ gzip:  4.46 kB │ map:    24.68 kB
+dist/assets/runtime-oOGpcvhM.js     231.13 kB │ gzip: 75.54 kB │ map:   500.83 kB
+dist/assets/vendor-C8WJcVBM.js      251.01 kB │ gzip: 78.58 kB │ map: 1,092.50 kB
+
+✓ built in 126ms
+Offline shell and 138 assets, release c6e522e3a77464cc

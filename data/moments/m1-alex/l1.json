@@ -1,0 +1,322 @@
+{
+ "$schema": "../../schema/schema.json#/definitions/L1",
+ "layer": 1,
+ "moment": {
+  "id": "m1",
+  "name": "Join",
+  "stage": "Just switched",
+  "customerId": "alex",
+  "asOf": "2026-08-20",
+  "tenure": "day 9",
+  "segment": "Everyday · new to HSBC",
+  "description": "The relationship begins. Evidence before any ask: bonus paid, Direct Debits moved, nothing automated yet."
+ },
+ "asOf": "2026-08-20",
+ "customer": {
+  "id": "alex",
+  "firstName": "Alex",
+  "age": 24,
+  "birthYear": 2002,
+  "occupation": "Junior designer",
+  "employer": "Acme Ltd",
+  "city": "Manchester",
+  "joined": "2026-08-11",
+  "tenureMonths": 0,
+  "previousBank": "Another UK bank (switched via the Current Account Switch Service)",
+  "segment": "Everyday · new",
+  "tier": "Everyday"
+ },
+ "household": {
+  "id": "hh-alex",
+  "members": [
+   {
+    "id": "alex",
+    "name": "Alex",
+    "relation": "self",
+    "age": 24,
+    "initials": "A"
+   }
+  ],
+  "consentModel": "Single-person household; invites available"
+ },
+ "productsHeld": [
+  {
+   "productId": "current",
+   "since": "2026-08-11"
+  },
+  {
+   "productId": "pot",
+   "count": 0
+  },
+  {
+   "productId": "points"
+  }
+ ],
+ "accounts": [
+  {
+   "id": "ac-cur",
+   "productId": "current",
+   "name": "HSBC Current",
+   "kind": "current",
+   "masked": "8842",
+   "balance": 1180.62,
+   "owed": null,
+   "description": "Everyday spending"
+  }
+ ],
+ "pots": [],
+ "rules": [],
+ "income": [
+  {
+   "id": "inc-salary",
+   "source": "Salary",
+   "employer": "Acme Ltd",
+   "netMonthly": 1900.0,
+   "frequency": "monthly",
+   "payDay": 28,
+   "lastPaid": "2026-07-28",
+   "nextPay": "2026-08-28",
+   "note": "Payroll moved with the switch; a £1,000.00 instalment landed on 18 Aug during the payroll change (labelled 'salary' in the ledger)."
+  }
+ ],
+ "bills": [
+  {
+   "id": "bill-rent",
+   "name": "Rent (house share)",
+   "category": "housing",
+   "amount": 320.0,
+   "frequency": "monthly",
+   "day": 25,
+   "method": "standing order"
+  },
+  {
+   "id": "bill-council",
+   "name": "Council tax share",
+   "category": "housing",
+   "amount": 32.42,
+   "frequency": "monthly",
+   "day": 25,
+   "method": "standing order"
+  },
+  {
+   "id": "bill-energy",
+   "name": "Energy",
+   "category": "utilities",
+   "amount": 48.4,
+   "frequency": "monthly",
+   "day": 26,
+   "method": "Direct Debit",
+   "movedInSwitch": true
+  },
+  {
+   "id": "bill-phone",
+   "name": "Phone",
+   "category": "telecoms",
+   "amount": 25.0,
+   "frequency": "monthly",
+   "day": 24,
+   "method": "Direct Debit",
+   "movedInSwitch": true
+  },
+  {
+   "id": "bill-streaming",
+   "name": "Streaming",
+   "category": "subscriptions",
+   "amount": 12.8,
+   "frequency": "monthly",
+   "day": 22,
+   "method": "Direct Debit",
+   "movedInSwitch": true
+  }
+ ],
+ "transactions": [
+  {
+   "id": "tx-alex-001",
+   "date": "2026-08-11",
+   "ledger": "ac-cur",
+   "counterparty": "Balance transferred by the switch service",
+   "category": "transfer-in",
+   "amount": 0.22,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-alex-002",
+   "date": "2026-08-18",
+   "ledger": "ac-cur",
+   "counterparty": "Acme Ltd — salary",
+   "category": "income",
+   "amount": 1000.0,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-alex-003",
+   "date": "2026-08-18",
+   "ledger": "ac-cur",
+   "counterparty": "Coffee & lunch",
+   "category": "eating-out",
+   "amount": -19.6,
+   "direction": "out",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  },
+  {
+   "id": "tx-alex-004",
+   "date": "2026-08-19",
+   "ledger": "ac-cur",
+   "counterparty": "Switch bonus — HSBC promise kept",
+   "category": "bonus",
+   "amount": 200.0,
+   "direction": "in",
+   "ruleId": null,
+   "memberId": null,
+   "receipt": true
+  }
+ ],
+ "ledgerOpeningBalances": {
+  "note": "Balance at the start of the transaction window, derived so that opening + Σ transactions = balance as of asOf",
+  "values": {
+   "ac-cur": 0.0
+  }
+ },
+ "spending": {
+  "month": "2026-08",
+  "byCategory": {
+   "eating-out": 19.6
+  },
+  "note": "Nine days of data: not enough for patterns — the app says so (credit score 'Learning', Safe to spend offered, not imposed)."
+ },
+ "credit": {
+  "score": null,
+  "status": "learning",
+  "readyIn": "~2 weeks",
+  "sourcesConnected": 2,
+  "sourcesTotal": 3,
+  "softChecksOnly": true,
+  "debts": []
+ },
+ "savingsAndInvestments": {
+  "cash": 1180.62,
+  "inPots": 0.0,
+  "invested": 0.0,
+  "floorProtectedPct": null,
+  "floorProtected": null,
+  "illustratedGrowthAnnual": null
+ },
+ "netWorth": {
+  "held": 1180.62,
+  "owed": 0.0,
+  "net": 1180.62,
+  "engineNetWorth": 1180.62,
+  "asOf": "2026-08-20"
+ },
+ "moneySpeed": {
+  "monthly": 0,
+  "prototypeFigure": 0,
+  "note": "Σ active rules that move money on a schedule (repayments included, as the prototype counts them)"
+ },
+ "goals": [
+  {
+   "id": "goal-settle",
+   "statement": "Settle in and get a clear picture of what is truly spendable",
+   "potId": null,
+   "priority": 1
+  },
+  {
+   "id": "goal-cushion",
+   "statement": "Build a first cushion — small, on purpose",
+   "potId": null,
+   "target": 300,
+   "priority": 2
+  }
+ ],
+ "rewards": {
+  "points": {
+   "balance": 0,
+   "ledger": [],
+   "note": "Never from spending, checking the app, or trading. That’s a rule, not a setting."
+  },
+  "cashback": null,
+  "activeBenefits": [],
+  "challenges": {}
+ },
+ "relationship": {
+  "joined": "2026-08-11",
+  "tenureMonths": 0,
+  "tier": "Everyday",
+  "tierSince": null,
+  "nearPremier": false,
+  "relationshipManagerId": null,
+  "experts": [
+   "human247"
+  ],
+  "milestones": [
+   {
+    "date": "2026-08-11",
+    "event": "Switched to HSBC",
+    "detail": "Current Account Switch Service; three Direct Debits moved",
+    "story": {
+     "id": "joined",
+     "title": "A new beginning",
+     "summary": "Your everyday banking moved to HSBC.",
+     "detail": "Three Direct Debits moved with your current account switch, bringing your regular payments with you.",
+     "category": "Beginning",
+     "icon": "swap",
+     "figure": null,
+     "figureLabel": null,
+     "action": "collection",
+     "actionLabel": "Your accounts today"
+    }
+   },
+   {
+    "date": "2026-08-19",
+    "event": "£200 switch bonus paid",
+    "detail": "Same week — the first promise kept",
+    "story": {
+     "id": "switch-bonus",
+     "title": "Your first £200, delivered",
+     "summary": "Your switch bonus arrived.",
+     "detail": "The £200 switch bonus was paid on 19 August, eight days after you joined.",
+     "category": "A promise kept",
+     "icon": "wallet",
+     "figure": "£200",
+     "figureLabel": "switch bonus received",
+     "action": "receipts",
+     "actionLabel": "View your activity"
+    }
+   }
+  ],
+  "statusNote": "Status grows with the relationship — how much of your picture lives here, and for how long. Points never buy it; they’re yours to spend below.",
+  "contactHistory": []
+ },
+ "behaviour": {
+  "financial": [
+   "Pays bills by Direct Debit — all three moved in the switch and landed",
+   "Spends small on cards day to day",
+   "No savings rule yet; £0 automated"
+  ],
+  "app": {
+   "sessionsSinceJoin": 6,
+   "lastOpened": "2026-08-20",
+   "featuresUsed": [
+    "Now",
+    "Recent activity",
+    "Add a number (browsed)"
+   ],
+   "quizDone": false,
+   "notifications": "payday and bills only",
+   "checkIns": 0
+  }
+ },
+ "autonomy": {
+  "level": "watches nothing yet",
+  "limits": "None granted",
+  "paused": false
+ }
+}

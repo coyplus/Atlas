@@ -1,0 +1,66 @@
+{
+  "description": "Illustrative read-only Open Banking accounts already connected when these moments begin. Separate from HSBC funds and projection inputs.",
+  "sam": [
+    {
+      "id": "monzo",
+      "name": "Monzo",
+      "accounts": [
+        {
+          "id": "current",
+          "name": "Current account",
+          "nickname": "Everyday spending",
+          "masked": "4821",
+          "balance": 845.6
+        }
+      ]
+    },
+    {
+      "id": "starling",
+      "name": "Starling",
+      "accounts": [
+        {
+          "id": "savings",
+          "name": "Savings account",
+          "nickname": "Weekend plans",
+          "masked": "5508",
+          "balance": 1500
+        }
+      ]
+    }
+  ],
+  "elena": [
+    {
+      "id": "natwest",
+      "name": "NatWest",
+      "accounts": [
+        {
+          "id": "current",
+          "name": "Current account",
+          "nickname": "Household bills",
+          "masked": "3140",
+          "balance": 3840.8
+        },
+        {
+          "id": "savings",
+          "name": "Savings account",
+          "nickname": "Cash reserve",
+          "masked": "8062",
+          "balance": 18000
+        }
+      ]
+    },
+    {
+      "id": "starling",
+      "name": "Starling",
+      "accounts": [
+        {
+          "id": "current",
+          "name": "Personal account",
+          "nickname": "Travel account",
+          "masked": "7362",
+          "balance": 1260.25
+        }
+      ]
+    }
+  ]
+}

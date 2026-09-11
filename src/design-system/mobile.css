@@ -1,0 +1,423 @@
+:root {
+  --focus: var(--ink);
+  --motion-fast: 160ms;
+  --motion-screen: 240ms;
+  --motion-sheet: 280ms;
+}
+.launch-state {
+  min-height: var(--app-height, 100dvh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+  background: var(--canvas);
+}
+.launch-state h1 {
+  font-size: 30px;
+}
+.launch-state p {
+  color: var(--muted);
+}
+.launch-state button {
+  padding: 14px 24px;
+  background: var(--red);
+  color: white;
+  border-radius: 8px;
+}
+.launch-mark {
+  font-size: 44px;
+  color: var(--red);
+}
+.demo-menu-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+}
+.demo-menu-scrim {
+  position: absolute;
+  inset: 0;
+  background: #0008;
+  backdrop-filter: blur(4px);
+}
+.demo-menu {
+  position: relative;
+  width: min(92vw, 400px);
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--ink);
+}
+.demo-menu header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.demo-menu header button {
+  font-size: 28px;
+  width: 44px;
+  height: 44px;
+}
+.demo-menu p,
+.demo-menu small {
+  color: var(--muted);
+}
+.demo-people {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.demo-people button,
+.demo-menu > button {
+  border-radius: 10px;
+  padding: 14px;
+  background: var(--soft);
+}
+.demo-menu label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.demo-menu select {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+}
+[data-demo-menu] {
+  cursor: pointer;
+}
+@media (max-width: 730px), (hover: none) and (pointer: coarse) {
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  #app {
+    height: 100%;
+    width: 100%;
+    display: block;
+    padding: 0;
+    max-width: none;
+  }
+  .presenter,
+  .demo-caption {
+    display: none !important;
+  }
+  .device-stage {
+    height: 100%;
+    width: 100%;
+  }
+  .phone,
+  .deckmode .phone {
+    width: 100%;
+    max-width: none;
+    height: var(--app-height, 100dvh);
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .statusbar,
+  .home-indicator {
+    display: none !important;
+  }
+  .content,
+  .sheet-body {
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .app-header {
+    min-height: 58px;
+  }
+  .tabbar {
+    min-height: 68px;
+  }
+  .phone .sheet {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .agreement-sheet {
+    padding-bottom: env(safe-area-inset-bottom);
+    max-height: 88%;
+  }
+  .agreement-sheet-body {
+    padding-bottom: 24px;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  .support-conversation .chat-input {
+    font-size: 16px !important;
+  }
+  body[data-mode='workbench'],
+  body[data-mode='blueprint'] {
+    overflow: auto;
+  }
+  body[data-mode='workbench'] #root,
+  body[data-mode='blueprint'] #root {
+    height: auto;
+    overflow: visible;
+  }
+  body[data-mode='workbench'] #workbench-panel,
+  body[data-mode='blueprint'] #workbench-panel {
+    display: block;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .agreement-sheet {
+    animation: sheet-arrive var(--motion-sheet) cubic-bezier(0.22, 0.8, 0.25, 1);
+  }
+  @keyframes sheet-arrive {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+.update-notice {
+  position: fixed;
+  z-index: 1100;
+  bottom: calc(env(safe-area-inset-bottom) + 12px);
+  left: 12px;
+  right: 12px;
+  max-width: 480px;
+  margin: auto;
+  background: #191c1b;
+  color: white;
+  border: 1px solid #ffffff50;
+  padding: 12px 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  box-shadow: 0 8px 32px #0003;
+}
+.update-notice button {
+  color: white;
+  padding: 8px;
+  text-decoration: underline;
+}
+.demo-menu input[type='checkbox'] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--ink);
+}
+
+html:has(body[data-mode='workbench']),
+html:has(body[data-mode='blueprint']) {
+  overflow: auto;
+}
+body:is([data-mode='workbench'], [data-mode='blueprint']) #app {
+  height: auto;
+}
+
+.phone {
+  color-scheme: light;
+}
+.phone.premier {
+  color-scheme: dark;
+}
+
+/* The demo's front door stays separate from the banking interface. */
+.scenario-switch {
+  display: none;
+}
+.scenario-welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  overflow-y: auto;
+  background: radial-gradient(ellipse at 95% 0%, #dce8eb 0%, transparent 45%), #f3f5f5;
+  color: #191c1d;
+  overscroll-behavior: contain;
+  animation: welcome-enter 280ms ease-out;
+}
+.welcome-inner {
+  max-width: 480px;
+  margin: auto;
+  padding: max(24px, env(safe-area-inset-top)) 24px max(22px, env(safe-area-inset-bottom));
+}
+.welcome-brand {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 23px;
+}
+.welcome-brand svg {
+  width: 34px;
+  height: 19px;
+}
+.welcome-brand > span {
+  color: #626b6e;
+  border-left: 1px solid #cbd1d3;
+  margin-left: 5px;
+  padding-left: 14px;
+  font-size: 20px;
+  font-weight: 300;
+}
+.welcome-brand button {
+  margin-left: auto;
+  height: 44px;
+  width: 44px;
+  font-size: 28px;
+  border-radius: 50%;
+  background: #ffffffb0;
+}
+.welcome-heading {
+  margin: 34px 0 26px;
+}
+.welcome-heading .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  color: #626b6e;
+  margin-bottom: 15px;
+}
+.welcome-heading h1 {
+  font-size: 42px;
+  line-height: 1.06;
+  letter-spacing: -1.6px;
+  font-weight: 300;
+  max-width: 360px;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.welcome-heading > p:last-child {
+  color: #626b6e;
+  font-size: 17px;
+  line-height: 1.45;
+}
+.welcome-scenarios {
+  display: grid;
+  gap: 22px;
+}
+.welcome-scenario-group {
+  display: grid;
+  gap: 9px;
+}
+.welcome-scenario-group > h2 {
+  font-weight: 500;
+}
+.welcome-scenario-group > h2 {
+  margin: 0 0 3px;
+  font-size: 14px;
+  color: #626b6e;
+}
+.welcome-scenario-group > button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 16px;
+  text-align: left;
+  color: #191c1d;
+  border-radius: 20px;
+  background: #ffffffde;
+  border: 1px solid #fff;
+  box-shadow: 0 4px 16px #273f4805;
+  transition:
+    transform 160ms ease,
+    background 160ms ease;
+}
+.welcome-scenario-group > button:active {
+  transform: scale(0.98);
+  background: #e8edef;
+}
+.welcome-person {
+  display: grid;
+  gap: 3px;
+}
+.welcome-person b {
+  font-size: 20px;
+  line-height: 1.1;
+}
+.welcome-person > span {
+  font-size: 14px;
+}
+.welcome-person small {
+  font-size: 12px;
+  color: #687074;
+}
+.welcome-arrow {
+  margin-left: auto;
+  font-size: 23px;
+  color: #727c80;
+}
+.welcome-footnote {
+  color: #687074;
+  font-size: 12px;
+  text-align: center;
+  margin: 18px 0 0;
+  line-height: 1.4;
+}
+@keyframes welcome-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 730px), (hover: none) and (pointer: coarse) {
+  .scenario-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 24px;
+    color: var(--ink);
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    font-size: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scenario-welcome {
+    animation: none;
+  }
+}
+.welcome-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.welcome-scenario-group > button[data-scenario='elena'] {
+  color: #f3f4f5;
+  border: 1px solid transparent;
+  background:
+    radial-gradient(ellipse at 0 0, #25282b 0%, #111315 62%) padding-box,
+    linear-gradient(145deg, #a3a9af 0%, #50555a 24%, #292d31 55%, #6b7177 100%) border-box;
+  box-shadow: 0 10px 20px -16px #0008;
+}
+.welcome-scenarios [data-scenario='elena'] .welcome-person small,
+.welcome-scenarios [data-scenario='elena'] .welcome-arrow {
+  color: #b9bdc1;
+}
+.welcome-scenarios [data-scenario='elena'] .welcome-arrow {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.welcome-arrow .icon {
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,300 @@
+/* Chart geometry is shared across tiles and detail views. Colour roles live in data-colour.css. */
+.number-visual {
+  width: 100%;
+  margin-top: 20px;
+  color: var(--ink);
+}
+.number-visual .number-graphic {
+  width: 100%;
+}
+.number-graphic svg {
+  width: 100%;
+  height: 64px;
+  display: block;
+  overflow: visible;
+}
+.number-split {
+  display: flex;
+  gap: 3px;
+  height: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.number-legend {
+  display: grid;
+  gap: 7px;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.number-legend > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.number-legend i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.number-legend b {
+  margin-left: auto;
+  color: var(--ink);
+  font-weight: 500;
+}
+.number-visual[data-visual='ring'] {
+  display: grid;
+  grid-template-columns: minmax(50px, 90px) 1fr;
+  gap: 14px;
+  align-items: center;
+}
+.number-visual[data-visual='ring'] svg {
+  height: auto;
+}
+.number-visual[data-visual='ring'] .number-legend {
+  margin: 0;
+}
+.number-visual[data-visual='gauge'] .number-graphic {
+  max-width: 180px;
+  margin: auto;
+}
+.number-axis {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.number-axis-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 6px;
+}
+.number-blocks {
+  display: flex;
+  gap: 4px;
+  height: 22px;
+}
+.number-blocks > i {
+  flex: 1;
+  background: var(--soft);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.number-blocks span {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  color: var(--surface);
+  text-align: center;
+  font-size: 11px;
+  font-style: normal;
+  line-height: 22px;
+}
+.number-gauge-track,
+.number-gauge-value {
+  fill: none;
+  stroke: var(--soft);
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+.number-gauge-value {
+  stroke: var(--ink);
+}
+.number-visual.is-expanded {
+  margin: 24px 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.number-visual.is-expanded h3 {
+  grid-column: 1/-1;
+  margin: 0 0 20px;
+  font-size: 15px;
+}
+.number-visual.is-expanded .number-graphic svg {
+  height: 130px;
+}
+.number-visual.is-expanded .number-legend {
+  font-size: 13px;
+}
+.number-visual.is-expanded .support {
+  grid-column: 1/-1;
+  margin-bottom: 0;
+}
+.number-visual.is-expanded[data-visual='ring'] {
+  grid-template-columns: 90px 1fr;
+}
+.number-visual.is-expanded[data-visual='ring'] .number-graphic svg {
+  height: 90px;
+}
+.size-T .number-visual {
+  margin-top: auto;
+  padding-top: 20px;
+}
+.size-T .number-visual[data-visual='ring'] {
+  display: block;
+}
+.size-T .number-visual[data-visual='ring'] svg {
+  height: 90px;
+  margin-bottom: 15px;
+}
+.add-number-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+body[data-direction='vanilla'] .now-page .add-module.add-number-entry {
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  gap: 12px;
+}
+.add-number-entry .add-number-label {
+  flex-direction: row;
+}
+.number-ideas-badge,
+.ideas-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 500;
+}
+.number-ideas-badge {
+  border-radius: 20px;
+  background: var(--soft);
+  padding: 4px 8px;
+}
+.number-ideas-badge .icon {
+  width: 13px;
+  height: 13px;
+}
+.ideas-heading {
+  margin-bottom: 20px;
+}
+.ideas-heading h3 {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  margin-top: 8px;
+}
+.ideas-author {
+  color: var(--muted);
+  font-size: 12px;
+}
+.ideas-author .icon {
+  width: 18px;
+  height: 18px;
+}
+.number-suggestion {
+  padding-bottom: 26px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+.number-gallery .suggestion-reason {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+.number-suggestion .module-preview {
+  border: 0;
+  margin: 0 0 16px;
+  padding: 20px 12px;
+}
+.number-suggestion .size-picker {
+  margin-bottom: 10px;
+}
+.number-suggestion > .btn {
+  min-height: 44px;
+}
+.module-preview.preview-T .module {
+  min-height: 320px;
+}
+.module-preview .module {
+  flex-shrink: 0;
+}
+
+.number-visual[data-visual='gauge'] .number-axis-labels {
+  max-width: 180px;
+  margin: 6px auto 0;
+}
+.size-S .number-visual {
+  margin-top: 14px;
+}
+.size-S .number-visual .number-graphic svg {
+  height: 30px;
+}
+.size-S .number-visual .number-legend,
+.size-S .number-visual .number-axis-labels {
+  display: none;
+}
+.size-S .number-visual[data-visual='ring'] {
+  display: block;
+}
+.size-S .number-visual[data-visual='ring'] .number-graphic svg {
+  width: 32px;
+  height: 32px;
+}
+.size-S .number-blocks {
+  height: 12px;
+}
+.size-S .number-blocks span {
+  line-height: 12px;
+  font-size: 8px;
+}
+.number-visual[data-visual='line'] .number-graphic {
+  min-width: 0;
+}
+/* Selection is a quiet shape/contrast change, consistent in both themes. */
+.number-suggestion .size-picker .btn,
+.module-preview ~ .size-picker .btn {
+  transition: none;
+}
+.number-suggestion .size-picker .btn {
+  background: var(--soft);
+  color: var(--ink);
+}
+.number-suggestion .size-picker .btn[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--surface);
+}
+.add-number-label > .icon {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+.add-number-entry .add-number-label > span {
+  line-height: 24px;
+}
+
+/* Existing monochrome art directions retain their tonal distinction.
+   Vanilla uses semantic roles, overriding these fallback shades. */
+.number-tone-0 {
+  stroke: var(--ink);
+  background: var(--ink);
+}
+.number-tone-1 {
+  stroke: color-mix(in srgb, var(--ink) 60%, var(--surface));
+  background: color-mix(in srgb, var(--ink) 60%, var(--surface));
+}
+.number-tone-2 {
+  stroke: color-mix(in srgb, var(--ink) 36%, var(--surface));
+  background: color-mix(in srgb, var(--ink) 36%, var(--surface));
+}
+.number-tone-3 {
+  stroke: color-mix(in srgb, var(--ink) 22%, var(--surface));
+  background: color-mix(in srgb, var(--ink) 22%, var(--surface));
+}
+.number-tone-4 {
+  stroke: color-mix(in srgb, var(--ink) 12%, var(--surface));
+  background: color-mix(in srgb, var(--ink) 12%, var(--surface));
+}
+
+.number-visual.is-expanded .number-axis-labels {
+  font-size: var(--text-caption);
+}
