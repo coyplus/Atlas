@@ -10,6 +10,7 @@ import {
   installHaptics,
 } from './platform/haptics';
 import { installPwa } from './platform/pwa';
+import { HomeScreenInstall } from './platform/HomeScreenInstall';
 import { installViewport, syncThemeChrome } from './platform/viewport';
 import './design-system/fonts.css';
 import './design-system/foundations.css';
@@ -256,6 +257,7 @@ function ScenarioWelcome({ close, initial }: { close: () => void; initial: boole
           ))}
         </nav>
         <p className="welcome-footnote">Switch lives any time using the name at the top.</p>
+        <HomeScreenInstall />
       </div>
     </section>
   );

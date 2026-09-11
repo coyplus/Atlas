@@ -421,3 +421,71 @@ body:is([data-mode='workbench'], [data-mode='blueprint']) #app {
   width: 24px;
   height: 24px;
 }
+.welcome-install {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid #dce1e2;
+  text-align: center;
+}
+.welcome-install > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 10px 22px;
+  border: 1px solid #d3dadd;
+  border-radius: 28px;
+  background: #ffffffb0;
+  color: #191c1d;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 160ms ease;
+}
+.welcome-install > button:active {
+  background: #e2e9eb;
+}
+.welcome-install .icon {
+  width: 22px;
+  height: 22px;
+}
+.welcome-install > p {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #626b6e;
+}
+.welcome-install-guide {
+  margin-top: 18px;
+  padding: 22px;
+  border-radius: 22px;
+  text-align: left;
+  background: #fff;
+  color: #191c1d;
+}
+.welcome-install-guide h2 {
+  margin: 0 0 16px;
+  font-size: 19px;
+  line-height: 1.3;
+}
+.welcome-install-guide ol {
+  padding-left: 20px;
+  margin: 0;
+}
+.welcome-install-guide li,
+.welcome-install-guide p {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.welcome-install-guide li + li {
+  margin-top: 12px;
+}
+.welcome-install-done {
+  margin-top: 18px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 24px;
+  background: #edf1f2;
+  color: #191c1d;
+  font-size: 15px;
+}
