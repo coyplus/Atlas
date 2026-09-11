@@ -20,7 +20,7 @@ export const slides = [
     stage: 'Conflict',
     title: 'More tools. Not necessarily more progress.',
     theme: 'conflict',
-    content: `<div class="wide-heading"><p class="eyebrow">THE GAP WE NEED TO CLOSE</p><h1>More tools.<br><em>Not necessarily more progress.</em></h1></div><div class="gap-diagram"><div class="tool-cloud"><span>Accounts</span><span>Budgets</span><span>Investments</span><span>Payments</span><span>Mortgages</span><span>Pensions</span><span>Alerts</span><span>Savings</span></div><div class="missing-link"><span class="broken-line"></span><b>Knowing what<br>to do next</b><span class="broken-line"></span></div><div class="outcome-destination">${icon('trending_up')}<span>The life<br>Sam wants</span></div></div><p class="closing-line">If features alone were the answer,<br class="mobile-break"> we would already have solved this.</p>`,
+    content: `<div class="wide-heading"><p class="eyebrow">THE GAP WE NEED TO CLOSE</p><h1>More tools.<br><em>Not necessarily more progress.</em></h1></div><div class="gap-diagram"><div class="tool-cloud"><span>Accounts</span><span>Budgets</span><span>Investments</span><span>Payments</span><span>Mortgages</span><span>Pensions</span><span>Alerts</span><span>Savings Pots</span><span>Life Planner</span></div><div class="missing-link"><span class="broken-line"></span><b>Knowing what<br>to do next</b><span class="broken-line"></span></div><div class="outcome-destination">${icon('trending_up')}<span>The life<br>Sam wants</span></div></div><p class="closing-line">If features alone were the answer,<br class="mobile-break"> we would already have solved this.</p>`,
   },
   {
     stage: 'Strategic shift',
