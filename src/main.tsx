@@ -3,7 +3,12 @@ import { createRoot } from 'react-dom/client';
 import { materialIcons, materialViewBoxes } from './design-system/icons.mjs';
 import './app/contracts';
 import { loadSession, scheduleSave, saveSession } from './platform/session';
-import { feedback } from './platform/haptics';
+import {
+  hapticsSupported,
+  hapticsEnabled,
+  setHapticsEnabled,
+  installHaptics,
+} from './platform/haptics';
 import { installPwa } from './platform/pwa';
 import { installViewport, syncThemeChrome } from './platform/viewport';
 import './design-system/fonts.css';
@@ -39,13 +44,8 @@ class AppBoundary extends Component<{ children: ReactNode }, { failed: boolean }
   }
 }
 function DemoMenu({ close }: { close: () => void }) {
-  const [haptics, setHaptics] = useState(() => {
-    try {
-      return localStorage.getItem('atlas-haptics') === 'on';
-    } catch {
-      return false;
-    }
-  });
+  const [haptics, setHaptics] = useState(hapticsEnabled);
+  const supportsHaptics = hapticsSupported();
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -132,17 +132,19 @@ function DemoMenu({ close }: { close: () => void }) {
           Haptic feedback
           <input
             type="checkbox"
-            checked={haptics}
+            checked={haptics && supportsHaptics}
+            disabled={!supportsHaptics}
             onChange={(e) => {
               setHaptics(e.target.checked);
-              try {
-                localStorage.setItem('atlas-haptics', e.target.checked ? 'on' : 'off');
-              } catch {}
-              if (e.target.checked) feedback('selection');
+              setHapticsEnabled(e.target.checked);
             }}
           />
         </label>
-        <small>Where supported by your browser and device.</small>
+        <small>
+          {supportsHaptics
+            ? 'Quiet feedback for milestones, completed actions and rewards. Reduced Motion keeps it silent.'
+            : 'This browser does not support haptics. Visual feedback remains available.'}
+        </small>
         <a href="/?mode=workbench">Component workbench</a>
         <small>Fictional demo data · no real payments</small>
       </section>
@@ -312,11 +314,11 @@ function App() {
         const nav = await import('./platform/navigation');
         nav.installNavigation();
         installViewport();
+        installHaptics();
         syncThemeChrome();
         window.addEventListener('atlas:change', ((e: CustomEvent) => {
           syncThemeChrome();
           if (!window.__ATLAS_TEST__) scheduleSave(e.detail.state, window.ATLAS_VERSION);
-          if (/confirm|save|done/.test(e.detail.action)) feedback('success');
         }) as EventListener);
         document.addEventListener('click', (e) => {
           if ((e.target as Element).closest('[data-demo-menu]')) setMenu(true);

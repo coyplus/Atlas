@@ -56,7 +56,7 @@ A schema/version mismatch or malformed snapshot starts from the current seed. St
 
 Top-level links accept `?p=sam&tab=future&theme=vanilla` and `/app/sam/future`. Legacy edition/workbench URLs resolve through the same app. In-app sheets keep their original parent, drafts, scroll and focus. Browser history stores small view descriptors, never the financial session. Replay is restricted to navigation actions.
 
-Mobile uses the real viewport and safe-area insets; desktop keeps the stakeholder frame. Keyboard-aware viewport sizing keeps the composer reachable. Sheet motion uses transforms and honours reduced motion. Optional browser vibration is feature-detected and off by default. Full native haptics and platform-native navigation require a later native wrapper; no iOS/Android package has been created here.
+Mobile uses the real viewport and safe-area insets; desktop keeps the stakeholder frame. Keyboard-aware viewport sizing keeps the composer reachable. Sheet motion uses transforms and honours reduced motion. Browser haptics use the shared [haptic language](HAPTIC-LANGUAGE.md), with outcome-based cues and central repetition limits. Supported touch devices default to on unless a saved preference or Reduced Motion disables it. Full native haptics and platform-native navigation require a later native wrapper; no iOS/Android package has been created here.
 
 ## Delivery
 

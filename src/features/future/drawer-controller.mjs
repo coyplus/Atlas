@@ -1,3 +1,4 @@
+import { feedback } from '../../platform/haptics';
 // A non-modal sheet: the canvas and main navigation remain available at every stop.
 export function createFutureDrawer(onLayout) {
   let root, abort, observer, state, lastMode;
@@ -49,11 +50,13 @@ export function createFutureDrawer(onLayout) {
     invitation.inert = expanded || docked;
     invitation.setAttribute('aria-hidden', String(expanded || docked));
   }
-  function snap(mode) {
+  function snap(mode, tactile = false) {
+    const previous = state.drawer || 'timeline';
     state.drawer = stops.includes(mode) ? mode : 'timeline';
     root.classList.remove('drawer-dragging');
     apply();
     onLayout?.(true);
+    if (tactile && previous !== state.drawer) feedback('snap', 'drawer:' + state.drawer);
   }
   function bind(el) {
     abort?.abort();
@@ -107,6 +110,7 @@ export function createFutureDrawer(onLayout) {
             (best, s) => (Math.abs(hs[s] - projected) < Math.abs(hs[best] - projected) ? s : best),
             'timeline',
           ),
+          true,
         );
       }
       drag = null;

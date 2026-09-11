@@ -1,13 +1,58 @@
-export type Feedback = 'selection' | 'success' | 'attention';
-/** Browser enhancement only. Native packaging may supply a Capacitor implementation. */
-export function feedback(kind: Feedback) {
-  let enabled = false;
+import { createHapticEngine } from './haptic-language.mjs';
+export type Feedback = 'selection' | 'snap' | 'commitment' | 'success' | 'attention' | 'reward';
+export const hapticsSupported = () => typeof navigator.vibrate === 'function';
+export function hapticsEnabled() {
   try {
-    enabled = localStorage.getItem('atlas-haptics') === 'on';
+    const saved = localStorage.getItem('atlas-haptics');
+    return saved ? saved === 'on' : hapticsSupported() && matchMedia('(pointer: coarse)').matches;
+  } catch {
+    return false;
+  }
+}
+const engine = createHapticEngine({
+  available: () =>
+    hapticsSupported() &&
+    hapticsEnabled() &&
+    !document.hidden &&
+    !matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    navigator.userActivation?.hasBeenActive !== false,
+  play: (pattern: number[]) => navigator.vibrate(pattern),
+});
+export function feedback(kind: Feedback, key: string = kind) {
+  return engine.request(kind, key);
+}
+export function setHapticsEnabled(on: boolean) {
+  try {
+    localStorage.setItem('atlas-haptics', on ? 'on' : 'off');
   } catch {
     return;
   }
-  if (!enabled || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (typeof navigator.vibrate === 'function')
-    navigator.vibrate(kind === 'success' ? [10, 35, 10] : kind === 'attention' ? 20 : 8);
+  if (on) feedback('selection', 'haptics-enabled');
+  else {
+    engine.clear();
+    try {
+      if (hapticsSupported()) navigator.vibrate(0);
+    } catch {}
+  }
+}
+export function installHaptics() {
+  const stop = () => {
+    engine.clear();
+    try {
+      if (hapticsSupported() && hapticsEnabled()) navigator.vibrate(0);
+    } catch {}
+  };
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop();
+  });
+  window.addEventListener('pagehide', stop);
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', stop);
+  document.addEventListener(
+    'invalid',
+    (e) => {
+      const field = e.target as HTMLInputElement;
+      feedback('attention', 'invalid:' + (field.form?.id || field.id));
+    },
+    true,
+  );
 }

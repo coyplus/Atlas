@@ -1,3 +1,9 @@
+import { feedback } from '../platform/haptics';
+import {
+  captureHapticOutcome,
+  outcomeCue,
+  createMilestoneTracker,
+} from '../platform/haptic-language.mjs';
 import { portraitStoryReply } from '../features/you/portrait-story.mjs';
 import { portraitMetricsReply } from '../features/you/portrait-metrics.mjs';
 import { enterPage } from '../design-system/motion.mjs';
@@ -623,6 +629,7 @@ function updateFuture() {
       `${S.month ? dateAt(p, S.month) : 'Today'}, age ${p.l1.customer.age + Math.floor(S.month / 12)}`,
     );
   }
+  return model;
 }
 
 function chatReply(text) {
@@ -809,10 +816,33 @@ function humanHandover() {
   );
   openChat();
 }
+let hapticActionDepth = 0;
+const timeHaptics = createMilestoneTracker();
 function act(action) {
+  const root = hapticActionDepth++ === 0;
+  const before = root ? captureHapticOutcome(current(S)) : null;
+  const previousMonth = S.month;
   try {
-    return executeAction(action);
+    const result = executeAction(action);
+    if (root) {
+      const kind = outcomeCue(action, before, captureHapticOutcome(current(S)));
+      if (kind) feedback(kind, action);
+      else if (
+        ['future-time', 'future-land'].includes(action.split(':')[0]) &&
+        previousMonth !== S.month
+      ) {
+        const hit = Object.entries(futureModel(current(S), S).next.dates).find(
+          ([, month]) => month > 0 && month === S.month,
+        );
+        if (hit) feedback('selection', 'milestone:' + S.person + ':' + hit[0]);
+      }
+    }
+    return result;
+  } catch (error) {
+    if (root) feedback('attention', 'error:' + error.message);
+    throw error;
   } finally {
+    hapticActionDepth--;
     window.dispatchEvent(
       new CustomEvent('atlas:change', {
         detail: {
@@ -874,6 +904,12 @@ document.addEventListener('change', (e) => {
   if (e.target.id === 'now-photo-input') act('now-background-upload');
   if (e.target.closest('#container-rule-form')) updateRuleFields();
 });
+document.addEventListener('pointerdown', (e) => {
+  if (e.target.id === 'time-slider') timeHaptics.begin();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.target.id === 'time-slider' && !e.repeat) timeHaptics.begin();
+});
 document.addEventListener('input', (e) => {
   if (['convert-amount', 'convert-currency'].includes(e.target.id)) {
     const amount = Number(document.querySelector('#convert-amount').value),
@@ -894,8 +930,11 @@ document.addEventListener('input', (e) => {
   }
   if (e.target.id === 'recap-progress') supportController.seek(e.target.value);
   if (e.target.id === 'time-slider') {
+    const previous = S.month;
     S.month = Number(e.target.value);
-    updateFuture();
+    const model = updateFuture();
+    const hit = timeHaptics.cross(previous, S.month, model.next.dates);
+    if (hit) feedback('selection', 'milestone:' + S.person + ':' + hit);
   }
 });
 document.addEventListener('submit', (e) => {

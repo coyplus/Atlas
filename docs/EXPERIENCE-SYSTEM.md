@@ -147,3 +147,11 @@ its existing receipt/Undo path; review and simulation do not commit money.
 Prefer changing the existing shared template, controller or token. Add a feature rule
 only when its interaction has a different purpose. Keep these decisions alongside the
 code and use the audit capture script and journey tests when shared patterns change.
+
+## Haptic feedback
+
+Follow [the haptic language](HAPTIC-LANGUAGE.md). Use semantic outcome cues, not
+per-button effects or action-name matching. Keep ordinary taps, navigation,
+scrolling, preview movement and AI updates silent. One completed action has one
+cue; the platform controller owns capability checks, preferences, priorities and
+noise limits. See the document for the pattern table and Time Travel budget.
