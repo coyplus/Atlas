@@ -45,6 +45,7 @@ test('an available release waits for consent, then saves and restarts', async ({
   try {
     const address = server.address() as { port: number };
     await page.goto(`http://127.0.0.1:${address.port}/?p=jordan`);
+    await page.locator('.welcome-scenarios [data-scenario="jordan"]').click();
     await expect(page.locator('.now-page')).toBeVisible();
     await page.evaluate(async () => {
       await navigator.serviceWorker.ready;

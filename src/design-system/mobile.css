@@ -429,26 +429,55 @@ body:is([data-mode='workbench'], [data-mode='blueprint']) #app {
   width: 24px;
   height: 24px;
 }
-.welcome-install {
+.welcome-actions {
   margin-top: 26px;
   padding-top: 22px;
   border-top: 1px solid #dce1e2;
   text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 10px;
 }
-.welcome-install > button {
+.welcome-install {
+  display: contents;
+}
+.welcome-install > button,
+.welcome-presentation {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  min-height: 48px;
-  padding: 10px 22px;
+  min-height: 56px;
+  padding: 10px 12px;
   border: 1px solid #d3dadd;
   border-radius: 28px;
   background: #ffffffb0;
   color: #191c1d;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 1.3;
   font-weight: 500;
   transition: background 160ms ease;
+}
+.welcome-install > button {
+  grid-row: 1;
+  grid-column: 1;
+}
+.welcome-presentation {
+  grid-row: 1;
+  grid-column: 2;
+  text-decoration: none;
+}
+.welcome-presentation .icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.welcome-actions:not(:has(.welcome-install)) .welcome-presentation {
+  grid-column: 1 / -1;
+}
+.welcome-install > p,
+.welcome-install-guide {
+  grid-column: 1 / -1;
 }
 .welcome-install > button:active {
   background: #e2e9eb;

@@ -165,7 +165,9 @@ function ScenarioWelcome({ close, initial }: { close: () => void; initial: boole
     const key = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && !initial) close();
       if (event.key !== 'Tab') return;
-      const buttons = [...(section?.querySelectorAll<HTMLButtonElement>('button') || [])];
+      const buttons = [
+        ...(section?.querySelectorAll<HTMLElement>('button:not(:disabled),a[href]') || []),
+      ];
       if (
         event.shiftKey &&
         (document.activeElement === buttons[0] || document.activeElement === section)
@@ -264,7 +266,19 @@ function ScenarioWelcome({ close, initial }: { close: () => void; initial: boole
           ))}
         </nav>
         <p className="welcome-footnote">Switch lives any time using the name at the top.</p>
-        <HomeScreenInstall />
+        <div className="welcome-actions">
+          <HomeScreenInstall />
+          <a className="welcome-presentation" href="/presentation/">
+            <svg
+              className="icon"
+              data-material="description"
+              viewBox={materialViewBoxes.description}
+              aria-hidden="true"
+              dangerouslySetInnerHTML={{ __html: materialIcons.description }}
+            />
+            <span>Presentation</span>
+          </a>
+        </div>
       </div>
     </section>
   );
