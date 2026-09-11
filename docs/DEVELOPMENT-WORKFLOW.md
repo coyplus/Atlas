@@ -8,7 +8,7 @@
 6. **Review visually.** Check Alex/Jordan/Sam plus Elena's Premier theme at 390px and a narrow 320px viewport. Check keyboard, focus, long copy and scroll restoration. Screenshots belong in `docs/screenshots/`; keep the main screen compact.
 7. **Publish an intentional release.** Commit the reviewed source and push to `main`. Vercel builds that commit and updates the public URL automatically; verify the deployment before reporting it live. Never mutate a demo's data in a service worker. Updated builds wait for the user to restart.
 
-Generated test cases adapt the frozen behaviour contract to the migrated module paths. The only intentional assertion changes concern local asset URLs instead of base64 data URLs and preserving restored form values/scroll instead of requiring detached DOM identity. Test cases run in isolated React/JSDOM realms. New regression tests should go in `tests/platform.test.mjs`, a new non-generated test file (update `.gitignore`), or `e2e/`.
+Generated test cases adapt the frozen behaviour contract to the migrated module paths. The only intentional assertion changes concern local asset URLs instead of base64 data URLs and preserving restored form values/scroll instead of requiring detached DOM identity. Test cases run in isolated React/JSDOM realms. New regression tests should go in `tests/platform.test.mjs`, a new non-generated test file, or `e2e/`.
 
 Migration scripts under `scripts/migration-archive/` are provenance, not routine build commands. Do not rerun them over the migrated source.
 

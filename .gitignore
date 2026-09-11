@@ -9,8 +9,12 @@ tests/generated-runtime.js
 tests/fixtures/
 tests/interface-cases/
 tests/interface.reference.mjs
-tests/*.test.mjs
-!tests/platform.test.mjs
+# Only these tests are generated from tests/reference/*.source.mjs.
+tests/containers.test.mjs
+tests/core.test.mjs
+tests/interface.test.mjs
+tests/shortcuts.test.mjs
+tests/support-system.test.mjs
 reports/
 test-results/
 .DS_Store
