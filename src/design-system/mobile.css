@@ -262,7 +262,7 @@ body:is([data-mode='workbench'], [data-mode='blueprint']) #app {
   align-items: center;
   font-size: 23px;
 }
-.welcome-brand svg {
+.welcome-brand > svg {
   width: 34px;
   height: 19px;
 }
@@ -275,12 +275,20 @@ body:is([data-mode='workbench'], [data-mode='blueprint']) #app {
   font-weight: 300;
 }
 .welcome-brand button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
   margin-left: auto;
   height: 44px;
   width: 44px;
-  font-size: 28px;
+  padding: 0;
+  color: #191c1d;
   border-radius: 50%;
   background: #ffffffb0;
+}
+.welcome-brand button .icon {
+  width: 24px;
+  height: 24px;
 }
 .welcome-heading {
   margin: 34px 0 26px;

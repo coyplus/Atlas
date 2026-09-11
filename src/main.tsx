@@ -198,7 +198,14 @@ function ScenarioWelcome({ close, initial }: { close: () => void; initial: boole
           <span>Atlas</span>
           {!initial && (
             <button onClick={close} aria-label="Back to prototype">
-              ×
+              <svg
+                className="icon"
+                data-material="close"
+                viewBox={materialViewBoxes.close}
+                fill="currentColor"
+                aria-hidden="true"
+                dangerouslySetInnerHTML={{ __html: materialIcons.close }}
+              />
             </button>
           )}
         </header>
