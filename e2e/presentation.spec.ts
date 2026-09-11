@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('all twelve slides render with working navigation, notes and responsive content', async ({
+test('all twelve slides render with working navigation and responsive content', async ({
   page,
   browserName,
 }) => {
@@ -25,9 +25,9 @@ test('all twelve slides render with working navigation, notes and responsive con
     .locator('.system-flow')
     .evaluate((el) => getComputedStyle(el).gridTemplateColumns);
   expect(flow.split(' ').length).toBe(1);
-  await page.locator('#notes-toggle').click();
-  await expect(page.locator('#speaker-notes')).toContainText('authored scenarios');
-  await page.locator('#notes-close').click();
+  await expect(page.locator('#notes-toggle, #speaker-notes')).toHaveCount(0);
+  await page.keyboard.press('n');
+  await expect(page.locator('#speaker-notes')).toHaveCount(0);
   await page.keyboard.press('ArrowRight');
   await expect(page).toHaveURL(/#9$/);
   await expect

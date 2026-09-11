@@ -15,8 +15,6 @@ document.querySelectorAll<HTMLElement>('[data-icon]').forEach((el) => {
 });
 const pages = [...main.querySelectorAll<HTMLElement>('.slide')];
 const menu = document.querySelector<HTMLDialogElement>('#slide-menu')!;
-const notes = document.querySelector<HTMLElement>('#speaker-notes')!;
-const notesToggle = document.querySelector<HTMLButtonElement>('#notes-toggle')!;
 const next = document.querySelector<HTMLButtonElement>('#next')!;
 const previous = document.querySelector<HTMLButtonElement>('#previous')!;
 const counter = document.querySelector<HTMLElement>('#counter')!;
@@ -46,8 +44,6 @@ function show(index: number, focus = true) {
   previous.disabled = current === 0;
   next.disabled = current === slides.length - 1;
   progress.style.width = `${((current + 1) / slides.length) * 100}%`;
-  document.querySelector('#notes-copy')!.innerHTML =
-    `<p class="notes-stage">${slide.stage} · ${current + 1} / ${slides.length}</p>${slide.notes}`;
   menu.querySelectorAll('button[data-slide]').forEach((button) => {
     button.setAttribute(
       'aria-current',
@@ -57,11 +53,6 @@ function show(index: number, focus = true) {
   history.replaceState(null, '', `#${current + 1}`);
   if (focus) pages[current].focus({ preventScroll: true });
   requestAnimationFrame(updateScrollCue);
-}
-function toggleNotes(open: boolean) {
-  notes.hidden = !open;
-  notesToggle.setAttribute('aria-expanded', String(open));
-  if (!open) notesToggle.focus();
 }
 menu.querySelector('nav')!.innerHTML = slides
   .map(
@@ -87,8 +78,6 @@ menu.addEventListener('click', (event) => {
 });
 document.querySelector('#contents')!.addEventListener('click', () => menu.showModal());
 document.querySelector('#menu-close')!.addEventListener('click', () => menu.close());
-notesToggle.addEventListener('click', () => toggleNotes(!!notes.hidden));
-document.querySelector('#notes-close')!.addEventListener('click', () => toggleNotes(false));
 previous.addEventListener('click', () => show(current - 1));
 next.addEventListener('click', () => show(current + 1));
 window.addEventListener('hashchange', () => show(numberFromHash()));
@@ -101,11 +90,6 @@ document.addEventListener('keydown', (event) => {
     (event.target as Element).matches('input,textarea,select')
   )
     return;
-  if (event.key === 'Escape' && !notes.hidden) {
-    toggleNotes(false);
-    return;
-  }
-  if (!notes.hidden) return;
   const move = (
     {
       ArrowRight: current + 1,
@@ -120,7 +104,6 @@ document.addEventListener('keydown', (event) => {
     event.preventDefault();
     show(move);
   }
-  if (event.key.toLowerCase() === 'n') toggleNotes(true);
 });
 let touch: { x: number; y: number } | null = null;
 main.addEventListener(

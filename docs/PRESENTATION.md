@@ -21,14 +21,14 @@ setting, characters, conflict, big idea, resolution, soundbite.
 11. Resolution — You makes understanding and recognition personal and transparent.
 12. Soundbite — Building better customers builds a better bank; experience Sam.
 
-Speaker notes retain the fuller reasoning and a clear distinction between the
-system vision and the current authored prototype. The £50 / 11-month example
+Presenter notes are held outside this public repository in the owner’s local deck folder.
+The published deck contains no notes control, notes text or notes keyboard shortcut. The £50 / 11-month example
 comes from Sam’s existing What If scenario. Outcomes for the bank are presented
 as hypotheses to validate, rather than measured claims.
 
 ## Editing
 
-- `src/presentation/slides.ts`: headlines, visuals and speaker notes.
+- `src/presentation/slides.ts`: audience-facing headlines and visuals.
 - `src/presentation/deck.css`: independent responsive presentation styling.
 - `src/presentation/deck.ts`: controls, slide links, notes and navigation.
 - `presentation/index.html`: HTML entry point.
@@ -44,7 +44,7 @@ can move between the deck and the prototype.
 Arrow buttons, left/right keys and Page Up/Down move through the slides. Home and
 End jump to the beginning or end. Horizontal swipes navigate on touch devices;
 vertical gestures scroll longer slides. The slide count opens the overview.
-Notes adds speaker context; Escape closes notes and the overview. Each slide has
+Escape closes the overview. Each slide has
 an addressable hash, for example `/presentation/#8` for the system diagram.
 
 Desktop uses a horizontal system flow. Phone layouts recompose it into inputs,
@@ -57,10 +57,10 @@ Reduced Motion suppresses transitions. Print styles expose all twelve slides.
 - User’s screenshot of the Visual Story Planner: Setting → Characters →
   Conflict → Big Idea → Resolution → Soundbite.
 - [Self-Determination Theory](https://selfdeterminationtheory.org/the-theory/),
-  referenced on slide 7 and in its speaker notes.
+  referenced on slide 7.
 
 Verification covers all slides in mobile Chromium and WebKit, the chooser entry,
-notes, navigation, standalone visibility and service-worker routing. Visual
+absence of notes, navigation, standalone visibility and service-worker routing. Visual
 review includes every slide at 1440 × 900 and 390 × 844, with the phone diagram
 reviewed through its full scrollable length.
 
