@@ -90,6 +90,27 @@ test('an installed service worker opens the presentation shell rather than the b
   await expect(page.locator('#counter')).toHaveText('01 / 12');
   await page.reload();
   await expect(page.locator('#counter')).toHaveText('01 / 12');
+  // A stale installed shell must not pin the online presentation to that release.
+  await page.evaluate(async () => {
+    for (const name of await caches.keys()) {
+      if (name.startsWith('atlas-')) {
+        const cache = await caches.open(name);
+        await cache.put(
+          '/presentation/index.html',
+          new Response('<html><body>Offline deck fallback</body></html>', {
+            headers: { 'Content-Type': 'text/html' },
+          }),
+        );
+      }
+    }
+  });
+  await page.reload();
+  await expect(page.locator('#counter')).toHaveText('01 / 12');
+  await page.context().setOffline(true);
+  await page.reload();
+  await expect(page.locator('body')).toHaveText('Offline deck fallback');
+  await page.context().setOffline(false);
+  await page.reload();
   await page.getByRole('link', { name: 'Open prototype' }).click();
   await expect(page.locator('.now-page')).toBeVisible();
 });
