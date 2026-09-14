@@ -2284,3 +2284,15 @@ body[data-theme='closing'] .deck-brand > span {
     font-size: 19px;
   }
 }
+
+.journey-motivation {
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: -10px 0 20px;
+}
+@media (max-width: 650px) {
+  .journey-motivation {
+    font-size: 16px;
+  }
+}

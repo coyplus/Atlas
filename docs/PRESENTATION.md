@@ -86,3 +86,9 @@ journey diagrams. It is a design distinction, not a claim that every transaction
 has an instant result or that a system guarantees behavioural change. Slide 7
 names Self-Determination Theory and its authors; the tab mapping is our design
 application, not a scientifically validated prototype.
+
+Slide 4 distinguishes an immediate need and the relief of completing it from a
+distant goal that needs timely prompts, manageable repeat actions and nearer
+feedback or recognition. The [Fogg Behavior Model](https://www.behaviormodel.org/)
+informs the motivation, ability and prompt framing. Reward is described as a
+design mechanism for the ongoing journey, not a fourth element of B=MAP.
