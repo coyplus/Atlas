@@ -204,8 +204,29 @@ export function assumptions(p, s) {
 export function review(p, s) {
   const f = futureState(p),
     base = forecast(p),
-    next = forecast(p, f.ideas);
-  return `<div class="fg-detail"><span class="fg-ai-label">${icon('spark')} Your plan, made practical</span><h2>A future you’ve<br>made your own.</h2><p>Here’s what changes today to make it possible.</p><div class="fg-review-list">${f.ideas.map((i) => `<article><b>${esc(i.title)}</b><p>${esc(ideaDescription(p, i))}</p></article>`).join('')}</div><p class="fg-change">${esc(impact(p, base, next, 8))}</p><p class="support">Protected commitments remain in place. This applies changes only to the Atlas prototype, with a receipt and Undo.</p><label class="fg-confirm"><input id="future-approval" type="checkbox"> <span>I’ve reviewed ${f.ideas.some((i) => i.authored?.effect?.newPot?.growthAnnual) ? 'the illustrative investment plan with Maya and ' : ''}the changes${f.ideas.some((i) => ['extra', 'add', 'roundup'].includes(i.kind)) ? ' and the extra contributions fit my budget' : ''}.</span></label>${btn('Apply to my plan', 'commit', 'primary wide')}${btn('Keep experimenting', 'dismiss', 'text wide')}</div>`;
+    next = forecast(p, f.ideas),
+    difference = next.speed - base.speed,
+    firstGoal = next.goals.find((g) => f.ideas.some((i) => i.goal === g.id)) || next.goals[0],
+    colour = appearanceStyle(potAppearance(p, firstGoal || { name: 'Future' })),
+    effect = impact(p, base, next, 8).replace(/(\d+)mo/g, '$1 months'),
+    investment = f.ideas.some((i) => i.authored?.effect?.newPot?.growthAnnual),
+    extra = f.ideas.some((i) => ['extra', 'add', 'roundup'].includes(i.kind));
+  return `<div class="fg-detail fg-plan-review" style="${colour}">
+    <header class="fg-review-heading"><span class="fg-ai-label">${icon('spark')} Your plan, made practical</span><h2>Make this<br>future yours.</h2></header>
+    <section class="fg-review-summary" aria-label="Monthly commitment">
+      <span class="fg-review-summary-label">Your monthly plan from today</span>
+      <div class="fg-review-amounts">${difference ? `<span class="fg-review-before">${money(base.speed)}</span>${icon('arrow')}` : ''}<strong>${money(next.speed)}<small>/month</small></strong></div>
+      <span class="fg-review-difference">${difference ? `${money(Math.abs(difference))} ${difference > 0 ? 'more towards your goals' : 'less committed each month'}` : 'Your total monthly commitment stays the same'}</span>
+    </section>
+    <div class="fg-review-list">${f.ideas
+      .map((i) => {
+        const g = next.goals.find((g) => g.id === i.goal) || firstGoal;
+        return `<article><span class="fg-review-rule-icon" style="${appearanceStyle(potAppearance(p, g || { name: i.name || 'Future' }))}">${icon(g ? glyph(g) : 'target')}</span><div><b>${esc(i.title)}</b><p>${esc(ideaDescription(p, i))}</p></div></article>`;
+      })
+      .join('')}</div>
+    <aside class="fg-review-impact">${icon('trend')}<div><small>Projected impact</small><strong>${esc(effect)}</strong></div></aside>
+    <footer class="fg-review-approval"><label class="fg-confirm"><input id="future-approval" type="checkbox"><span>I’ve reviewed ${investment ? 'the illustrative investment plan with Maya and ' : ''}the changes${extra ? ' and the extra contributions fit my budget' : ''}.</span></label>${btn('Apply to my plan', 'commit', 'primary wide')}<p class="fg-review-assurance">Protected commitments stay in place.<br>Changes stay in this demo. You can undo them.</p>${btn('Keep experimenting', 'dismiss', 'text wide')}</footer>
+  </div>`;
 }
 export function chatDetail(p) {
   const f = futureState(p),

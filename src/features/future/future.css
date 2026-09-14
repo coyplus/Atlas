@@ -1755,3 +1755,120 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
 .phone .future-studio[data-drawer='expanded'] .future-drawer-body {
   overflow: visible;
 }
+
+/* Plan approval: commitment, mechanics and impact share one visual hierarchy. */
+.phone .fg-plan-review {
+  padding-top: 4px;
+}
+.fg-plan-review .fg-review-heading h2 {
+  margin: 12px 0 20px;
+  font-size: 34px;
+  line-height: 1.08;
+}
+.fg-review-summary {
+  padding: 21px 22px;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--pot-colour) 13%, var(--surface));
+}
+.fg-review-summary-label,
+.fg-review-difference {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.fg-review-amounts {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0 6px;
+  font-variant-numeric: tabular-nums;
+}
+.fg-review-before {
+  font-size: 23px;
+  color: var(--muted);
+}
+.fg-review-amounts > .icon {
+  width: 22px;
+  height: 22px;
+  color: var(--muted);
+}
+.fg-review-amounts strong {
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -1.8px;
+  font-weight: 400;
+}
+.fg-review-amounts strong small {
+  font-size: 13px;
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+.fg-plan-review .fg-review-list article {
+  display: flex;
+  gap: 14px;
+  border: 0;
+  padding: 21px 0;
+  margin: 0;
+}
+.fg-review-rule-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex: 0 0 42px;
+  background: var(--pot-colour);
+  color: var(--pot-ink);
+}
+.fg-review-rule-icon .icon {
+  width: 22px;
+  height: 22px;
+}
+.fg-plan-review .fg-review-list b {
+  display: block;
+  font-size: 15px;
+  margin: 1px 0 5px;
+}
+.fg-plan-review .fg-review-list p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.fg-review-impact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  border-radius: 18px;
+  background: var(--soft);
+}
+.fg-review-impact > .icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.fg-review-impact small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+.fg-review-impact strong {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.fg-review-approval .fg-confirm {
+  margin: 22px 0 14px;
+  align-items: center;
+}
+.fg-review-approval .btn {
+  margin-top: 0;
+}
+.fg-plan-review .fg-review-assurance {
+  margin: 11px 0 5px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.5;
+}
