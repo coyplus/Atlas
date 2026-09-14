@@ -1925,3 +1925,245 @@ body[data-theme='closing'] .deck-brand > span {
     margin-top: 25px;
   }
 }
+
+/* The narrative connects digital convenience to sustained behaviour and shared value. */
+.transaction-proof {
+  font-size: 20px;
+  color: var(--muted);
+  margin-top: 22px;
+}
+.conflict .gap-diagram {
+  margin-top: 32px;
+}
+.conflict .closing-line {
+  margin-top: 30px;
+  font-size: 23px;
+}
+.behaviour-bridge,
+.shared-value,
+.loyalty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.behaviour-bridge h1,
+.loyalty h1,
+.shared-value h1,
+.principles h1 {
+  font-size: clamp(38px, 4vw, 62px);
+}
+.sustained-path,
+.continuity-story {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+.sustained-path article,
+.continuity-story article {
+  padding: 26px;
+  background: #e3eceb;
+  border-radius: 24px;
+}
+.sustained-path article:nth-child(2),
+.continuity-story article:nth-child(2) {
+  background: #e7e1ee;
+}
+.sustained-path article:nth-child(3),
+.continuity-story article:nth-child(3) {
+  background: #eddfd3;
+}
+.sustained-path article > span {
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  color: var(--muted);
+}
+.sustained-path h2,
+.continuity-story h2 {
+  font-size: 29px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  margin: 21px 0 16px;
+}
+.sustained-path p,
+.continuity-story p {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.trust-bridge {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  border-top: 1px solid #bdcbcd;
+  padding-top: 22px;
+  margin-top: 30px;
+}
+.trust-bridge b {
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.trust-bridge p {
+  font-size: 19px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.continuity-story .mini-label {
+  display: block;
+}
+.continuity-story .deck-icon {
+  display: block;
+  margin-top: 24px;
+  color: var(--blue);
+  width: 30px;
+  height: 30px;
+}
+.strategy-close {
+  margin-top: 27px;
+  font-size: 21px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.strategy-close strong {
+  font-weight: 400;
+  color: var(--ink);
+}
+.person-side {
+  font-size: 15px;
+  color: var(--muted);
+}
+.tab-handoff {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid #cbd6d7;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--blue);
+}
+.product .action-sequence {
+  margin-top: 28px;
+}
+.product .text-link {
+  margin-top: 22px;
+}
+.shared-value-grid {
+  display: grid;
+  grid-template-columns: 1fr 110px 1fr;
+  gap: 25px;
+  align-items: center;
+  margin-top: 36px;
+}
+.shared-value-grid article {
+  background: #dce9e8;
+  padding: 32px;
+  border-radius: 26px;
+}
+.shared-value-grid article:last-child {
+  background: #e5dfee;
+}
+.shared-value-grid h2 {
+  font-size: 38px;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  margin: 22px 0;
+}
+.shared-value-grid p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.shared-value-link {
+  text-align: center;
+  color: var(--blue);
+}
+.shared-value-link .deck-icon {
+  width: 34px;
+  height: 34px;
+}
+.shared-value-link span {
+  display: block;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.shared-value-test {
+  font-size: 17px;
+  color: var(--muted);
+  margin-top: 26px;
+}
+@media (max-width: 650px) {
+  .transaction-proof {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .conflict .closing-line {
+    font-size: 21px;
+  }
+  .sustained-path,
+  .continuity-story,
+  .trust-bridge,
+  .shared-value-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .sustained-path h2,
+  .continuity-story h2 {
+    font-size: 28px;
+    margin: 16px 0;
+  }
+  .sustained-path p br,
+  .continuity-story p br {
+    display: none;
+  }
+  .trust-bridge {
+    gap: 14px;
+  }
+  .trust-bridge b {
+    font-size: 23px;
+  }
+  .trust-bridge p {
+    font-size: 18px;
+  }
+  .tab-handoff {
+    font-size: 17px;
+  }
+  .shared-value-grid h2 {
+    font-size: 34px;
+  }
+  .shared-value-grid article {
+    padding: 26px;
+  }
+  .shared-value-link .deck-icon {
+    transform: rotate(90deg);
+  }
+  .shared-value-link span {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 12px;
+  }
+  .shared-value-test {
+    line-height: 1.5;
+  }
+}
+.product.future .future-example {
+  margin-top: 20px;
+}
+@media (max-width: 650px) {
+  .need .person-side {
+    display: block;
+    margin-top: 24px;
+    font-size: 14px;
+  }
+  .need h2 {
+    margin-top: 12px;
+  }
+  .need {
+    min-height: 180px;
+  }
+  .need-symbol {
+    top: 43px;
+  }
+}
