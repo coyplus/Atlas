@@ -12,7 +12,7 @@ the question raised by the previous slide.
 1. Setting — Introducing Atlas and the ambition for the next decade.
 2. Character — Sam, his household and competing priorities.
 3. Conflict — Digital banking makes transactions easier; sustained progress is another job.
-4. Causal bridge — Long-term goals need choices, repetition and adaptation; useful support and trust make continued help possible.
+4. Causal bridge — Transactional journeys lead to completion; transformational journeys need repeated action, feedback and adaptation, so we design a system of support.
 5. Strategic shift — Carry personal context and continuity into digital convenience; earn relationship loyalty through usefulness.
 6. Big idea — Making banking a relationship again: help customers choose, act and keep going.
 7. Behavioural foundation — Three sides of one person: Now/competence, Future/autonomy, You/relatedness.
@@ -22,9 +22,9 @@ the question raised by the previous slide.
 11. Architecture — A shared AI behavioural layer delivers all three customer experiences.
 12. Flywheel — Show how the experiences reinforce trust, relevant support and sustained progress over time.
 13. Shared value — Explain why customer progress can support loyalty and appropriate bank growth; a hypothesis to test.
-14. Soundbite — Building better customers builds a better bank.
+14. Soundbite — Customer progress → earned trust and loyalty → long-term value for HSBC.
 
-The personal-banking reference sits inside the strategic shift rather than a
+The personal-banking heritage is explicit on slide 5: through branches and personal bankers, we built relationships over time. It sits inside the strategic shift rather than a
 separate nostalgia slide. It identifies qualities to carry forward, without
 claiming that all historic customer experiences were personal or better.
 The narrative does not assume customers are asking to be understood by a bank;
@@ -80,3 +80,9 @@ ordered vertical loop with an explicit return to meaningful interactions.
 
 The published site requires a server-side password. Offline application caching
 is retired so presentation and prototype navigation pass the access check.
+
+Slide 4 takes inspiration from the supplied transactional and transformational
+journey diagrams. It is a design distinction, not a claim that every transaction
+has an instant result or that a system guarantees behavioural change. Slide 7
+names Self-Determination Theory and its authors; the tab mapping is our design
+application, not a scientifically validated prototype.

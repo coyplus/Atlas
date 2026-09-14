@@ -2167,3 +2167,120 @@ body[data-theme='closing'] .deck-brand > span {
     top: 43px;
   }
 }
+
+.journey-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 34px;
+}
+.journey-comparison article {
+  padding: 28px;
+  border-radius: 26px;
+  background: #e7ebe8;
+}
+.journey-comparison .transformation-journey {
+  background: #dce8e8;
+}
+.journey-comparison h2 {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.6px;
+  margin: 18px 0 25px;
+}
+.transaction-steps,
+.behaviour-cycle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 66px;
+  padding: 16px 18px;
+  background: #ffffff90;
+  border-radius: 18px;
+  font-size: 18px;
+}
+.behaviour-cycle {
+  border: 1px solid #96b4bc;
+  border-radius: 40px;
+}
+.transaction-steps .deck-icon,
+.behaviour-cycle .deck-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--blue);
+}
+.journey-time {
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 16px;
+}
+.journey-design {
+  border-top: 1px solid #bccacc;
+  margin-top: 25px;
+  padding-top: 20px;
+}
+.journey-design b {
+  font-weight: 500;
+  font-size: 21px;
+}
+.journey-design p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.5;
+}
+.journey-conclusion {
+  font-size: 20px;
+  line-height: 1.45;
+  margin-top: 28px;
+  max-width: 1000px;
+}
+.science-foundation {
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.science-foundation a {
+  color: var(--blue);
+  text-underline-offset: 4px;
+}
+.science-foundation span {
+  display: block;
+  color: var(--muted);
+  margin-top: 7px;
+}
+@media (max-width: 650px) {
+  .journey-comparison {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .journey-comparison article {
+    padding: 24px;
+  }
+  .journey-comparison h2 {
+    font-size: 25px;
+  }
+  .transaction-steps,
+  .behaviour-cycle {
+    gap: 6px;
+    padding: 13px 10px;
+    font-size: 15px;
+  }
+  .transaction-steps .deck-icon,
+  .behaviour-cycle .deck-icon {
+    width: 17px;
+    height: 17px;
+  }
+  .journey-design b {
+    font-size: 20px;
+  }
+  .journey-time,
+  .journey-design p {
+    font-size: 16px;
+  }
+  .journey-conclusion {
+    font-size: 19px;
+  }
+}
