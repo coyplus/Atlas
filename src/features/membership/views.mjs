@@ -62,13 +62,13 @@ export function membershipHousehold(p) {
 export function membershipNudge(p) {
   const s = membershipSuggestion(p);
   if (!s) return '';
-  return `<div class="membership-nudge"><span class="membership-ai-label">${icon('spark')} HSBC AI</span><h2>${s.rule ? 'Your saving rule is ' + (s.paused ? 'paused' : 'ready') : cash(s.remaining) + ' from Premier'}</h2><p>${s.rule ? cash(s.amount) + ' from each new payday. Your balance qualifies once it reaches £100,000.' : 'Set aside ' + cash(s.amount) + ' from each new payday to build your savings towards Premier.'}</p>${button(s.rule ? 'Manage rule' : 'Explore a saving rule', s.rule ? 'container-rule:r-premier-savings' : 'membership-rule', 'text')}</div>`;
+  return `<div class="membership-nudge"><span class="membership-ai-label">${icon('spark')} HSBC AI</span><h2>${s.rule ? 'Your saving rule is ' + (s.paused ? 'paused' : 'ready') : cash(s.remaining) + ' to reach Premier'}</h2><p>${s.rule ? cash(s.amount) + ' from each new payday. Your balance qualifies once it reaches £100,000.' : 'Set aside ' + cash(s.amount) + ' from each new payday to build your savings towards Premier.'}</p>${button(s.rule ? 'Manage rule' : 'Explore a saving rule', s.rule ? 'container-rule:r-premier-savings' : 'membership-rule', 'text')}</div>`;
 }
 export function membershipRuleView(p, amount = 500, review = false) {
   const m = membershipModel(p),
     suggestion = membershipSuggestion(p),
     months = Math.ceil(m.remaining / amount);
-  return `<div class="membership-rule-flow"><span class="membership-ai-label">${icon('spark')} HSBC AI · Your saving plan</span><h1>${review ? 'Review your Money Rule' : 'A little closer each payday'}</h1><p>You’re ${cash(m.remaining)} from Premier. Build savings from new income while keeping your family plans funded.</p>${
+  return `<div class="membership-rule-flow"><span class="membership-ai-label">${icon('spark')} HSBC AI · Your saving plan</span><h1>${review ? 'Review your Money Rule' : 'A little closer each payday'}</h1><p>You’re ${cash(m.remaining)} away from qualifying for Premier. Build savings from new income while keeping your family plans funded.</p>${
     review
       ? rows([
           ['Amount', cash(amount) + ' each payday'],

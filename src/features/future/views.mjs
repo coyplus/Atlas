@@ -1,8 +1,9 @@
+import { moneySpeedModel } from './money-speed.mjs';
 import { displayDate } from '../../domain/dates.mjs';
 import { esc, icon, button } from '../../design-system/templates.mjs';
 import { cash, dateAt, clone, potRate } from '../../domain/money.mjs';
 import { horizonPossibilities, visiblePossibilities } from '../ideas/horizon.mjs';
-import { potAppearance, appearanceStyle } from '../pots/appearance.mjs';
+import { potAppearance, appearanceStyle, potColours } from '../pots/appearance.mjs';
 import { possibilities } from '../ideas/model.mjs';
 import {
   HORIZON,
@@ -181,16 +182,29 @@ function futureMonthDate(p, month) {
   return date.toISOString().slice(0, 10);
 }
 export function speedDetail(p, s) {
-  const m = futureModel(p, s),
-    q = m.next.person;
-  return `<div class="fg-detail"><p class="eyebrow">HOW YOU’RE GETTING THERE</p><h2>${money(m.next.speed)}<small> / month</small></h2><p>The next month’s allocations at the date you’re viewing.</p><div class="fg-flow">${
-    planningPots(q)
-      .map(
-        (g) =>
-          `<button class="fg-flow-row" data-action="future-goal:${esc(g.id)}" data-viz-role="${role(g)}"><i>${icon(glyph(g))}</i><span><b>${esc(g.name)}</b><small>${protectedGoal(q, g) ? 'Protected commitment' : q.l1.rules.some((r) => r.potId === g.id && r.resumeOn && r.resumeOn > futureMonthDate(p, s.month)) ? 'Scheduled pause · resumes ' + esc(q.l1.rules.find((r) => r.potId === g.id && r.resumeOn && r.resumeOn > futureMonthDate(p, s.month)).resumeOn) : q.l1.rules.some((r) => r.potId === g.id && (r.amountIsAverage || r.condition)) ? 'Includes estimated or conditional contributions' : !m.next.rates[g.id] ? 'No contribution at this date' : 'Agreed Money Rules'}</small></span><strong>${money(Math.abs(m.next.rates[g.id] || 0))}</strong></button>`,
-      )
-      .join('') || '<p>Your first Money Rule will appear here.</p>'
-  }</div><p class="support">Monthly amounts include estimated round-ups and conditional rules where present. Actual contributions can vary. Standing watches do not move money.</p>${btn('See all Money Rules', 'rules', 'text wide')}</div>`;
+  const model = moneySpeedModel(p, s),
+    q = model.next.person;
+  let cursor = 0;
+  const stops = model.active
+    .map(({ goal, amount }) => {
+      const from = cursor;
+      cursor += (amount / model.total) * 100;
+      return `${potColours[potAppearance(p, goal).colour][1]} ${from}% ${cursor}%`;
+    })
+    .join(',');
+  return `<div class="fg-detail fg-speed-detail"><span class="eyebrow">YOUR MONTHLY MOMENTUM</span><h2>Your future in motion.</h2><p>${s.month ? esc(displayDate(futureMonthDate(p, s.month))) : 'Today'} · Your next month’s planned contributions</p>
+    <div class="fg-speed-ring" style="--speed-ring:${stops ? `conic-gradient(${stops})` : 'var(--line)'}" role="img" aria-label="${esc(model.active.map((x) => x.goal.name + ': ' + money(x.amount) + ' a month').join(', ') || 'No monthly contributions yet')}"><div><strong>${money(model.total)}</strong><span>each month</span><small>${model.active.length} ${model.active.length === 1 ? 'goal' : 'goals'} in motion</small></div></div>
+    <div class="fg-speed-key">${model.active.map(({ goal, amount }) => `<button data-action="future-goal:${esc(goal.id)}" style="${appearanceStyle(potAppearance(p, goal))}"><i></i><span>${esc(goal.name)}</span><b>${money(amount)}</b></button>`).join('')}</div>
+    <article class="fg-speed-insight"><span class="fg-ai-label">${icon('spark')} HSBC AI</span><h3>${esc(model.insight)}</h3><p>${esc(model.idea)}</p>${btn('Explore a different pace', 'chat', 'text')}</article>
+    <h3 class="fg-speed-rules-heading">Your contributions</h3><div class="fg-flow">${
+      model.allocations
+        .map((x) => x.goal)
+        .map(
+          (g) =>
+            `<button class="fg-flow-row" data-action="future-goal:${esc(g.id)}" data-viz-role="${role(g)}"><i>${icon(glyph(g))}</i><span><b>${esc(g.name)}</b><small>${protectedGoal(q, g) ? 'Protected commitment' : q.l1.rules.some((r) => r.potId === g.id && r.resumeOn && r.resumeOn > futureMonthDate(p, s.month)) ? 'Scheduled pause · resumes ' + esc(q.l1.rules.find((r) => r.potId === g.id && r.resumeOn && r.resumeOn > futureMonthDate(p, s.month)).resumeOn) : q.l1.rules.some((r) => r.potId === g.id && (r.amountIsAverage || r.condition)) ? 'Includes estimated or conditional contributions' : !model.next.rates[g.id] ? 'No contribution at this date' : 'Agreed Money Rules'}</small></span><strong>${money(Math.abs(model.next.rates[g.id] || 0))}</strong></button>`,
+        )
+        .join('') || '<p>Your first Money Rule will appear here.</p>'
+    }</div><p class="support">Monthly amounts include estimated round-ups and conditional rules where present. Actual contributions can vary. Standing watches do not move money.</p>${btn('See all Money Rules', 'rules', 'text wide')}</div>`;
 }
 export function assumptions(p, s) {
   const m = futureModel(p, s);

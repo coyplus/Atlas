@@ -1,3 +1,4 @@
+import { moneySpeedModel } from '../future/money-speed.mjs';
 import { portraitStorySupport } from '../you/portrait-story.mjs';
 import { portraitMetricsSupport } from '../you/portrait-metrics.mjs';
 import { horizonPossibilities } from '../ideas/horizon.mjs';
@@ -36,6 +37,10 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     author: 'Priya · Relationship Manager',
   });
   const k = context.kind;
+  if (context.title === 'Money Speed') {
+    const speed = moneySpeedModel(p, s);
+    return ai(speed.insight, speed.idea, 'Explore a different pace', 'future-chat');
+  }
   if (k === 'portrait-story') return portraitStorySupport(p, s, context);
   if (k === 'portrait-metrics') return portraitMetricsSupport(p, s, context);
   if (s.tab === 'future' && ['top', 'future', 'ideas'].includes(k)) return futureInsight(p, s);
@@ -112,7 +117,7 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     const next = membershipSuggestion(p);
     if (next && !next.rule && s.member === 'self')
       return ai(
-        cash(next.remaining) + ' from Premier',
+        cash(next.remaining) + ' to reach Premier',
         'Your savings bring you close. A ' +
           cash(next.amount) +
           ' payday rule could help you retain new income and close the gap while keeping your family plans funded.',
