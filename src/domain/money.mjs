@@ -1,3 +1,4 @@
+import { savingsLockUntil, savingsBalanceCap } from './fixed-savings.mjs';
 import { relationshipQualification } from './membership.mjs';
 // Shared state and behaviour. No DOM or visual-direction dependencies.
 export const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -166,10 +167,7 @@ export function moneyProjection(p, months = 0, includeRedirects = true) {
           month < scheduledMonth(p, r.since)
         )
           continue;
-        if (
-          source.arrangementState?.lockedUntil &&
-          month < scheduledMonth(p, source.arrangementState.lockedUntil)
-        )
+        if (savingsLockUntil(source) && month < scheduledMonth(p, savingsLockUntil(source)))
           continue;
         const fromIncome = source.kind === 'current';
         if (fromIncome) balances[source.id] += budget;
@@ -192,6 +190,7 @@ export function moneyProjection(p, months = 0, includeRedirects = true) {
         }
         if (!destination || destination.id === source.id) continue;
         const ceiling = Math.min(
+            savingsBalanceCap(destination),
             destination.stopsAtTarget && destination.target > 0 ? destination.target : Infinity,
             destination.id === original.id && r.stopsAt > 0 ? r.stopsAt : Infinity,
           ),
@@ -333,16 +332,24 @@ function transferInPlace(p, fromId, toId, amount, label) {
   const to = p.l1.accounts.find((a) => a.id === toId) || p.l1.pots.find((a) => a.id === toId);
   if (!from || !to || from === to || from.isDebt || from.owed != null)
     throw new Error('Choose two different accounts or pots.');
-  if (from.arrangementState?.lockedUntil > p.l1.asOf)
+  if (savingsLockUntil(from) > p.l1.asOf)
     throw new Error(
       'This pot is locked until ' +
-        from.arrangementState.lockedUntil +
+        savingsLockUntil(from) +
         '. Withdrawals and outgoing rules are unavailable.',
     );
   if (!Number.isFinite(amount) || amount <= 0 || amount > from.balance)
     throw new Error('Choose an amount within the available balance.');
   if ((to.owed != null && amount > to.owed) || (to.isDebt && amount > to.balance))
     throw new Error('That is more than the remaining debt.');
+  if (to.balance + amount > savingsBalanceCap(to))
+    throw new Error(
+      'This pot has a ' +
+        cash(savingsBalanceCap(to)) +
+        ' balance cap. You can add up to ' +
+        cash(Math.max(0, savingsBalanceCap(to) - to.balance), true) +
+        '.',
+    );
   from.balance = round(from.balance - amount);
   if (to.owed != null) to.owed = round(to.owed - amount);
   else to.balance = round(to.balance + (to.isDebt ? -amount : amount));

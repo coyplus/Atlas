@@ -81,8 +81,17 @@
         "condition": "Keep spare money in this flexible savings pot while you choose its purpose."
       },
       "house": {
-        "rate": "5.1% fixed while committed",
-        "monthlyContribution": 320
+        "rate": "5.1% AER fixed",
+        "monthlyContribution": 320,
+        "fixedTerm": {
+          "startsOn": "2025-01-01",
+          "maturesOn": "2031-04-01",
+          "months": 75,
+          "balanceCap": 24000,
+          "aer": 0.051,
+          "openingInstalments": 19,
+          "historyFrom": "2026-08-01"
+        }
       }
     },
     "elena": {

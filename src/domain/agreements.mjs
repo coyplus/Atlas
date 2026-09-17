@@ -1,3 +1,4 @@
+import { fixedSavingsProgress } from './fixed-savings.mjs';
 import { displayDate } from './dates.mjs';
 import { cash, sum } from './money.mjs';
 
@@ -143,11 +144,62 @@ export function potArrangement(p, item, type = moneyType(p, item)) {
   };
   if (type === 'savings') {
     if (offer.monthlyContribution) {
-      payment('contribution', offer.monthlyContribution);
+      const receivedThisMonth = sum(
+        all
+          .filter((t) => t.amount > 0 && ['rule', 'transfer', 'payment'].includes(t.category))
+          .map((t) => t.amount),
+      );
+      const required = offer.fixedTerm
+        ? Math.min(
+            offer.monthlyContribution,
+            Math.max(0, offer.fixedTerm.balanceCap - item.balance) + receivedThisMonth,
+          )
+        : offer.monthlyContribution;
+      payment('contribution', required);
+      if (offer.fixedTerm && item.balance >= offer.fixedTerm.balanceCap) {
+        Object.assign(conditions.at(-1), {
+          title: 'Your contributions are complete',
+          remaining: 0,
+          status: 'Complete',
+          description: 'Your £24,000 contribution balance is fully funded.',
+          method: 'No more payments will be collected. Your pot stays locked until maturity.',
+        });
+      }
       terms =
         'Your rate is tied to contributing ' +
         cash(offer.monthlyContribution) +
         ' each calendar month, manually or automatically. This demo counts received contributions, not enabled instructions. Withdrawals remain available. A missed condition would need a terms review; no replacement rate or penalty is assumed.';
+    }
+    if (offer.fixedTerm) {
+      const term = offer.fixedTerm;
+      conditions.push({
+        id: 'fixed-term',
+        kind: 'fixed-term',
+        title: 'Locked for 6 years and 3 months',
+        status: p.l1.asOf < term.maturesOn ? 'Locked' : 'Complete',
+        description:
+          'Matures on ' + conditionDate(term.maturesOn) + '. No withdrawals before this date.',
+      });
+      conditions.push({
+        id: 'balance-cap',
+        kind: 'cap',
+        title: cash(term.balanceCap) + ' balance cap',
+        status: item.balance >= term.balanceCap ? 'Complete' : 'Within limit',
+        description:
+          'Your contributions stop at ' +
+          cash(term.balanceCap) +
+          '. Interest is held separately and paid at maturity.',
+      });
+      terms =
+        'This illustrative agreement runs from ' +
+        conditionDate(term.startsOn) +
+        ' to ' +
+        conditionDate(term.maturesOn) +
+        '. Make 75 monthly instalments of ' +
+        cash(offer.monthlyContribution) +
+        '. The contribution balance cannot exceed ' +
+        cash(term.balanceCap) +
+        '. Withdrawals, outgoing rules and changes to an investment pot are unavailable before maturity, even if you finish funding early. Interest is held separately, compounds at 5.1% AER and is paid with your contributions at maturity. The estimate assumes every payment arrives at month end; actual timing changes interest. A missed payment needs a terms review; no penalty or replacement rate is assumed.';
     }
     if (offer.lockOffer) {
       const locked = !!state.lockedUntil && state.lockedUntil > p.l1.asOf,
@@ -301,6 +353,7 @@ export function potArrangement(p, item, type = moneyType(p, item)) {
           : paymentCondition.method
         : conditions[0]?.description || 'No action needed to keep these terms.';
   return {
+    fixedSavings: fixedSavingsProgress(p, item),
     benefit,
     label,
     benefitState,

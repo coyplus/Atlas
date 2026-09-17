@@ -1,3 +1,4 @@
+import { savingsLockUntil } from './fixed-savings.mjs';
 import {
   clone,
   sum,
@@ -16,7 +17,7 @@ export const planningPots = (p) =>
 export const protectedGoal = (p, g) =>
   g.isDebt ||
   g.kind === 'committed-plan' ||
-  Boolean(g.arrangementState?.lockedUntil > p.l1.asOf) ||
+  Boolean(savingsLockUntil(g) > p.l1.asOf) ||
   p.l1.rules.some((r) => r.potId === g.id && r.active && (r.locked || r.committed));
 export const futureState = (p) =>
   p.ui.future || { mode: 'view', ideas: [], messages: [], proposal: null };

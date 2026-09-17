@@ -1,3 +1,4 @@
+import { savingsLockUntil, savingsBalanceCap } from './fixed-savings.mjs';
 import { moneyVisualRole } from './visual-semantics.mjs';
 import { clone, cash, round, sum, potRate, milestone, dateAt, moveMoney } from './money.mjs';
 import { potArrangement, moneyType } from './agreements.mjs';
@@ -284,7 +285,7 @@ export function evolveContainer(p, id, mode) {
     c = x && containerModel(p, x);
   if (!x || c.account || c.debt) throw new Error('This container cannot change type here.');
   if (mode === 'investment') {
-    if (x.arrangementState?.lockedUntil > p.l1.asOf)
+    if (savingsLockUntil(x) > p.l1.asOf)
       throw new Error('Wait until the savings lock ends before changing this pot.');
     if (c.type !== 'savings' || c.shared) throw new Error('Choose a personal savings pot.');
     x.previousTerms = x.terms;
@@ -334,7 +335,7 @@ export function previewRuleTrigger(p, r) {
   const skip = (reason) => ({ amount: 0, reason, month, used });
   if (!r.active || p.l1.autonomy.paused) return skip('Automation is paused.');
   if (r.resumeOn > p.l1.asOf) return skip('This rule resumes on ' + r.resumeOn + '.');
-  if (source?.arrangementState?.lockedUntil > p.l1.asOf) return skip('The source pot is locked.');
+  if (savingsLockUntil(source) > p.l1.asOf) return skip('The source pot is locked.');
   if (!source || !target || source.isDebt || source.owed != null)
     return skip('This rule does not authorise a money move.');
   if (!['payday-fixed', 'repayment', 'round-up', 'payday-sweep'].includes(r.type))
@@ -345,6 +346,7 @@ export function previewRuleTrigger(p, r) {
       : Math.max(
           0,
           Math.min(
+            savingsBalanceCap(target),
             target.stopsAtTarget && target.target > 0 ? target.target : Infinity,
             r.stopsAt > 0 ? r.stopsAt : Infinity,
           ) - target.balance,

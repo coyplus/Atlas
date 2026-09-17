@@ -100,15 +100,19 @@
       "terms": [
         [
           "Rate",
-          "5.1% fixed while committed"
+          "5.1% AER fixed"
         ],
         [
-          "Why",
-          "3-yr plan shared · 8 months kept"
+          "Term",
+          "6 years and 3 months · matures 1 Apr 2031"
         ],
         [
-          "Exit",
-          "withdraw any time · free"
+          "Balance cap",
+          "£24,000 contributions · interest paid separately at maturity"
+        ],
+        [
+          "Access",
+          "Locked until 1 Apr 2031"
         ]
       ],
       "members": null,
