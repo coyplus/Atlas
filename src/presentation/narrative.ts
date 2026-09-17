@@ -14,9 +14,9 @@ const arrow = `<span class="r-arrow" aria-hidden="true">${icon('arrow_forward')}
 const phone = (tab: 'now' | 'you' | 'future', caption: string) =>
   `<figure class="product-figure"><div class="phone-frame"><img src="/assets/presentation/sam-${tab}.webp" alt="${caption}" width="390" height="844" loading="lazy"></div><figcaption>Sam’s ${tab === 'you' ? 'You' : tab === 'now' ? 'Now' : 'Future'} · from the working prototype</figcaption></figure>`;
 
-/* Circular flywheel: a hairline ring with six red markers, nodes placed around it. */
+/* Circular flywheel: a hairline ring with five red markers, nodes placed around it. */
 const wheelRing = (() => {
-  const markers = [30, 90, 150, 210, 270, 330]
+  const markers = [36, 108, 180, 252, 324]
     .map((a) => `<path d="M275 59.5 L286 65 L275 70.5 Z" transform="rotate(${a} 280 280)" fill="#db0011"/>`)
     .join('');
   return `<svg class="n-wheel-ring" viewBox="0 0 560 560" aria-hidden="true"><circle cx="280" cy="280" r="215" fill="none" stroke="#cdc8c6" stroke-width="1"/>${markers}</svg>`;
@@ -172,17 +172,16 @@ export const slides = [
     stage: 'The flywheel',
     title: 'A relationship is earned and developed, again and again',
     theme: 'r-slide n-flywheel',
-    content: `<div class="n-flywheel-copy">${heading('How it compounds', 'A relationship is earned and developed, <br><em>again and again.</em>', 'Each turn makes the next one easier. What the wheel produces is the behaviour: saving on payday, checking in, keeping the plan.')}</div>
-      <div class="n-wheel" role="img" aria-label="A loop: small interactions build memory, memory builds the relationship, the relationship improves support, better support leads to better outcomes, and better outcomes bring more interactions.">
+    content: `<div class="n-flywheel-copy">${heading('How it compounds', 'A relationship is earned and developed, <br><em>again and again.</em>', 'Every turn starts with a behaviour and produces the next one.')}</div>
+      <div class="n-wheel" role="img" aria-label="A loop: a behaviour builds memory, memory builds trust, trust improves support, better support leads to progress, and progress leads to the next behaviour.">
         ${wheelRing}
         <p class="n-wheel-centre"><em>The relationship</em><span>earned, again and again</span></p>
         <ol class="n-wheel-nodes">
-          <li><span>01</span><b>Small interactions</b><p>A check-in. A question. A choice.</p></li>
-          <li><span>02</span><b>Memory</b><p>We remember what you told us.</p></li>
-          <li><span>03</span><b>Relationship</b><p>You see what we think, and can correct it.</p></li>
+          <li><span>01</span><b>A behaviour</b><p>A check-in. A saving. A plan kept.</p></li>
+          <li><span>02</span><b>Memory</b><p>We remember what you did and told us.</p></li>
+          <li><span>03</span><b>Trust</b><p>You see what we think, and can correct it.</p></li>
           <li><span>04</span><b>Better support</b><p>The next suggestion fits your life.</p></li>
-          <li class="n-wheel-key"><span>05</span><b>Sustained behaviours</b><p>Save on payday. Check in. Keep the plan.</p></li>
-          <li><span>06</span><b>Better outcomes</b><p>Progress you can see. A reason to come back.</p></li>
+          <li><span>05</span><b>Progress</b><p>Outcomes you can see. A reason to act again.</p></li>
         </ol>
       </div>`,
   },

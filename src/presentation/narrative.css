@@ -690,24 +690,20 @@ body[data-version='narrative'] .product-figure figcaption {
   top: 11.6%;
 }
 .n-wheel-nodes li:nth-child(2) {
-  left: 83.2%;
-  top: 30.9%;
+  left: 86.5%;
+  top: 38.1%;
 }
 .n-wheel-nodes li:nth-child(3) {
-  left: 83.2%;
-  top: 69.1%;
+  left: 72.6%;
+  top: 81.1%;
 }
 .n-wheel-nodes li:nth-child(4) {
-  left: 50%;
-  top: 88.4%;
+  left: 27.4%;
+  top: 81.1%;
 }
 .n-wheel-nodes li:nth-child(5) {
-  left: 16.8%;
-  top: 69.1%;
-}
-.n-wheel-nodes li:nth-child(6) {
-  left: 16.8%;
-  top: 30.9%;
+  left: 13.5%;
+  top: 38.1%;
 }
 .n-wheel-nodes span {
   display: block;
@@ -722,9 +718,6 @@ body[data-version='narrative'] .product-figure figcaption {
   font-weight: 500;
   color: var(--ink);
   line-height: 1.25;
-}
-.n-wheel-key b {
-  color: var(--red);
 }
 .n-wheel-nodes p {
   font-size: 13px;
