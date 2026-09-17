@@ -29,6 +29,10 @@ main.innerHTML = slides
       `<section class="slide ${slide.theme}" id="slide-${i + 1}" aria-label="${i + 1} of ${slides.length}: ${slide.title}" aria-roledescription="slide" tabindex="-1" hidden>${slide.content}</section>`,
   )
   .join('');
+if (version === 'narrative') {
+  const { initialiseNarrativeMotion } = await import('./narrative-motion');
+  initialiseNarrativeMotion(main);
+}
 document.querySelectorAll<HTMLElement>('[data-icon]').forEach((el) => {
   const name = el.dataset.icon as keyof typeof materialIcons;
   el.innerHTML = `<svg class="deck-icon" aria-hidden="true" viewBox="${materialViewBoxes[name]}">${materialIcons[name]}</svg>`;

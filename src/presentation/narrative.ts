@@ -34,6 +34,15 @@ const phone = (tab: 'now' | 'you' | 'future', caption: string) => {
   return `<figure class="n-product-stage n-stage-${tab}"><div class="n-product-main"><div class="phone-frame"><img src="/assets/presentation/sam-${tab}.webp" alt="${caption}" width="390" height="844" decoding="async"></div></div><div class="n-product-detail">${detail}</div><figcaption>Sam’s ${tab === 'you' ? 'You' : tab === 'now' ? 'Now' : 'Future'} · from the working prototype</figcaption></figure>`;
 };
 
+const motionToggle = `<button class="n-motion-toggle" type="button" aria-label="Pause animation" title="Pause animation"><span class="n-pause-icon">${icon('pause')}</span><span class="n-play-icon">${icon('play_arrow')}</span></button>`;
+const companion = (message: string) =>
+  `<div class="n-companion"><p>${message}</p><span>${icon('auto_awesome')}</span></div>`;
+const aiExamples = `<div class="n-ai-examples" role="img" aria-label="The Companion adapts to context: Now explains the money left after essentials; You explains recorded check-ins; Future shows the impact of an extra £50 on payday.">
+  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">Now · Your numbers</span>${companion('What’s already set aside')}<div class="n-example-widget"><span>Room to invest</span><strong>£1,300<small>.44</small></strong><div class="n-mini-allocation"><i></i><i></i><i></i></div><p>After essentials and commitments</p></div></article>
+  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">You · Behind your portrait</span>${companion('52 check-ins recorded. The dots show a count, not particular dates.')}<div class="n-example-widget"><span>Money check-ins</span><strong>52 <small>recorded</small></strong><div class="n-checkin-dots">${'<i></i>'.repeat(52)}</div><p>One dot, one check-in</p></div></article>
+  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">Future · What if</span>${companion('Emergency fund, 11mo earlier')}<div class="n-example-widget"><span>Save £50 on payday</span><strong>11 <small>months earlier</small></strong><div class="n-mini-comparison"><i></i><i></i></div><p>An automatic Savings Rule</p></div></article>
+</div>`;
+
 /* Circular flywheel: a hairline ring with five red markers, nodes placed around it. */
 const wheelRing = (() => {
   const markers = [36, 108, 180, 252, 324]
@@ -42,7 +51,7 @@ const wheelRing = (() => {
         `<path d="M275 59.5 L286 65 L275 70.5 Z" transform="rotate(${a} 280 280)" fill="#db0011"/>`,
     )
     .join('');
-  return `<svg class="n-wheel-ring" viewBox="0 0 560 560" aria-hidden="true"><circle cx="280" cy="280" r="215" fill="none" stroke="#cdc8c6" stroke-width="1"/>${markers}</svg>`;
+  return `<svg class="n-wheel-ring" viewBox="0 0 560 560" aria-hidden="true"><circle cx="280" cy="280" r="215" fill="none" stroke="#cdc8c6" stroke-width="1"/>${markers}<g class="n-wheel-signal"><circle cx="280" cy="65" r="6" fill="#db0011" stroke="none"/><circle cx="280" cy="65" r="13" fill="#db0011" fill-opacity=".09" stroke="none"/></g></svg>`;
 })();
 
 export const slides = [
@@ -133,13 +142,13 @@ export const slides = [
     title: 'AI is the orchestrator and the curator',
     theme: 'r-slide n-ai',
     content: `${heading('01 · AI and human support', 'AI is the orchestrator <br>and <em>the curator.</em>', 'It connects what you tell us, what your finances show and what you are exploring. It finds the opportunity, and it remembers.')}
-      ${body(`<div class="n-layer">
-        <div class="n-layer-col"><span class="r-label">What it knows</span><ul><li>What you tell us</li><li>What your finances show</li><li>What you are exploring</li><li>What the bank can offer: tools, insight, human experts</li></ul></div>
-        <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
-        <div class="n-layer-core"><div class="n-ai-emblem" aria-hidden="true">${icon('auto_awesome')}</div><span class="r-label">The AI layer</span><h2>Remembers. <br>Curates. <br>Coordinates.</h2><div class="n-modes"><p><b>Push</b>It finds the opportunity you didn’t know to ask for.</p><p><b>Pull</b>It listens, and explains, when you want to talk.</p></div></div>
-        <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
-        <div class="n-layer-col"><span class="r-label">What you get</span><ul><li>The right suggestion at the right moment, across Now, You and Future</li><li>A conversation one tap from whatever is on screen</li><li>A person who takes over when judgement or care is needed</li></ul></div>
-        <div class="n-layer-return" aria-hidden="true"><span>${icon('repeat')} Every response is carried into the next interaction</span></div>
+      ${body(`<div class="n-ai-system n-motion" data-n-motion>
+        <div class="n-bank-offer"><span class="r-label">What the bank can offer</span><div class="n-bank-bubbles"><span>Capabilities</span><span>Tools</span><span>Messages</span><span>Features</span><span>Products</span><span>Data</span></div></div>
+        <div class="n-system-link" aria-hidden="true">${icon('arrow_forward')}</div>
+        <div class="n-intelligence"><span class="r-label">One growing customer memory</span><div class="n-intelligence-symbol">${icon('auto_awesome')}</div><h2>AI behavioural<br>layer</h2><p class="n-intelligence-verbs">Remembers. Curates. Coordinates.</p><div class="n-intelligence-modes"><p><b>Push</b>Find the opportunity you didn’t know to ask for.</p><p><b>Pull</b>Listen and explain when you want to talk.</p></div></div>
+        <div class="n-system-link" aria-hidden="true">${icon('arrow_forward')}</div>
+        <div class="n-ai-output"><span class="r-label">Personal to the moment</span>${aiExamples}<div class="n-example-tabs" aria-hidden="true"><span>Now</span><span>You</span><span>Future</span></div><p class="n-human-support">A person takes over when judgement or care is needed.</p></div>
+        <div class="n-system-memory"><span>${icon('repeat')} Every response is carried into the next interaction</span>${motionToggle}</div>
       </div>`)}`,
   },
   {
@@ -197,7 +206,7 @@ export const slides = [
     title: 'A relationship is earned and developed, again and again',
     theme: 'r-slide n-flywheel',
     content: `<div class="n-flywheel-copy">${heading('How it compounds', 'A relationship is earned and developed, <br><em>again and again.</em>', 'Every turn starts with a behaviour and produces the next one.')}</div>
-      <div class="n-wheel" role="img" aria-label="A loop: a behaviour builds memory, memory builds trust, trust improves support, better support leads to progress, and progress leads to the next behaviour.">
+      <div class="n-wheel n-motion" data-n-motion><div class="n-wheel-illustration" role="img" aria-label="A loop: a behaviour builds memory, memory builds trust, trust improves support, better support leads to progress, and progress leads to the next behaviour.">
         ${wheelRing}
         <p class="n-wheel-centre"><em>The relationship</em><span>earned, again and again</span></p>
         <ol class="n-wheel-nodes">
@@ -207,6 +216,7 @@ export const slides = [
           <li><span>04</span><b>Better support</b><p>The next suggestion fits your life.</p></li>
           <li><span>05</span><b>Progress</b><p>Outcomes you can see. A reason to act again.</p></li>
         </ol>
+        </div><div class="n-wheel-controls">${motionToggle}</div>
       </div>`,
   },
   {
