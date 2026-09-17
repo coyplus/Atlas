@@ -10,6 +10,7 @@ import {
   dateAt,
   valueAt,
   recentTransactions,
+  rewardAvailability,
 } from './money.mjs';
 export const potIcons = {
   ef: 'shield',
@@ -228,10 +229,14 @@ function baseModuleModel(p, id, catalogue) {
       });
       break;
     }
-    case 'points':
+    case 'points': {
+      const count = (catalogue.benefits || []).filter(
+        (b) => rewardAvailability(p, b).available,
+      ).length;
       Object.assign(model, {
         value: p.l1.rewards.points.balance.toLocaleString('en-GB'),
         note: 'For healthy habits',
+        glance: `${count} redeemable ${count === 1 ? 'benefit' : 'benefits'}`,
         rows: p.l1.rewards.points.ledger.map((x) => [
           x.reason,
           (x.points > 0 ? '+' : '') + x.points,
@@ -240,6 +245,7 @@ function baseModuleModel(p, id, catalogue) {
         kind: 'reward',
       });
       break;
+    }
     case 'grocery': {
       const g = groceryInsight(p);
       Object.assign(model, {

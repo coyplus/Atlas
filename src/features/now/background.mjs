@@ -1,5 +1,8 @@
 import { esc, button, icon } from '../../design-system/templates.mjs';
-const elenaPhoto = '/assets/backgrounds/elena-family.png';
+const scenarioPhotos = {
+  elena: '/assets/backgrounds/elena-family.png',
+  sam: '/assets/backgrounds/sam-family.png',
+};
 export function nowPhoto(p) {
   const choice = p.ui.nowBackground;
   if (choice?.kind === 'plain') return '';
@@ -8,7 +11,7 @@ export function nowPhoto(p) {
     /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(choice.src)
   )
     return choice.src;
-  return p.l1.customer.id === 'elena' ? elenaPhoto : '';
+  return scenarioPhotos[p.l1.customer.id] || '';
 }
 export const nowBackdrop = (p) =>
   nowPhoto(p)
@@ -16,7 +19,7 @@ export const nowBackdrop = (p) =>
     : '';
 export function nowBackgroundSettings(p) {
   const photo = nowPhoto(p);
-  return `<div class="now-background-settings"><h1>A little more you.</h1><p>A favourite place. Your favourite people. Make Now feel like home.</p><div class="now-background-preview ${photo ? 'has-photo' : ''}" aria-label="${photo ? 'Your current background photo' : 'Plain background'}">${photo ? `<img src="${esc(photo)}" alt="Your selected Now background">` : icon('home')}<span>${photo ? 'Your Now background' : 'Simple and quiet'}</span></div><p class="support">We’ll soften and tint your photo to keep your money easy to read.</p><input id="now-photo-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>${button(photo ? 'Choose another photo' : 'Choose a photo', 'now-background-choose', 'primary wide')}<div class="now-background-options">${photo ? button('Use a plain background', 'now-background-plain', 'text') : ''}${p.l1.customer.id === 'elena' && p.ui.nowBackground ? button('Restore family photo', 'now-background-default', 'text') : ''}</div><small>Your photo stays in this demo on this device.</small></div>`;
+  return `<div class="now-background-settings"><h1>A little more you.</h1><p>A favourite place. Your favourite people. Make Now feel like home.</p><div class="now-background-preview ${photo ? 'has-photo' : ''}" aria-label="${photo ? 'Your current background photo' : 'Plain background'}">${photo ? `<img src="${esc(photo)}" alt="Your selected Now background">` : icon('home')}<span>${photo ? 'Your Now background' : 'Simple and quiet'}</span></div><p class="support">We’ll soften and tint your photo to keep your money easy to read.</p><input id="now-photo-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>${button(photo ? 'Choose another photo' : 'Choose a photo', 'now-background-choose', 'primary wide')}<div class="now-background-options">${photo ? button('Use a plain background', 'now-background-plain', 'text') : ''}${scenarioPhotos[p.l1.customer.id] && p.ui.nowBackground ? button('Restore family photo', 'now-background-default', 'text') : ''}</div><small>Your photo stays in this demo on this device.</small></div>`;
 }
 // Decode locally, downsize for device storage and discard camera metadata.
 export async function readBackgroundPhoto(file) {

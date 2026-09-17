@@ -19,13 +19,14 @@
   text-wrap: balance;
 }
 .pe-art {
-  margin: 24px -12px 20px;
-  height: 210px;
+  margin: 12px calc(-1 * var(--page)) 8px;
+  height: 330px;
   overflow: hidden;
 }
 .pe-art > .portrait-art {
   width: 100%;
   height: 100%;
+  transform: scale(1.2);
 }
 .pe-stage {
   display: block;

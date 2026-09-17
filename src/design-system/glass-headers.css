@@ -46,9 +46,9 @@ body[data-direction='vanilla'] .phone .agreement-sheet > header {
   backdrop-filter: blur(var(--glass-blur)) saturate(115%);
   border-bottom: 0;
 }
-/* Story and conversation controls retain their own contrast context. */
+/* Stories own one continuous contrast plane; no extra navigation tint. */
 body[data-direction='vanilla'] .phone .story-shell > .sheet-header::before {
-  background: #0002;
+  display: none;
 }
 @media (prefers-reduced-transparency: reduce) {
   body[data-direction='vanilla'] .phone .sheet > .sheet-header::before,
