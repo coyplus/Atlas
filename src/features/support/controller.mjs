@@ -1,3 +1,4 @@
+import { companionAvatar } from '../companion/identity.mjs';
 import { companionCard } from './card.mjs';
 import { motion } from '../../design-system/motion.mjs';
 import {
@@ -52,7 +53,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
   }
   function startThinking() {
     finishThinking();
-    if (state().tab !== 'now' || model().source === 'human' || (person().ui.scroll.now || 0) > 8)
+    if (model().quiet || state().tab !== 'now' || model().source === 'human' || (person().ui.scroll.now || 0) > 8)
       return;
     thinking = true;
     thinkingTimer = setTimeout(() => {
@@ -189,6 +190,8 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     dock.inert = !view.visible;
     dock.setAttribute('aria-hidden', String(!view.visible));
     dock.dataset.state = view.engagement;
+    if (m.companionStyle) dock.dataset.companionStyle = m.companionStyle;
+    else delete dock.dataset.companionStyle;
     document.querySelector('#phone').dataset.supportSurface = view.surface;
     const attention =
       state().tab === 'now' &&
@@ -249,7 +252,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
         ? agentAvatar(humanId)
         : offerAudio
           ? icon(playing ? 'pause' : 'play')
-          : agentAvatar('ai');
+          : m.companionStyle ? companionAvatar(m.companionStyle) : agentAvatar('ai');
     if (avatar.innerHTML !== avatarMarkup) renderRegion(avatar, avatarMarkup);
     avatar.dataset.action = avatarAction;
     avatar.setAttribute('aria-label', avatarLabel);
@@ -724,7 +727,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
   function discuss() {
     acknowledgeAttention();
     finishThinking();
-    const m = model();
+    const m = supportModel(person(), state(), { ...activeContext(), explicit: true }, data.shared.modules);
     if (activeContext().kind === 'chat') {
       compact = false;
       refresh();
@@ -816,7 +819,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
       media.currentTime = Math.max(0, Math.min(media.duration, Number(value)));
   }
   function conversationAction() {
-    const m = supportModel(person(), state(), chatOrigin || pageContext, data.shared.modules);
+    const m = supportModel(person(), state(), { ...(chatOrigin || pageContext), explicit: true }, data.shared.modules);
     if (['portrait-story', 'portrait-metrics'].includes(chatOrigin?.kind))
       return {
         ...m,

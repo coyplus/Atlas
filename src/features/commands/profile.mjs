@@ -61,6 +61,7 @@ export function handle(ctx, type, id, p, action) {
     return ctx.openJourney(
       'Settings',
       `<div class="settings-list">${[
+        ['Your AI Companion', 'Choose your style of support', 'assistant', 'companion-settings'],
         ['Your Now background', 'Make this space your own', 'home', 'now-background'],
         ['Money rules', 'View and manage your automation', 'repeat', 'rules'],
         [

@@ -41,6 +41,8 @@ import { handle as command_numbers } from '../features/commands/numbers.mjs';
 import { handle as command_future } from '../features/commands/future.mjs';
 import { handle as command_actions } from '../features/commands/actions.mjs';
 import { handle as command_accounts } from '../features/commands/accounts.mjs';
+import { handle as command_companion } from '../features/companion/commands.mjs';
+import { companionReply } from '../features/companion/model.mjs';
 import { handle as command_profile } from '../features/commands/profile.mjs';
 import {
   renderRegion,
@@ -649,9 +651,15 @@ function chatReply(text) {
   ) {
     p.ui.chat.push({
       role: 'ai',
-      text: (portraitContext.kind === 'portrait-metrics'
-        ? portraitMetricsReply
-        : portraitStoryReply)(p, S, portraitContext, text),
+      text: companionReply(
+        p,
+        (portraitContext.kind === 'portrait-metrics' ? portraitMetricsReply : portraitStoryReply)(
+          p,
+          S,
+          portraitContext,
+          text,
+        ),
+      ),
     });
     return openChat();
   }
@@ -747,7 +755,7 @@ function chatReply(text) {
       'I can help with the accounts, plans, points and permissions in this demonstration. Tell me which one you want to explore, or choose a question below.';
   p.ui.chat.push({
     role: replyRole,
-    text: reply,
+    text: replyRole === 'ai' ? companionReply(p, reply, { sensitive: !!recovery }) : reply,
   });
   openChat();
 }
@@ -1328,6 +1336,12 @@ const commandContext = {
   },
 };
 const commandRoutes = {
+  'companion-settings': 'companion',
+  'companion-style': 'companion',
+  'companion-preview': 'companion',
+  'companion-initiative': 'companion',
+  'companion-save': 'companion',
+  'companion-defaults': 'companion',
   journey: 'journey',
   'journey-event': 'journey',
   'journey-open': 'journey',
@@ -1561,6 +1575,7 @@ const commandRoutes = {
   pin: 'numbers',
 };
 const commandHandlers = {
+  companion: command_companion,
   journey: command_journey,
   badges: command_badges,
   support: command_support,

@@ -27,6 +27,7 @@ import './features/now/editor.css';
 import './design-system/media.css';
 import './design-system/mobile.css';
 import './features/stories/stories.css';
+import './features/companion/companion.css';
 class AppBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() {

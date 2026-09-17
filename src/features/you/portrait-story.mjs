@@ -1,3 +1,4 @@
+import { portraitBalance } from './portrait-balance.mjs';
 import { portraitModel, traitLanguage } from './portrait.mjs';
 import { checkinModel } from '../checkin/model.mjs';
 import { cash, potRate } from '../../domain/money.mjs';
@@ -340,6 +341,20 @@ export function portraitStory(p, member = 'self') {
 export function portraitStorySupport(p, s, context) {
   const m = portraitStory(p, s.member),
     topic = context.topic || context.id;
+  if (topic === 'balance') {
+    const b = portraitBalance(p, s.member);
+    if (b)
+      return {
+        source: 'ai',
+        author: 'HSBC AI',
+        singleMessage: true,
+        title: 'A strength can look different in a different moment.',
+        message: `${b.strength} ${b.caution} These are possibilities, not conclusions about you. ${b.question}`,
+        cta: b.own ? 'Add your perspective' : 'Explore the portrait',
+        action: b.own ? 'portrait-note:overall' : 'portrait',
+        chips: ['What is that based on?', 'That doesn’t sound like me'],
+      };
+  }
   const card = m.cards.find((c) => c.id === topic);
   const titles = {
     routine: 'Your rules suggest you like a plan that runs quietly.',
@@ -392,6 +407,14 @@ export function portraitStorySupport(p, s, context) {
 export function portraitStoryReply(p, s, context, text) {
   const m = portraitStory(p, s.member),
     card = m.cards.find((c) => c.id === (context.topic || context.id));
+  if (
+    (context.topic === 'balance' || /strength|weakness|blind spot/i.test(text)) &&
+    !/wrong|doesn.t|disagree|correct/i.test(text)
+  ) {
+    const b = portraitBalance(p, s.member);
+    if (b)
+      return `This reflection comes from the ${b.trait.toLowerCase()} trait in the portrait, not a diagnosis or a financial risk rating. ${b.strength} ${b.caution} Only you can say whether that fits. ${b.question}`;
+  }
   if (/wrong|doesn.t|not me|change.*interpret|another explanation|disagree|correct/i.test(text))
     return `${card ? card.meaning + ' ' : ''}You know the reason behind your choices. ${m.own ? 'Use “Add your perspective” on the story to tell us what we have missed. We’ll keep your words alongside the observation and revisit the interpretation.' : 'This is their shared interpretation; they can update it from their own portrait.'}`;
   if (/balance|wealth|tier|score|rank/i.test(text))

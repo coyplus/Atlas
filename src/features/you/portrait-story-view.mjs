@@ -1,3 +1,4 @@
+import { portraitBalance } from './portrait-balance.mjs';
 import { esc, icon, button } from '../../design-system/templates.mjs';
 import { cash } from '../../domain/money.mjs';
 import { portraitStory } from './portrait-story.mjs';
@@ -41,4 +42,10 @@ export function portraitNoteView(p, s, id) {
   const m = portraitStory(p, s.member),
     c = m.cards.find((x) => x.id === id);
   return `<form class="ps-note-form" id="portrait-note-form"><div><span class="ps-trait">${icon('edit')}YOUR PERSPECTIVE</span><h2>What’s the story<br>behind the pattern?</h2>${c ? `<p class="ps-note-context">${esc(c.note || c.meaning)}</p>` : '<p>Tell us what feels right, what has changed, or what this picture has missed.</p>'}<label class="field">In your own words<textarea id="portrait-note" name="note" rows="5" maxlength="600" required placeholder="For me, it’s more about…">${esc(p.ui.portraitNotes?.[id]?.text || '')}</textarea></label></div><footer><p>Your words stay with this interpretation.</p>${button('Save my perspective', 'portrait-note-save:' + id, 'primary wide', 'type="button"')}</footer></form>`;
+}
+
+export function portraitBalanceView(p, s) {
+  const m = portraitBalance(p, s.member);
+  if (!m) return '';
+  return `<section class="portrait-balance" data-support-topic="balance"><header><h3>Every strength has another side.</h3><p>A few possibilities to reflect on, based on ${esc(m.trait.toLowerCase())}. ${m.own ? 'You know what fits.' : 'Only they can say what fits.'}</p></header><article><span class="eyebrow">STRENGTHS</span>${m.strengths.map((x) => `<h4>${esc(x.strength)}</h4><p>${esc(x.detail)}</p>`).join('')}</article><article><span class="eyebrow">POSSIBLE BLIND SPOTS</span><h4>${esc(m.blind)}</h4><p>${esc(m.caution)}</p></article><article><span class="eyebrow">THINGS TO THINK ABOUT</span><h4>${esc(m.question)}</h4>${m.own ? button('Add your perspective', 'portrait-note:overall', 'text') : ''}</article></section>`;
 }

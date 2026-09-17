@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 test.beforeEach(async ({ page }, testInfo) => {
   await page.addInitScript((persist) => {
     window.__ATLAS_TEST__ = !persist;
+    sessionStorage.setItem('atlas-welcome-seen', 'yes');
   }, testInfo.title.includes('correction is saved'));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/?p=sam&theme=vanilla&tab=you');

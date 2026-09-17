@@ -1,3 +1,4 @@
+import { personaliseSupport } from '../companion/model.mjs';
 import { moneySpeedModel } from '../future/money-speed.mjs';
 import { portraitStorySupport } from '../you/portrait-story.mjs';
 import { portraitMetricsSupport } from '../you/portrait-metrics.mjs';
@@ -261,14 +262,14 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     const m = moduleModel(p, context.id, catalogue);
     if (m.containerId) {
       const x = moneyContainer(p, m.containerId);
-      return supportModel(
+      return contextualSupportModel(
         p,
         s,
         { kind: p.l1.accounts.includes(x) ? 'account' : 'pot', id: x.id },
         catalogue,
       );
     }
-    if (m.potId) return supportModel(p, s, { kind: 'pot', id: m.potId }, catalogue);
+    if (m.potId) return contextualSupportModel(p, s, { kind: 'pot', id: m.potId }, catalogue);
     if (context.id === 'grocery') {
       const pot = p.l1.pots.find((x) => x.spendingCategory === 'groceries');
       return ai(
@@ -349,8 +350,10 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
         'Cashback and HSBC Points are different. Points recognise healthy habits; they are not earned by spending.',
       ],
     };
-    if (context.id === 'activity') return supportModel(p, s, { kind: 'activity' }, catalogue);
-    if (context.id === 'points') return supportModel(p, s, { kind: 'rewards' }, catalogue);
+    if (context.id === 'activity')
+      return contextualSupportModel(p, s, { kind: 'activity' }, catalogue);
+    if (context.id === 'points')
+      return contextualSupportModel(p, s, { kind: 'rewards' }, catalogue);
     const line = lines[context.id] || [
       m.title,
       `${m.value}${m.note ? ' · ' + m.note : ''}. The detail below shows what is included in this snapshot.`,
@@ -518,15 +521,15 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
   }
   const recoveryPot = p.l1.pots.find((x) => x.personalOffer?.recovery);
   if (recoveryPot && s.tab === 'now' && k === 'top')
-    return supportModel(p, s, { kind: 'pot', id: recoveryPot.id }, catalogue);
+    return contextualSupportModel(p, s, { kind: 'pot', id: recoveryPot.id }, catalogue);
   if (p.l1.customer.id === 'elena' && s.tab === 'now' && !p.ui.receipts.length) return human();
   if (p.l1.customer.id === 'sam' && s.tab === 'now' && !p.ui.receipts.length)
-    return supportModel(p, s, { kind: 'audio' }, catalogue);
+    return contextualSupportModel(p, s, { kind: 'audio' }, catalogue);
   return { ...aiMessage(p, s.tab, s.month), source: 'ai', author: 'HSBC AI' };
 }
 
 // Now adds an observation or decision, rather than repeating the screen headline.
-export function supportModel(p, s, context = { kind: 'top' }, catalogue) {
+function contextualSupportModel(p, s, context = { kind: 'top' }, catalogue) {
   const m = baseSupportModel(p, s, context, catalogue);
   if (
     s.tab !== 'now' ||
@@ -601,6 +604,7 @@ export function supportModel(p, s, context = { kind: 'top' }, catalogue) {
       if (due)
         return {
           ...m,
+          essential: true,
           title: due.scheduled ? 'Your next payment is planned' : 'A payment to keep in view',
           message:
             due.description +
@@ -610,7 +614,12 @@ export function supportModel(p, s, context = { kind: 'top' }, catalogue) {
               : 'You can pay manually or set up a rule.'),
         };
       if (locked)
-        return { ...m, title: 'Your commitment keeps this rate', message: locked.description };
+        return {
+          ...m,
+          essential: true,
+          title: 'Your commitment keeps this rate',
+          message: locked.description,
+        };
       if (c.type === 'budget')
         return {
           ...m,
@@ -621,6 +630,7 @@ export function supportModel(p, s, context = { kind: 'top' }, catalogue) {
       if (c.debt)
         return {
           ...m,
+          essential: true,
           title: 'Stay on top of repayments',
           message:
             'Your agreement shows the payment conditions and interest rate. You can pay manually or use an automated rule.',
@@ -672,4 +682,20 @@ export function supportModel(p, s, context = { kind: 'top' }, catalogue) {
     }
   }
   return m;
+}
+
+export function supportModel(p, s, context = { kind: 'top' }, catalogue) {
+  const model =
+    context.kind === 'companion' || context.title === 'Your AI Companion'
+      ? {
+          source: 'ai',
+          author: 'HSBC AI',
+          title: 'A style that works for you',
+          message:
+            'Your portrait suggests a starting point. Compare the styles and choose how you would like to be supported.',
+          cta: 'Shape your Companion',
+          action: 'companion-settings',
+        }
+      : contextualSupportModel(p, s, context, catalogue);
+  return personaliseSupport(p, s, context, model, catalogue);
 }
