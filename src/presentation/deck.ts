@@ -1,7 +1,19 @@
 import '../design-system/fonts.css';
 import './deck.css';
-import { slides } from './slides';
+import './relationship.css';
 import { materialIcons, materialViewBoxes } from '../design-system/icons.mjs';
+const relationship = new URLSearchParams(location.search).get('version') === 'relationship';
+const { slides } = relationship ? await import('./relationship') : await import('./slides');
+document.body.dataset.version = relationship ? 'relationship' : 'original';
+const versionSelector = document.querySelector<HTMLSelectElement>('#deck-version')!;
+versionSelector.value = relationship ? 'relationship' : 'original';
+versionSelector.addEventListener('change', () => {
+  const url = new URL(location.href);
+  if (versionSelector.value === 'relationship') url.searchParams.set('version', 'relationship');
+  else url.searchParams.delete('version');
+  url.hash = '1';
+  location.assign(url.href);
+});
 const main = document.querySelector<HTMLElement>('#deck')!;
 main.innerHTML = slides
   .map(
