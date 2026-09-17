@@ -4,6 +4,8 @@ export const everydayActions = [
   ['pay', 'Pay', 'up', 'pay'],
   ['transfer', 'Transfer', 'swap', 'transfer'],
   ['addmoney', 'Add money', 'plus', 'addmoney'],
+  ['checkin', 'Check in', 'sun', 'checkin'],
+  ['addgoal', 'Add goal', 'target', 'plan-intent:goal'],
   ['statements', 'Statements', 'transcript', 'statements'],
   ['invest', 'Invest', 'trend', 'plan-intent:grow'],
   ['cards', 'Manage cards', 'card', 'cards'],

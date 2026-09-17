@@ -95,9 +95,15 @@ export function validSession(value: unknown): boolean {
   });
 }
 
-/** Refresh the original Alex starter layout without replacing a visitor’s customisation. */
+/** Refresh original starter layouts without replacing a visitor’s customisation. */
 export function upgradeSession(value: unknown): unknown {
   const state = value as Record<string, any>;
+  const samUI = state.people.sam.ui;
+  if (!samUI.quickActionsVersion) {
+    if (JSON.stringify(samUI.quickActions) === JSON.stringify(['pay', 'transfer', 'addmoney']))
+      samUI.quickActions = ['pay', 'transfer', 'checkin'];
+    samUI.quickActionsVersion = 1;
+  }
   const ui = state.people.alex.ui;
   const originalOrder = ['balance', 'dd', 'creditscore', 'activity'];
   const originalSizes: Record<string, string> = { balance: 'W', activity: 'W' };

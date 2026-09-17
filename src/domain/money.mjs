@@ -48,7 +48,8 @@ export function createSession(dataset) {
   for (const [id, data] of Object.entries(dataset.moments)) {
     const p = clone(data);
     p.ui = {
-      quickActions: ['pay', 'transfer', 'addmoney'],
+      quickActions: ['pay', 'transfer', id === 'sam' ? 'checkin' : 'addmoney'],
+      quickActionsVersion: 1,
       frozenCards: [],
       connectionExamples: clone(dataset.shared?.['connected-accounts']?.[id] || []),
       connectedBanks: clone(dataset.shared?.['connected-accounts']?.[id] || []),
