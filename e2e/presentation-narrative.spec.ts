@@ -10,7 +10,7 @@ test('the narrative deck is selectable, deep-linkable and switches back', async 
   await page.goto('/presentation/?version=narrative#7');
   await expect(page.locator('#counter')).toHaveText('07 / 14');
   await expect(page.locator('.slide:not([hidden]) h1')).toContainText('Building better customers');
-  await expect(page.locator('body')).toHaveAttribute('data-theme', 'r-value');
+  await expect(page.locator('body')).toHaveAttribute('data-theme', 'n-red');
   await page.locator('#deck-version').selectOption('relationship');
   await expect(page.locator('#counter')).toHaveText('01 / 11');
 });
