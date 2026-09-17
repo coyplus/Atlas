@@ -61,6 +61,6 @@ The You-tab entry uses the same page gutters as the Journey card. Explore your p
 
 ## Ambient avatar motion
 
-All four persona marks share a slow breathing language, with slightly different cycles (7.6–9 seconds). The background expands by only a few percent while its inner outline drifts three degrees either side of its resting angle. The central sparkle and the button's touch target stay still. This is ambient presence, not a claim that a response is being generated. Existing explicit thinking and audio states remain distinct. Historic message avatars stay still, and reduced-motion preferences disable the ambient loops entirely.
+All four persona marks share a slow breathing language, with slightly different cycles (7–8.4 seconds). A fuller, asymmetric breath moves the background while two fine inner contours gently flex and drift in opposing directions. Rounded forms stay organic, Analyst retains a soft geometric outline, and Coach retains its arch-like shape. The outer contour swings about ten degrees, rather than rotating continuously. The central sparkle and the button's touch target stay still. This is ambient presence, not a claim that a response is being generated. Existing explicit thinking and audio states remain distinct. Historic message avatars stay still, and reduced-motion preferences disable the ambient loops entirely.
 
 The transparent button border applies only when an actual persona avatar is present. Audio play/pause controls retain their circular outline and existing active treatment.
