@@ -5,9 +5,13 @@ const icon = (name: keyof typeof materialIcons) =>
 const heading = (label: string, title: string, intro = '') =>
   `<div class="r-heading"><p class="eyebrow">${label}</p><h1>${title}</h1>${intro ? `<p class="r-intro">${intro}</p>` : ''}</div>`;
 const close = (text: string) => `<p class="r-close">${text}</p>`;
-const source = (url: string, text: string) =>
-  `<p class="r-source"><a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a></p>`;
+const source = (text: string, url = '') =>
+  url
+    ? `<p class="r-source"><a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a></p>`
+    : `<p class="r-source">${text}</p>`;
 const arrow = `<span class="r-arrow" aria-hidden="true">${icon('arrow_forward')}</span>`;
+const stat = (figure: string, text: string) =>
+  `<div class="n-stat"><b>${figure}</b><span>${text}</span></div>`;
 const phone = (tab: 'now' | 'you' | 'future', caption: string) =>
   `<figure class="product-figure"><div class="phone-frame"><img src="/assets/presentation/sam-${tab}.webp" alt="${caption}" width="390" height="844" loading="lazy"></div><figcaption>Sam’s ${tab === 'you' ? 'You' : tab === 'now' ? 'Now' : 'Future'} · from the working prototype</figcaption></figure>`;
 const note = (number: string, feature: string, text: string, builds: string) =>
@@ -17,8 +21,8 @@ export const slides = [
   {
     stage: 'Cover',
     title: 'Making banking a relationship again',
-    theme: 'cover n-cover',
-    content: `<div class="cover-copy"><p class="eyebrow">HSBC ATLAS · A CONCEPT FOR THE NEXT DECADE</p><h1>Making banking <br>a relationship <br><em>again.</em></h1><p class="lead">Support for all of life’s complexity. <br>Designed to transform financial lives.</p></div><div class="cover-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="orbit-label label-now">Now</span><span class="orbit-label label-future">Future</span><span class="orbit-label label-you">You</span><span class="orbit-center">One life.<br>Connected.</span></div>`,
+    theme: 'n-cover r-slide n-grain',
+    content: `<div class="n-cover-copy"><p class="eyebrow">HSBC ATLAS · A CONCEPT FOR THE NEXT DECADE</p><h1>Making banking <br>a relationship <br><em>again.</em></h1><p class="n-lead">Support for all of life’s complexity. <br>Designed to transform financial lives.</p></div><div class="n-cover-art" aria-hidden="true"></div>`,
   },
   {
     stage: 'The problem',
@@ -41,13 +45,18 @@ export const slides = [
         <div class="n-want-outcomes"><span class="r-label">What aspiring households tell us they want</span><h2>A home of their own.</h2><h2>A buffer for the unexpected.</h2><h2>Choice about work and later life.</h2></div>
         <div class="n-want-features"><span class="r-label">What we have given them</span><ul aria-label="Existing features"><li>Accounts</li><li>Savings Pots</li><li>Budgets</li><li>Alerts</li><li>Investments</li><li>Life Planner</li><li>Mortgages</li><li>Pensions</li><li>Money Rules</li><li>Insights</li><li>Round-ups</li><li>Cashback</li></ul></div>
       </div>
-      ${close('Customers have told us for years. The industry has not solved it, because it is hard.')}`,
+      <div class="n-stats">
+        ${stat('38%', 'of UK adults check a banking app every day.')}
+        ${stat('13.1m', 'adults with low financial resilience. Unchanged since 2022.')}
+      </div>
+      ${close('We have never had more of their attention. It has never made less difference.')}
+      ${source('HSBC with YouGov, 2025 · FCA Financial Lives, 2024')}`,
   },
   {
     stage: 'Why it is hard',
     title: 'You don’t build a deposit in a day',
     theme: 'r-slide n-journeys',
-    content: `${heading('WHY IT IS HARD', 'You don’t build a deposit <br><em>in a day.</em>', 'Long-term outcomes are built from behaviours, sustained over years.')}
+    content: `${heading('WHY IT IS HARD', 'You don’t build a deposit <br><em>in a day.</em>', 'Sam is 33, with two kids and £6,400 of a £24,000 deposit. Outcomes like his are built from behaviours, sustained over years.')}
       <div class="r-comparison">
         <article><span class="r-label">Pay a bill</span><h2>An immediate result.</h2><div class="r-path"><span>Need</span>${arrow}<span>Act</span>${arrow}<span>Relief</span></div><p>The need is the prompt. <br>Relief is the reward.</p><b>Design a feature.</b></article>
         <article><span class="r-label">Build a buffer</span><h2>A result built over years.</h2><div class="r-path"><span>Goal</span>${arrow}<span class="r-repeat">Repeated action ${icon('repeat')}</span></div><p>Nothing prompts you this morning. <br>£100 saved doesn’t feel like anything yet.</p><b>Design for the behaviour.</b></article>
@@ -65,7 +74,7 @@ export const slides = [
         <article><span class="n-mark">${icon('close')}</span><span class="r-label">Wants to</span><h2>No.</h2><p>£100 towards £24,000 feels like nothing. <br>The reward is years away.</p><b>No payoff today.</b></article>
       </div>
       ${close('Features make people able. They rarely fix the situation, or the wanting.')}
-      ${source('https://implementationscience.biomedcentral.com/articles/10.1186/1748-5908-6-42', 'COM-B · capability, opportunity, motivation · Michie, van Stralen & West')}`,
+      ${source('COM-B · capability, opportunity, motivation · Michie, van Stralen & West', 'https://implementationscience.biomedcentral.com/articles/10.1186/1748-5908-6-42')}`,
   },
   {
     stage: 'The design shift',
@@ -82,12 +91,16 @@ export const slides = [
           <li><b>Adapt</b><p>Learn from the response. Change the support as life changes.</p><small>Keeps all three true</small></li>
         </ol>
       </div>
-      ${close('Features are the steps. The system is what keeps you walking.')}`,
+      <div class="n-stats n-stats-one">
+        ${stat(`42% <span class="n-stat-arrow" aria-hidden="true">${icon('arrow_forward')}</span> 86%`, 'UK pension auto-enrolment took workplace pension participation from 42% to 86% in a decade. Not a feature. A system.')}
+      </div>
+      ${close('Features are the steps. The system is what keeps you walking.')}
+      ${source('Institute for Fiscal Studies')}`,
   },
   {
     stage: 'Why a bank should build this',
     title: 'Building better customers builds a better bank',
-    theme: 'r-value r-slide n-thesis',
+    theme: 'r-value r-slide n-thesis n-grain',
     content: `${heading('WHY A BANK SHOULD BUILD THIS', 'Building better customers <br>builds <em>a better bank.</em>')}
       <ol class="n-chain" aria-label="How customer progress becomes bank value">
         <li><h2>Sustained behaviours</h2><p>Small actions, repeated over years.</p>${arrow}</li>
@@ -116,12 +129,17 @@ export const slides = [
     title: 'AI is the orchestrator and the curator',
     theme: 'r-slide n-ai',
     content: `${heading('THE ENABLER', 'AI is the orchestrator <br>and <em>the curator.</em>')}
+      <div class="n-stats">
+        ${stat('49%', 'of people already use AI to help with savings and investment decisions.')}
+        ${stat('11%', 'would let it manage their money with minimal human oversight.')}
+      </div>
       <div class="n-modes">
         <article><div class="n-mode-icon">${icon('arrow_upward')}</div><span class="r-label">Push</span><h2>It suggests when you don’t know where to start.</h2><p>A possibility at 41. A pattern in your spending. A next step, ready to approve.</p></article>
         <article><div class="n-mode-icon">${icon('arrow_downward')}</div><span class="r-label">Pull</span><h2>It listens when you want to talk.</h2><p>A conversation one tap from whatever is on screen. The whole bank’s tools, insight and people, brought to one person.</p></article>
         <article><div class="n-mode-icon">${icon('person')}</div><span class="r-label">Human</span><h2>People hold the pen where it matters.</h2><p>HSBC experts review the AI’s work and take over when judgement or care is needed.</p></article>
       </div>
-      ${close('Not a chatbot. A system that knows when to speak, when to listen, and when to hand over.')}`,
+      ${close('Not a chatbot. A system that knows when to speak, when to listen, and when to hand over.')}
+      ${source('EY global consumer survey, 2026, n=18,152')}`,
   },
   {
     stage: 'The experience',
@@ -134,7 +152,7 @@ export const slides = [
         <article><span class="r-label">Autonomy</span><h2>Future</h2><b>“I choose my direction.”</b></article>
       </div>
       ${close('The gap told us why behaviours fail. These needs tell us what keeps them going.')}
-      ${source('https://selfdeterminationtheory.org/the-theory/', 'Self-Determination Theory · Deci & Ryan. The tab mapping is our design application.')}`,
+      ${source('Self-Determination Theory · Deci & Ryan. The tab mapping is our design application.', 'https://selfdeterminationtheory.org/the-theory/')}`,
   },
   {
     stage: 'Now',
@@ -178,7 +196,7 @@ export const slides = [
   {
     stage: 'Close',
     title: 'Loyalty to a relationship is earned',
-    theme: 'r-value r-slide n-close',
+    theme: 'r-value r-slide n-close n-grain',
     content: `${heading('MAKING BANKING A RELATIONSHIP AGAIN', 'Loyalty to a product is rented. <br>Loyalty to a relationship is <em>earned.</em>')}
       <div class="n-parts"><span class="r-label">What Atlas brings together</span><p><b>Behavioural science.</b><span>Designed around what keeps people going.</span></p><p><b>A loyalty framework.</b><span>Rewards sharing, and positive financial behaviour.</span></p><p><b>AI and human support.</b><span>Hyper-personal. Hands over when it matters.</span></p></div>
       <div class="r-finale"><h2>When customers move forward, <br>so do we.</h2><a class="primary-link" data-demo href="/?p=sam&tab=now&theme=vanilla">Experience it with Sam ${icon('arrow_forward')}</a></div>`,
