@@ -11,13 +11,36 @@ const source = (text: string, url = '') =>
     ? `<p class="r-source"><a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a></p>`
     : `<p class="r-source">${text}</p>`;
 const arrow = `<span class="r-arrow" aria-hidden="true">${icon('arrow_forward')}</span>`;
-const phone = (tab: 'now' | 'you' | 'future', caption: string) =>
-  `<figure class="product-figure"><div class="phone-frame"><img src="/assets/presentation/sam-${tab}.webp" alt="${caption}" width="390" height="844" loading="lazy"></div><figcaption>Sam’s ${tab === 'you' ? 'You' : tab === 'now' ? 'Now' : 'Future'} · from the working prototype</figcaption></figure>`;
+const asset = (name: string, alt: string, cls = '') =>
+  `<img class="${cls}" src="/assets/presentation/narrative/${name}.webp" alt="${alt}" decoding="async">`;
+const phone = (tab: 'now' | 'you' | 'future', caption: string) => {
+  const detail = {
+    now: asset(
+      'story-phone',
+      'Atlas Story: a waterfall chart showing £1,300 remaining after essentials and commitments.',
+      'n-story-screen',
+    ),
+    you: asset(
+      'saving-rules',
+      'Behind your portrait: £420 per month allocated across three saving rules.',
+      'n-detail-card',
+    ),
+    future: asset(
+      'what-if',
+      'What if: saving £50 on payday reaches the emergency fund eleven months earlier.',
+      'n-detail-card',
+    ),
+  }[tab];
+  return `<figure class="n-product-stage n-stage-${tab}"><div class="n-product-main"><div class="phone-frame"><img src="/assets/presentation/sam-${tab}.webp" alt="${caption}" width="390" height="844" decoding="async"></div></div><div class="n-product-detail">${detail}</div><figcaption>Sam’s ${tab === 'you' ? 'You' : tab === 'now' ? 'Now' : 'Future'} · from the working prototype</figcaption></figure>`;
+};
 
 /* Circular flywheel: a hairline ring with five red markers, nodes placed around it. */
 const wheelRing = (() => {
   const markers = [36, 108, 180, 252, 324]
-    .map((a) => `<path d="M275 59.5 L286 65 L275 70.5 Z" transform="rotate(${a} 280 280)" fill="#db0011"/>`)
+    .map(
+      (a) =>
+        `<path d="M275 59.5 L286 65 L275 70.5 Z" transform="rotate(${a} 280 280)" fill="#db0011"/>`,
+    )
     .join('');
   return `<svg class="n-wheel-ring" viewBox="0 0 560 560" aria-hidden="true"><circle cx="280" cy="280" r="215" fill="none" stroke="#cdc8c6" stroke-width="1"/>${markers}</svg>`;
 })();
@@ -27,7 +50,7 @@ export const slides = [
     stage: 'Cover',
     title: 'Introducing Atlas',
     theme: 'n-cover r-slide',
-    content: `<div class="n-cover-copy"><p class="eyebrow">HSBC Atlas · A concept for the next decade</p><h1>Introducing <em>Atlas.</em></h1><p class="n-lead">Making banking a relationship again.</p></div><div class="n-cover-art" aria-hidden="true"></div>`,
+    content: `<div class="n-cover-copy"><p class="eyebrow">HSBC Atlas · A concept for the next decade</p><h1><span>Introducing</span><em>Atlas.</em></h1><p class="n-lead">Making banking a relationship again.</p></div><figure class="n-cover-product">${asset('cover-numbers', 'Atlas’s personalised money widgets, shown in Sam’s Now tab.', 'n-cover-device')}${asset('cadence', 'Eight months of grocery consistency, from Behind your portrait.', 'n-cover-evidence')}</figure>`,
   },
   {
     stage: 'The problem',
@@ -69,16 +92,16 @@ export const slides = [
       ${body(`<div class="n-matrix" role="table" aria-label="Four conditions for a behaviour, today and with a system">
         <div class="n-matrix-head" role="row"><span></span><span class="r-label">Able to</span><span class="r-label">The situation lets them</span><span class="r-label">Wants to</span><span class="r-label">Over time</span></div>
         <div class="n-matrix-row" role="row"><span class="r-label n-matrix-label">Sam moving £100 to his deposit, today</span>
-          <article><h2>Yes.</h2><p>The Pot exists. The transfer takes ten seconds.</p></article>
-          <article class="n-no"><h2>No.</h2><p>Payday comes and goes. Nothing marks the moment, and the bills get there first.</p></article>
-          <article class="n-no"><h2>No.</h2><p>£100 towards £24,000 feels like nothing. The reward is years away.</p></article>
-          <article class="n-no"><h2>No.</h2><p>Pay, rent and priorities will change. A fixed rule breaks.</p></article>
+          <article data-condition="Able to"><h2>Yes.</h2><p>The Pot exists. The transfer takes ten seconds.</p></article>
+          <article class="n-no" data-condition="The situation lets them"><h2>No.</h2><p>Payday comes and goes. Nothing marks the moment, and the bills get there first.</p></article>
+          <article class="n-no" data-condition="Wants to"><h2>No.</h2><p>£100 towards £24,000 feels like nothing. The reward is years away.</p></article>
+          <article class="n-no" data-condition="Over time"><h2>No.</h2><p>Pay, rent and priorities will change. A fixed rule breaks.</p></article>
         </div>
         <div class="n-matrix-row n-matrix-system" role="row"><span class="r-label n-matrix-label">What a system does</span>
-          <article><b>Enable</b><p>A step small enough to take today.</p></article>
-          <article><b>Prompt</b><p>The right moment, with an amount he can afford.</p></article>
-          <article><b>Reward</b><p>Progress made visible now, while the outcome is years away.</p></article>
-          <article><b>Adapt</b><p>Learn from the response. Change the support as life changes.</p></article>
+          <article data-condition="Able to"><b>Enable</b><p>A step small enough to take today.</p></article>
+          <article data-condition="The situation lets them"><b>Prompt</b><p>The right moment, with an amount he can afford.</p></article>
+          <article data-condition="Wants to"><b>Reward</b><p>Progress made visible now, while the outcome is years away.</p></article>
+          <article data-condition="Over time"><b>Adapt</b><p>Learn from the response. Change the support as life changes.</p></article>
         </div>
       </div>`)}
       ${source('COM-B · capability, opportunity, motivation · Michie, van Stralen & West', 'https://implementationscience.biomedcentral.com/articles/10.1186/1748-5908-6-42')}`,
@@ -86,7 +109,7 @@ export const slides = [
   {
     stage: 'Why a bank should build this',
     title: 'Building better customers builds a better bank',
-    theme: 'r-value r-slide n-thesis n-grain',
+    theme: 'r-value r-slide n-thesis',
     content: `${heading('Why a bank should build this', 'Building better customers <br>builds <em>a better bank.</em>', 'When customers move forward, so do we.')}
       ${body(`<ol class="n-chain" aria-label="How customer progress becomes bank value">
         <li><h2>Sustained behaviours</h2><p>Save on payday. Keep the plan. Review when life changes.</p>${arrow}</li>
@@ -113,7 +136,7 @@ export const slides = [
       ${body(`<div class="n-layer">
         <div class="n-layer-col"><span class="r-label">What it knows</span><ul><li>What you tell us</li><li>What your finances show</li><li>What you are exploring</li><li>What the bank can offer: tools, insight, human experts</li></ul></div>
         <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
-        <div class="n-layer-core"><span class="r-label">The AI layer</span><h2>Remembers. <br>Curates. <br>Coordinates.</h2><div class="n-modes"><p><b>Push</b>It finds the opportunity you didn’t know to ask for.</p><p><b>Pull</b>It listens, and explains, when you want to talk.</p></div></div>
+        <div class="n-layer-core"><div class="n-ai-emblem" aria-hidden="true">${icon('auto_awesome')}</div><span class="r-label">The AI layer</span><h2>Remembers. <br>Curates. <br>Coordinates.</h2><div class="n-modes"><p><b>Push</b>It finds the opportunity you didn’t know to ask for.</p><p><b>Pull</b>It listens, and explains, when you want to talk.</p></div></div>
         <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
         <div class="n-layer-col"><span class="r-label">What you get</span><ul><li>The right suggestion at the right moment, across Now, You and Future</li><li>A conversation one tap from whatever is on screen</li><li>A person who takes over when judgement or care is needed</li></ul></div>
         <div class="n-layer-return" aria-hidden="true"><span>${icon('repeat')} Every response is carried into the next interaction</span></div>
@@ -125,9 +148,9 @@ export const slides = [
     theme: 'r-slide n-three',
     content: `${heading('02 · Behavioural science', 'People keep going when they feel <em>capable, connected and in control.</em>', 'Future sets the direction. Now turns it into routines. You brings understanding and recognition back into the plan.')}
       ${body(`<div class="n-tabs">
-        <article><span class="r-label">Competence</span><h2>Now</h2><p>“I can see where I stand, and act.”</p></article>
-        <article><span class="r-label">Relatedness</span><h2>You</h2><p>“I’m heard, known and recognised.”</p></article>
-        <article><span class="r-label">Autonomy</span><h2>Future</h2><p>“I choose my direction.”</p></article>
+        <article><span class="n-tab-glyph" aria-hidden="true">${icon('grid_view')}</span><span class="r-label">Competence</span><h2>Now</h2><p>“I can see where I stand, and act.”</p></article>
+        <article><span class="n-tab-glyph" aria-hidden="true">${icon('person')}</span><span class="r-label">Relatedness</span><h2>You</h2><p>“I’m heard, known and recognised.”</p></article>
+        <article><span class="n-tab-glyph" aria-hidden="true">${icon('trending_up')}</span><span class="r-label">Autonomy</span><h2>Future</h2><p>“I choose my direction.”</p></article>
       </div>`)}
       ${source('Self-Determination Theory · Deci & Ryan. The tab mapping is our design application.', 'https://selfdeterminationtheory.org/the-theory/')}`,
   },
@@ -164,8 +187,8 @@ export const slides = [
     theme: 'r-slide n-loyalty',
     content: `${heading('03 · A loyalty framework', 'What’s rewarded <br><em>is repeated.</em>', 'Points reward the behaviour. Status rewards the outcome. Neither pays out cash; both pay into the goal.')}
       ${body(`<div class="n-loyalty-grid">
-        <article><span class="r-label">HSBC Points</span><h2>Earned by the behaviour.</h2><p>A check-in completed. A saving challenge kept for thirty days. A plan approved.</p><p>Spent on things that build the next behaviour: a savings rate boost, a session with a coach. Not cash.</p></article>
-        <article><span class="r-label">HSBC Status</span><h2>Earned by the outcome.</h2><p>HSBC, Premier and Elite follow your total relationship balance. As your financial standing grows, so does the support: a relationship manager, more choices.</p><p>Status follows your standing, not your Points.</p></article>
+        <article><div class="n-loyalty-copy"><span class="r-label">HSBC Points</span><h2>Earned by the behaviour.</h2><p>A check-in completed. A saving challenge kept for thirty days. A plan approved.</p><p>Spent on things that build the next behaviour: a savings rate boost, a session with a coach. Not cash.</p></div><div class="n-loyalty-evidence">${asset('points', '480 HSBC Points and three progress badges from the prototype.')}</div></article>
+        <article><div class="n-loyalty-copy"><span class="r-label">HSBC Status</span><h2>Earned by the outcome.</h2><p>HSBC, Premier and Elite follow your total relationship balance. As your financial standing grows, so does the support: a relationship manager, more choices.</p><p>Status follows your standing, not your Points.</p></div><div class="n-loyalty-evidence">${asset('premier', 'Premier membership preview: £98,000 relationship balance, £2,000 to Premier.')}</div></article>
       </div>`)}
       ${source('Tier thresholds, Points values and benefits are illustrative concept content.')}`,
   },
@@ -189,7 +212,7 @@ export const slides = [
   {
     stage: 'Close',
     title: 'From product-led growth to behaviour-led growth',
-    theme: 'r-value r-slide n-close n-grain',
+    theme: 'r-value r-slide n-close',
     content: `${heading('Making banking a relationship again', 'From product-led growth <br>to <em>behaviour-led growth.</em>', 'When customers move forward, so do we.')}
       ${body(`<a class="primary-link" data-demo href="/?p=sam&tab=now&theme=vanilla">Experience it with Sam ${icon('arrow_forward')}</a>`)}`,
   },

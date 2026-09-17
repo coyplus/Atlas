@@ -23,6 +23,19 @@ test('all narrative slides render without overflow and lead into the demo', asyn
     await expect(page.locator('#counter')).toHaveText(`${String(n).padStart(2, '0')} / 15`);
     await expect(page.locator('.slide:not([hidden])')).toHaveCount(1);
     await expect(page.locator('.slide:not([hidden]) h1')).toBeVisible();
+    await expect
+      .poll(() =>
+        page
+          .locator('.slide:not([hidden]) img')
+          .evaluateAll((images) =>
+            images.every(
+              (image) =>
+                (image as HTMLImageElement).complete &&
+                (image as HTMLImageElement).naturalWidth > 0,
+            ),
+          ),
+      )
+      .toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
@@ -39,4 +52,17 @@ test('all narrative slides render without overflow and lead into the demo', asyn
   await page.locator('#menu-close').click();
   await page.getByRole('link', { name: 'Experience it with Sam', exact: true }).click();
   await expect(page.locator('.now-page')).toBeVisible();
+});
+
+test('the narrative fits a laptop presentation viewport without scrolling', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/presentation/?version=narrative');
+  await page.evaluate(() => document.fonts.ready);
+  for (let n = 1; n <= 15; n++) {
+    await expect(page.locator('#counter')).toHaveText(`${String(n).padStart(2, '0')} / 15`);
+    await expect
+      .poll(() => page.locator('#deck').evaluate((deck) => deck.scrollHeight - deck.clientHeight))
+      .toBeLessThanOrEqual(2);
+    if (n < 15) await page.locator('#next').click();
+  }
 });
