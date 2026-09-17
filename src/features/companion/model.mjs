@@ -37,11 +37,22 @@ export const initiatives = {
   context: { name: 'In useful moments', description: 'Offer context for what I’m looking at.' },
   lead: { name: 'Suggest a next step', description: 'Offer a way forward as I explore.' },
 };
+// Authored starting styles for the four demo scenarios. Customer choices always win.
+export function companionDefaults(p) {
+  const starting = {
+    alex: { style: 'guide', initiative: 'context' },
+    jordan: { style: 'coach', initiative: 'lead' },
+    sam: { style: 'listener', initiative: 'context' },
+    elena: { style: 'analyst', initiative: 'context' },
+  };
+  return { ...(starting[p.l1.customer.id] || starting.alex) };
+}
 export function companionPreferences(p) {
   const saved = p.ui.companion || {};
+  const defaults = companionDefaults(p);
   return {
-    style: styles[saved.style] ? saved.style : 'guide',
-    initiative: initiatives[saved.initiative] ? saved.initiative : 'context',
+    style: styles[saved.style] ? saved.style : defaults.style,
+    initiative: initiatives[saved.initiative] ? saved.initiative : defaults.initiative,
   };
 }
 export function companionRecommendation(p) {
@@ -172,7 +183,12 @@ export function personaliseSupport(p, s, context, base, catalogue) {
       const number = moduleModel(p, context.id, catalogue);
       if (number.value && !m.message.includes(number.value))
         m.message = `${number.title}: ${number.value}. ${base.message}`;
-    } else if (prefs.style === 'coach' && base.cta && !/^support:|^chat$/.test(base.action || '')) {
+    } else if (
+      prefs.style === 'coach' &&
+      base.cta &&
+      !/^back\b/i.test(base.cta) &&
+      !/^support:|^chat$/.test(base.action || '')
+    ) {
       m.message = `${base.message} A useful next step: ${base.cta.charAt(0).toLowerCase() + base.cta.slice(1)}.`;
     }
     if (['top', 'future', 'personality', 'companion'].includes(context.kind))
@@ -180,7 +196,12 @@ export function personaliseSupport(p, s, context, base, catalogue) {
     // On single-line surfaces the observation remains visible, with the style in the discussion.
     if (m.singleMessage) m.title = base.title;
   }
-  if (prefs.initiative === 'lead' && m.cta && !/^support:|^chat$/.test(m.action || '')) {
+  if (
+    prefs.initiative === 'lead' &&
+    m.cta &&
+    !/^back\b/i.test(m.cta) &&
+    !/^support:|^chat$/.test(m.action || '')
+  ) {
     m.title = m.cta;
     m.singleMessage = false;
   }

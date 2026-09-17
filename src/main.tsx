@@ -433,6 +433,7 @@ import './features/now/refinement.css';
 
 import './features/you/portrait.css';
 import './features/you/portrait-story.css';
+import './features/you/portrait-editorial.css';
 import './features/you/portrait-metrics.css';
 
 import './features/you/feelings.css';

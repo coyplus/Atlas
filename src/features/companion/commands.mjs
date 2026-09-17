@@ -1,4 +1,4 @@
-import { companionPreferences, styles, initiatives } from './model.mjs';
+import { companionPreferences, companionDefaults, styles, initiatives } from './model.mjs';
 import { companionSettings } from './view.mjs';
 let draft = null;
 export function handle(ctx, type, id, p) {
@@ -10,7 +10,7 @@ export function handle(ctx, type, id, p) {
   if (type === 'companion-style' && styles[id]) draft.style = id;
   if (type === 'companion-initiative' && initiatives[id]) draft.initiative = id;
   if (type === 'companion-preview' && ['now', 'you', 'future'].includes(id)) draft.preview = id;
-  if (type === 'companion-defaults') draft = { ...draft, style: 'guide', initiative: 'context' };
+  if (type === 'companion-defaults') draft = { ...draft, ...companionDefaults(p) };
   if (type === 'companion-save') {
     const prefs = { style: draft.style, initiative: draft.initiative };
     draft = null;

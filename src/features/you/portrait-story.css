@@ -596,15 +596,6 @@
   border-radius: 50%;
   background: var(--muted);
 }
-.portrait-explore > section > .portrait-art {
-  height: 190px;
-  margin: -12px 0 12px;
-}
-.portrait-explore-intro {
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--muted);
-}
 .portrait-explore-key {
   display: flex;
   gap: 16px;
@@ -620,30 +611,4 @@
 .portrait-explore-key .portrait-glyph {
   width: 22px;
   height: 22px;
-}
-.portrait-interpretations .ps-section-heading h3 {
-  font-size: 18px;
-  font-weight: 500;
-}
-.portrait-interpretations .ps-tile h3 {
-  font-size: 25px;
-  margin: 20px 0;
-}
-.ps-interpretation-body {
-  display: flex;
-  gap: 18px;
-  align-items: start;
-  margin-bottom: 24px;
-}
-.ps-interpretation-body > svg {
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
-  margin-top: 3px;
-}
-.ps-interpretation-body > p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--muted);
 }

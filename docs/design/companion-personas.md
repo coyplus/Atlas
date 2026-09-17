@@ -27,7 +27,7 @@ The highest supported Money Personality trait suggests a starting style: Plannin
 
 This mapping is a design hypothesis, **not a validated psychological matching model**. Money behaviour does not establish a communication preference. The interface explains that limitation in “Why this suggestion?”. Recommendation never changes the saved style. Balance, wealth, HSBC tier and private household-member information do not influence it. Feedback and user research should test these hypotheses before a production recommendation model is considered.
 
-A draft lets customers compare styles with the same scenario facts across Now, You and Future. Back discards changes. Save applies across the app and persists on this device, per scenario. Restore balanced defaults is previewed before Save. Resetting the scenario resets the preferences. A communication preference does not create a financial receipt, points or an artificial relationship milestone.
+A draft lets customers compare styles with the same scenario facts across Now, You and Future. Back discards changes. Save applies across the app and persists on this device, per scenario. Restore starting style returns to the scenario’s initial style and is previewed before Save. Resetting the scenario resets the preferences. A communication preference does not create a financial receipt, points or an artificial relationship milestone.
 
 ## Money Personality refinement
 
@@ -52,3 +52,9 @@ The preview uses the actual support model and scenario data. The prototype demon
 - [Microsoft Research — Guidelines for Human-AI Interaction](https://www.microsoft.com/en-us/research/articles/guidelines-for-human-ai-interaction-eighteen-best-practices-for-human-centered-ai-design/): support dismissal and correction, provide global controls, adapt cautiously and make context relevant.
 
 These sources support the interaction principles. They do not establish that the four styles or trait-to-style mapping are empirically validated. The next research step is to compare customer-selected styles with recommendations, assess comprehension and perceived control, and check whether initiative remains useful over repeated visits.
+
+## Scenario starting styles and editorial portrait
+
+Each demonstration begins with a different communication preference: Alex → Guide (a familiar, balanced introduction); Jordan → Coach (encouragement and a manageable next step); Sam → Listener (space for family priorities and reflection); Elena → Analyst (detail and reasoning). Jordan begins with “Suggest a next step”; the other scenarios use “In useful moments”. These are authored scenario preferences, separate from the optional trait-based suggestion. Saved choices always take precedence, and changing the portrait does not silently change the Companion.
+
+The You-tab entry uses the same page gutters as the Journey card. Explore your portrait now reads as one editorial article: personal cover and artwork → strengths → interpreted patterns → the other side of a strength → an open reflection → confirmation and measured evidence. Trait shapes connect the artwork to the reading. One quiet inset marks the closing question; the rest uses typography, rules and space instead of stacked coloured cards. Existing observations, customer corrections and contextual Companion topics remain connected.

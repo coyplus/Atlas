@@ -6,9 +6,8 @@ import { companionAvatar } from './identity.mjs';
 
 export function companionEntry(p) {
   const prefs = companionPreferences(p),
-    current = styles[prefs.style],
-    recommendation = companionRecommendation(p);
-  return `<section class="companion-entry" data-support-context="companion" aria-label="Your AI Companion"><div class="companion-entry-heading"><span class="eyebrow">YOUR AI COMPANION</span>${companionAvatar(prefs.style)}</div><h2>Support that feels<br>right for you.</h2><p>A listening ear, a clearer explanation, or a little encouragement. You choose.</p><div class="companion-entry-current"><b>${current.name}</b><span>${initiatives[prefs.initiative].name}</span></div>${!p.ui.companion ? `<small>${recommendation.trait ? `Your portrait suggests trying ${styles[recommendation.style].name}.` : 'Start with a style that suits you.'}</small>` : ''}<button class="portrait-link" data-action="companion-settings"><span>Shape your Companion</span>${icon('arrow')}</button></section>`;
+    current = styles[prefs.style];
+  return `<section class="companion-entry" data-support-context="companion" aria-label="Your AI Companion"><div class="companion-entry-heading"><span class="eyebrow">YOUR AI COMPANION</span>${companionAvatar(prefs.style)}</div><h2>Support that feels<br>right for you.</h2><p>A listening ear, a clearer explanation, or a little encouragement. You choose.</p><div class="companion-entry-current"><b>${current.name}</b><span>${initiatives[prefs.initiative].name}</span></div><button class="portrait-link" data-action="companion-settings"><span>Shape your Companion</span>${icon('arrow')}</button></section>`;
 }
 export function companionSettings(p, s, draft, catalogue) {
   const r = companionRecommendation(p),
@@ -57,5 +56,5 @@ export function companionSettings(p, s, draft, catalogue) {
     .join(
       '',
     )}</fieldset><p class="companion-boundary">${draft.initiative === 'ask' ? 'Everyday suggestions will stay quiet. Payment conditions and important account updates stay visible.' : draft.initiative === 'lead' ? 'The Companion will offer a next step in the app. It won’t send extra notifications or repeat reminders.' : 'The Companion will respond to the section you’re exploring, without adding extra reminders.'}</p>
-  <footer><p>Your style follows you across Now, You and Future. Your money rules, permissions and access to a person stay the same.</p>${button('Save my Companion', 'companion-save', 'primary wide')}${button('Restore balanced defaults', 'companion-defaults', 'text wide')}</footer></div>`;
+  <footer><p>Your style follows you across Now, You and Future. Your money rules, permissions and access to a person stay the same.</p>${button('Save my Companion', 'companion-save', 'primary wide')}${button('Restore starting style', 'companion-defaults', 'text wide')}</footer></div>`;
 }

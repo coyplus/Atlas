@@ -16,7 +16,7 @@ const state = { tab: 'now', member: 'self', month: 0, direction: 'vanilla' };
 test('recommendations follow traits, never wealth, and do not select a style for the customer', () => {
   const p = person('sam');
   assert.equal(companionRecommendation(p).style, 'analyst');
-  assert.equal(companionPreferences(p).style, 'guide');
+  assert.equal(companionPreferences(p).style, 'listener');
   p.ui.companion = { style: 'listener', initiative: 'ask' };
   const recommendation = companionRecommendation(p);
   p.l1.accounts[0].balance = 90000000;
@@ -88,5 +88,34 @@ test('reflections use their own traits, with no inferred weaknesses for an unfor
 test('invalid saved preferences fall back independently', () => {
   const p = person('sam');
   p.ui.companion = { style: 'unknown', initiative: 'ask' };
-  assert.deepEqual(companionPreferences(p), { style: 'guide', initiative: 'ask' });
+  assert.deepEqual(companionPreferences(p), { style: 'listener', initiative: 'ask' });
+});
+
+test('each scenario starts with a distinct style and saved choices take precedence', () => {
+  for (const [id, style] of Object.entries({
+    alex: 'guide',
+    jordan: 'coach',
+    sam: 'listener',
+    elena: 'analyst',
+  })) {
+    const p = person(id);
+    assert.equal(companionPreferences(p).style, style);
+    p.ui.companion = { style: 'guide', initiative: 'ask' };
+    assert.deepEqual(companionPreferences(p), { style: 'guide', initiative: 'ask' });
+  }
+});
+
+test('proactive styles never turn back navigation into a recommendation', () => {
+  const p = person('jordan');
+  const base = {
+    title: 'Compare the same number of days',
+    message: 'A like-for-like comparison.',
+    cta: 'Back to your metrics',
+    action: 'portrait-story',
+    singleMessage: true,
+  };
+  const result = personaliseSupport(p, state, { kind: 'portrait-metrics' }, base);
+  assert.equal(result.title, base.title);
+  assert.equal(result.singleMessage, true);
+  assert.ok(!result.message.includes('A useful next step'));
 });

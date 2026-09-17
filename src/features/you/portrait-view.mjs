@@ -31,7 +31,41 @@ export function portraitComponent(p, s) {
     ${m.named ? `<div class="portrait-traits">${m.traits.map(([t]) => `<span>${traitGlyph(t)}${esc(t)}</span>`).join('')}</div><button class="portrait-link" data-action="portrait"><span>${m.self ? 'Explore your portrait' : 'Explore this portrait'}</span>${icon('arrow')}</button>` : `${button('Take the 2-minute quiz', 'quiz', 'primary')}<small class="portrait-reward">Your money personality + 25 HSBC Points</small>`}
     <button class="portrait-link ps-entry" data-action="portrait-story"><span>Behind ${m.self ? 'your' : 'this'} portrait</span>${icon('arrow')}</button></div></section>`;
 }
+const coverLines = {
+  Planner: 'A plan for money. Room for life.',
+  'Steady builder': 'Progress, at your pace.',
+  'Long-game architect': 'A long view. A life around it.',
+  'Free spirit': 'Room for the unexpected.',
+  'Goal getter': 'A direction that gives today a purpose.',
+  'Long game, lived warmly': 'Different approaches. A shared direction.',
+};
+const coverReadings = {
+  Planner:
+    'You tend to give money a job before life gets busy. A little structure can free you to enjoy what matters, without making every decision all over again.',
+  'Steady builder':
+    'You don’t need a dramatic leap to move forward. The small things you return to can create a steadier footing over time.',
+  'Long-game architect':
+    'You tend to look beyond the next decision. A plan gives your money direction; patience gives it time to become something.',
+  'Free spirit':
+    'Money can be a way of saying yes: to an experience, a possibility, or someone you care about. Leaving room for life seems to matter to you.',
+  'Goal getter':
+    'Knowing what you’re working towards can make the everyday choices feel worthwhile. Progress becomes easier to notice when it has a destination.',
+};
 export function portraitDetail(p, s) {
   const m = portraitModel(p, s.member);
-  return `<div class="portrait-detail portrait-explore"><section data-support-topic="intro">${portraitArt(m, 'detail')}<span class="eyebrow">${esc(m.stage)}</span><h3>${esc(m.personality.name || 'Your story starts here')}</h3><p class="portrait-explore-intro">${esc(m.named ? summaries[m.personality.name] || m.personality.copy : 'Three questions give us a first impression. Your perspective gives it meaning.')}</p>${m.named ? `<div class="portrait-explore-key">${m.traits.map(([trait]) => `<span title="${esc(traitExpression(trait))}">${traitGlyph(trait)}${esc(trait)}</span>`).join('')}</div>` : button('Discover your money personality', 'quiz', 'primary wide')}</section>${portraitBalanceView(p, s)}${portraitInterpretationsView(p, s)}${m.self && m.named ? `<section class="portrait-review" data-support-topic="learning"><h4>Does this feel like you?</h4><p>You can recognise yourself in it, or help us see it differently.</p><div class="button-row">${button(p.ui.confirmed ? 'Confirmed by you' : 'This sounds like me', 'personality-confirm', 'secondary', p.ui.confirmed ? 'disabled' : '')}${button('Not quite', 'personality-correct', 'text')}</div></section>` : ''}<p class="portrait-source">${esc(m.source)}${m.self ? '<br>Your balance and HSBC tier do not shape this artwork.' : '<br>Shared by consent. Other accounts and private details stay private.'}</p><button class="portrait-link" data-action="portrait-story"><span>See the measurable evidence</span>${icon('arrow')}</button></div>`;
+  const corrected = m.self && m.source.startsWith('Corrected by you');
+  const name = m.self
+    ? p.l1.customer.firstName
+    : p.l1.household.members.find((x) => x.id === m.member)?.name;
+  const title = m.household
+    ? 'A shared portrait'
+    : name
+      ? `A portrait of ${name}`
+      : 'A shared perspective';
+  const interpretations = portraitInterpretationsView(p, s);
+  return `<article class="portrait-detail portrait-explore portrait-editorial">
+    <header class="pe-cover" data-support-topic="intro"><span class="eyebrow">${esc(title)}</span><h1>${esc(m.personality.name || 'Still becoming.')}</h1><div class="pe-art">${portraitArt(m, 'detail')}</div><span class="pe-stage">${esc(m.stage)}</span><h2>${esc(m.named ? coverLines[m.personality.name] || 'More than one way to see money.' : 'Every portrait begins with a conversation.')}</h2><p class="pe-intro">${esc(m.named ? (corrected ? m.personality.copy : coverReadings[m.personality.name] || summaries[m.personality.name] || m.personality.copy) : 'Three questions give us a first impression. Your perspective gives it meaning.')}</p>${m.named ? `<div class="portrait-explore-key">${m.traits.map(([trait]) => `<span title="${esc(traitExpression(trait))}">${traitGlyph(trait)}${esc(trait)}</span>`).join('')}</div>` : button('Discover your money personality', 'quiz', 'primary wide')}</header>
+    ${portraitBalanceView(p, s, interpretations)}
+    ${m.self && m.named ? `<section class="portrait-review" data-support-topic="learning"><span class="eyebrow">A PORTRAIT, NOT A LABEL</span><h3>Does this feel like you?</h3><p>You can recognise yourself in it, or help us see it differently. Your perspective belongs in this picture.</p><div class="button-row">${button(p.ui.confirmed ? 'Confirmed by you' : 'This sounds like me', 'personality-confirm', 'secondary', p.ui.confirmed ? 'disabled' : '')}${button('Not quite', 'personality-correct', 'text')}</div></section>` : ''}
+    <footer class="pe-colophon"><p class="portrait-source">${esc(m.source)}${m.self ? '<br>Your balance and HSBC tier do not shape this artwork.' : '<br>Shared by consent. Other accounts and private details stay private.'}</p><button class="portrait-link" data-action="portrait-story"><span>See the measurable evidence</span>${icon('arrow')}</button></footer></article>`;
 }

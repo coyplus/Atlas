@@ -22,8 +22,9 @@ test('compare styles, cancel, save and restore without changing money or recordi
   );
   await page.locator('[data-action="companion-preview:future"]').click();
   await expect(page.locator('.companion-preview-card')).toContainText('at your pace');
+  await page.locator('[data-action="companion-style:coach"]').click();
   await page.locator('.sheet-header [data-action="close"]').click();
-  await expect(page.locator('.companion-entry-current b')).toHaveText('Guide');
+  await expect(page.locator('.companion-entry-current b')).toHaveText('Listener');
   await page.locator('[data-action="companion-settings"]').click();
   await page.locator('[data-action="companion-style:analyst"]').click();
   await expect(page.locator('.companion-preview-card')).toContainText('£3,120.44');
@@ -65,12 +66,20 @@ test('compare styles, cancel, save and restore without changing money or recordi
     await page.evaluate(() => (window.atlas.getState() as any).people.sam.ui.companion),
   ).toEqual({ style: 'analyst', initiative: 'ask' });
   await page.evaluate(() => window.atlas.go('jordan', 'you'));
-  await expect(page.locator('.companion-entry-current b')).toHaveText('Guide');
+  await expect(page.locator('.companion-entry-current b')).toHaveText('Coach');
   await page.locator('[data-action="companion-settings"]').click();
   await expect(page.locator('.companion-recommendation')).toContainText('Try the Coach');
   expect(
     await page.locator('.sheet-body').evaluate((el) => el.scrollWidth > el.clientWidth + 1),
   ).toBe(false);
+  await page.locator('[data-action="companion-style:guide"]').click();
+  await page.locator('[data-action="companion-defaults"]').click();
+  await expect(page.locator('[data-action="companion-style:coach"]')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await page.locator('[data-action="companion-save"]').click();
+  await expect(page.locator('.companion-entry-current b')).toHaveText('Coach');
   expect(errors).toEqual([]);
 });
 

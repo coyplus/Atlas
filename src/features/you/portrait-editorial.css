@@ -1,0 +1,240 @@
+/* One continuous profile: cover, strengths, interpretation, reflection. */
+.portrait-editorial {
+  --editorial-accent: #527d79;
+  padding: 8px 0 20px;
+  color: var(--ink);
+}
+.portrait-editorial .eyebrow {
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+}
+.pe-cover > h1 {
+  margin: 12px 0 0;
+  font-size: 46px;
+  line-height: 1.04;
+  letter-spacing: -1.7px;
+  font-weight: 300;
+  text-wrap: balance;
+}
+.pe-art {
+  margin: 24px -12px 20px;
+  height: 210px;
+  overflow: hidden;
+}
+.pe-art > .portrait-art {
+  width: 100%;
+  height: 100%;
+}
+.pe-stage {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 14px;
+}
+.pe-cover > h2 {
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1.16;
+  letter-spacing: -0.65px;
+  margin: 0 0 14px;
+  max-width: 320px;
+  text-wrap: balance;
+}
+.portrait-editorial p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 10px 0 0;
+}
+.portrait-editorial .portrait-explore-key {
+  gap: 14px;
+  margin: 22px 0 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.portrait-editorial .portrait-explore-key span {
+  font-size: 11px;
+  gap: 5px;
+}
+.portrait-editorial .portrait-explore-key svg {
+  width: 15px;
+  height: 15px;
+}
+.pe-strengths {
+  padding: 38px 0 34px;
+}
+.pe-strengths > article {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 15px;
+  margin-top: 25px;
+}
+.pe-strength-symbol {
+  padding-top: 4px;
+}
+.pe-strength-symbol svg {
+  width: 30px;
+  height: 30px;
+}
+.portrait-editorial .pe-strengths h3 {
+  font-size: 24px;
+  line-height: 1.22;
+  font-weight: 400;
+  letter-spacing: -0.45px;
+  margin: 0;
+}
+.pe-strengths p {
+  margin-top: 8px;
+}
+.portrait-editorial .portrait-interpretations {
+  padding: 32px 0 0;
+  border-top: 1px solid var(--line);
+}
+.portrait-editorial .pe-section-heading h3 {
+  font-size: 34px;
+  line-height: 1.12;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+  margin: 14px 0 8px;
+}
+.pe-pattern {
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 30px 0;
+  cursor: pointer;
+}
+.pe-pattern:last-child {
+  border-bottom: 0;
+}
+.pe-pattern-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.pe-pattern-kicker svg {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.portrait-editorial .pe-pattern h3 {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+.pe-pattern-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 17px;
+}
+.pe-pattern-link svg {
+  width: 16px;
+  height: 16px;
+}
+.pe-pattern:active {
+  opacity: 0.7;
+}
+.pe-other-side {
+  padding: 34px 0 0;
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.portrait-editorial .pe-other-side > h3 {
+  font-size: 37px;
+  font-weight: 300;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin: 16px 0 24px;
+}
+.pe-reflection-rule {
+  width: 36px;
+  height: 2px;
+  background: var(--editorial-accent);
+  margin-bottom: 24px;
+}
+.pe-other-side h4 {
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  margin: 0;
+}
+.pe-other-side > small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 16px;
+}
+.pe-question {
+  margin: 34px 0 38px;
+  padding: 26px 24px;
+  background: color-mix(in srgb, var(--editorial-accent) 8%, var(--surface));
+  border-left: 2px solid color-mix(in srgb, var(--editorial-accent) 50%, var(--surface));
+}
+.pe-question blockquote,
+.portrait-editorial .ps-own-perspective blockquote {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 25px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+  margin: 18px 0 12px;
+}
+.pe-question .btn {
+  padding-left: 0;
+  font-size: 13px;
+}
+.portrait-editorial .ps-own-perspective {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  border-radius: 0;
+}
+.portrait-editorial .portrait-review {
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0 0 30px;
+}
+.portrait-editorial .portrait-review h3 {
+  font-size: 29px;
+  font-weight: 300;
+  letter-spacing: -0.6px;
+  margin: 14px 0 0;
+}
+.portrait-editorial .portrait-review .button-row {
+  margin-top: 20px;
+}
+.pe-colophon {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.pe-colophon .portrait-source {
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 0;
+}
+.pe-colophon .portrait-link {
+  font-size: 14px;
+  margin-top: 15px;
+}
