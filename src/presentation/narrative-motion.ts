@@ -28,18 +28,21 @@ export function initialiseNarrativeMotion(root: HTMLElement) {
     });
   };
   const cycle = (diagram: HTMLElement, index = 0) => {
+    const count = diagram.querySelectorAll('[data-companion-message]').length;
     renderMoment(diagram, index, true);
     timers.set(
       diagram,
-      setTimeout(() => {
-        renderMoment(diagram, index, false);
-        const count = diagram.querySelectorAll('[data-companion-message]').length;
-        // Ten seconds to read each context; a longer quiet interval on the cover.
-        timers.set(
-          diagram,
-          setTimeout(() => cycle(diagram, (index + 1) % count), count === 1 ? 16200 : 10200),
-        );
-      }, 1800),
+      setTimeout(
+        () => {
+          renderMoment(diagram, index, false);
+          // A ten-second context cycle; the cover keeps its quieter eighteen-second pace.
+          timers.set(
+            diagram,
+            setTimeout(() => cycle(diagram, (index + 1) % count), count === 1 ? 16200 : 8500),
+          );
+        },
+        count === 1 ? 1800 : 1500,
+      ),
     );
   };
   const update = () => {

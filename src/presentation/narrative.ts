@@ -51,7 +51,7 @@ const wheelRing = (() => {
         `<path d="M275 59.5 L286 65 L275 70.5 Z" transform="rotate(${a} 280 280)" fill="#db0011"/>`,
     )
     .join('');
-  return `<svg class="n-wheel-ring" viewBox="0 0 560 560" aria-hidden="true"><circle cx="280" cy="280" r="215" fill="none" stroke="#cdc8c6" stroke-width="1"/>${markers}<g class="n-wheel-signal"><circle cx="280" cy="65" r="6" fill="#db0011" stroke="none"/><circle cx="280" cy="65" r="13" fill="#db0011" fill-opacity=".09" stroke="none"/></g></svg>`;
+  return `<svg class="n-wheel-ring" viewBox="0 0 560 560" aria-hidden="true"><circle cx="280" cy="280" r="215" fill="none" stroke="#cdc8c6" stroke-width="1"/>${markers}</svg>`;
 })();
 
 export const slides = [
@@ -206,7 +206,7 @@ export const slides = [
     title: 'A relationship is earned and developed, again and again',
     theme: 'r-slide n-flywheel',
     content: `<div class="n-flywheel-copy">${heading('How it compounds', 'A relationship is earned and developed, <br><em>again and again.</em>', 'Every turn starts with a behaviour and produces the next one.')}</div>
-      <div class="n-wheel n-motion" data-n-motion><div class="n-wheel-illustration" role="img" aria-label="A loop: a behaviour builds memory, memory builds trust, trust improves support, better support leads to progress, and progress leads to the next behaviour.">
+      <div class="n-wheel"><div class="n-wheel-illustration" role="img" aria-label="A loop: a behaviour builds memory, memory builds trust, trust improves support, better support leads to progress, and progress leads to the next behaviour.">
         ${wheelRing}
         <p class="n-wheel-centre"><em>The relationship</em><span>earned, again and again</span></p>
         <ol class="n-wheel-nodes">

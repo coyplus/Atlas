@@ -1714,22 +1714,6 @@ body[data-version='narrative'] .n-close h1 {
     opacity: 1;
   }
 }
-@keyframes n-wheel-turn {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes n-node-attention {
-  0%,
-  12%,
-  100% {
-    color: var(--red);
-  }
-  18%,
-  94% {
-    color: var(--ink);
-  }
-}
 .n-bank-bubbles > span {
   animation: n-bank-drift 14s ease-in-out infinite;
 }
@@ -1738,28 +1722,6 @@ body[data-version='narrative'] .n-close h1 {
 }
 .n-intelligence::before {
   animation: n-layer-light 18s ease-in-out infinite;
-}
-.n-wheel-signal {
-  transform-origin: 280px 280px;
-  animation: n-wheel-turn 30s linear infinite;
-}
-.n-wheel-signal circle {
-  stroke: none;
-}
-.n-wheel-nodes li b {
-  animation: n-node-attention 30s ease-in-out infinite;
-}
-.n-wheel-nodes li:nth-child(2) b {
-  animation-delay: -24s;
-}
-.n-wheel-nodes li:nth-child(3) b {
-  animation-delay: -18s;
-}
-.n-wheel-nodes li:nth-child(4) b {
-  animation-delay: -12s;
-}
-.n-wheel-nodes li:nth-child(5) b {
-  animation-delay: -6s;
 }
 [data-motion='paused'] *,
 [data-motion='paused'] *::before,

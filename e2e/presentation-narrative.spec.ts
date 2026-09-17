@@ -100,7 +100,7 @@ test('the shared Companion thinks, responds and follows each context without lay
     );
     await expect(example.locator('.support-copy')).not.toContainText('Thinking…');
     expect(Math.abs((await ai.boundingBox())!.height - initialHeight)).toBeLessThan(1);
-    if (phase < 2) await page.clock.runFor(10000);
+    if (phase < 2) await page.clock.runFor(8000);
   }
   await page.keyboard.press('Home');
   await expect(ai).toHaveAttribute('data-motion', 'paused');
@@ -116,19 +116,12 @@ test('ambient motion respects reduced motion and keeps a readable response', asy
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/presentation/?version=narrative#14');
-  await expect(page.locator('.n-wheel')).toHaveAttribute('data-motion', 'running');
-  await expect
-    .poll(() =>
-      page
-        .locator('.n-wheel-signal')
-        .evaluate((el) => el.getAnimations().some((a) => a.playState === 'running')),
-    )
-    .toBe(true);
+  await expect(page.locator('.n-wheel')).toBeVisible();
+  expect(
+    await page.locator('.n-wheel').evaluate((el) => el.getAnimations({ subtree: true }).length),
+  ).toBe(0);
+  await expect(page.locator('.n-wheel-signal')).toHaveCount(0);
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(page.locator('.n-wheel')).toHaveAttribute('data-motion', 'paused');
-  await expect
-    .poll(() => page.locator('.n-wheel-signal').evaluate((el) => el.getAnimations().length))
-    .toBe(0);
   await page.goto('/presentation/?version=narrative#8');
   await expect(page.locator('.n-ai-system')).toHaveAttribute('data-motion', 'paused');
   await expect(page.locator('.n-ai-example').first()).toHaveCSS('opacity', '1');
