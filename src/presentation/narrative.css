@@ -293,6 +293,12 @@ body[data-version='narrative'] .r-value .r-label {
 }
 
 /* 05 · The gap and the answer, as one matrix */
+body[data-version='narrative'] .n-conditions h1 {
+  font-size: clamp(36px, 3.7vw, 56px);
+}
+.n-conditions .n-body {
+  padding: 22px 0;
+}
 .n-matrix {
   display: grid;
   gap: 0;
@@ -300,8 +306,8 @@ body[data-version='narrative'] .r-value .r-label {
 .n-matrix-head,
 .n-matrix-row {
   display: grid;
-  grid-template-columns: 200px repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: 170px repeat(4, 1fr);
+  gap: 32px;
   align-items: start;
 }
 .n-matrix-head {
@@ -312,7 +318,7 @@ body[data-version='narrative'] .r-value .r-label {
 }
 .n-matrix-row {
   border-top: 1px solid var(--ink);
-  padding: 22px 0 26px;
+  padding: 18px 0 22px;
 }
 .n-matrix-system {
   border-top-color: var(--red);
@@ -323,7 +329,7 @@ body[data-version='narrative'] .r-value .r-label {
   line-height: 1.5;
 }
 .n-matrix h2 {
-  font-size: clamp(44px, 4.2vw, 64px);
+  font-size: clamp(40px, 3.8vw, 58px);
   letter-spacing: -2.4px;
   line-height: 1;
   margin: 0 0 12px;
@@ -340,9 +346,9 @@ body[data-version='narrative'] .n-matrix .n-no h2 {
   margin-bottom: 8px;
 }
 .n-matrix p {
-  font-size: 17px;
+  font-size: 16px;
   color: var(--muted);
-  max-width: 300px;
+  max-width: 260px;
 }
 .n-matrix p i {
   font-style: italic;
@@ -523,7 +529,18 @@ body[data-version='narrative'] .n-matrix .n-no h2 {
   margin-top: 18px;
 }
 
-/* 11–13 · Product slides */
+/* 10–12 · Product slides */
+.n-teaser {
+  margin-top: 30px;
+  border-top: 1px solid var(--ink);
+  padding-top: 22px;
+  max-width: 600px;
+}
+.n-teaser p {
+  font-size: clamp(17px, 1.4vw, 20px);
+  color: var(--muted);
+  line-height: 1.55;
+}
 .n-product {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
@@ -706,6 +723,9 @@ body[data-version='narrative'] .product-figure figcaption {
   color: var(--ink);
   line-height: 1.25;
 }
+.n-wheel-key b {
+  color: var(--red);
+}
 .n-wheel-nodes p {
   font-size: 13px;
   color: var(--muted);
@@ -801,8 +821,8 @@ body[data-version='narrative'] .product-figure figcaption {
   }
   .n-matrix-head,
   .n-matrix-row {
-    grid-template-columns: 150px repeat(3, 1fr);
-    gap: 22px;
+    grid-template-columns: 130px repeat(4, 1fr);
+    gap: 18px;
   }
   .n-layer {
     grid-template-columns: 1fr 28px 1.2fr 28px 1fr;

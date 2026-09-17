@@ -13,8 +13,6 @@ const source = (text: string, url = '') =>
 const arrow = `<span class="r-arrow" aria-hidden="true">${icon('arrow_forward')}</span>`;
 const phone = (tab: 'now' | 'you' | 'future', caption: string) =>
   `<figure class="product-figure"><div class="phone-frame"><img src="/assets/presentation/sam-${tab}.webp" alt="${caption}" width="390" height="844" loading="lazy"></div><figcaption>Sam’s ${tab === 'you' ? 'You' : tab === 'now' ? 'Now' : 'Future'} · from the working prototype</figcaption></figure>`;
-const note = (number: string, feature: string, text: string, builds: string) =>
-  `<li><span class="n-note-number">${number}</span><div><b>${feature}</b><p>${text}</p><small>${builds}</small></div></li>`;
 
 /* Circular flywheel: a hairline ring with six red markers, nodes placed around it. */
 const wheelRing = (() => {
@@ -67,18 +65,20 @@ export const slides = [
     stage: 'The behaviour gap',
     title: 'Able to. The situation lets them. Wants to.',
     theme: 'r-slide n-conditions',
-    content: `${heading('The behaviour gap', 'A behaviour happens when someone is <em>able&nbsp;to,</em> the situation <em>lets&nbsp;them,</em> and they <em>want&nbsp;to.</em>', 'Features make people able. A system fixes the situation and the wanting.')}
-      ${body(`<div class="n-matrix" role="table" aria-label="Three conditions for a behaviour, today and with a system">
-        <div class="n-matrix-head" role="row"><span></span><span class="r-label">Able to</span><span class="r-label">The situation lets them</span><span class="r-label">Wants to</span></div>
+    content: `${heading('The behaviour gap', 'A behaviour happens when someone is <em>able&nbsp;to,</em> the situation <em>lets&nbsp;them,</em> and they <em>want&nbsp;to.</em>', 'The design shift: from features to a system. Features make people able. The system does the rest.')}
+      ${body(`<div class="n-matrix" role="table" aria-label="Four conditions for a behaviour, today and with a system">
+        <div class="n-matrix-head" role="row"><span></span><span class="r-label">Able to</span><span class="r-label">The situation lets them</span><span class="r-label">Wants to</span><span class="r-label">Over time</span></div>
         <div class="n-matrix-row" role="row"><span class="r-label n-matrix-label">Sam moving £100 to his deposit, today</span>
           <article><h2>Yes.</h2><p>The Pot exists. The transfer takes ten seconds.</p></article>
           <article class="n-no"><h2>No.</h2><p>Nothing on payday says <i>now</i>. The bills say <i>not now</i>.</p></article>
           <article class="n-no"><h2>No.</h2><p>£100 towards £24,000 feels like nothing. The reward is years away.</p></article>
+          <article class="n-no"><h2>No.</h2><p>Pay, rent and priorities will change. A fixed rule breaks.</p></article>
         </div>
         <div class="n-matrix-row n-matrix-system" role="row"><span class="r-label n-matrix-label">What a system does</span>
           <article><b>Enable</b><p>A small step that is easy to take.</p></article>
           <article><b>Prompt</b><p>The right nudge at the right moment.</p></article>
           <article><b>Reward</b><p>A payoff now, while the outcome is years away.</p></article>
+          <article><b>Adapt</b><p>Learn from the response. Change the support as life changes.</p></article>
         </div>
       </div>`)}
       ${source('COM-B · capability, opportunity, motivation · Michie, van Stralen & West', 'https://implementationscience.biomedcentral.com/articles/10.1186/1748-5908-6-42')}`,
@@ -100,16 +100,29 @@ export const slides = [
     theme: 'r-slide n-pillars',
     content: `${heading('What Atlas is', 'Atlas is a behavioural <br><em>operating system.</em>', 'Three parts, one system. Each makes the ideal behaviour easier to start, easier to keep, and worth keeping.')}
       ${body(`<ol class="n-pillar-list">
-        <li><span>01</span><h2>Behavioural science</h2><p>Now, You and Future are built on what keeps people going: feeling capable, connected and in control.</p></li>
-        <li><span>02</span><h2>AI and human support</h2><p>AI orchestrates and curates, suggests and listens. People take over when judgement or care is needed.</p></li>
-        <li><span>03</span><h2>A loyalty framework</h2><p>Points reward the behaviour. Status rewards the outcome. Both give effort a payoff before the goal arrives.</p></li>
+        <li><span>01</span><h2>AI and human support</h2><p>AI finds the opportunity, starts the conversation and inspires the action. People take over when judgement or care is needed.</p></li>
+        <li><span>02</span><h2>Behavioural science</h2><p>Now, You and Future are built on what keeps people going: feeling capable, connected and in control.</p></li>
+        <li><span>03</span><h2>A loyalty framework</h2><p>Points reward the behaviour. Status rewards the outcome. Neither pays out cash; both pay into the goal.</p></li>
       </ol>`)}`,
+  },
+  {
+    stage: 'AI and human support',
+    title: 'AI is the orchestrator and the curator',
+    theme: 'r-slide n-ai',
+    content: `${heading('01 · AI and human support', 'AI is the orchestrator <br>and <em>the curator.</em>', 'Not a chatbot waiting to be asked. It finds the opportunity, starts the conversation and inspires the action. People take over when it matters.')}
+      ${body(`<div class="n-layer">
+        <div class="n-layer-col"><span class="r-label">What the bank can offer</span><ul><li>Products and tools</li><li>Insight and messages</li><li>Human experts</li></ul></div>
+        <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
+        <div class="n-layer-core"><span class="r-label">The AI layer</span><h2>Understands. <br>Curates. <br>Coordinates.</h2><div class="n-modes"><p><b>Push</b>It finds the opportunity you didn’t know to ask for.</p><p><b>Pull</b>It listens, and explains, when you want to talk.</p></div></div>
+        <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
+        <div class="n-layer-col"><span class="r-label">What the customer experiences</span><ul><li>Now, You and Future</li><li>A conversation one tap from whatever is on screen</li><li>A person who takes over when judgement or care is needed</li></ul></div>
+      </div>`)}`,
   },
   {
     stage: 'Behavioural science',
     title: 'Capable, connected and in control',
     theme: 'r-slide n-three',
-    content: `${heading('01 · Behavioural science', 'People keep going when they feel <em>capable, connected and in control.</em>', 'Self-Determination Theory, applied to banking: three needs, three sides of one app.')}
+    content: `${heading('02 · Behavioural science', 'People keep going when they feel <em>capable, connected and in control.</em>', 'Self-Determination Theory, applied to banking: three needs, three sides of one app.')}
       ${body(`<div class="n-tabs">
         <article><span class="r-label">Competence</span><h2>Now</h2><p>“I can see where I stand, and act.”</p></article>
         <article><span class="r-label">Relatedness</span><h2>You</h2><p>“I’m heard, known and recognised.”</p></article>
@@ -118,52 +131,20 @@ export const slides = [
       ${source('Self-Determination Theory · Deci & Ryan. The tab mapping is our design application.', 'https://selfdeterminationtheory.org/the-theory/')}`,
   },
   {
-    stage: 'AI and human support',
-    title: 'AI is the orchestrator and the curator',
-    theme: 'r-slide n-ai',
-    content: `${heading('02 · AI and human support', 'AI is the orchestrator <br>and <em>the curator.</em>', 'Not a chatbot. A system that knows when to speak, when to listen, and when to hand over.')}
-      ${body(`<div class="n-layer">
-        <div class="n-layer-col"><span class="r-label">What the bank can offer</span><ul><li>Products and tools</li><li>Insight and messages</li><li>Human experts</li></ul></div>
-        <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
-        <div class="n-layer-core"><span class="r-label">The AI layer</span><h2>Understands. <br>Curates. <br>Coordinates.</h2><div class="n-modes"><p><b>Push</b>It suggests when you don’t know where to start.</p><p><b>Pull</b>It listens when you want to talk.</p></div></div>
-        <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
-        <div class="n-layer-col"><span class="r-label">What the customer experiences</span><ul><li>Now, You and Future</li><li>A conversation one tap from whatever is on screen</li><li>A person who takes over when judgement or care is needed</li></ul></div>
-      </div>`)}`,
-  },
-  {
-    stage: 'A loyalty framework',
-    title: 'What’s rewarded is repeated',
-    theme: 'r-slide n-loyalty',
-    content: `${heading('03 · A loyalty framework', 'What’s rewarded <br><em>is repeated.</em>', 'Points reward the behaviour. Status rewards the outcome. Effort gets a payoff long before the goal arrives.')}
-      ${body(`<div class="n-loyalty-grid">
-        <article><span class="r-label">HSBC Points</span><h2>Earned by showing up.</h2><p>A daily money check-in. A challenge kept for thirty days. A plan approved. Sharing what matters to you.</p><p>Spent on things that build the next behaviour: a savings rate boost, a session with a coach, a benefit you choose.</p></article>
-        <article><span class="r-label">HSBC Status</span><h2>Earned by getting there.</h2><p>HSBC, Premier and Elite follow your total relationship balance. As your financial standing grows, so does what we offer: a relationship manager, more choices, more support.</p><p>Points never buy status. Only progress does.</p></article>
-      </div>`)}
-      ${source('Tier thresholds, Points values and benefits are illustrative concept content.')}`,
-  },
-  {
     stage: 'Now',
-    title: 'I can see where I stand. I know what to do next.',
+    title: 'I can see where I stand. I feel in control.',
     theme: 'r-slide n-product n-now',
-    content: `<div class="n-product-copy">${heading('Now · Competence', 'I can see where I stand. <br><em>I know what to do next.</em>', 'Understand today, take a useful step, and turn it into a routine.')}
-      <ol class="n-notes" aria-label="What each part of Now is designed to build">
-        ${note('01', 'My numbers and Stories', 'Turn data into meaning.', 'Able to')}
-        ${note('02', 'Contextual AI', 'Help that follows what you are looking at. No blank chat.', 'The situation')}
-        ${note('03', 'Pots and Money Rules', 'Turn one good move into a routine.', 'Repeatable')}
-      </ol>
+    content: `<div class="n-product-copy">${heading('Now · Competence', 'I can see where I stand. <br><em>I feel in control.</em>', 'Calm when things are fine. Clear when they are not.')}
+      <div class="n-teaser"><p>Your numbers, arranged your way. Stories that turn data into insight. Help that follows what you are looking at. And when there is time and space, more to explore: new widgets, new stories, new things to do.</p></div>
       <a class="n-explore" data-demo href="/?p=sam&tab=now&theme=vanilla">Explore Sam’s Now ${icon('arrow_forward')}</a></div>
       ${phone('now', 'Sam’s Now: a recap, quick actions and the numbers he cares about.')}`,
   },
   {
     stage: 'You',
-    title: 'The bank that remembers what I told it',
+    title: 'The bank that knows me, and shows me.',
     theme: 'r-slide n-product n-you',
-    content: `<div class="n-product-copy">${heading('You · Relatedness', 'The bank that remembers <br><em>what I told it.</em>', 'A place to be heard, understood and recognised.')}
-      <ol class="n-notes" aria-label="What each part of You is designed to build">
-        ${note('01', 'Money check-in', 'How do you feel about money today? A daily moment that opens a conversation.', 'Memory')}
-        ${note('02', 'Your portrait', 'What we think you are like, with the evidence. Correct us.', 'Trust')}
-        ${note('03', 'Points, challenges and status', 'Effort recognised now. Progress recognised as it lands.', 'Wants to')}
-      </ol>
+    content: `<div class="n-product-copy">${heading('You · Relatedness', 'The bank that knows me, <br><em>and shows me.</em>', 'Data is only worth giving when it gives something back. Like a fitness app, the more you see about yourself, the more you share.')}
+      <div class="n-teaser"><p>A portrait of how you handle money, with the evidence behind it. Check-ins and mindfulness moments that invite you to share what matters: your interests, your household, your plans. Your status and your Points, in the open.</p></div>
       <a class="n-explore" data-demo href="/?p=sam&tab=you&theme=vanilla">Explore Sam’s You ${icon('arrow_forward')}</a></div>
       ${phone('you', 'Sam’s You: money check-in, household and money personality.')}`,
   },
@@ -171,20 +152,27 @@ export const slides = [
     stage: 'Future',
     title: 'I choose my direction. The bank shows me the trade-offs.',
     theme: 'r-slide n-product n-future',
-    content: `<div class="n-product-copy">${heading('Future · Autonomy', 'I choose my direction. <br><em>The bank shows me the trade-offs.</em>', 'Explore possibilities, see the consequence, then commit.')}
-      <ol class="n-notes" aria-label="What each part of Future is designed to build">
-        ${note('01', 'Possibilities', 'A starting point when you don’t have one. AI suggests. You decide.', 'The situation')}
-        ${note('02', 'Time Travel and What if', '£50 more on payday: the emergency fund lands 11 months sooner.', 'Able to')}
-        ${note('03', 'Approve the plan', 'You commit. A Money Rule keeps it going.', 'Repeatable')}
-      </ol>
+    content: `<div class="n-product-copy">${heading('Future · Autonomy', 'I choose my direction. <br><em>The bank shows me the trade-offs.</em>', 'Competing priorities, made visible. Rounder decisions, made yours.')}
+      <div class="n-teaser"><p>Possibilities you had not considered. Time Travel and What if to see the consequence before you commit. Then a plan you approve, and a rule that keeps it going.</p></div>
       <a class="n-explore" data-demo href="/?p=sam&tab=future&theme=vanilla">Explore Sam’s Future ${icon('arrow_forward')}</a></div>
       ${phone('future', 'Sam’s Future: goals, time travel and what-if trade-offs.')}`,
+  },
+  {
+    stage: 'A loyalty framework',
+    title: 'What’s rewarded is repeated',
+    theme: 'r-slide n-loyalty',
+    content: `${heading('03 · A loyalty framework', 'What’s rewarded <br><em>is repeated.</em>', 'Points reward the behaviour. Status rewards the outcome. Neither pays out cash; both pay into the goal.')}
+      ${body(`<div class="n-loyalty-grid">
+        <article><span class="r-label">HSBC Points</span><h2>Earned by the behaviour.</h2><p>A check-in completed. A saving challenge kept for thirty days. A plan approved. Something shared that helps us serve you better.</p><p>Spent on things that build the next behaviour: a savings rate boost, a session with a coach. Not cash.</p></article>
+        <article><span class="r-label">HSBC Status</span><h2>Earned by the outcome.</h2><p>HSBC, Premier and Elite follow your total relationship balance. As your financial standing grows, so does the support: a relationship manager, more choices.</p><p>Points never buy status. Only progress does.</p></article>
+      </div>`)}
+      ${source('Tier thresholds, Points values and benefits are illustrative concept content.')}`,
   },
   {
     stage: 'The flywheel',
     title: 'A relationship is earned and developed, again and again',
     theme: 'r-slide n-flywheel',
-    content: `<div class="n-flywheel-copy">${heading('How it compounds', 'A relationship is earned and developed, <br><em>again and again.</em>', 'Each small exchange makes the next one more personal. The system runs on trust, and trust is built one interaction at a time.')}</div>
+    content: `<div class="n-flywheel-copy">${heading('How it compounds', 'A relationship is earned and developed, <br><em>again and again.</em>', 'Each turn makes the next one easier. What the wheel produces is the behaviour: saving on payday, checking in, keeping the plan.')}</div>
       <div class="n-wheel" role="img" aria-label="A loop: small interactions build memory, memory builds the relationship, the relationship improves support, better support leads to better outcomes, and better outcomes bring more interactions.">
         ${wheelRing}
         <p class="n-wheel-centre"><em>The relationship</em><span>earned, again and again</span></p>
@@ -193,8 +181,8 @@ export const slides = [
           <li><span>02</span><b>Memory</b><p>We remember what you told us.</p></li>
           <li><span>03</span><b>Relationship</b><p>You see what we think, and can correct it.</p></li>
           <li><span>04</span><b>Better support</b><p>The next suggestion fits your life.</p></li>
-          <li><span>05</span><b>Better outcomes</b><p>Progress you can see.</p></li>
-          <li><span>06</span><b>More interactions</b><p>A reason to come back.</p></li>
+          <li class="n-wheel-key"><span>05</span><b>Sustained behaviours</b><p>Save on payday. Check in. Keep the plan.</p></li>
+          <li><span>06</span><b>Better outcomes</b><p>Progress you can see. A reason to come back.</p></li>
         </ol>
       </div>`,
   },
