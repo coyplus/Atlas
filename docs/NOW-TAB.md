@@ -10,7 +10,7 @@ Scrolling global header → floating AI companion → Quick Actions → My numbe
 
 Every item comes from the same Number model and renderer, including the first item. The scenario selects the starting set and size; there is no separately rendered hero or protected first position. A wide Number spans two columns with a large value; Square, Wide, Tall and Full share the same amount, detail destination and edit controls. Any item can be resized, reordered, removed and added again. Customise reveals the controls and enables grid dragging; Move earlier provides a keyboard alternative. Changes support Undo. Add a number uses one grid cell and opens the existing size-preview gallery.
 
-The starting numbers remain appropriate to each supplied scenario: Alex’s balance, Jordan’s safe-to-spend amount, Sam’s deposit and Elena’s wealth. These are ordinary wide widgets, not mandatory dashboard sections. Customisation never changes the underlying financial values.
+The starting numbers remain appropriate to each supplied scenario: Alex’s current account, Jordan’s safe-to-spend amount, Sam’s deposit and Elena’s wealth. These are ordinary wide widgets, not mandatory dashboard sections. Alex begins with a familiar account widget; the Number gallery lets the home screen evolve as the relationship grows. Customisation never changes the underlying financial values.
 
 ## Quick Actions
 

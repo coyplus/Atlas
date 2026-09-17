@@ -19,7 +19,7 @@ export const cash = (n, decimals = false) =>
     minimumFractionDigits: decimals ? 2 : 0,
   }).format(n);
 export const defaults = {
-  alex: ['balance', 'dd', 'creditscore', 'activity'],
+  alex: ['container-ac-cur', 'dd', 'creditscore', 'activity'],
   jordan: [
     'safespend',
     'container-grocery-wallet',

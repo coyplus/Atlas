@@ -25,7 +25,7 @@ export async function loadSession(version: string): Promise<unknown | null> {
         const x = req.result as StoredSession | undefined;
         resolve(
           x?.schema === 1 && x.scenarioVersion === version && validSession(x.state)
-            ? x.state
+            ? upgradeSession(x.state)
             : null,
         );
         database.close();
@@ -93,4 +93,22 @@ export function validSession(value: unknown): boolean {
       p.l2
     );
   });
+}
+
+/** Refresh the original Alex starter layout without replacing a visitor’s customisation. */
+export function upgradeSession(value: unknown): unknown {
+  const state = value as Record<string, any>;
+  const ui = state.people.alex.ui;
+  const originalOrder = ['balance', 'dd', 'creditscore', 'activity'];
+  const originalSizes: Record<string, string> = { balance: 'W', activity: 'W' };
+  if (
+    JSON.stringify(ui.order) === JSON.stringify(originalOrder) &&
+    Object.keys(ui.sizes).length === 2 &&
+    Object.entries(originalSizes).every(([id, size]) => ui.sizes[id] === size)
+  ) {
+    ui.order[0] = 'container-ac-cur';
+    ui.sizes['container-ac-cur'] = ui.sizes.balance;
+    delete ui.sizes.balance;
+  }
+  return state;
 }
