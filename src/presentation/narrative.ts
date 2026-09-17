@@ -44,7 +44,7 @@ export const slides = [
     stage: 'What customers want',
     title: 'If features alone were the solution',
     theme: 'r-slide n-want',
-    content: `${heading('What customers want', 'If features alone were the solution, good financial outcomes would be <em>the norm.</em>', '13.1 million UK adults have low financial resilience. Unchanged since 2022.')}
+    content: `${heading('What customers want', 'If features alone were the solution, good financial outcomes would be <em>the norm.</em>', 'In 2024, 13.1 million UK adults had low financial resilience, unchanged from 2022.')}
       ${body(`<div class="n-want-grid">
         <div class="n-want-outcomes"><span class="r-label">What aspiring households tell us they want</span><h2>A home of their own.</h2><h2>A buffer for the unexpected.</h2><h2>Choice about work and later life.</h2></div>
         <div class="n-want-features"><span class="r-label">What we have given them</span><p>Accounts. Savings Pots. Budgets. Alerts. Investments. Life Planner. Mortgages. Pensions. Money Rules. Insights. Round-ups. Cashback.</p></div>
@@ -65,19 +65,19 @@ export const slides = [
     stage: 'The behaviour gap',
     title: 'Able to. The situation lets them. Wants to.',
     theme: 'r-slide n-conditions',
-    content: `${heading('The behaviour gap', 'A behaviour happens when someone is <em>able&nbsp;to,</em> the situation <em>lets&nbsp;them,</em> and they <em>want&nbsp;to.</em>', 'The design shift: from features to a system. Features make people able. The system does the rest.')}
+    content: `${heading('The behaviour gap', 'A behaviour happens when someone is <em>able&nbsp;to,</em> the situation <em>lets&nbsp;them,</em> and they <em>want&nbsp;to.</em>', 'The design shift: from features to a system. Features make the action possible. A system makes it happen, and keep happening.')}
       ${body(`<div class="n-matrix" role="table" aria-label="Four conditions for a behaviour, today and with a system">
         <div class="n-matrix-head" role="row"><span></span><span class="r-label">Able to</span><span class="r-label">The situation lets them</span><span class="r-label">Wants to</span><span class="r-label">Over time</span></div>
         <div class="n-matrix-row" role="row"><span class="r-label n-matrix-label">Sam moving £100 to his deposit, today</span>
           <article><h2>Yes.</h2><p>The Pot exists. The transfer takes ten seconds.</p></article>
-          <article class="n-no"><h2>No.</h2><p>Nothing on payday says <i>now</i>. The bills say <i>not now</i>.</p></article>
+          <article class="n-no"><h2>No.</h2><p>Payday comes and goes. Nothing marks the moment, and the bills get there first.</p></article>
           <article class="n-no"><h2>No.</h2><p>£100 towards £24,000 feels like nothing. The reward is years away.</p></article>
           <article class="n-no"><h2>No.</h2><p>Pay, rent and priorities will change. A fixed rule breaks.</p></article>
         </div>
         <div class="n-matrix-row n-matrix-system" role="row"><span class="r-label n-matrix-label">What a system does</span>
-          <article><b>Enable</b><p>A small step that is easy to take.</p></article>
-          <article><b>Prompt</b><p>The right nudge at the right moment.</p></article>
-          <article><b>Reward</b><p>A payoff now, while the outcome is years away.</p></article>
+          <article><b>Enable</b><p>A step small enough to take today.</p></article>
+          <article><b>Prompt</b><p>The right moment, with an amount he can afford.</p></article>
+          <article><b>Reward</b><p>Progress made visible now, while the outcome is years away.</p></article>
           <article><b>Adapt</b><p>Learn from the response. Change the support as life changes.</p></article>
         </div>
       </div>`)}
@@ -89,40 +89,41 @@ export const slides = [
     theme: 'r-value r-slide n-thesis n-grain',
     content: `${heading('Why a bank should build this', 'Building better customers <br>builds <em>a better bank.</em>', 'When customers move forward, so do we.')}
       ${body(`<ol class="n-chain" aria-label="How customer progress becomes bank value">
-        <li><h2>Sustained behaviours</h2><p>Small actions, repeated over years.</p>${arrow}</li>
+        <li><h2>Sustained behaviours</h2><p>Save on payday. Keep the plan. Review when life changes.</p>${arrow}</li>
         <li><h2>A healthier financial standing</h2><p>A buffer. A deposit. A plan that holds.</p>${arrow}</li>
         <li><h2>A bank worth staying with</h2><p>Larger balances. More assets under management. A reason to stay.</p></li>
       </ol>`)}`,
   },
   {
-    stage: 'What Atlas is',
-    title: 'Atlas is a behavioural operating system',
+    stage: 'What the system needs',
+    title: 'Making banking a relationship again',
     theme: 'r-slide n-pillars',
-    content: `${heading('What Atlas is', 'Atlas is a behavioural <br><em>operating system.</em>', 'Three parts, one system. Each makes the ideal behaviour easier to start, easier to keep, and worth keeping.')}
-      ${body(`<ol class="n-pillar-list">
-        <li><span>01</span><h2>AI and human support</h2><p>AI finds the opportunity, starts the conversation and inspires the action. People take over when judgement or care is needed.</p></li>
-        <li><span>02</span><h2>Behavioural science</h2><p>Now, You and Future are built on what keeps people going: feeling capable, connected and in control.</p></li>
-        <li><span>03</span><h2>A loyalty framework</h2><p>Points reward the behaviour. Status rewards the outcome. Neither pays out cash; both pay into the goal.</p></li>
+    content: `${heading('Atlas · A behavioural operating system', 'Making banking <br><em>a relationship again.</em>', 'To prompt at the right moment, reward what matters and adapt as life changes, the system has to know you, and you have to trust it. That is not a feature set. It is a relationship.')}
+      ${body(`<ol class="n-pillar-list" aria-label="How Atlas earns the relationship">
+        <li><span>01 · How we earn it</span><h2>AI and human support</h2><p>Knows you, finds the moment, and hands over to a person when it matters.</p></li>
+        <li><span>02 · How we earn it</span><h2>Behavioural science</h2><p>Makes the support feel like yours: capable, connected and in control.</p></li>
+        <li><span>03 · How we earn it</span><h2>A loyalty framework</h2><p>Makes the effort worth it now, long before the goal arrives.</p></li>
       </ol>`)}`,
   },
   {
     stage: 'AI and human support',
     title: 'AI is the orchestrator and the curator',
     theme: 'r-slide n-ai',
-    content: `${heading('01 · AI and human support', 'AI is the orchestrator <br>and <em>the curator.</em>', 'Not a chatbot waiting to be asked. It finds the opportunity, starts the conversation and inspires the action. People take over when it matters.')}
+    content: `${heading('01 · AI and human support', 'AI is the orchestrator <br>and <em>the curator.</em>', 'It connects what you tell us, what your finances show and what you are exploring. It finds the opportunity, and it remembers.')}
       ${body(`<div class="n-layer">
-        <div class="n-layer-col"><span class="r-label">What the bank can offer</span><ul><li>Products and tools</li><li>Insight and messages</li><li>Human experts</li></ul></div>
+        <div class="n-layer-col"><span class="r-label">What it knows</span><ul><li>What you tell us</li><li>What your finances show</li><li>What you are exploring</li><li>What the bank can offer: tools, insight, human experts</li></ul></div>
         <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
-        <div class="n-layer-core"><span class="r-label">The AI layer</span><h2>Understands. <br>Curates. <br>Coordinates.</h2><div class="n-modes"><p><b>Push</b>It finds the opportunity you didn’t know to ask for.</p><p><b>Pull</b>It listens, and explains, when you want to talk.</p></div></div>
+        <div class="n-layer-core"><span class="r-label">The AI layer</span><h2>Remembers. <br>Curates. <br>Coordinates.</h2><div class="n-modes"><p><b>Push</b>It finds the opportunity you didn’t know to ask for.</p><p><b>Pull</b>It listens, and explains, when you want to talk.</p></div></div>
         <div class="n-layer-arrow" aria-hidden="true">${icon('arrow_forward')}</div>
-        <div class="n-layer-col"><span class="r-label">What the customer experiences</span><ul><li>Now, You and Future</li><li>A conversation one tap from whatever is on screen</li><li>A person who takes over when judgement or care is needed</li></ul></div>
+        <div class="n-layer-col"><span class="r-label">What you get</span><ul><li>The right suggestion at the right moment, across Now, You and Future</li><li>A conversation one tap from whatever is on screen</li><li>A person who takes over when judgement or care is needed</li></ul></div>
+        <div class="n-layer-return" aria-hidden="true"><span>${icon('repeat')} Every response is carried into the next interaction</span></div>
       </div>`)}`,
   },
   {
     stage: 'Behavioural science',
     title: 'Capable, connected and in control',
     theme: 'r-slide n-three',
-    content: `${heading('02 · Behavioural science', 'People keep going when they feel <em>capable, connected and in control.</em>', 'Self-Determination Theory, applied to banking: three needs, three sides of one app.')}
+    content: `${heading('02 · Behavioural science', 'People keep going when they feel <em>capable, connected and in control.</em>', 'Future sets the direction. Now turns it into routines. You brings understanding and recognition back into the plan.')}
       ${body(`<div class="n-tabs">
         <article><span class="r-label">Competence</span><h2>Now</h2><p>“I can see where I stand, and act.”</p></article>
         <article><span class="r-label">Relatedness</span><h2>You</h2><p>“I’m heard, known and recognised.”</p></article>
@@ -152,7 +153,7 @@ export const slides = [
     stage: 'Future',
     title: 'I choose my direction. The bank shows me the trade-offs.',
     theme: 'r-slide n-product n-future',
-    content: `<div class="n-product-copy">${heading('Future · Autonomy', 'I choose my direction. <br><em>The bank shows me the trade-offs.</em>', 'Competing priorities, made visible. Rounder decisions, made yours.')}
+    content: `<div class="n-product-copy">${heading('Future · Autonomy', 'I choose my direction. <br><em>The bank shows me the trade-offs.</em>', 'Competing priorities, made visible. More rounded decisions, made yours.')}
       <div class="n-teaser"><p>Possibilities you had not considered. Time Travel and What if to see the consequence before you commit. Then a plan you approve, and a rule that keeps it going.</p></div>
       <a class="n-explore" data-demo href="/?p=sam&tab=future&theme=vanilla">Explore Sam’s Future ${icon('arrow_forward')}</a></div>
       ${phone('future', 'Sam’s Future: goals, time travel and what-if trade-offs.')}`,
@@ -163,8 +164,8 @@ export const slides = [
     theme: 'r-slide n-loyalty',
     content: `${heading('03 · A loyalty framework', 'What’s rewarded <br><em>is repeated.</em>', 'Points reward the behaviour. Status rewards the outcome. Neither pays out cash; both pay into the goal.')}
       ${body(`<div class="n-loyalty-grid">
-        <article><span class="r-label">HSBC Points</span><h2>Earned by the behaviour.</h2><p>A check-in completed. A saving challenge kept for thirty days. A plan approved. Something shared that helps us serve you better.</p><p>Spent on things that build the next behaviour: a savings rate boost, a session with a coach. Not cash.</p></article>
-        <article><span class="r-label">HSBC Status</span><h2>Earned by the outcome.</h2><p>HSBC, Premier and Elite follow your total relationship balance. As your financial standing grows, so does the support: a relationship manager, more choices.</p><p>Points never buy status. Only progress does.</p></article>
+        <article><span class="r-label">HSBC Points</span><h2>Earned by the behaviour.</h2><p>A check-in completed. A saving challenge kept for thirty days. A plan approved.</p><p>Spent on things that build the next behaviour: a savings rate boost, a session with a coach. Not cash.</p></article>
+        <article><span class="r-label">HSBC Status</span><h2>Earned by the outcome.</h2><p>HSBC, Premier and Elite follow your total relationship balance. As your financial standing grows, so does the support: a relationship manager, more choices.</p><p>Status follows your standing, not your Points.</p></article>
       </div>`)}
       ${source('Tier thresholds, Points values and benefits are illustrative concept content.')}`,
   },

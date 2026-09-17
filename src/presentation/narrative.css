@@ -400,6 +400,7 @@ body[data-version='narrative'] .n-matrix .n-no h2 {
   display: block;
   font-size: 11px;
   letter-spacing: 1.6px;
+  text-transform: uppercase;
   color: var(--red);
   margin-bottom: 18px;
 }
@@ -476,6 +477,26 @@ body[data-version='narrative'] .n-matrix .n-no h2 {
   font-size: clamp(30px, 2.9vw, 44px);
   line-height: 1.05;
   letter-spacing: -1.4px;
+}
+.n-layer-return {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+  border-top: 1px solid var(--rule);
+  padding-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+.n-layer-return span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.n-layer-return .deck-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--red);
 }
 .n-modes {
   margin-top: 20px;
@@ -714,13 +735,13 @@ body[data-version='narrative'] .product-figure figcaption {
 }
 .n-wheel-nodes b {
   display: block;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--ink);
   line-height: 1.25;
 }
 .n-wheel-nodes p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   margin-top: 5px;
   line-height: 1.4;
