@@ -74,57 +74,67 @@ for (const viewport of [
   });
 }
 
-test('ambient diagrams cycle, pause and respect reduced motion', async ({ page }) => {
+test('the shared Companion thinks, responds and follows each context without layout shifts', async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.clock.install();
   await page.goto('/presentation/?version=narrative#8');
   const ai = page.locator('.n-ai-system');
   await expect(ai).toHaveAttribute('data-motion', 'running');
-  await ai.getByRole('button', { name: 'Pause animation', exact: true }).click();
-  await expect(ai).toHaveAttribute('data-motion', 'paused');
-  const examples = ai.locator('.n-ai-example');
+  await expect(page.locator('.n-motion-toggle')).toHaveCount(0);
   const initialHeight = (await ai.boundingBox())!.height;
-  for (const [phase, time] of [1000, 8000, 15000].entries()) {
-    await ai.locator('.n-ai-example, .n-example-tabs > span').evaluateAll((elements, time) => {
-      elements.forEach((element) =>
-        element.getAnimations().forEach((animation) => {
-          animation.currentTime = time;
-        }),
-      );
-    }, time);
-    await expect
-      .poll(() =>
-        examples.evaluateAll((elements) =>
-          elements.map((element) => Number(getComputedStyle(element).opacity)),
-        ),
-      )
-      .toEqual([0, 1, 2].map((index) => (index === phase ? 1 : 0)));
+  for (let phase = 0; phase < 3; phase++) {
+    const example = ai.locator('.n-ai-example').nth(phase);
+    await expect(example).toHaveAttribute('data-active', 'true');
+    await expect(example.locator('.atlas-companion')).toContainText('Thinking…');
+    await expect(ai.locator('.n-example-tabs > span').nth(phase)).toHaveAttribute(
+      'data-active',
+      'true',
+    );
+    await page.clock.runFor(2000);
+    await expect(example.locator('[data-companion-state]')).toHaveAttribute(
+      'data-companion-state',
+      'responding',
+    );
+    await expect(example.locator('.support-copy')).not.toContainText('Thinking…');
     expect(Math.abs((await ai.boundingBox())!.height - initialHeight)).toBeLessThan(1);
+    if (phase < 2) await page.clock.runFor(10000);
   }
-  await ai.getByRole('button', { name: 'Resume animation', exact: true }).click();
-  await expect(ai).toHaveAttribute('data-motion', 'running');
-  await page.keyboard.press('End');
+  await page.keyboard.press('Home');
   await expect(ai).toHaveAttribute('data-motion', 'paused');
+  const cover = page.locator('.n-cover-companion');
+  await expect(cover).toHaveAttribute('data-motion', 'running');
+  await page.clock.runFor(2000);
+  await expect(cover.locator('.atlas-companion')).toContainText('Your home fund is growing, Sam.');
+  await page.keyboard.press('End');
+  await expect(cover).toHaveAttribute('data-motion', 'paused');
+});
+
+test('ambient motion respects reduced motion and keeps a readable response', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/presentation/?version=narrative#14');
   await expect(page.locator('.n-wheel')).toHaveAttribute('data-motion', 'running');
   await expect
     .poll(() =>
       page
         .locator('.n-wheel-signal')
-        .evaluate((element) =>
-          element.getAnimations().some((animation) => animation.playState === 'running'),
-        ),
+        .evaluate((el) => el.getAnimations().some((a) => a.playState === 'running')),
     )
     .toBe(true);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('.n-wheel')).toHaveAttribute('data-motion', 'paused');
-  await expect(page.locator('.n-wheel .n-motion-toggle')).toBeHidden();
   await expect
-    .poll(() =>
-      page.locator('.n-wheel-signal').evaluate((element) => element.getAnimations().length),
-    )
+    .poll(() => page.locator('.n-wheel-signal').evaluate((el) => el.getAnimations().length))
     .toBe(0);
   await page.goto('/presentation/?version=narrative#8');
+  await expect(page.locator('.n-ai-system')).toHaveAttribute('data-motion', 'paused');
   await expect(page.locator('.n-ai-example').first()).toHaveCSS('opacity', '1');
   await expect(page.locator('.n-ai-example').nth(1)).toHaveCSS('opacity', '0');
+  await expect(page.locator('.n-ai-example').first().locator('.support-copy')).toContainText(
+    'Your essentials are covered, Sam.',
+  );
+  await expect(page.locator('.is-thinking')).toHaveCount(0);
 });

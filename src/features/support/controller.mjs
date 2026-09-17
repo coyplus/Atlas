@@ -1,3 +1,4 @@
+import { companionCard } from './card.mjs';
 import { motion } from '../../design-system/motion.mjs';
 import {
   renderRegion,
@@ -131,10 +132,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     if (e.target.matches('input,select,textarea')) minimise();
   }
   function mount(dock) {
-    renderRegion(
-      dock,
-      `<aside class="ai-card support-bar" aria-label="Contextual support"><div class="support-top"><button class="support-summary" data-action="support:discuss" aria-haspopup="dialog"><span class="support-copy" aria-live="polite" aria-atomic="true"><strong></strong><span class="support-subtitle"></span></span></button><button class="support-avatar icon-btn" data-action="support:discuss" aria-label="Open conversation"></button></div><div id="support-details" class="support-reveal"><div class="support-inner"><p class="support-message"></p><div class="support-actions"></div></div></div></aside>`,
-    );
+    renderRegion(dock, companionCard());
     dock.querySelector('.support-bar').addEventListener('click', barClick);
     const audioDock = document.querySelector('#audio-dock');
     if (audioDock && audioAvailable())

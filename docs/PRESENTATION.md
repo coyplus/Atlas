@@ -102,3 +102,17 @@ distant goal that needs timely prompts, manageable repeat actions and nearer
 feedback or recognition. The [Fogg Behavior Model](https://www.behaviormodel.org/)
 informs the motivation, ability and prompt framing. Reward is described as a
 design mechanism for the ongoing journey, not a fourth element of B=MAP.
+
+## Narrative Companion demonstrations
+
+The cover and slide 8 render `companionCard` from `src/features/support/card.mjs`,
+the same card mounted by the prototype’s support controller. The surface, icon
+and travelling thinking rim share `src/design-system/companion.css`; the deck
+only adjusts scale and supplies illustrative messages.
+
+Slide 8 cycles Now → You → Future every 12 seconds: 1.8 seconds thinking, then
+10.2 seconds to read the response. The cover has an 18-second cycle. Active pills
+use the corresponding tab colour. These are silent, scripted demonstrations;
+they do not call an AI service or start audio. There are no playback controls.
+Timers and decorative loops stop off screen and in hidden browser tabs. Reduced
+Motion shows a settled response without a loop. The other deck versions are unchanged.

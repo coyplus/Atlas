@@ -1,3 +1,5 @@
+@import './companion.css';
+
 /* Vanilla support system: stable overlay, independent scroll surfaces, no clipping transitions. */
 .agent-avatar {
   width: 40px;
@@ -801,69 +803,6 @@ body[data-direction='vanilla'] #support-slot:has(.support-dock[hidden])::before 
 body[data-direction='vanilla'] .support-dock {
   position: relative;
 }
-/* Brief Now arrival: the original blueprint's restrained red/white thinking rim. */
-@property --support-angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
-}
-body[data-direction='vanilla'] .support-bar {
-  position: relative;
-}
-body[data-direction='vanilla'] .support-bar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: conic-gradient(
-    from var(--support-angle),
-    transparent 0deg,
-    #db0011e6 35deg,
-    #fff 55deg,
-    #db0011e6 80deg,
-    transparent 125deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 200ms ease;
-}
-body[data-direction='vanilla'] .is-thinking .support-bar::after {
-  opacity: 1;
-  animation: support-thinking 3s linear infinite;
-}
-body[data-direction='vanilla'] .is-thinking .support-bar.ai-card {
-  box-shadow:
-    0 12px 26px -12px #18212d40,
-    0 0 20px -5px #db001140;
-}
-body[data-direction='vanilla'] .is-thinking .support-subtitle {
-  display: block;
-}
-body[data-direction='vanilla'] .is-thinking .support-reveal {
-  grid-template-rows: 0fr;
-  opacity: 0;
-}
-body[data-direction='vanilla'] .is-thinking .support-inner {
-  visibility: hidden;
-}
-@keyframes support-thinking {
-  to {
-    --support-angle: 360deg;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  body[data-direction='vanilla'] .support-bar::after {
-    animation: none;
-    transition: none;
-  }
-}
-
 /* Glass may cover scrolling content, never a detail's fixed screen header. */
 body[data-direction='vanilla'] .phone[data-support-surface='detail'] #support-slot::before {
   top: 0;

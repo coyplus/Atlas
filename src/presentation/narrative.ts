@@ -1,3 +1,4 @@
+import { companionCard } from '../features/support/card.mjs';
 import { materialIcons, materialViewBoxes } from '../design-system/icons.mjs';
 
 const icon = (name: keyof typeof materialIcons) =>
@@ -34,13 +35,12 @@ const phone = (tab: 'now' | 'you' | 'future', caption: string) => {
   return `<figure class="n-product-stage n-stage-${tab}"><div class="n-product-main"><div class="phone-frame"><img src="/assets/presentation/sam-${tab}.webp" alt="${caption}" width="390" height="844" decoding="async"></div></div><div class="n-product-detail">${detail}</div><figcaption>Sam’s ${tab === 'you' ? 'You' : tab === 'now' ? 'Now' : 'Future'} · from the working prototype</figcaption></figure>`;
 };
 
-const motionToggle = `<button class="n-motion-toggle" type="button" aria-label="Pause animation" title="Pause animation"><span class="n-pause-icon">${icon('pause')}</span><span class="n-play-icon">${icon('play_arrow')}</span></button>`;
 const companion = (message: string) =>
-  `<div class="n-companion"><p>${message}</p><span>${icon('auto_awesome')}</span></div>`;
-const aiExamples = `<div class="n-ai-examples" role="img" aria-label="The Companion adapts to context: Now explains the money left after essentials; You explains recorded check-ins; Future shows the impact of an extra £50 on payday.">
-  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">Now · Your numbers</span>${companion('What’s already set aside')}<div class="n-example-widget"><span>Room to invest</span><strong>£1,300<small>.44</small></strong><div class="n-mini-allocation"><i></i><i></i><i></i></div><p>After essentials and commitments</p></div></article>
-  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">You · Behind your portrait</span>${companion('52 check-ins recorded. The dots show a count, not particular dates.')}<div class="n-example-widget"><span>Money check-ins</span><strong>52 <small>recorded</small></strong><div class="n-checkin-dots">${'<i></i>'.repeat(52)}</div><p>One dot, one check-in</p></div></article>
-  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">Future · What if</span>${companion('Emergency fund, 11mo earlier')}<div class="n-example-widget"><span>Save £50 on payday</span><strong>11 <small>months earlier</small></strong><div class="n-mini-comparison"><i></i><i></i></div><p>An automatic Savings Rule</p></div></article>
+  `<div class="n-companion" data-companion-message="${message}">${companionCard({ title: message, interactive: false })}</div>`;
+const aiExamples = `<div class="n-ai-examples" role="img" aria-label="The Companion adapts to context: Now finds room for what matters; You invites reflection on 52 check-ins; Future explores a safety net eleven months sooner.">
+  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">Now · Your numbers</span>${companion('Your essentials are covered, Sam. What could this £1,300 make possible for you?')}<div class="n-example-widget"><span>Room to invest</span><strong>£1,300<small>.44</small></strong><div class="n-mini-allocation"><i></i><i></i><i></i></div><p>After essentials and commitments</p></div></article>
+  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">You · Behind your portrait</span>${companion('52 check-ins, Sam. You’ve made time to reflect. What would you like me to understand better?')}<div class="n-example-widget"><span>Money check-ins</span><strong>52 <small>recorded</small></strong><div class="n-checkin-dots">${'<i></i>'.repeat(52)}</div><p>One dot, one check-in</p></div></article>
+  <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">Future · What if</span>${companion('A safety net 11 months sooner. Could £50 on payday fit around family life? Let’s explore it.')}<div class="n-example-widget"><span>Save £50 on payday</span><strong>11 <small>months earlier</small></strong><div class="n-mini-comparison"><i></i><i></i></div><p>An automatic Savings Rule</p></div></article>
 </div>`;
 
 /* Circular flywheel: a hairline ring with five red markers, nodes placed around it. */
@@ -59,7 +59,7 @@ export const slides = [
     stage: 'Cover',
     title: 'Introducing Atlas',
     theme: 'n-cover r-slide',
-    content: `<div class="n-cover-copy"><p class="eyebrow">HSBC Atlas · A concept for the next decade</p><h1><span>Introducing</span><em>Atlas.</em></h1><p class="n-lead">Making banking a relationship again.</p></div><figure class="n-cover-product">${asset('cover-numbers', 'Atlas’s personalised money widgets, shown in Sam’s Now tab.', 'n-cover-device')}${asset('cadence', 'Eight months of grocery consistency, from Behind your portrait.', 'n-cover-evidence')}</figure>`,
+    content: `<div class="n-cover-copy"><p class="eyebrow">HSBC Atlas · A concept for the next decade</p><h1><span>Introducing</span><em>Atlas.</em></h1><p class="n-lead">Making banking a relationship again.</p></div><figure class="n-cover-product">${asset('cover-numbers', 'Atlas’s personalised money widgets, shown in Sam’s Now tab.', 'n-cover-device')}<div class="n-cover-companion n-motion" data-n-motion>${companion('Your home fund is growing, Sam. Shall we look at the life you’re building around it?')}</div></figure>`,
   },
   {
     stage: 'The problem',
@@ -148,7 +148,7 @@ export const slides = [
         <div class="n-intelligence"><span class="r-label">One growing customer memory</span><div class="n-intelligence-symbol">${icon('auto_awesome')}</div><h2>AI behavioural<br>layer</h2><p class="n-intelligence-verbs">Remembers. Curates. Coordinates.</p><div class="n-intelligence-modes"><p><b>Push</b>Find the opportunity you didn’t know to ask for.</p><p><b>Pull</b>Listen and explain when you want to talk.</p></div></div>
         <div class="n-system-link" aria-hidden="true">${icon('arrow_forward')}</div>
         <div class="n-ai-output"><span class="r-label">Personal to the moment</span>${aiExamples}<div class="n-example-tabs" aria-hidden="true"><span>Now</span><span>You</span><span>Future</span></div><p class="n-human-support">A person takes over when judgement or care is needed.</p></div>
-        <div class="n-system-memory"><span>${icon('repeat')} Every response is carried into the next interaction</span>${motionToggle}</div>
+        <div class="n-system-memory"><span>${icon('repeat')} Every response is carried into the next interaction</span></div>
       </div>`)}`,
   },
   {
@@ -216,7 +216,7 @@ export const slides = [
           <li><span>04</span><b>Better support</b><p>The next suggestion fits your life.</p></li>
           <li><span>05</span><b>Progress</b><p>Outcomes you can see. A reason to act again.</p></li>
         </ol>
-        </div><div class="n-wheel-controls">${motionToggle}</div>
+        </div>
       </div>`,
   },
   {
