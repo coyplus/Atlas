@@ -47,6 +47,12 @@ body[data-direction='vanilla'] .phone .agreement-sheet > header {
   border-bottom: 0;
 }
 /* Stories own one continuous contrast plane; no extra navigation tint. */
+body[data-direction] .phone[data-active-tab]:has(#overlay > .story-shell) .statusbar {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
 body[data-direction='vanilla'] .phone .story-shell > .sheet-header::before {
   display: none;
 }
