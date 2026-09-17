@@ -1,16 +1,24 @@
 import '../design-system/fonts.css';
 import './deck.css';
 import './relationship.css';
+import './narrative.css';
 import { materialIcons, materialViewBoxes } from '../design-system/icons.mjs';
-const relationship = new URLSearchParams(location.search).get('version') === 'relationship';
-const { slides } = relationship ? await import('./relationship') : await import('./slides');
-document.body.dataset.version = relationship ? 'relationship' : 'original';
+const versions = {
+  original: () => import('./slides'),
+  relationship: () => import('./relationship'),
+  narrative: () => import('./narrative'),
+};
+type Version = keyof typeof versions;
+const requested = new URLSearchParams(location.search).get('version');
+const version: Version = requested && requested in versions ? (requested as Version) : 'original';
+const { slides } = await versions[version]();
+document.body.dataset.version = version;
 const versionSelector = document.querySelector<HTMLSelectElement>('#deck-version')!;
-versionSelector.value = relationship ? 'relationship' : 'original';
+versionSelector.value = version;
 versionSelector.addEventListener('change', () => {
   const url = new URL(location.href);
-  if (versionSelector.value === 'relationship') url.searchParams.set('version', 'relationship');
-  else url.searchParams.delete('version');
+  if (versionSelector.value === 'original') url.searchParams.delete('version');
+  else url.searchParams.set('version', versionSelector.value);
   url.hash = '1';
   location.assign(url.href);
 });

@@ -36,6 +36,16 @@ The published deck contains no notes control, notes text or notes keyboard short
 comes from Sam’s existing What If scenario. Outcomes for the bank are presented
 as hypotheses to validate, rather than measured claims.
 
+## Versions
+
+The header selector switches between three decks. Each has its own shareable URL and keeps the `p` scenario parameter.
+
+- Original (default): `/presentation/`, fourteen slides, `src/presentation/slides.ts`.
+- Relationship: `/presentation/?version=relationship`, eleven slides, `src/presentation/relationship.ts`.
+- Narrative: `/presentation/?version=narrative`, fourteen slides, `src/presentation/narrative.ts` and `narrative.css`.
+
+The narrative deck argues as a chain: banking has become transactional; customers want outcomes and features have not delivered them; outcomes are built from sustained behaviour; a behaviour needs three conditions (able to, the situation lets them, wants to) and features fix only the first; so design a system that prompts, enables, rewards and adapts; better customers build a better bank; a relationship is what makes the system run; AI is the orchestrator and curator, with human handover; Now, You and Future are built on the three needs that sustain motivation; three product slides annotate each feature with the condition it serves; the close returns to rented versus earned loyalty. It reuses the relationship deck's base styles and adds `n-` prefixed rules only where the argument needs a new layout. Browser coverage: `e2e/presentation-narrative.spec.ts`.
+
 ## Editing
 
 - `src/presentation/slides.ts`: audience-facing headlines and visuals.
