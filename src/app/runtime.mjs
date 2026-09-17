@@ -275,7 +275,7 @@ function render() {
   const scroll = document.querySelector('#content')?.scrollTop ?? 0;
   renderRegion(
     document.querySelector('#app'),
-    `<aside class="presenter"><div class="presenter-brand">${logo()}<b>HSBC</b><span>Atlas</span></div><p class="eyebrow">FOUR MOMENTS · ONE RELATIONSHIP</p><h1>Making banking a<br>relationship again</h1><p class="presenter-intro">Building better customers builds a better bank.</p><nav class="moment-picker">${Object.entries(
+    `<aside class="presenter"><div class="presenter-brand">${logo()}<b>HSBC</b><span>Atlas</span></div><p class="eyebrow">FOUR MOMENTS · ONE RELATIONSHIP</p><h1>Building better customers builds a better bank.</h1><p class="presenter-intro">Making banking a relationship again</p><nav class="moment-picker">${Object.entries(
       S.people,
     )
       .map(
@@ -284,7 +284,7 @@ function render() {
       )
       .join(
         '',
-      )}</nav><div class="presenter-bottom"><span class="eyebrow">${esc(S.direction)} EDITION</span><p>Interactive concept · illustrative data<br>Changes stay in this demonstration.</p>${button('Reset this moment', 'reset', 'text')}<a href="/presentation/">Presentation ${icon('arrow')}</a><a href="workbench.html">Component workbench ${icon('arrow')}</a></div></aside>
+      )}</nav><div class="presenter-bottom">${button('Reset this moment', 'reset', 'text')}<a href="/presentation/">Presentation ${icon('arrow')}</a></div></aside>
  <main class="device-stage"><div class="phone ${p.l1.customer.tier === 'Premier' ? 'premier' : ''}" id="phone" data-active-tab="${S.tab}" data-now-photo="${S.tab === 'now' && S.direction === 'vanilla' && !!nowPhoto(p)}">${S.tab === 'now' && S.direction === 'vanilla' ? nowBackdrop(p) : ''}<div class="statusbar"><span>9:41</span><span>5G ▰</span></div><header class="app-header"><span class="bank-brand" role="button" tabindex="0" data-demo-menu="true" aria-label="HSBC Atlas demo options">${logo()}<b>HSBC${S.direction === 'vanilla' ? (membershipModel(p).index ? '<small>' + membershipModel(p).tier.name + '</small>' : '') : p.l1.customer.tier === 'Premier' ? '<small>Premier</small>' : ''}</b></span><div class="header-actions"><button class="scenario-switch" data-scenario-picker="true" aria-label="Switch scenario, currently ${esc(p.l1.customer.firstName)}">${esc(p.l1.customer.firstName)} <span aria-hidden="true">⌄</span></button>${S.direction !== 'vanilla' ? `<button class="icon-btn" data-action="chat" aria-label="Talk to AI">${agentAvatar('ai')}</button>` : ''}<button class="icon-btn header-settings" data-action="settings" aria-label="Settings">${icon('settings')}</button></div></header>${S.direction === 'vanilla' ? '<div id="support-slot"><div id="support-dock" class="support-dock is-resting"></div></div>' : ''}<div id="content" class="content" tabindex="-1">${S.tab === 'now' ? nowScreen(p, S, DATA) : S.tab === 'future' ? futureScreen(p, S, DATA) : youScreen(p, S, DATA)}</div><nav class="tabbar" aria-label="Main navigation">${[
    ['now', 'Now', 'bubbles'],
    ['future', 'Future', 'trend'],
