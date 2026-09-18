@@ -150,6 +150,16 @@ body[data-version='narrative'] .n-cover h1 {
   height: min(650px, 72vh);
   width: 100%;
 }
+.n-cover-moment {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 750ms ease-in-out;
+}
+.n-cover-moment[data-active='true'] {
+  opacity: 1;
+}
 .n-cover-device {
   display: block;
   position: absolute;
@@ -1862,8 +1872,17 @@ body[data-version='narrative'] .n-close h1 {
     transition: none !important;
   }
   .n-ai-example,
+  .n-cover-moment,
   .n-example-tabs span {
     transition: none;
+  }
+}
+@media print {
+  .n-cover-moment {
+    opacity: 0 !important;
+  }
+  .n-cover-moment:first-child {
+    opacity: 1 !important;
   }
 }
 @media (max-height: 820px) and (min-width: 951px) {

@@ -37,6 +37,29 @@ const phone = (tab: 'now' | 'you' | 'future', caption: string) => {
 
 const companion = (message: string) =>
   `<div class="n-companion" data-companion-message="${message}">${companionCard({ title: message, interactive: false })}</div>`;
+const coverMoments = [
+  {
+    tab: 'now',
+    alt: 'Now: Sam’s personalised money widgets, with his house deposit and family pots.',
+    message: 'Your home fund is growing, Sam. Shall we look at the life you’re building around it?',
+  },
+  {
+    tab: 'you',
+    alt: 'You: Sam’s money portrait, household and invitation to check in.',
+    message: 'A little structure, room for life. Does your portrait feel like you, Sam?',
+  },
+  {
+    tab: 'future',
+    alt: 'Future: Sam’s competing priorities and Time Travel at age 40.',
+    message:
+      'A home, a safety net, time together. Shall we explore the balance that feels right for you?',
+  },
+]
+  .map(
+    ({ tab, alt, message }, index) =>
+      `<div class="n-cover-moment" data-cover-tab="${tab}" data-active="${index === 0}" aria-hidden="${index !== 0}">${asset(`cover-${tab}`, alt, 'n-cover-device')}<div class="n-cover-companion">${companion(message)}</div></div>`,
+  )
+  .join('');
 const aiExamples = `<div class="n-ai-examples" role="img" aria-label="The Companion adapts to context: Now finds room for what matters; You invites reflection on 52 check-ins; Future explores a safety net eleven months sooner.">
   <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">Now · Your numbers</span>${companion('Your essentials are covered, Sam. What could this £1,300 make possible for you?')}<div class="n-example-widget"><span>Room to invest</span><strong>£1,300<small>.44</small></strong><div class="n-mini-allocation"><i></i><i></i><i></i></div><p>After essentials and commitments</p></div></article>
   <article class="n-ai-example" aria-hidden="true"><span class="n-example-context">You · Behind your portrait</span>${companion('52 check-ins, Sam. You’ve made time to reflect. What would you like me to understand better?')}<div class="n-example-widget"><span>Money check-ins</span><strong>52 <small>recorded</small></strong><div class="n-checkin-dots">${'<i></i>'.repeat(52)}</div><p>One dot, one check-in</p></div></article>
@@ -59,7 +82,7 @@ export const slides = [
     stage: 'Cover',
     title: 'Introducing Atlas',
     theme: 'n-cover r-slide',
-    content: `<div class="n-cover-copy"><p class="eyebrow">HSBC Atlas · A concept for the next decade</p><h1><span>Introducing</span><em>Atlas.</em></h1><p class="n-lead">Making banking a relationship again.</p></div><figure class="n-cover-product">${asset('cover-numbers', 'Atlas’s personalised money widgets, shown in Sam’s Now tab.', 'n-cover-device')}<div class="n-cover-companion n-motion" data-n-motion>${companion('Your home fund is growing, Sam. Shall we look at the life you’re building around it?')}</div></figure>`,
+    content: `<div class="n-cover-copy"><p class="eyebrow">HSBC Atlas · A concept for the next decade</p><h1><span>Introducing</span><em>Atlas.</em></h1><p class="n-lead">Making banking a relationship again.</p></div><figure class="n-cover-product n-motion" data-n-motion aria-label="Atlas in Now, You and Future">${coverMoments}</figure>`,
   },
   {
     stage: 'The problem',

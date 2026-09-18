@@ -6,7 +6,7 @@ export function initialiseNarrativeMotion(root: HTMLElement) {
   const timers = new Map<HTMLElement, ReturnType<typeof setTimeout>>();
 
   const renderMoment = (diagram: HTMLElement, index: number, thinking: boolean) => {
-    const examples = [...diagram.querySelectorAll<HTMLElement>('.n-ai-example')];
+    const examples = [...diagram.querySelectorAll<HTMLElement>('.n-ai-example, .n-cover-moment')];
     examples.forEach((example, i) => {
       example.dataset.active = String(i === index);
       example.setAttribute('aria-hidden', String(i !== index));
@@ -32,17 +32,17 @@ export function initialiseNarrativeMotion(root: HTMLElement) {
     renderMoment(diagram, index, true);
     timers.set(
       diagram,
-      setTimeout(
-        () => {
-          renderMoment(diagram, index, false);
-          // A ten-second context cycle; the cover keeps its quieter eighteen-second pace.
-          timers.set(
-            diagram,
-            setTimeout(() => cycle(diagram, (index + 1) % count), count === 1 ? 16200 : 8500),
-          );
-        },
-        count === 1 ? 1800 : 1500,
-      ),
+      setTimeout(() => {
+        renderMoment(diagram, index, false);
+        // Give each cover screen nine seconds; the detailed AI examples keep ten.
+        timers.set(
+          diagram,
+          setTimeout(
+            () => cycle(diagram, (index + 1) % count),
+            diagram.classList.contains('n-cover-product') ? 7500 : 8500,
+          ),
+        );
+      }, 1500),
     );
   };
   const update = () => {

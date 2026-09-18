@@ -104,12 +104,53 @@ test('the shared Companion thinks, responds and follows each context without lay
   }
   await page.keyboard.press('Home');
   await expect(ai).toHaveAttribute('data-motion', 'paused');
-  const cover = page.locator('.n-cover-companion');
+  const cover = page.locator('.n-cover-product');
   await expect(cover).toHaveAttribute('data-motion', 'running');
   await page.clock.runFor(2000);
-  await expect(cover.locator('.atlas-companion')).toContainText('Your home fund is growing, Sam.');
+  await expect(cover.locator('[data-active="true"] .atlas-companion')).toContainText(
+    'Your home fund is growing, Sam.',
+  );
   await page.keyboard.press('End');
   await expect(cover).toHaveAttribute('data-motion', 'paused');
+});
+
+test('the cover cycles all three tabs with matching Companion messages and a stable frame', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.clock.install();
+  await page.goto('/presentation/?version=narrative#1');
+  const cover = page.locator('.n-cover-product');
+  await expect(cover).toHaveAttribute('data-motion', 'running');
+  const initial = await cover.boundingBox();
+  const messages = [
+    'Your home fund is growing',
+    'Does your portrait feel like you',
+    'A home, a safety net, time together',
+  ];
+  for (const [index, tab] of ['now', 'you', 'future'].entries()) {
+    const moment = cover.locator(`[data-cover-tab="${tab}"]`);
+    await expect(moment).toHaveAttribute('data-active', 'true');
+    await expect(moment).toHaveAttribute('aria-hidden', 'false');
+    await expect(cover.locator('[aria-hidden="false"]')).toHaveCount(1);
+    await page.clock.runFor(2000);
+    await expect(moment.locator('.support-copy')).toContainText(messages[index]);
+    expect(
+      await moment.locator('img').evaluate((image) => image.complete && image.naturalWidth > 0),
+    ).toBe(true);
+    const frame = (await cover.boundingBox())!;
+    expect(Math.abs(frame.width - initial!.width)).toBeLessThan(1);
+    expect(Math.abs(frame.height - initial!.height)).toBeLessThan(1);
+    await page.clock.runFor(7000);
+  }
+  await expect(cover.locator('[data-cover-tab="now"]')).toHaveAttribute('data-active', 'true');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(cover).toHaveAttribute('data-motion', 'paused');
+  await page.clock.runFor(30000);
+  await expect(cover.locator('[data-cover-tab="now"]')).toHaveCSS('opacity', '1');
+  await expect(cover.locator('[data-cover-tab="you"]')).toHaveCSS('opacity', '0');
+  await expect(cover.locator('[data-cover-tab="now"] .support-copy')).not.toContainText('Thinking');
 });
 
 test('ambient motion respects reduced motion and keeps a readable response', async ({ page }) => {
