@@ -31,5 +31,5 @@ Each is the full 414 × 864 CSS-pixel phone frame, without retouching the UI:
 - You: the opening portrait and household view.
 - Future: Time Travel moved to month 84, September 2033, age 40.
 
-The cover crossfades these screens every nine seconds, with a matching live
+The cover crossfades these screens every four seconds, with a matching live
 Companion message. It pauses when hidden and shows Now for reduced motion.

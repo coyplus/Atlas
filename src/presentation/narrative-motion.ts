@@ -29,20 +29,21 @@ export function initialiseNarrativeMotion(root: HTMLElement) {
   };
   const cycle = (diagram: HTMLElement, index = 0) => {
     const count = diagram.querySelectorAll('[data-companion-message]').length;
+    const isCover = diagram.classList.contains('n-cover-product');
     renderMoment(diagram, index, true);
     timers.set(
       diagram,
-      setTimeout(() => {
-        renderMoment(diagram, index, false);
-        // Give each cover screen nine seconds; the detailed AI examples keep ten.
-        timers.set(
-          diagram,
-          setTimeout(
-            () => cycle(diagram, (index + 1) % count),
-            diagram.classList.contains('n-cover-product') ? 7500 : 8500,
-          ),
-        );
-      }, 1500),
+      setTimeout(
+        () => {
+          renderMoment(diagram, index, false);
+          // Four seconds per cover screen, including thinking; AI examples keep ten.
+          timers.set(
+            diagram,
+            setTimeout(() => cycle(diagram, (index + 1) % count), isCover ? 3400 : 8500),
+          );
+        },
+        isCover ? 600 : 1500,
+      ),
     );
   };
   const update = () => {

@@ -142,7 +142,7 @@ test('the cover cycles all three tabs with matching Companion messages and a sta
     const frame = (await cover.boundingBox())!;
     expect(Math.abs(frame.width - initial!.width)).toBeLessThan(1);
     expect(Math.abs(frame.height - initial!.height)).toBeLessThan(1);
-    await page.clock.runFor(7000);
+    await page.clock.runFor(2000);
   }
   await expect(cover.locator('[data-cover-tab="now"]')).toHaveAttribute('data-active', 'true');
   await page.emulateMedia({ reducedMotion: 'reduce' });
