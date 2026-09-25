@@ -91,7 +91,7 @@ export const slides = [
     content: `${heading('The problem', 'Banking has become <br><em>transactional.</em>', 'Product loyalty is fickle. People chase the next best rate.')}
       ${body(`<div class="n-timeline">
         <article><span class="r-label">Past</span><h2>A familiar face.</h2><p>Loyalty to a person who knew you. Hard to scale.</p></article>
-        <article><span class="r-label">Present</span><h2>Convenience at scale.</h2><p>Banking got easier. The relationship became the app.</p></article>
+        <article><span class="r-label">Present</span><h2>Faster transactions.</h2><p>When things go wrong, getting help can mean more work for the customer.</p></article>
         <article><span class="r-label">Future, if we do nothing</span><h2>A race to the bottom.</h2><p>Competing on rates and incentives makes us an interchangeable utility.</p></article>
       </div>`)}`,
   },
