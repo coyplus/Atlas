@@ -118,6 +118,7 @@ test('all personas and narrow layouts keep circles legible, contained and contro
 }, info) => {
   for (const person of ['alex', 'jordan', 'sam', 'elena']) {
     await page.evaluate((person) => window.atlas.go(person, 'future'), person);
+    if (person === 'alex') await page.locator('[data-action="future-studio"]').click();
     const sizes = await page.locator('.future-orbit').evaluateAll((es) =>
       es.map((e) => {
         let r = e.getBoundingClientRect();

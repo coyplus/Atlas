@@ -1,3 +1,4 @@
+import { isFutureBeginning } from './beginning.mjs';
 import { forecast, futureState, when, movement, suggestIdeas } from '../../domain/future.mjs';
 import { cash, dateAt } from '../../domain/money.mjs';
 import { visiblePossibilities } from '../ideas/horizon.mjs';
@@ -16,6 +17,13 @@ export function futureInsight(p, s) {
     cta,
     action,
   });
+  if (isFutureBeginning(p))
+    return ai(
+      'A possibility is enough to begin.',
+      'You don’t need a complete plan. We can explore an idea together and see what might work for you.',
+      'Explore possibilities',
+      'future-add',
+    );
   const milestones = next.goals.filter((g) => g.target || g.isDebt),
     allDated = milestones.length && milestones.every((g) => next.dates[g.id] != null),
     lastMonth = allDated ? Math.max(...milestones.map((g) => next.dates[g.id])) : null,

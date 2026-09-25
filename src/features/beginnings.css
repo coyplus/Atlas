@@ -1,0 +1,219 @@
+/* First experiences keep one invitation in focus. Existing tools remain accessible. */
+.phone .portrait-beginning .portrait-canvas {
+  height: 180px;
+}
+.phone .portrait-beginning .portrait-glass {
+  margin-top: -70px;
+  padding: 24px;
+}
+.phone .portrait-beginning .portrait-glass h1 {
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -1.2px;
+}
+.phone .portrait-beginning .primary {
+  margin-top: 24px;
+}
+.phone .portrait-beginning .portrait-reward {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.phone .portrait-beginning-promise {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: -8px var(--page) 28px;
+  color: var(--muted);
+}
+.phone .portrait-beginning-promise > span {
+  color: #756189;
+  padding-top: 2px;
+}
+.phone .portrait-beginning-promise p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.phone .you-more {
+  margin: 0 0 24px;
+}
+.phone .you-more > summary {
+  margin: 0 var(--page);
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+.phone .you-more > summary > span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 5px;
+}
+.phone .you-more[open] > summary {
+  margin-bottom: 20px;
+}
+body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.future-beginning) {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.phone .future-beginning {
+  padding: calc(
+      var(--status-height, 36px) + var(--app-header-height, 58px) + var(--support-height, 88px) +
+        26px
+    )
+    var(--page) 28px;
+}
+.phone .future-beginning header > .eyebrow {
+  color: #467a8b;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+}
+.phone .future-beginning h1 {
+  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: -1.2px;
+  line-height: 1.12;
+  margin: 12px 0 16px;
+  max-width: 350px;
+  text-wrap: balance;
+}
+.phone .future-beginning header p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+}
+.phone .beginning-possibilities {
+  display: grid;
+  gap: 12px;
+  margin: 26px 0 22px;
+}
+.phone .beginning-possibility {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  padding: 18px 16px;
+  border-radius: 22px;
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--surface) 85%, #dee9e7),
+    var(--surface)
+  );
+  color: var(--ink);
+}
+.phone .beginning-possibility-1 {
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--surface) 75%, #e6e1ee),
+    var(--surface)
+  );
+}
+.phone .beginning-possibility > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.phone .beginning-possibility strong {
+  display: block;
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.phone .beginning-possibility small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.4;
+  margin-top: 5px;
+  color: var(--muted);
+}
+.phone .beginning-orb {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #dce9e6;
+  color: #3e7975;
+  box-shadow: inset 0 1px 1px #fff9;
+}
+.phone .beginning-possibility-1 .beginning-orb {
+  background: #e8e1ef;
+  color: #816699;
+}
+.phone .beginning-own {
+  background: transparent;
+}
+.phone .beginning-own .beginning-orb {
+  background: transparent;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+}
+.phone .beginning-possibility > .icon {
+  width: 18px;
+  flex: 0 0 18px;
+  color: var(--muted);
+}
+.phone .beginning-promise {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.phone .beginning-tools {
+  margin-top: 14px;
+  font-size: 13px;
+  padding-left: 0;
+}
+@media (max-width: 360px) {
+  .phone .future-beginning h1,
+  .phone .portrait-beginning .portrait-glass h1 {
+    font-size: 30px;
+  }
+  .phone .beginning-possibility {
+    gap: 12px;
+    padding: 15px 12px;
+  }
+}
+
+@media (max-height: 740px) {
+  .phone .portrait-beginning .portrait-canvas {
+    height: 115px;
+  }
+  .phone .portrait-beginning .portrait-glass {
+    padding: 20px;
+    margin-top: -36px;
+  }
+  .phone .portrait-beginning .portrait-glass h1,
+  .phone .future-beginning h1 {
+    font-size: 28px;
+  }
+  .phone .future-beginning {
+    padding-top: calc(
+      var(--status-height, 36px) + var(--app-header-height, 58px) + var(--support-height, 88px) +
+        12px
+    );
+  }
+  .phone .beginning-possibilities {
+    margin: 18px 0;
+    gap: 8px;
+  }
+  .phone .beginning-possibility {
+    padding: 12px;
+  }
+  .phone .beginning-orb {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+}
+
+.phone .beginning-household {
+  margin: 0 var(--page) 24px;
+}

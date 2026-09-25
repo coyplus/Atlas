@@ -137,9 +137,9 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
       );
     if (!p.l2.personality.name)
       return ai(
-        'Make this picture yours',
-        'Three answers reveal how you approach money, so we can make our suggestions more relevant.',
-        'Take the 2-minute quiz',
+        'Let’s start with your perspective.',
+        'Your transactions show what you do with money. Three questions can help us understand how you approach it.',
+        'Answer three questions',
         'quiz',
       );
     return ai(

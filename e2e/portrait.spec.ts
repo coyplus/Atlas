@@ -22,7 +22,9 @@ for (const person of ['alex', 'jordan', 'sam', 'elena']) {
     await expect(glass).toHaveCSS('backdrop-filter', 'blur(14px) saturate(1.1)');
     const canvasBox = await page.locator('.portrait-canvas').boundingBox();
     const tileBox = await glass.boundingBox();
-    expect(canvasBox!.y + canvasBox!.height - tileBox!.y).toBeGreaterThan(60);
+    expect(canvasBox!.y + canvasBox!.height - tileBox!.y).toBeGreaterThan(
+      person === 'alex' ? 30 : 60,
+    );
     const motion = page.locator('.money-portrait .portrait-drift').first();
     expect(
       parseFloat(await motion.evaluate((el) => getComputedStyle(el).animationDuration)),
@@ -135,6 +137,7 @@ test('unshared household member has no inferred portrait and new joiner can add 
   await page.locator('.sheet-header [data-action="close"]').click();
   await expect(page.locator('.money-portrait')).toHaveAttribute('data-portrait-member', 'self');
   await page.goto('/?p=alex&theme=vanilla&tab=you');
+  await page.locator('.you-more > summary').click();
   await expect(
     page.getByRole('button', { name: 'Add household member', exact: true }),
   ).toBeVisible();

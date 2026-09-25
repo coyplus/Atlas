@@ -1,3 +1,4 @@
+import { isFutureBeginning, futureBeginning } from './beginning.mjs';
 import { moneySpeedModel } from './money-speed.mjs';
 import { displayDate } from '../../domain/dates.mjs';
 import { esc, icon, button } from '../../design-system/templates.mjs';
@@ -147,6 +148,7 @@ export function futureCommitments(p, s, model = futureModel(p, s)) {
   return `<div class="future-commitments"><button class="fg-entry" data-action="future-speed"><span class="fg-entry-symbol">${icon('bolt')}</span><span><b>Money Speed</b><small>${count(base) !== count(next) ? count(base) + ' → ' : ''}${count(next)} Money Rules</small></span><strong>${changed ? `<del>${money(base.speed)}</del> ` : ''}${money(next.speed)}<small>/month</small></strong>${icon('chev')}</button></div>`;
 }
 export function futureScreen(p, s) {
+  if (isFutureBeginning(p)) return futureBeginning(p, s);
   const model = futureModel(p, s),
     { state } = model;
   return `<div class="future-page future-studio" data-has-experiments="${!!state.ideas.length}" data-drawer="${state.drawer || 'timeline'}">

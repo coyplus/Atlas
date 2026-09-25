@@ -456,3 +456,5 @@ import './features/now/background.css';
 import './features/future/future.css';
 
 import './features/pots/appearance.css';
+
+import './features/beginnings.css';

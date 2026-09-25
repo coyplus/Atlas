@@ -41,7 +41,10 @@ export function handleFuture(ctx, type, id, p) {
     show('Make it mine', horizonDetail(p, i));
     return;
   }
-  if (type === 'future-mode') {
+  if (type === 'future-studio') {
+    f.showStudio = true;
+    refresh();
+  } else if (type === 'future-mode') {
     f.mode = id === 'sandbox' ? 'sandbox' : 'view';
     f.drawer = f.mode === 'sandbox' ? 'expanded' : 'timeline';
     refresh();

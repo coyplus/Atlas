@@ -1630,6 +1630,7 @@ window.atlas = {
   },
   setT(m) {
     if (S.tab !== 'future') navigate('future');
+    if (!document.querySelector('#time-slider')) act('future-studio');
     S.month = Math.max(0, Math.min(240, Math.round(m)));
     document.querySelector('#time-slider').value = S.month;
     updateFuture();
