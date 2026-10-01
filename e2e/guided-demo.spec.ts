@@ -10,6 +10,7 @@ for (const scene of scenes) {
     await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready', {
       timeout: 30000,
     });
+    await expect(page.locator('#scene-progress')).toHaveAttribute('aria-valuenow', '100');
     await expect(page.frameLocator('#guided-app').locator(scene.end).first()).toBeAttached();
     if (process.env.ATLAS_CAPTURE_DIR)
       await page.screenshot({ path: process.env.ATLAS_CAPTURE_DIR + '/' + scene.id + '.png' });
@@ -160,7 +161,8 @@ test('number journey shows its entry, a readable close-up and the actual added w
   await expect(page.locator('#guided-device')).toHaveAttribute('data-closeup', 'true', {
     timeout: 15000,
   });
-  await expect(page.locator('.demo-focus:not([hidden])')).toBeVisible();
+  await expect(page.locator('.demo-camera')).toHaveCSS('transform', /^matrix\(1\.28,/);
+  await expect(page.locator('.demo-focus')).toBeHidden();
   await page.getByRole('button', { name: 'Pause', exact: true }).click();
   const bounds = await page.locator('.demo-aperture').boundingBox();
   const widget = await page
@@ -182,4 +184,35 @@ test('number journey shows its entry, a readable close-up and the actual added w
   await expect(
     page.frameLocator('#guided-app').locator('.now-page [data-module="safetydays"]'),
   ).toHaveCount(0);
+});
+
+test('animation progress follows playback, pauses, resets and is not a scrubber', async ({
+  page,
+}) => {
+  await page.goto('/demo/#contextual-support');
+  const progress = page.getByRole('progressbar', { name: 'Demo animation progress' });
+  await expect
+    .poll(async () => Number(await progress.getAttribute('aria-valuenow')))
+    .toBeGreaterThan(5);
+  await page.getByRole('button', { name: 'Pause', exact: true }).click();
+  const held = await progress.getAttribute('aria-valuenow');
+  const fill = await progress.locator('[data-state="current"]').getAttribute('style');
+  await page.waitForTimeout(700);
+  await expect(progress).toHaveAttribute('aria-valuenow', held!);
+  await expect(progress.locator('[data-state="current"]')).toHaveAttribute('style', fill!);
+  await expect(progress).not.toHaveAttribute('tabindex');
+  expect(await progress.evaluate((el) => getComputedStyle(el).pointerEvents)).toBe('none');
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready', {
+    timeout: 20000,
+  });
+  await expect(progress).toHaveAttribute('aria-valuenow', '100');
+  await expect(progress).toHaveAttribute('aria-valuetext', 'Demonstration complete');
+  await page.getByRole('button', { name: 'Replay', exact: false }).click();
+  await expect
+    .poll(async () => Number(await progress.getAttribute('aria-valuenow')))
+    .toBeLessThan(5);
+  await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'playing');
+  await page.getByRole('button', { name: 'Take control', exact: true }).click();
+  await expect(progress).toBeHidden();
 });

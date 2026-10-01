@@ -85,6 +85,8 @@ function status(state: typeof mode, text?: string) {
     pause.hidden = !['playing', 'paused'].includes(state);
     pause.textContent = state === 'paused' ? 'Continue' : 'Pause';
   }
+  const progress = $('#scene-progress');
+  if (progress) progress.hidden = state === 'manual';
   const frame = $<HTMLIFrameElement>('#guided-app');
   if (frame) {
     frame.inert = state !== 'manual';
@@ -116,9 +118,31 @@ function takeControl() {
 async function play(scene: Scene) {
   status('loading');
   const frame = $<HTMLIFrameElement>('#guided-app');
-  const own = new SceneRunner(frame, (text) => {
-    if (runner === own) $('#scene-step').textContent = text;
-  });
+  const progress = $('#scene-progress');
+  const marks = [...progress.querySelectorAll<HTMLElement>('.animation-mark')];
+  const own = new SceneRunner(
+    frame,
+    (text) => {
+      if (runner === own) $('#scene-step').textContent = text;
+    },
+    (step, fraction) => {
+      if (runner !== own) return;
+      progress.setAttribute(
+        'aria-valuenow',
+        String(Math.floor(((step + fraction) / marks.length) * 100)),
+      );
+      progress.setAttribute(
+        'aria-valuetext',
+        fraction === 1 && step === marks.length - 1
+          ? 'Demonstration complete'
+          : `Step ${step + 1} of ${marks.length}: ${scene.steps[step].label}`,
+      );
+      marks.forEach((mark, i) => {
+        mark.dataset.state = i < step ? 'complete' : i === step ? 'current' : 'upcoming';
+        mark.style.setProperty('--fill', String(i < step ? 1 : i === step ? fraction : 0));
+      });
+    },
+  );
   runner = own;
   // Replacing the browsing context, rather than hydrating old UI, also clears modal stacks and feature clocks.
   frame.src = `/demo/prototype.html?p=${scene.person}&tab=${scene.tab}&theme=vanilla`;
@@ -174,7 +198,7 @@ function show(target: number) {
     stage.hidden = false;
     document.body.dataset.theme = 'guided';
     if ('scene' in e) {
-      stage.innerHTML = `<div class="guided-copy"><p class="eyebrow">${escape(e.scene.chapter)}</p><h1>${escape(e.scene.title).replace('\n', '<br>')}</h1><p class="guided-description">${escape(e.scene.copy)}</p>${e.scene.beats ? `<ol class="scene-beats" aria-label="The journey">${e.scene.beats.map((beat, i) => `<li data-beat="${i}" data-active="false"><span>${String(i + 1).padStart(2, '0')}</span>${escape(beat)}</li>`).join('')}</ol>` : ''}<div class="scene-caption"><span class="scene-dot"></span><p id="scene-step">Preparing the experience</p></div><div class="scene-tools"><button id="replay">↺ Replay</button><button id="pause-scene">Pause</button><button id="take-control">Take control</button></div><p id="scene-status" role="status" aria-live="polite"></p><p class="scene-footnote">Working prototype · illustrative scenarios</p></div><div id="device-slot"><div class="device-identity" id="main-identity"><strong id="device-person"></strong><span id="device-context"></span></div><div id="guided-device"><div class="demo-aperture"><div class="demo-camera"><iframe id="guided-app" title="Interactive Atlas prototype" tabindex="-1"></iframe><div class="demo-focus" hidden aria-hidden="true"></div><div class="demo-touch" hidden aria-hidden="true"></div></div></div><span class="closeup-label" aria-hidden="true">Closer look</span></div></div>`;
+      stage.innerHTML = `<div class="guided-copy"><p class="eyebrow">${escape(e.scene.chapter)}</p><h1>${escape(e.scene.title).replace('\n', '<br>')}</h1><p class="guided-description">${escape(e.scene.copy)}</p>${e.scene.beats ? `<ol class="scene-beats" aria-label="The journey">${e.scene.beats.map((beat, i) => `<li data-beat="${i}" data-active="false"><span>${String(i + 1).padStart(2, '0')}</span>${escape(beat)}</li>`).join('')}</ol>` : ''}<div class="scene-caption"><span class="scene-dot"></span><p id="scene-step">Preparing the experience</p></div><div class="scene-tools"><div id="scene-progress" role="progressbar" aria-label="Demo animation progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">${e.scene.steps.map(() => '<span class="animation-mark" data-state="upcoming" aria-hidden="true"><span></span></span>').join('')}</div><button id="pause-scene">Pause</button><button id="replay">↺ Replay</button><button id="take-control">Take control</button></div><p id="scene-status" role="status" aria-live="polite"></p><p class="scene-footnote">Working prototype · illustrative scenarios</p></div><div id="device-slot"><div class="device-identity" id="main-identity"><strong id="device-person"></strong><span id="device-context"></span></div><div id="guided-device"><div class="demo-aperture"><div class="demo-camera"><iframe id="guided-app" title="Interactive Atlas prototype" tabindex="-1"></iframe><div class="demo-focus" hidden aria-hidden="true"></div><div class="demo-touch" hidden aria-hidden="true"></div></div></div><span class="closeup-label" aria-hidden="true">Closer look</span></div></div>`;
       $('#replay').onclick = () => {
         index = -1;
         show(next);

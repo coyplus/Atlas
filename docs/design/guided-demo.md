@@ -25,13 +25,15 @@ Visual and component updates therefore flow through automatically on the next de
 
 The first trial treats `a-familiar-start`, `personal-numbers` and `time-travel`. The other scenes retain their existing choreography. Customer/tab identity is visible across all product scenes, including manual takeover.
 
-- A translucent touch disc signals an actual customer action: press, scroll or timeline drag. A quiet teal outline means “notice this”; it does not imply a tap, especially when the Companion responds proactively.
+- A translucent touch disc signals an actual customer action: press, scroll or timeline drag. A soft, feathered spotlight gently dims the surroundings to direct attention. It replaces the early teal outline, which looked too much like product UI. Close-ups use magnification alone. There is no border or coloured halo around the target; it does not imply a tap, especially when the Companion responds proactively.
 - Alex and Sam appear briefly side by side, each named and contextualised, before the demonstration stays with Sam. The comparison is a second fresh, inert instance of the same prototype, not a screenshot or another implementation.
 - Personal numbers starts at Now, scrolls to Add a number, opens the real gallery, enlarges the suggested number, adds it through the real button, and returns to the resulting Now widget. The suggestion uses a wider editorial detail window so magnification does not crop its text horizontally.
 - Time Travel pauses on today, indicates the timeline, visibly drags through two future points, and separately directs attention to the Companion response. A final detail view brings the projected age and net worth closer before returning to the whole phone.
-- Three short journey labels show where the audience is. Holds vary by meaning and reading load; the endpoint remains until Next. Replay starts fresh. Take control removes the comparison, touch cues, outline and magnification immediately.
+- Three short journey labels show where the audience is. Holds vary by meaning and reading load; the endpoint remains until Next. Replay starts fresh. Take control removes the comparison, touch cues, spotlight and magnification immediately.
 
 `src/demo/direction.ts` owns these presentation-only cues outside the app iframe. Targets use real element geometry; the app remains the single source of product UI. Scripted delays and camera movement respect pause, cancellation and reduced-motion preferences. Reduced motion removes the camera, scroll and timeline tweening while retaining the resulting view and presenter pacing.
+
+Every product scene now has a non-interactive playback indicator outside the phone: upcoming steps are dots, the active step expands into a pill and fills during its authored motion and reading hold. Completed steps remain dark. It follows the runner, not an independent timer: loading stalls it, Pause freezes it, Replay resets it, and it reaches completion only after the final expected state is present. Taking control hides the indicator. It represents steps in the current demonstration, separately from the existing deck progress line. It is exposed as a labelled progressbar to assistive technology, with no keyboard focus or scrubbing behaviour.
 
 This is a trial of the visual language, not a decision to apply every treatment to every scene. Review audience comprehension and presenter timing before extending it.
 

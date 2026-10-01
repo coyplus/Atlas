@@ -9,9 +9,13 @@ export class SceneRunner {
   readonly direction: Direction;
   private person = '';
   private tab = '';
+  private stepIndex = 0;
+  private stepElapsed = 0;
+  private stepDuration = 1;
   constructor(
     readonly frame: HTMLIFrameElement,
     readonly report: (text: string) => void,
+    readonly progress: (step: number, fraction: number) => void = () => {},
   ) {
     this.direction = new Direction(this);
   }
@@ -29,14 +33,18 @@ export class SceneRunner {
   check() {
     if (this.abort.signal.aborted) throw new DOMException('Scene cancelled', 'AbortError');
   }
-  async delay(ms: number) {
+  async delay(ms: number, tick?: (fraction: number) => void) {
     let remaining = ms,
       last = performance.now();
     while (remaining > 0) {
       this.check();
       await new Promise<void>((resolve) => setTimeout(resolve, 30));
+      this.check();
       const now = performance.now();
-      if (!this.paused && !document.hidden) remaining -= Math.min(now - last, 100);
+      if (!this.paused && !document.hidden) {
+        remaining -= Math.min(now - last, 100);
+        tick?.(Math.min(1, 1 - remaining / ms));
+      }
       last = now;
     }
     this.check();
@@ -58,6 +66,7 @@ export class SceneRunner {
     return this.doc.querySelector<HTMLElement>(selector)!;
   }
   async animate(duration: number, draw: (t: number) => void) {
+    const start = this.stepElapsed;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const fast = !!window.__ATLAS_TEST__;
     const frames = reduced || fast ? 1 : Math.ceil(duration / 30);
@@ -65,10 +74,17 @@ export class SceneRunner {
       await this.delay(frames === 1 ? 1 : 30);
       const t = i / frames;
       draw(t * t * (3 - 2 * t));
+      this.advance(start + duration * t);
     }
   }
+  private advance(elapsed: number) {
+    this.stepElapsed = elapsed;
+    // Never announce a completed step until its expected UI state has arrived.
+    this.progress(this.stepIndex, Math.min(0.99, elapsed / this.stepDuration));
+  }
   async hold(ms: number) {
-    await this.delay(window.__ATLAS_TEST__ ? 30 : ms);
+    const start = this.stepElapsed;
+    await this.delay(window.__ATLAS_TEST__ ? 30 : ms, (t) => this.advance(start + ms * t));
   }
   async step(s: Step) {
     await this.delay(1);
@@ -163,7 +179,21 @@ export class SceneRunner {
     this.tab = scene.tab;
     this.direction.identity(this.person, this.tab);
     await this.ready(() => this.app?.atlas && this.doc.querySelector('#content'), 'the prototype');
-    for (const s of scene.steps) await this.step(s);
+    for (const [i, s] of scene.steps.entries()) {
+      this.stepIndex = i;
+      this.stepElapsed = 0;
+      // Authored motion and reading holds; unknown loading time deliberately stalls progress.
+      this.stepDuration =
+        (s.hold ?? 2000) +
+        (s.wide ? 1000 : 0) +
+        (s.focus ? 1000 : 0) +
+        (s.tap ? 1500 : 0) +
+        (s.scroll ? (s.gesture ? 2450 : 1300) : 0) +
+        (s.time !== undefined ? (s.gesture ? 4200 : 1900) : 0);
+      this.progress(i, 0);
+      await this.step(s);
+    }
     await this.element(scene.end);
+    this.progress(scene.steps.length - 1, 1);
   }
 }

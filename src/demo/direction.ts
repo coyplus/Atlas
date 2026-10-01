@@ -6,13 +6,13 @@ export class Direction {
   readonly slot: HTMLElement;
   readonly lens: HTMLElement;
   readonly touch: HTMLElement;
-  readonly outline: HTMLElement;
+  readonly spotlight: HTMLElement;
   constructor(readonly runner: SceneRunner) {
     this.device = runner.frame.closest<HTMLElement>('#guided-device')!;
     this.slot = this.device.parentElement!;
     this.lens = this.device.querySelector<HTMLElement>('.demo-camera')!;
     this.touch = this.device.querySelector<HTMLElement>('.demo-touch')!;
-    this.outline = this.device.querySelector<HTMLElement>('.demo-focus')!;
+    this.spotlight = this.device.querySelector<HTMLElement>('.demo-focus')!;
   }
   identity(person: string, tab: string) {
     const name = person.charAt(0).toUpperCase() + person.slice(1);
@@ -40,7 +40,7 @@ export class Direction {
   }
   clear() {
     this.touch.hidden = true;
-    this.outline.hidden = true;
+    this.spotlight.hidden = true;
   }
   point(x: number, y: number, pressed = false) {
     this.touch.hidden = false;
@@ -61,7 +61,7 @@ export class Direction {
       (el as HTMLButtonElement).disabled
     )
       throw new Error('Tap target is not available: ' + selector);
-    this.outline.hidden = true;
+    this.spotlight.hidden = true;
     this.point(r.left + r.width / 2, r.top + r.height / 2);
     await this.runner.hold(1000);
     this.touch.dataset.pressed = 'true';
@@ -74,15 +74,20 @@ export class Direction {
     const el = await this.runner.element(selector),
       r = el.getBoundingClientRect();
     await this.zoom(scale, r);
-    const x = Math.max(8, r.left - 5),
-      y = Math.max(8, r.top - 5);
-    Object.assign(this.outline.style, {
+    // Magnification already isolates the detail; avoid adding a vignette to it.
+    if (scale > 1) {
+      this.spotlight.hidden = true;
+      return;
+    }
+    const x = Math.max(8, r.left - 14),
+      y = Math.max(8, r.top - 14);
+    Object.assign(this.spotlight.style, {
       left: x + 'px',
       top: y + 'px',
-      width: Math.min(382 - x, r.width + 10) + 'px',
-      height: Math.min(836 - y, r.height + 10) + 'px',
+      width: Math.min(382 - x, r.width + 28) + 'px',
+      height: Math.min(836 - y, r.height + 28) + 'px',
     });
-    this.outline.hidden = false;
+    this.spotlight.hidden = false;
   }
   async zoom(k: number, r?: DOMRect) {
     const from = { ...this.camera };

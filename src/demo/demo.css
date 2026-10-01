@@ -381,9 +381,10 @@
 .demo-focus {
   position: absolute;
   z-index: 4;
-  border: 2px solid #4d8590;
-  border-radius: 12px;
-  box-shadow: 0 0 0 4px #ffffffaa;
+  border: 0;
+  border-radius: 30px;
+  box-shadow: 0 0 0 1000px rgb(20 28 27 / 28%);
+  filter: blur(12px);
   pointer-events: none;
 }
 .closeup-label {
@@ -488,4 +489,68 @@
 }
 #guided-device[data-closeup='true']:before {
   border-radius: 21px;
+}
+
+/* A soft editorial spotlight, without adding borders to the product. */
+.demo-focus:not([hidden]) {
+  animation: spotlight-in 550ms ease both;
+}
+@keyframes spotlight-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#demo-stage[data-status='paused'] .demo-focus {
+  animation-play-state: paused;
+}
+.scene-tools {
+  align-items: center;
+}
+#scene-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 24px;
+  background: #eceeec;
+  pointer-events: none;
+  user-select: none;
+}
+#scene-progress[hidden] {
+  display: none;
+}
+.animation-mark {
+  display: block;
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 8px;
+  background: #b9bfbc;
+  overflow: hidden;
+  transition: width 240ms ease;
+}
+.animation-mark[data-state='current'] {
+  width: 44px;
+}
+.animation-mark > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #252b28;
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo-focus:not([hidden]) {
+    animation: none;
+  }
+  .animation-mark {
+    transition: none;
+  }
 }
