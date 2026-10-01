@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f7f8f7" />
+    <title>Atlas · Guided presentation</title>
+    <link rel="icon" href="/app-icon.svg" />
+  </head>
+  <body data-version="narrative">
+    <header class="deck-header">
+      <a class="deck-brand" href="/demo/" aria-label="Atlas guided presentation"
+        ><svg viewBox="0 0 60 30" aria-hidden="true">
+          <path fill="#db0011" d="M0 15 15 0h30l15 15-15 15H15Z" />
+          <path fill="white" d="m15 0 15 15L45 0v30L30 15 15 30Z" /></svg
+        ><b>HSBC</b><span>Atlas</span></a
+      >
+      <div class="guided-header">
+        <span>Guided presentation</span
+        ><a href="/presentation/?version=narrative" target="_blank" rel="noopener">Slides only ↗</a
+        ><a href="/?p=sam&tab=now&theme=vanilla" target="_blank" rel="noopener">Open prototype ↗</a>
+      </div>
+    </header>
+    <main id="deck" aria-label="Atlas guided presentation"></main>
+    <footer class="deck-controls">
+      <button id="contents" aria-label="Choose a chapter or slide">
+        ☷ <span id="counter"></span>
+      </button>
+      <div class="deck-progress" aria-hidden="true"><span></span></div>
+      <button id="previous" aria-label="Previous slide">←</button
+      ><button id="next" aria-label="Next slide">→</button>
+    </footer>
+    <div id="scroll-cue" hidden aria-hidden="true">Scroll for more ↓</div>
+    <dialog id="slide-menu" aria-labelledby="menu-title">
+      <header>
+        <h2 id="menu-title">The story and the experience</h2>
+        <button id="menu-close" aria-label="Close menu">×</button>
+      </header>
+      <nav aria-label="Slides and scenes"></nav>
+    </dialog>
+    <script type="module" src="/src/demo/deck.ts"></script>
+  </body>
+</html>

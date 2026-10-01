@@ -1,0 +1,284 @@
+.guided-header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 14px;
+  color: #60696b;
+}
+.guided-header a {
+  color: inherit;
+  text-decoration: none;
+}
+.guided-header a:hover {
+  color: #db0011;
+}
+.guided-header > span {
+  border-right: 1px solid #d7dcdd;
+  padding-right: 28px;
+}
+.guided-scene {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vw;
+  padding: 20px 5vw 24px !important;
+}
+.guided-scene[hidden] {
+  display: none;
+}
+.guided-copy {
+  align-self: center;
+  max-width: 600px;
+}
+.guided-copy h1 {
+  font-size: clamp(40px, 4.3vw, 78px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin: 24px 0 28px;
+}
+.guided-description {
+  font-size: clamp(19px, 1.7vw, 27px);
+  line-height: 1.5;
+  color: #60686b;
+  max-width: 550px;
+}
+.scene-caption {
+  margin-top: 44px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 42px;
+  font-size: 14px;
+  color: #53645f;
+}
+.scene-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #4d8590;
+}
+.scene-tools {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.scene-tools button,
+.guided-recap button,
+.guided-closing button {
+  background: #fff;
+  border: 1px solid #d6ddda;
+  border-radius: 24px;
+  padding: 11px 18px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  color: #29322f;
+}
+.scene-tools button:hover {
+  background: #edf1ef;
+}
+.scene-tools button:disabled {
+  opacity: 0.4;
+  cursor: wait;
+}
+#scene-status {
+  font-size: 12px;
+  color: #626d68;
+  margin: 14px 0 0;
+  min-height: 20px;
+}
+.scene-footnote {
+  font-size: 11px;
+  color: #8a908d;
+  margin-top: 32px;
+}
+.scene-tools [hidden] {
+  display: none;
+}
+#device-slot {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 55%, #e5eceb 0, transparent 68%);
+}
+#guided-device {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 406px;
+  height: 860px;
+  padding: 8px;
+  background: #232726;
+  border-radius: 49px;
+  box-shadow: 0 30px 55px -25px #223c3b66;
+  transform-origin: center;
+  overflow: hidden;
+}
+#guided-device:before {
+  content: 'Preparing Atlas…';
+  position: absolute;
+  inset: 8px;
+  border-radius: 41px;
+  background: #f4f6f5;
+  display: grid;
+  place-items: center;
+  color: #687572;
+  font-size: 15px;
+}
+#guided-app {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  border: 0;
+  border-radius: 41px;
+  opacity: 0;
+  display: block;
+  background: #f4f6f5;
+}
+#guided-device.is-loaded #guided-app {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+#guided-app[inert] {
+  pointer-events: none;
+}
+.guided-recap,
+.guided-closing {
+  grid-column: 1/-1;
+  align-self: center;
+  max-width: 1200px;
+}
+.guided-recap h1,
+.guided-closing h1 {
+  font-weight: 300;
+  font-size: clamp(44px, 6vw, 94px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin: 22px 0 32px;
+}
+.guided-recap em,
+.guided-closing em {
+  font-style: normal;
+  color: #db0011;
+}
+.guided-recap > p,
+.guided-closing > p {
+  font-size: clamp(18px, 1.8vw, 28px);
+  line-height: 1.5;
+  color: #626a6b;
+}
+.recap-tabs {
+  display: flex;
+  gap: 6vw;
+  margin: 40px 0;
+}
+.recap-tabs > span {
+  font-size: 40px;
+  font-weight: 300;
+  border-top: 2px solid #4d8590;
+  padding-top: 16px;
+  min-width: 180px;
+}
+.recap-tabs > span:nth-child(2) {
+  border-color: #8e7fa6;
+}
+.recap-tabs small {
+  display: block;
+  font-size: 16px;
+  color: #6a7274;
+  margin-top: 12px;
+}
+.guided-recap .recap-memory {
+  font-size: 20px;
+}
+.recap-next {
+  font-size: 13px;
+  color: #777;
+  margin-left: 20px;
+}
+.guided-closing a {
+  font-size: 15px;
+  margin-left: 22px;
+  color: inherit;
+}
+.guided-scene .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+.deck-controls button {
+  font-size: 24px;
+}
+#counter {
+  font-size: 15px;
+  margin-left: 8px;
+}
+.guided-scene button:focus-visible {
+  outline: 2px solid #db0011;
+  outline-offset: 4px;
+}
+@media (max-width: 800px) {
+  .guided-header > span,
+  .guided-header > a:first-of-type {
+    display: none;
+  }
+  .guided-header {
+    font-size: 12px;
+    gap: 10px;
+  }
+  .guided-scene {
+    height: auto;
+    min-height: 100%;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px 24px !important;
+  }
+  .guided-copy h1 {
+    font-size: 40px;
+    margin: 15px 0;
+  }
+  .guided-description {
+    font-size: 18px;
+  }
+  .scene-caption {
+    margin-top: 18px;
+  }
+  .scene-footnote {
+    display: none;
+  }
+  #device-slot {
+    height: 660px;
+    min-height: 500px;
+  }
+  .recap-tabs {
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+  .recap-tabs > span {
+    font-size: 30px;
+    min-width: 140px;
+  }
+  .guided-recap h1,
+  .guided-closing h1 {
+    font-size: 46px;
+  }
+  .recap-next {
+    display: block;
+    margin: 16px 0;
+  }
+  .scene-tools {
+    margin-top: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #guided-app {
+    transition: none !important;
+  }
+}
+
+#deck:focus {
+  outline: none;
+}

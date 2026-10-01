@@ -60,6 +60,15 @@
           "value": "no-cache"
         }
       ]
+    },
+    {
+      "source": "/demo/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
     }
   ],
   "installCommand": "npm ci"

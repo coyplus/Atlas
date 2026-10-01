@@ -1,3 +1,4 @@
+import { guidedDemo } from './demo-mode';
 export interface StoredSession {
   schema: 1;
   scenarioVersion: string;
@@ -16,6 +17,7 @@ async function db() {
   });
 }
 export async function loadSession(version: string): Promise<unknown | null> {
+  if (guidedDemo) return null;
   try {
     const database = await db();
     return await new Promise((resolve) => {
@@ -41,10 +43,12 @@ export async function loadSession(version: string): Promise<unknown | null> {
 }
 let pending: ReturnType<typeof setTimeout> | undefined;
 export function scheduleSave(state: unknown, version: string) {
+  if (guidedDemo) return;
   clearTimeout(pending);
   pending = setTimeout(() => void saveSession(state, version), 180);
 }
 export async function saveSession(state: unknown, version: string) {
+  if (guidedDemo) return;
   try {
     const copy = JSON.parse(JSON.stringify(state));
     const database = await db();

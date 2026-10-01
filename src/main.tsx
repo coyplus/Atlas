@@ -1,3 +1,5 @@
+import { guidedDemo } from './platform/demo-mode';
+import './demo/embedded.css';
 import { useEffect, useState, Component, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { materialIcons, materialViewBoxes } from './design-system/icons.mjs';
@@ -307,7 +309,7 @@ function App() {
           ? query.get('theme')!
           : 'vanilla';
         document.body.dataset.mode =
-          query.get('mode') ||
+          (guidedDemo ? 'guided' : query.get('mode')) ||
           (location.pathname.includes('workbench')
             ? 'workbench'
             : location.pathname.includes('blueprint')
@@ -326,7 +328,7 @@ function App() {
         window.ATLAS_BANK_LOGOS = media.bankLogos;
         window.ATLAS_AUDIO = media.audio;
         window.ATLAS_VERSION = version.version;
-        if (!window.__ATLAS_TEST__) {
+        if (!guidedDemo && !window.__ATLAS_TEST__) {
           const saved = await loadSession(version.version);
           if (saved && typeof saved === 'object' && 'people' in saved)
             window.ATLAS_RESTORED = saved;
@@ -336,13 +338,14 @@ function App() {
           history.replaceState(null, '', location.pathname + '?' + query.toString());
         await import('./app/runtime.mjs');
         const nav = await import('./platform/navigation');
-        nav.installNavigation();
+        if (!guidedDemo) nav.installNavigation();
         installViewport();
         installHaptics();
         syncThemeChrome();
         window.addEventListener('atlas:change', ((e: CustomEvent) => {
           syncThemeChrome();
-          if (!window.__ATLAS_TEST__) scheduleSave(e.detail.state, window.ATLAS_VERSION);
+          if (!guidedDemo && !window.__ATLAS_TEST__)
+            scheduleSave(e.detail.state, window.ATLAS_VERSION);
         }) as EventListener);
         document.addEventListener('click', (e) => {
           if ((e.target as Element).closest('[data-demo-menu]')) setMenu(true);
@@ -353,11 +356,12 @@ function App() {
           if (e.key === 'Enter' && (e.target as Element).matches('[data-demo-menu]')) setMenu(true);
         });
         document.addEventListener('visibilitychange', () => {
-          if (document.hidden && !window.__ATLAS_TEST__)
+          if (document.hidden && !guidedDemo && !window.__ATLAS_TEST__)
             void saveSession(window.atlas.getState(), window.ATLAS_VERSION);
         });
         setStatus('ready');
         if (
+          !guidedDemo &&
           !window.__ATLAS_TEST__ &&
           document.body.dataset.mode === 'prototype' &&
           matchMedia('(max-width: 730px), (hover: none) and (pointer: coarse)').matches
@@ -368,7 +372,12 @@ function App() {
           } catch {}
           if (!seen) setWelcome('initial');
         }
-        if (import.meta.env.PROD && !window.__ATLAS_TEST__ && 'serviceWorker' in navigator)
+        if (
+          import.meta.env.PROD &&
+          !guidedDemo &&
+          !window.__ATLAS_TEST__ &&
+          'serviceWorker' in navigator
+        )
           void installPwa((apply) => setUpdate(() => apply)).catch(console.warn);
       } catch (e) {
         console.error(e);

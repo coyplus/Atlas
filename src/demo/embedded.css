@@ -1,0 +1,26 @@
+body[data-mode='guided'] .scenario-rail,
+body[data-mode='guided'] .demo-caption,
+body[data-mode='guided'] #workbench-panel {
+  display: none !important;
+}
+body[data-mode='guided'] {
+  overscroll-behavior: none;
+}
+body[data-mode='guided'] .phone {
+  box-shadow: none !important;
+}
+body[data-mode='guided'] [data-demo-menu] {
+  pointer-events: none;
+}
+
+body[data-mode='guided'] .statusbar {
+  display: flex !important;
+  flex-shrink: 0;
+}
+body[data-mode='guided'] .home-indicator {
+  display: block !important;
+  flex-shrink: 0;
+}
+body[data-mode='guided'] .scenario-switch {
+  display: none !important;
+}

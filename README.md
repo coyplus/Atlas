@@ -24,6 +24,8 @@ Open **http://localhost:4174/?p=jordan**. On this Mac, `Start Atlas.command` run
 
 On mobile, choose a scenario at the welcome screen or tap the current name in the header to switch. Tap the HSBC logo for art direction, optional haptics, reset and workbench access. Desktop keeps the presentation frame; touch devices use the full viewport. Reload preserves local demo edits where IndexedDB is available; **Reset** restores the selected scenario.
 
+For a presenter-controlled walkthrough, open **/demo/**. It combines the 15 Narrative slides with automatic journeys through the real prototype. [Controls and maintenance](docs/design/guided-demo.md). The original presentation and interactive prototype remain available.
+
 ## What moved
 
 - All four personas, three tabs and three art directions.

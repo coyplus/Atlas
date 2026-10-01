@@ -8,7 +8,12 @@ export default defineConfig({
     target: 'es2022',
     sourcemap: true,
     rollupOptions: {
-      input: { app: 'index.html', presentation: 'presentation/index.html' },
+      input: {
+        app: 'index.html',
+        presentation: 'presentation/index.html',
+        demo: 'demo/index.html',
+        guidedPrototype: 'demo/prototype.html',
+      },
       output: {
         manualChunks: (id: string) => (id.includes('node_modules') ? 'vendor' : undefined),
       },

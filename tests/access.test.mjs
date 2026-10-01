@@ -6,7 +6,14 @@ const pw = 'test-password-only',
   secret = 'test-secret-only';
 const req = (path, options = {}) => new Request(origin + path, options);
 test('all entry points and assets require access; absent configuration fails closed', async () => {
-  for (const path of ['/', '/presentation/', '/assets/demo.js', '/scenarios.json'])
+  for (const path of [
+    '/',
+    '/presentation/',
+    '/demo/',
+    '/demo/prototype.html',
+    '/assets/demo.js',
+    '/scenarios.json',
+  ])
     assert.ok(await access(req(path), pw, secret));
   assert.equal((await access(req('/'), '', secret)).status, 503);
   const page = await access(
