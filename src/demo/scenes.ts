@@ -1,4 +1,12 @@
 export type Step = {
+  beat?: number;
+  tap?: string;
+  focus?: string;
+  zoom?: number;
+  wide?: boolean;
+  gesture?: boolean;
+  compare?: boolean;
+  endCompare?: boolean;
   fill?: { selector: string; value: string };
   check?: string;
   close?: boolean;
@@ -24,6 +32,7 @@ export type Scene = {
   steps: Step[];
   end: string;
   optional?: boolean;
+  beats?: string[];
 };
 const action = (value: string, wait: string, label: string, hold = 2200): Step => ({
   action: value,
@@ -45,16 +54,30 @@ export const scenes: Scene[] = [
     copy: 'Start with everyday banking. As priorities emerge, the experience becomes more personal.',
     person: 'alex',
     tab: 'now',
+    beats: ['A familiar start', 'Different lives, one system', 'Room to make it yours'],
     steps: [
-      { wait: '.now-page', hold: 3500, label: 'Alex · a familiar current-account view' },
       {
+        beat: 0,
+        wait: '.now-page',
+        hold: 6500,
+        label: 'Alex starts with familiar everyday banking.',
+      },
+      {
+        beat: 1,
+        compare: true,
         person: 'sam',
         tab: 'now',
         wait: '.now-page',
-        hold: 2800,
-        label: 'Sam · a home screen shaped around his life',
+        hold: 7500,
+        label: 'Two customers. Different stages of the relationship.',
       },
-      scroll('.module-grid', 'The numbers that matter to Sam'),
+      { beat: 2, endCompare: true, hold: 2200, label: 'Now let’s stay with Sam.' },
+      {
+        scroll: '.module-grid',
+        gesture: true,
+        hold: 6000,
+        label: 'His home screen reflects his priorities.',
+      },
     ],
     end: '.module-grid',
   },
@@ -79,11 +102,50 @@ export const scenes: Scene[] = [
     copy: 'Customers choose what matters. AI offers a useful starting point when they are not sure what to add.',
     person: 'sam',
     tab: 'now',
+    beats: ['Find the starting point', 'Get a useful suggestion', 'Make it yours'],
     steps: [
-      scroll('.module-grid', 'A view of personal priorities'),
-      action('gallery', '.sheet', 'Suggestions help the customer discover useful numbers'),
+      { beat: 0, wait: '.now-page', hold: 3200, label: 'Sam’s numbers, on his Now screen.' },
+      {
+        scroll: '[data-action="gallery"]',
+        gesture: true,
+        hold: 2500,
+        label: 'There is room to add something useful.',
+      },
+      { focus: '[data-action="gallery"]', hold: 1800, label: 'Start with “Add a number”.' },
+      {
+        tap: '[data-action="gallery"]',
+        wait: '.number-suggestion',
+        hold: 2200,
+        label: 'Open the suggestions from the home screen.',
+      },
+      {
+        beat: 1,
+        focus: '.number-suggestion',
+        zoom: 1.28,
+        hold: 7500,
+        label: 'AI suggests a useful view—and explains why.',
+      },
+      { wide: true, hold: 1200, label: 'Sam chooses what belongs on his screen.' },
+      {
+        tap: '[data-action="add-suggestion:safetydays/W"]',
+        wait: '[data-module="safetydays"]',
+        hold: 1400,
+        label: 'Add Safety net to his numbers.',
+      },
+      {
+        beat: 2,
+        scroll: '[data-module="safetydays"]',
+        gesture: true,
+        hold: 1600,
+        label: 'Back on Now, the choice becomes part of his everyday view.',
+      },
+      {
+        focus: '[data-module="safetydays"]',
+        hold: 7000,
+        label: 'His safety net, now visible at a glance.',
+      },
     ],
-    end: '.sheet',
+    end: '[data-module="safetydays"]',
   },
   {
     id: 'a-personal-agreement',
@@ -299,15 +361,40 @@ export const scenes: Scene[] = [
     copy: 'Seeing a possible future gives today’s choices more meaning. The picture and the Companion respond together.',
     person: 'sam',
     tab: 'future',
+    beats: ['Start with today', 'Explore a possible future', 'Make today’s choices meaningful'],
     steps: [
-      { wait: '#time-slider', hold: 1800, label: 'Begin with the current picture' },
-      { time: 84, wait: '#time-slider', hold: 3200, label: 'Explore life at forty' },
+      { beat: 0, wait: '#time-slider', hold: 5000, label: 'Sam’s current picture. Age 33.' },
+      {
+        focus: '.future-time-track',
+        hold: 2200,
+        label: 'The timeline is where he explores what comes next.',
+      },
+      {
+        beat: 1,
+        time: 84,
+        gesture: true,
+        hold: 5500,
+        label: 'Move seven years ahead. See the plan at forty.',
+      },
+      {
+        focus: '#support-dock',
+        hold: 6000,
+        label: 'The Companion responds to the future he is looking at.',
+      },
       {
         time: 168,
-        wait: '#time-slider',
-        hold: 3000,
-        label: 'Look further ahead · illustrative projections',
+        gesture: true,
+        hold: 5500,
+        label: 'Look further ahead. The same plan, at forty-seven.',
       },
+      {
+        beat: 2,
+        focus: '.fg-moment',
+        zoom: 1.2,
+        hold: 6500,
+        label: 'A possible future gives today’s decisions more meaning.',
+      },
+      { wide: true, hold: 2000, label: 'Illustrative projections. Sam remains in control.' },
     ],
     end: '#time-slider',
   },

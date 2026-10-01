@@ -1,3 +1,4 @@
+import { Direction } from './direction';
 import type { Scene, Step } from './scenes';
 import type { DemoApi } from '../app/contracts';
 type AppWindow = Window & { atlas?: DemoApi };
@@ -5,10 +6,15 @@ type AppWindow = Window & { atlas?: DemoApi };
 export class SceneRunner {
   readonly abort = new AbortController();
   paused = false;
+  readonly direction: Direction;
+  private person = '';
+  private tab = '';
   constructor(
     readonly frame: HTMLIFrameElement,
     readonly report: (text: string) => void,
-  ) {}
+  ) {
+    this.direction = new Direction(this);
+  }
   get app() {
     return this.frame.contentWindow as AppWindow;
   }
@@ -17,6 +23,7 @@ export class SceneRunner {
   }
   stop() {
     this.abort.abort();
+    this.direction.reset();
     this.doc?.querySelectorAll('audio,video').forEach((el) => (el as HTMLMediaElement).pause());
   }
   check() {
@@ -60,10 +67,24 @@ export class SceneRunner {
       draw(t * t * (3 - 2 * t));
     }
   }
+  async hold(ms: number) {
+    await this.delay(window.__ATLAS_TEST__ ? 30 : ms);
+  }
   async step(s: Step) {
     await this.delay(1);
+    this.direction.clear();
+    this.direction.beat(s.beat);
     this.report(s.label);
-    if (s.person) this.app.atlas!.go(s.person, s.tab);
+    if (s.compare) await this.direction.compare();
+    if (s.endCompare) this.direction.endCompare();
+    if (s.wide) await this.direction.zoom(1);
+    if (s.person) {
+      this.person = s.person;
+      this.tab = s.tab || this.tab;
+      this.app.atlas!.go(s.person, s.tab);
+      this.direction.identity(this.person, this.tab);
+    }
+    if (s.tap) await this.direction.tap(s.tap);
     if (s.close) (this.app.atlas!.closeAll as () => void)();
     if (s.action) this.app.atlas!.dispatch(s.action);
     if (s.fill) {
@@ -103,21 +124,44 @@ export class SceneRunner {
           start + target.getBoundingClientRect().top - area.getBoundingClientRect().top - inset,
         ),
       );
-      await this.animate(1300, (t) => {
+      if (s.gesture) {
+        this.direction.point(338, 590, true);
+        await this.hold(650);
+      }
+      await this.animate(s.gesture ? 1800 : 1300, (t) => {
+        if (s.gesture) this.direction.point(338, 590 - 180 * t, true);
         area.scrollTop = start + (end - start) * t;
       });
     }
     if (s.time !== undefined) {
       const start = Number(((await this.element('#time-slider')) as HTMLInputElement).value);
       const end = s.time;
-      await this.animate(1900, (t) =>
-        (this.app.atlas!.setT as (m: number) => void)(Math.round(start + (end - start) * t)),
-      );
+      const track = (await this.element('#time-slider')).getBoundingClientRect();
+      const point = (value: number) =>
+        this.direction.point(
+          track.left + 19 + ((track.width - 38) * value) / 240,
+          track.top + track.height / 2,
+          true,
+        );
+      if (s.gesture) {
+        point(start);
+        await this.hold(1000);
+      }
+      await this.animate(s.gesture ? 3200 : 1900, (t) => {
+        const value = Math.round(start + (end - start) * t);
+        (this.app.atlas!.setT as (m: number) => void)(value);
+        if (s.gesture) point(value);
+      });
     }
+    this.direction.touch.hidden = true;
     if (s.wait) await this.element(s.wait);
-    await this.delay(window.__ATLAS_TEST__ ? 50 : (s.hold ?? 2000));
+    if (s.focus) await this.direction.focus(s.focus, s.zoom || 1);
+    await this.hold(s.hold ?? 2000);
   }
   async run(scene: Scene) {
+    this.person = scene.person;
+    this.tab = scene.tab;
+    this.direction.identity(this.person, this.tab);
     await this.ready(() => this.app?.atlas && this.doc.querySelector('#content'), 'the prototype');
     for (const s of scene.steps) await this.step(s);
     await this.element(scene.end);

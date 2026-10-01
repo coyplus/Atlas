@@ -121,15 +121,65 @@ test('customer memory requires permission and retains the customer words', async
   );
 });
 test('narrow view and reduced motion retain controls and the real prototype', async ({ page }) => {
+  test.setTimeout(60000);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/demo/#time-travel');
   await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready', {
-    timeout: 20000,
+    timeout: 40000,
   });
   await expect(page.frameLocator('#guided-app').locator('#time-slider')).toHaveValue('168');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await expect(page.locator('#scroll-cue')).toBeVisible();
   await page.getByRole('button', { name: 'Next slide', exact: true }).click();
   await expect(page).toHaveURL(/#goal-possibilities$/);
+});
+test('comparison makes the customer change explicit and takeover removes the comparison', async ({
+  page,
+}) => {
+  await page.goto('/demo/#a-familiar-start');
+  await expect(page.locator('#device-slot')).toHaveAttribute('data-comparing', 'true', {
+    timeout: 15000,
+  });
+  await page.getByRole('button', { name: 'Pause', exact: true }).click();
+  await expect(page.locator('#main-identity')).toContainText('Sam · Now');
+  await expect(page.locator('#compare-identity')).toContainText('Alex · Now');
+  await expect(page.locator('#compare-device iframe')).toHaveAttribute('inert', '');
+  await page.getByRole('button', { name: 'Take control', exact: true }).click();
+  await expect(page.locator('#compare-device')).toHaveCount(0);
+  await page.frameLocator('#guided-app').locator('[data-action="tab:you"]').click();
+  await expect(page.locator('#main-identity')).toContainText('Sam · You');
+});
+test('number journey shows its entry, a readable close-up and the actual added widget', async ({
+  page,
+}) => {
+  test.setTimeout(60000);
+  await page.goto('/demo/#personal-numbers');
+  await expect(page.locator('.demo-touch:not([hidden])')).toBeVisible({ timeout: 15000 });
+  await expect(page.frameLocator('#guided-app').locator('[data-action="gallery"]')).toBeVisible();
+  await expect(page.locator('#guided-device')).toHaveAttribute('data-closeup', 'true', {
+    timeout: 15000,
+  });
+  await expect(page.locator('.demo-focus:not([hidden])')).toBeVisible();
+  await page.getByRole('button', { name: 'Pause', exact: true }).click();
+  const bounds = await page.locator('.demo-aperture').boundingBox();
+  const widget = await page
+    .frameLocator('#guided-app')
+    .locator('.number-suggestion')
+    .first()
+    .boundingBox();
+  expect(widget!.x).toBeGreaterThanOrEqual(bounds!.x);
+  expect(widget!.x + widget!.width).toBeLessThanOrEqual(bounds!.x + bounds!.width + 1);
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready', {
+    timeout: 35000,
+  });
+  await expect(
+    page.frameLocator('#guided-app').locator('.now-page [data-module="safetydays"]'),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Replay', exact: false }).click();
+  await expect(page.frameLocator('#guided-app').locator('.now-page')).toBeVisible();
+  await expect(
+    page.frameLocator('#guided-app').locator('.now-page [data-module="safetydays"]'),
+  ).toHaveCount(0);
 });

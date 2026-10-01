@@ -95,8 +95,17 @@ function fit() {
   const slot = $('#device-slot'),
     device = $('#guided-device');
   if (!slot || !device) return;
-  const scale = Math.min(slot.clientWidth / 406, slot.clientHeight / 860, 1.25);
+  const comparing = slot.dataset.comparing === 'true';
+  const closeup = device.dataset.closeup === 'true';
+  const scale = Math.min(
+    (slot.clientWidth / (comparing ? 2 : 1) - 16) / (closeup ? 516 : 406),
+    (slot.clientHeight - 54) / (closeup ? 656 : 860),
+    1.25,
+  );
+  device.style.left = comparing ? '75%' : '50%';
   device.style.transform = `translate(-50%,-50%) scale(${scale})`;
+  const comparison = slot.querySelector<HTMLElement>('#compare-device');
+  if (comparison) comparison.style.transform = `translate(-50%,-50%) scale(${scale})`;
 }
 function takeControl() {
   if (!runner || mode === 'loading') return;
@@ -118,6 +127,10 @@ async function play(scene: Scene) {
       () => !!own.app?.atlas && !!own.doc?.querySelector('#content'),
       'the prototype',
     );
+    own.app.addEventListener('atlas:change', ((event: CustomEvent) => {
+      const state = event.detail.state;
+      own.direction.identity(state.person, state.tab);
+    }) as EventListener);
     own.doc.addEventListener('keydown', (e) => {
       if (
         (e.key === 'PageDown' || e.key === 'PageUp') &&
@@ -161,7 +174,7 @@ function show(target: number) {
     stage.hidden = false;
     document.body.dataset.theme = 'guided';
     if ('scene' in e) {
-      stage.innerHTML = `<div class="guided-copy"><p class="eyebrow">${escape(e.scene.chapter)}</p><h1>${escape(e.scene.title).replace('\n', '<br>')}</h1><p class="guided-description">${escape(e.scene.copy)}</p><div class="scene-caption"><span class="scene-dot"></span><p id="scene-step">Preparing the experience</p></div><div class="scene-tools"><button id="replay">↺ Replay</button><button id="pause-scene">Pause</button><button id="take-control">Take control</button></div><p id="scene-status" role="status" aria-live="polite"></p><p class="scene-footnote">Working prototype · illustrative scenarios</p></div><div id="device-slot"><div id="guided-device"><iframe id="guided-app" title="Interactive Atlas prototype" tabindex="-1"></iframe></div></div>`;
+      stage.innerHTML = `<div class="guided-copy"><p class="eyebrow">${escape(e.scene.chapter)}</p><h1>${escape(e.scene.title).replace('\n', '<br>')}</h1><p class="guided-description">${escape(e.scene.copy)}</p>${e.scene.beats ? `<ol class="scene-beats" aria-label="The journey">${e.scene.beats.map((beat, i) => `<li data-beat="${i}" data-active="false"><span>${String(i + 1).padStart(2, '0')}</span>${escape(beat)}</li>`).join('')}</ol>` : ''}<div class="scene-caption"><span class="scene-dot"></span><p id="scene-step">Preparing the experience</p></div><div class="scene-tools"><button id="replay">↺ Replay</button><button id="pause-scene">Pause</button><button id="take-control">Take control</button></div><p id="scene-status" role="status" aria-live="polite"></p><p class="scene-footnote">Working prototype · illustrative scenarios</p></div><div id="device-slot"><div class="device-identity" id="main-identity"><strong id="device-person"></strong><span id="device-context"></span></div><div id="guided-device"><div class="demo-aperture"><div class="demo-camera"><iframe id="guided-app" title="Interactive Atlas prototype" tabindex="-1"></iframe><div class="demo-focus" hidden aria-hidden="true"></div><div class="demo-touch" hidden aria-hidden="true"></div></div></div><span class="closeup-label" aria-hidden="true">Closer look</span></div></div>`;
       $('#replay').onclick = () => {
         index = -1;
         show(next);
@@ -172,6 +185,7 @@ function show(target: number) {
         runner.paused = !runner.paused;
         status(runner.paused ? 'paused' : 'playing');
       };
+      $('#device-slot').addEventListener('direction-layout', fit);
       resize = new ResizeObserver(fit);
       resize.observe($('#device-slot'));
       fit();
