@@ -75,3 +75,6 @@ Following the user-authorised fictional scenario revision, Investments leads as 
 
 ### Portfolio and groceries refinement · 5 October evening
 Sam’s portfolio is £20,693.55: Global shares £12,843.27, Bonds £5,218.46 and Multi-asset £2,631.82. The extra £693.55 is reallocated from existing long-term savings; no investment gain is invented. A labelled segmented bar shows the current mix. Credit Card is £483.72; Ella’s Pocket Money is £63.75, with the extra £3.75 reallocated from her next-chapter pot. Net worth is £97,516.28; holdings remain £98,000. Deliberate budgets, targets and instalments remain rounded. Family groceries is wide, showing the budget and three latest recorded grocery purchases rather than agreement conditions.
+
+### Grocery card correction · 5 October review
+Family groceries uses the existing **Tall (T)** half-width card, not Wide. Budget, spending and shared members occupy the upper portion; three latest purchases sit below a horizontal divider. Untouched previous starter layouts migrate from Wide to Tall; personalised layouts are preserved.

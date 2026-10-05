@@ -108,6 +108,33 @@ export function upgradeSession(value: unknown): unknown {
       samUI.quickActions = ['pay', 'transfer', 'checkin'];
     samUI.quickActionsVersion = 1;
   }
+  // Only migrate the untouched previous starter layout; preserve customised dashboards.
+  const samOrder = [
+    'investments',
+    'housepot',
+    'container-family-budget',
+    'holiday',
+    'efpot',
+    'goldenratio',
+    'container-ac-cc',
+    'container-ella-pocket',
+    'safetydays',
+    'points',
+    'activity',
+  ];
+  const samSizes: Record<string, string> = {
+    investments: 'F',
+    activity: 'W',
+    safetydays: 'W',
+    'container-family-budget': 'W',
+  };
+  if (
+    JSON.stringify(samUI.order) === JSON.stringify(samOrder) &&
+    Object.keys(samUI.sizes).length === Object.keys(samSizes).length &&
+    Object.entries(samSizes).every(([id, size]) => samUI.sizes[id] === size)
+  ) {
+    samUI.sizes['container-family-budget'] = 'T';
+  }
   const ui = state.people.alex.ui;
   const originalOrder = ['balance', 'dd', 'creditscore', 'activity'];
   const originalSizes: Record<string, string> = { balance: 'W', activity: 'W' };

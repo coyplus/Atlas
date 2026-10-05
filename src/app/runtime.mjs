@@ -1,3 +1,4 @@
+import { companionAvatar } from '../features/companion/identity.mjs';
 import { splitPortraitDock, installPortraitDock } from '../features/you/portrait-dock.mjs';
 import {
   updateGoalSession,
@@ -48,7 +49,7 @@ import { handle as command_future } from '../features/commands/future.mjs';
 import { handle as command_actions } from '../features/commands/actions.mjs';
 import { handle as command_accounts } from '../features/commands/accounts.mjs';
 import { handle as command_companion } from '../features/companion/commands.mjs';
-import { companionReply } from '../features/companion/model.mjs';
+import { companionReply, companionPreferences } from '../features/companion/model.mjs';
 import { handle as command_profile } from '../features/commands/profile.mjs';
 import {
   renderRegion,
@@ -359,7 +360,7 @@ function modalIdentity() {
       last?.role === 'human'
         ? last.author || (p.l1.customer.id === 'elena' ? 'priya' : 'maya')
         : 'ai';
-  return `<div class="conversation-identity">${agentAvatar(name)}<span><b>${name === 'ai' ? 'HSBC AI' : name === 'priya' ? 'Priya' : 'Maya'}</b><small>${name === 'ai' ? 'Your conversation' : name === 'priya' ? 'Relationship Manager' : 'Financial adviser'}</small></span></div>`;
+  return `<div class="conversation-identity">${name === 'ai' ? companionAvatar(companionPreferences(current(S)).style) : agentAvatar(name)}<span><b>${name === 'ai' ? 'HSBC AI' : name === 'priya' ? 'Priya' : 'Maya'}</b><small>${name === 'ai' ? 'Your conversation' : name === 'priya' ? 'Relationship Manager' : 'Financial adviser'}</small></span></div>`;
 }
 let primaryScroll = null;
 function syncPrimaryNavigation() {

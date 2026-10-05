@@ -81,7 +81,7 @@ export function createSession(dataset) {
     if (id === 'sam') {
       p.ui.sizes.investments = 'F';
       p.ui.sizes.safetydays = 'W';
-      p.ui.sizes['container-family-budget'] = 'W';
+      p.ui.sizes['container-family-budget'] = 'T';
     }
     if (id === 'elena') p.ui.sizes.familypot = 'W';
     people[id] = p;

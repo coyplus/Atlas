@@ -493,10 +493,10 @@ export function aiMessage(p, tab, month = 0) {
     };
   const lines = {
     alex: {
-      title: p.l1.behaviour.app.quizDone ? 'A good start, Alex' : 'Meet your money side',
+      title: p.l1.behaviour.app.quizDone ? 'A good start, Alex' : 'Your Money Portrait starts here',
       message: p.l1.behaviour.app.quizDone
         ? 'Your answers are in You. Choose the numbers you want to see here.'
-        : 'Three questions. A first glimpse of your Money Portrait.',
+        : 'Three questions to explore how you approach money.',
       action: p.l1.behaviour.app.quizDone ? 'gallery' : 'quiz',
       cta: p.l1.behaviour.app.quizDone ? 'Choose your numbers' : 'Discover my Money Portrait',
     },

@@ -103,7 +103,14 @@ See [NOW-TAB.md](NOW-TAB.md) for the page order and component contracts. Support
 
 The Accounts & pots detail recommends Open Banking through the compact AI card. Opening the conversation reveals the full explanation and Connect another bank action. After connecting, the message reflects the selected sample balances and offers to explore the combined picture. Bank selection, account-sharing consent and disconnection are guided journeys with header help. See ACCOUNTS-POTS.md.
 
-## Single-style messages · 5 October 2026
-The floating Companion uses one regular-weight text block, with no repeated heading/body. Existing explicit single-message observations are retained; other messages use their observation, while important messages retain both the issue and explanation in the same style. Audio announces the report and keeps direct playback. Human messages retain human identity and content.
+## Companion component family · 5 October 2026 review
 
-Everyday guidance keeps the organic Companion. Discoveries use a gently turning SVG sparkle; attention uses an exclamation and calm outline; audio uses play/pause. These states are supplementary: important information remains in text. Motion is disabled for reduced-motion preferences. Primary card actions, focused Future submission and the first Portrait entry use HSBC red with white text. The unrelated voice experiment remains separate.
+The previous body-only and message-type icon experiment is superseded following visual review. The existing organic persona avatars are the shared identity across floating cards, conversation headers, message authors and persona settings. Selecting a style changes the identity consistently. Human messages retain the person’s portrait; audio retains its circular play/pause control.
+
+- Expanded arrival cards: a concise semibold headline, supporting detail and one neutral secondary action. HSBC red is reserved for the established brand/audio accents and restrained attention treatment, not the Companion CTA.
+- Compact contextual cards: the same headline plus a short supporting preview as the customer scrolls. Existing deliberate single-thought observations in Future and portrait exploration remain single-thought; they are not expanded into repeated copy.
+- Attention: the issue is explicit in the headline, with the consequence and next step in supporting copy. The selected Companion avatar remains recognisable.
+- Conversation: the same selected organic avatar in the header and AI messages. The conversational style has room here; canned persona prefixes are omitted from floating-card copy.
+- Persona settings: the established four organic forms remain unchanged. Their breathing motion and reduced-motion handling are shared with the cards.
+
+The experimental signal module and its CSS were removed. The unrelated voice prototype is not part of this update.

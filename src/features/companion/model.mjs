@@ -149,7 +149,7 @@ export function personaliseSupport(p, s, context, base, catalogue) {
     },
   };
   if (prefs.style !== 'guide') {
-    m.message = companionReply(p, m.message);
+    // Cards stay concise; the fuller conversational style belongs in the dialogue.
     if (context.kind === 'module' && context.id === 'safespend' && safeAmount(p) !== null) {
       const amount = cash(safeAmount(p), true);
       const fact = `${amount} is the estimate after your recorded bills and commitments.`;
