@@ -13,17 +13,17 @@ test('You offers a portrait invitation and quiz grows an editable first impressi
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/?p=alex&tab=you&theme=vanilla');
   await expect(page.locator('.portrait-beginning')).toBeVisible();
-  await expect(page.locator('.you-more')).not.toHaveAttribute('open');
-  await expect(page.locator('.companion-entry')).not.toBeVisible();
+  await expect(page.locator('.you-more')).toHaveCount(0);
+  await expect(page.locator('.companion-entry')).toBeVisible();
   await page.locator('.portrait-beginning [data-action="quiz"]').click();
   for (let i = 0; i < 3; i++) await page.locator('[data-action="answer:0"]').click();
   await page.locator('[data-action="quiz-finish"]').click();
   await expect(page.locator('.money-portrait')).toHaveAttribute('data-portrait-stage', 'named');
   await expect(page.locator('.portrait-depth')).toHaveText('A first impression');
-  await page.locator('.portrait-link[data-action="portrait"]').click();
+
   await expect(page.locator('.portrait-detail')).toBeVisible();
-  await page.locator('[data-action="personality-confirm"]').click();
-  await page.locator('.you-more > summary').click();
+  await page.locator('.portrait-engagement-dock [data-action="personality-confirm"]').click();
+
   await expect(page.locator('.companion-entry')).toBeVisible();
   expect(errors).toEqual([]);
 });
@@ -78,12 +78,12 @@ test('Alex can start a savings habit without taking the portrait quiz', async ({
     const p = (window.atlas.getState() as any).people.alex;
     return { points: p.l1.rewards.points.balance, accounts: JSON.stringify(p.l1.accounts) };
   });
-  await hero.locator('[data-action="badge:little-often"]').click();
-  await expect(page.locator('.badge-detail')).toContainText('+100 Points on completion');
-  await page.locator('[data-action="badge-join:little-often"]').click();
-  await page.locator('[data-action="badge-log:little-often"]').click();
+  await hero.locator('[data-action="badge:growing-savings"]').click();
+  await expect(page.locator('.badge-detail')).toContainText('+200 Points on completion');
+  await page.locator('[data-action="badge-join:growing-savings"]').click();
+  await page.locator('[data-action="badge-log:growing-savings"]').click();
   await page.locator('#badge-confirm').check();
-  await page.locator('[data-action="badge-record:little-often"]').click();
+  await page.locator('[data-action="badge-record:growing-savings"]').click();
   await page.evaluate(() => window.atlas.dispatch('close'));
   await page.evaluate(() => window.atlas.dispatch('close'));
   await expect(hero).toHaveAttribute('data-challenge-status', 'active');
@@ -95,8 +95,8 @@ test('Alex can start a savings habit without taking the portrait quiz', async ({
       return { points: p.l1.rewards.points.balance, accounts: JSON.stringify(p.l1.accounts) };
     }),
   ).toEqual(before);
-  await hero.locator('[data-action="badge:little-often"]').click();
-  await page.locator('[data-action="badge-pause:little-often"]').click();
+  await hero.locator('[data-action="badge:growing-savings"]').click();
+  await page.locator('[data-action="badge-pause:growing-savings"]').click();
   await page.evaluate(() => window.atlas.dispatch('close'));
   await page.evaluate(() => window.atlas.dispatch('close'));
   await expect(hero).toHaveAttribute('data-challenge-status', 'paused');

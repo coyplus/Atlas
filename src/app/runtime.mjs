@@ -1,3 +1,4 @@
+import { splitPortraitDock, installPortraitDock } from '../features/you/portrait-dock.mjs';
 import {
   updateGoalSession,
   goalSessionTitles,
@@ -393,6 +394,7 @@ function openJourney(title, body, header = {}) {
   return openModal(title, body, 'journey', header);
 }
 function openModal(title, body, surface = 'detail', header = {}) {
+  const portraitParts = splitPortraitDock(body);
   numberEditor?.cancel();
   const story = surface === 'story',
     continuing = S.modal === title,
@@ -449,8 +451,9 @@ function openModal(title, body, surface = 'detail', header = {}) {
   setModalOwnership(true);
   renderRegion(
     document.querySelector('#overlay'),
-    `<div class="scrim" data-action="close"></div><section ${story ? `style="--story-image:url('${storyPlate(storyId)}')"` : ''} class="sheet ${vanilla && !story && !conversation && surface !== 'story-evidence' && surface !== 'secondary' ? 'level-two' : ''} ${story ? 'story-shell' : surface === 'story-evidence' ? 'story-evidence-shell' : surface === 'secondary' ? 'secondary-shell' : ''}" ${vanilla ? '' : 'role="dialog" aria-modal="true" aria-labelledby="dialog-title"'}>${screenHeader({ title, vanilla, surface, conversation, identity: conversation ? modalIdentity() : '', storyStep, ...header })}<div class="sheet-body">${body}</div></section>${(surface === 'story-evidence' || surface === 'secondary') && modalStack.at(-1) ? `<div class="story-underlay" inert aria-hidden="true">${modalStack.at(-1).html.replaceAll('dialog-title', 'story-parent-title')}</div>` : ''}`,
+    `<div class="scrim" data-action="close"></div><section ${story ? `style="--story-image:url('${storyPlate(storyId)}')"` : ''} class="sheet ${vanilla && !story && !conversation && surface !== 'story-evidence' && surface !== 'secondary' ? 'level-two' : ''} ${story ? 'story-shell' : surface === 'story-evidence' ? 'story-evidence-shell' : surface === 'secondary' ? 'secondary-shell' : ''}" ${vanilla ? '' : 'role="dialog" aria-modal="true" aria-labelledby="dialog-title"'}>${screenHeader({ title, vanilla, surface, conversation, identity: conversation ? modalIdentity() : '', storyStep, ...header })}<div class="sheet-body">${portraitParts.content}</div>${portraitParts.dock}</section>${(surface === 'story-evidence' || surface === 'secondary') && modalStack.at(-1) ? `<div class="story-underlay" inert aria-hidden="true">${modalStack.at(-1).html.replaceAll('dialog-title', 'story-parent-title')}</div>` : ''}`,
   );
+  installPortraitDock();
   // React retains the shared scroller between detail pages. A new destination
   // starts at the top; close() restores its parent's saved reading position.
   if (!continuing) document.querySelector('.sheet-body').scrollTop = 0;

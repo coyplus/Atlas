@@ -307,3 +307,191 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
 .phone .beginning-household {
   margin: 0 var(--page) 24px;
 }
+
+.phone .daily-beginning {
+  margin: 0 var(--page) 28px;
+  padding: 24px;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, #dcd5e7 28%, var(--surface));
+}
+.daily-beginning header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.daily-beginning header small {
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.daily-beginning-heading {
+  display: flex;
+  align-items: center;
+  margin: 22px 0 10px;
+}
+.phone .daily-beginning h2 {
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 1.12;
+  margin: 0;
+  flex: 1;
+}
+.daily-beginning-heading .checkin-art {
+  width: 90px;
+  height: 85px;
+}
+.phone .daily-beginning p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.daily-beginning-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin: 20px 0;
+}
+.daily-beginning-week > span {
+  text-align: center;
+}
+.daily-beginning-week svg {
+  width: 100%;
+  height: 34px;
+}
+.daily-beginning-week small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+}
+.daily-beginning > small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 12px;
+}
+.you-relationship-intro {
+  margin: 40px var(--page) 24px;
+}
+.phone .you-relationship-intro h2 {
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+.you-relationship-intro p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+.portrait-quiz header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.portrait-quiz header > span:last-child {
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--muted);
+}
+.portrait-quiz .quiz-art {
+  height: 150px;
+  display: grid;
+  place-items: center;
+  margin: 18px 0;
+}
+.portrait-quiz .quiz-art > svg {
+  max-width: 100%;
+  height: 100%;
+}
+.portrait-quiz .quiz-art-symbol > svg {
+  width: 120px;
+  height: 120px;
+}
+.phone .portrait-quiz h1 {
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: -0.9px;
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+.phone .portrait-quiz .quiz-quiet {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.phone .portrait-quiz .quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: var(--surface);
+  min-height: 70px;
+  font-size: 16px;
+  text-align: left;
+}
+.quiz-option > span:nth-child(2) {
+  flex: 1;
+}
+.quiz-option-symbol {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--viz-cash) 12%, transparent);
+}
+.portrait-quiz > small {
+  display: block;
+  margin: 22px 0 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.portrait-first-impression {
+  margin: 24px 0 36px;
+  padding: 24px;
+  background: color-mix(in srgb, var(--viz-cash) 8%, var(--surface));
+  border-radius: 24px;
+}
+.phone .portrait-first-impression h3 {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+}
+.portrait-first-impression p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.portrait-engagement-dock {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px 20px;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+.portrait-engagement-dock[hidden] {
+  display: none;
+}
+.phone .portrait-engagement-dock .btn {
+  flex: 1;
+  font-size: 13px;
+  min-height: 48px;
+  padding: 10px 8px;
+}
+.sheet:has(> .portrait-engagement-dock) .pe-colophon {
+  padding-bottom: 110px;
+}

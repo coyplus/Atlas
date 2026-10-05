@@ -41,7 +41,7 @@ for (const person of ['alex', 'jordan', 'sam', 'elena']) {
       for (let i = 0; i < 3; i++) await page.locator('[data-action="answer:0"]').click();
       await page.locator('[data-action="quiz-finish"]').click();
     }
-    await page.locator('.portrait-link[data-action="portrait"]').click();
+    if (person !== 'alex') await page.locator('.portrait-link[data-action="portrait"]').click();
     await expect(page.locator('.portrait-detail')).toBeVisible();
     await page.locator('.sheet-header [data-action="close"]').click();
     await page.locator('[data-action="tab:now"]').click();
@@ -59,8 +59,7 @@ test('quiz and confirmation grow the portrait; correction survives reopening', a
   const layers = Number(
     await page.locator('.money-portrait svg.portrait-art').getAttribute('data-layers'),
   );
-  await page.locator('.portrait-link[data-action="portrait"]').click();
-  await page.locator('[data-action="personality-confirm"]').click();
+  await page.locator('.portrait-engagement-dock [data-action="personality-confirm"]').click();
   expect(
     Number(await page.locator('.money-portrait svg.portrait-art').getAttribute('data-layers')),
   ).toBe(layers + 1);
@@ -137,7 +136,7 @@ test('unshared household member has no inferred portrait and new joiner can add 
   await page.locator('.sheet-header [data-action="close"]').click();
   await expect(page.locator('.money-portrait')).toHaveAttribute('data-portrait-member', 'self');
   await page.goto('/?p=alex&theme=vanilla&tab=you');
-  await page.locator('.you-more > summary').click();
+
   await expect(
     page.getByRole('button', { name: 'Add household member', exact: true }),
   ).toBeVisible();

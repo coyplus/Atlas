@@ -6,11 +6,17 @@ Implemented 25 September 2026 following the owner's roadshow review. The demo br
 
 An unnamed portrait leads with an invitation: three questions to discover an approach to money. The existing outline artwork, glass card and contextual Companion show both the action and its value. The quiz retains its existing scoring, 25-point reward, source trail and correctable first impression. A check-in does not infer personality.
 
-An unnamed or early-evidence self portrait uses a quieter composition. Check-ins become visible alongside a named first impression; broader membership, Points, journey, Companion preferences and permissions sit under the expandable **Your HSBC relationship** section. Before the quiz, that section also offers check-ins and a household invitation. These capabilities remain available without completing a quiz. Shared portraits retain their existing consent-aware layout. Richer evidence uses the established full layout; a customer ID, balance or tenure threshold does not control progression.
+An early self portrait keeps the invitation light while HSBC membership, Points, journey, Companion preferences and permissions remain visible below an introduction to the relationship. Alex also sees a daily pause card: a direct Money Feeling entry, seven real check-in stamps, a five-point daily reward and a route to the other tools. A completed day changes the invitation to reflection history. Missed days do not reset completed moments.
 
-### Alex’s savings invitation · 5 October 2026
+### Alex’s savings invitation · revised 5 October 2026
 
-Alongside the portrait invitation, Alex’s early You experience features **Small change, big start**: £1 on 30 different saving days, £30 saved, and 100 HSBC Points on completion. The existing challenge detail explains the commitment before joining. A 30-dot infographic becomes live progress after joining, preserves paused days, and celebrates completion. The invitation remains after the portrait quiz while evidence is still early. Joining and self-recording do not move money; joining or taking an incomplete step does not award the completion bonus. No challenge rules or financial arithmetic changed. Other scenarios keep their existing layout.
+A Small Start features the existing **The growing saver** challenge: £1 on saving day one, £2 on saving day two, up to £30 on day thirty — £465 in total, with 200 HSBC Points on completion. The detail makes the increasing commitment clear, including the £189 final week. Pause/resume preserves progress; the £1-a-day alternative remains in the challenge collection. Joining and self-recording do not move money or award the completion bonus early.
+
+### Questionnaire and portrait
+
+Three illustrated, single-question screens retain the existing demonstration scoring, with warmer answer language. The reference wealth-personality profiles inspired the editorial hierarchy and strengths / watch-outs / reflection structure; their investment recommendations are not used. The result opens the existing portrait detail. Alex’s limited evidence produces simpler artwork, one strength and no inferred history tiles. A first-impression explanation describes how banking interactions, reflections and optional Open Banking can add context; the Open Banking link uses the existing consent journey. Connecting accounts does not fabricate observed patterns or silently change the portrait classification.
+
+A glass response dock offers confirmation and reflection while reading a self portrait. It hides when the inline response section enters the reading area, and returns above it. Shared portraits have neither response control. Corrections remain available in the inline section. The dock belongs to the sheet, outside the scrollable article, and follows existing snapshot/back navigation.
 
 ## Future
 

@@ -1,3 +1,4 @@
+import { quizDialog } from '../you/quiz.mjs';
 import { nowBackgroundSettings, readBackgroundPhoto } from '../now/background.mjs';
 import { portraitSignalView, portraitNoteView } from '../you/portrait-story-view.mjs';
 import { portraitDetail } from '../you/portrait-view.mjs';
@@ -6,7 +7,7 @@ import { agreementChangeEffects } from '../../domain/containers.mjs';
 import { agreementEffectsView } from '../../features/pots/views.mjs';
 import { transaction, completeQuiz, confirmBelief, award, redeem } from '../../domain/money.mjs';
 import { button, esc, icon } from '../../design-system/templates.mjs';
-import { quizDialog, pointsDialog, receiptsDialog } from '../../features/dialogs.mjs';
+import { pointsDialog, receiptsDialog } from '../../features/dialogs.mjs';
 export function handle(ctx, type, id, p, action) {
   if (type === 'portrait-member') {
     const member = p.l1.household.members.find((m) => m.id === id);
@@ -148,7 +149,8 @@ export function handle(ctx, type, id, p, action) {
   }
   if (type === 'quiz-finish') {
     ctx.closeModal();
-    return ctx.navigate('you');
+    ctx.navigate('you');
+    return ctx.act('portrait');
   }
   if (type === 'personality-confirm')
     return ctx.change('Confirmed your money personality', () => {

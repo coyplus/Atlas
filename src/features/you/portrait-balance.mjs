@@ -52,7 +52,9 @@ export function portraitBalance(p, member = 'self') {
   return {
     trait,
     ...perspectives[trait],
-    strengths: ranked.slice(0, 2).map(([name]) => ({ trait: name, ...perspectives[name] })),
+    strengths: ranked
+      .slice(0, m.fidelity === 'early' ? 1 : 2)
+      .map(([name]) => ({ trait: name, ...perspectives[name] })),
     own: m.self,
   };
 }

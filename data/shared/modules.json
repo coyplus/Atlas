@@ -312,27 +312,27 @@
   ],
   "quiz": [
     {
-      "q": "It\u2019s three days to payday and \u00a360 is left. What\u2019s your instinct?",
+      "q": "It’s three days to payday and £60 is left. What’s your instinct?",
       "o": [
-        "Fine \u2014 that\u2019s roughly the plan",
-        "Check what\u2019s due, then relax",
-        "How did that happen?"
+        "That’s roughly what I planned",
+        "I check what’s still due",
+        "I’d like a clearer picture"
       ]
     },
     {
-      "q": "A windfall of \u00a3500 lands. First feeling?",
+      "q": "A windfall of £500 lands. First feeling?",
       "o": [
-        "Park it before it burns a hole",
-        "Half sensible, half fun",
-        "Finally \u2014 breathing room"
+        "Put it aside for later",
+        "A little for later, a little for now",
+        "Enjoy some breathing room"
       ]
     },
     {
-      "q": "Money apps usually feel\u2026",
+      "q": "What would make money feel easier?",
       "o": [
-        "Useful but nagging",
-        "Fine in small doses",
-        "Like homework"
+        "Clear numbers, fewer nudges",
+        "A small check-in when it helps",
+        "Someone to talk it through with"
       ]
     }
   ]
