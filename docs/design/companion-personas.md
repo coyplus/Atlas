@@ -17,7 +17,7 @@ The four abstract marks keep the shared HSBC sparkle. Shape as well as colour di
 
 - **When I ask:** ordinary reading-context suggestions become a stable availability message. Opening it retrieves the actual reading context. No arrival thinking animation. Payment conditions, important account updates and human messages remain visible.
 - **In useful moments:** existing contextual behaviour, following what the customer is viewing.
-- **Suggest a next step:** when an actionable next step exists, it stays visible as a second line (“Next step: …”) beneath the unchanged headline, including while scrolling. No extra notifications, timers or repeated reminders. (Revised 5 October 2026: replacing the headline with the action label produced headlines such as “Open activity” on the Activity screen.)
+- **Suggest a next step:** when a useful action exists, the Companion offers it as an idea on a second line beneath the unchanged headline, including while scrolling. The phrasing follows the style — Guide “You could review your portrait”, Listener “We could …”, Analyst “It may help to …”, Coach “Why not review your portrait?” — and uses the persona’s colour. It reads as a partner’s suggestion, not a command. No extra notifications, timers or repeated reminders. (Revised 5 October 2026: replacing the headline with the action label produced headlines such as “Open activity” on the Activity screen.)
 
 This changes the in-app Companion only. It does not suppress the main application’s discovery cards, goals or mandatory financial information. It does not grant automation authority.
 

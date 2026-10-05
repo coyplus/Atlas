@@ -130,7 +130,7 @@ One component, three independent channels, so identity, message purpose and inte
 
 Reduced motion keeps a still pose for each state; text (“Thinking…”, the headline, control labels) carries the meaning without motion or colour. The comparison prototype is recorded locally in the workspace review folder.
 
-**Headline integrity.** Style changes the supporting words and the conversation, never the headline’s subject; generic style taglines were removed. *Suggest a next step* keeps the headline and adds “Next step: …” as the visible second line (including on single-thought cards). A card never offers the screen being read, and when the page already leads with the same primary action, the card offers conversation instead; the conversation keeps that action as its first quick response.
+**Headline integrity.** Style changes the supporting words and the conversation, never the headline’s subject; generic style taglines were removed. *Suggest a next step* keeps the headline and offers an idea as the visible second line (including on single-thought cards), in the persona’s colour and voice: Guide “You could …”, Listener “We could …”, Analyst “It may help to …”, Coach “Why not …?”. It is a partner’s suggestion, never an instruction or a “Next step:” label. A card never offers the screen being read, and when the page already leads with the same primary action, the card offers conversation instead; the conversation keeps that action as its first quick response.
 
 **Audio.** One name throughout: *Your week in money*, a weekly briefing. Playing uses the ink disc with a surface pause glyph. The player keeps its full title; the Companion shows *speaking* wherever it appears.
 

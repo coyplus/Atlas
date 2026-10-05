@@ -14,4 +14,4 @@ Every visible sentence must help the customer understand a fact or status, make 
 
 Apply this standard to Stories, AI cards, account/pot summaries, agreements, insights, journeys and new components. Human support can remain warm: empathy should address the customer’s situation, rather than add a generic slogan.
 
-Companion headlines name the subject or finding. They are never a bare action label (“Take me there”, “Open activity”) or a generic style tagline (“Your perspective comes first”); the action belongs in the button or the “Next step” line. A card should not repeat the action its page already leads with. *(5 October 2026)*
+Companion headlines name the subject or finding. They are never a bare action label (“Take me there”, “Open activity”) or a generic style tagline (“Your perspective comes first”); the action belongs in the button or in a suggestion offered in the Companion’s voice (“Why not look ahead to May 2027?”). The Companion advises and suggests; it does not issue commands or directions. A card should not repeat the action its page already leads with. *(5 October 2026)*

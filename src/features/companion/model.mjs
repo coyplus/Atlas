@@ -97,6 +97,28 @@ export function companionRecommendation(p) {
   return { style, trait, reason };
 }
 
+// A suggestion is offered as a partner's idea, in the chosen style — never an instruction.
+const offers = {
+  guide: (idea) => `You could ${idea}`,
+  listener: (idea) => `We could ${idea}`,
+  analyst: (idea) => `It may help to ${idea}`,
+  coach: (idea) => `Why not ${idea}?`,
+};
+export function suggestionLine(style, action) {
+  const idea = action
+    .trim()
+    .replace(/[.!?]$/, '')
+    .replace(/\bmy\b/gi, 'your')
+    .replace(/\bmine\b/gi, 'yours')
+    .replace(/\bme\b/g, 'you');
+  // Keep acronyms and names such as HSBC; otherwise continue the sentence in lower case.
+  const phrase = /^[A-Z]{2}/.test(idea) ? idea : idea[0].toLowerCase() + idea.slice(1);
+  // Labels are normally verbs (“Review your portrait”); a noun-only label is offered as a thing to like.
+  if (!/^(add|answer|apply|ask|book|bring|browse|build|check|choose|compare|connect|continue|create|discover|discuss|explore|find|give|imagine|join|keep|look|make|move|open|pay|pin|plan|play|point|read|return|review|save|see|set|shape|start|take|talk|travel|try|turn|use|view)\b/i.test(phrase))
+    return `You might like ${phrase}`;
+  return (offers[style] || offers.guide)(phrase);
+}
+
 // Style is a presentation policy, never a source of financial facts or permissions.
 export function companionReply(
   p,
@@ -178,13 +200,15 @@ export function personaliseSupport(p, s, context, base, catalogue) {
     // The headline keeps the subject; style shapes the supporting words and the conversation.
     if (m.singleMessage) m.title = base.title;
   }
-  // Initiative changes when a next step is visible, never what the headline says.
+  // Initiative changes when an idea is offered, never what the headline says.
   if (
     prefs.initiative === 'lead' &&
     m.cta &&
     !/^back\b/i.test(m.cta) &&
     !/^support:|chat/.test(m.action || '')
-  )
+  ) {
     m.nextStep = m.cta;
+    m.suggestion = suggestionLine(prefs.style, m.cta);
+  }
   return m;
 }

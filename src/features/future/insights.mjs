@@ -117,7 +117,7 @@ export function futureInsight(p, s) {
     return ai(
       `${upcoming.name}: ${cash(upcoming.isDebt ? upcoming.balance : upcoming.target || 0)} could be ${upcoming.isDebt ? 'repaid' : 'ready'} by ${when(p, next.dates[upcoming.id])}.`,
       `${cash(upcoming.isDebt ? upcoming.balance : upcoming.target || 0)} could be ${upcoming.isDebt ? 'repaid' : 'ready'} in ${when(p, next.dates[upcoming.id])}. Your current commitments put ${cash(next.speed)} a month towards your future.`,
-      'Travel to ' + when(p, next.dates[upcoming.id]),
+      'Look ahead to ' + when(p, next.dates[upcoming.id]),
       'future-land:' + upcoming.id,
     );
   return ai(

@@ -74,6 +74,9 @@ test('next-step mode surfaces the actual contextual action without replacing the
   assert.equal(changed.action, base.action);
   assert.equal(changed.title, base.title);
   assert.equal(changed.nextStep, base.cta);
+  // Offered as the Coach's idea, not an instruction.
+  assert.match(changed.suggestion, /^Why not [a-z].*\?$/);
+  assert.doesNotMatch(changed.suggestion, /Next step/);
 });
 test('reflections use their own traits, with no inferred weaknesses for an unformed or household portrait', () => {
   const p = person('alex');

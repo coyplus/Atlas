@@ -233,12 +233,13 @@ export function createSupportController(getState, data, dispatch, showDialog) {
         !!modalContext &&
         (m.action === modalContext.kind + ':' + modalContext.id ||
           destinations[m.action] === modalContext.kind);
-    const nextStep = !thinking && m.nextStep && !sameDetail ? 'Next step: ' + m.nextStep : '';
-    dock.dataset.nextStep = String(!!nextStep);
+    // “Suggest a next step” offers the idea in the Companion's voice, never as an instruction.
+    const suggestion = !thinking && m.suggestion && !sameDetail ? m.suggestion : '';
+    dock.dataset.suggestion = String(!!suggestion);
     const title = thinking ? 'Thinking…' : m.title,
       sub = thinking
         ? 'Bringing your money into focus'
-        : nextStep || (m.singleMessage ? '' : summary(m)),
+        : suggestion || (m.singleMessage ? '' : summary(m)),
       copy = dock.querySelector('.support-copy');
     const newThought = !!lastCopy && lastCopy.split('|')[0] !== title && !thinking;
     if (lastCopy !== title + '|' + sub) {
