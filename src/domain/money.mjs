@@ -150,9 +150,13 @@ export function moneyProjection(p, months = 0, includeRedirects = true) {
       fundedRules = [],
       allocations = [];
     // Keep full precision for compounding; round only the presented ledger snapshot.
-    for (const g of p.l1.pots)
+    for (const g of p.l1.pots) {
       if (g.growthAnnual && g.growthAnnual > -1)
         balances[g.id] *= Math.pow(1 + g.growthAnnual, 1 / 12);
+      // A savings rate is separate from investment growth and ends at maturity.
+      if (g.savingsInterest && month < scheduledMonth(p, g.savingsInterest.until))
+        balances[g.id] *= Math.pow(1 + g.savingsInterest.annual, 1 / 12);
+    }
     if (!p.l1.autonomy.paused) {
       for (const r of p.l1.rules) {
         const source = cached.items.get(r.source),

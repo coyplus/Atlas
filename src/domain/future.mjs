@@ -89,7 +89,10 @@ export function applyExperiments(p, ideas) {
         stopsAtTarget: !!idea.target && !idea.investment,
         ...(idea.investment ? { growthAnnual: 0.05 } : {}),
         ...(maturity
-          ? { arrangementState: { lockedUntil: maturity.toISOString().slice(0, 10) } }
+          ? {
+              arrangementState: { lockedUntil: maturity.toISOString().slice(0, 10) },
+              savingsInterest: { annual: 0.05, until: maturity.toISOString().slice(0, 10) },
+            }
           : {}),
         ...(idea.isa ? { wrapper: 'cash-isa' } : {}),
         ...(idea.possibilityKey ? { possibilityKey: idea.possibilityKey } : {}),
@@ -287,7 +290,7 @@ export function ideaDescription(p, i) {
   if (i.kind === 'remove')
     return `Retire ${name} as a goal and stop its Money Rules. Its existing Pot and balance stay available in Now.`;
   if (i.kind === 'add' && i.lockYears)
-    return `Create ${i.name} with £${i.amount}/month. Lock withdrawals and outgoing rules for three years from today. Contributions remain possible. This illustration assumes no interest and does not open a real account.`;
+    return `Create ${i.name} with £${i.amount}/month. Lock withdrawals and outgoing rules for three years from today. Contributions remain possible. Illustrative 5% AER fixed for the three-year term, compounded monthly. No further interest is assumed after maturity. This does not open a real account.`;
   if (i.kind === 'add' && i.isa)
     return `Explore ${i.name} as a cash ISA with £${i.amount}/month. This prototype assumes no interest; ISA eligibility and allowances are not modelled.`;
   if (i.kind === 'add' && i.investment)

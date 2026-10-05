@@ -88,3 +88,17 @@ test('focused investment range belongs to its pot and agrees after applying',()=
  assert.deepEqual(forecast(q,[],120).goalRanges[idea.goal],range);
  assert.equal(JSON.stringify(p),original);
 });
+
+test('locked savings compound during the term and preserve the projection on approval',()=>{
+ const p=people().alex;
+ const idea={id:'locked-test',goal:'locked-test',kind:'add',name:'Locked savings',amount:50,target:0,lockYears:3};
+ const preview=forecast(p,[idea],36);
+ const expected=50*(Math.pow(1.05,3)-1)/(Math.pow(1.05,1/12)-1);
+ assert.ok(Math.abs(preview.values[idea.goal]-expected)<0.02);
+ assert.ok(preview.values[idea.goal]>1800);
+ const after=forecast(p,[idea],48);
+ assert.ok(Math.abs(after.values[idea.goal]-preview.values[idea.goal]-600)<0.02);
+ const q=clone(p);applyExperiments(q,[idea]);
+ assert.equal(forecast(q,[],36).values[idea.goal],preview.values[idea.goal]);
+ assert.equal(q.l1.pots.find(g=>g.id===idea.goal).kind,'goal');
+});
