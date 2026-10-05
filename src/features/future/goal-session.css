@@ -26,7 +26,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
   isolation: isolate;
   overflow: clip;
   padding-bottom: 16px;
-  padding-top: calc(var(--support-height) + 12px);
+  padding-top: calc(var(--support-height) - 4px);
 }
 .goal-session-heading {
   position: relative;
@@ -39,7 +39,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
 .goal-session-heading::before {
   content: '';
   position: absolute;
-  inset: calc(-1 * (var(--support-height) + 12px)) 0 0;
+  inset: calc(-1 * (var(--support-height) - 4px)) 0 0;
   z-index: -1;
   pointer-events: none;
   background: var(--goal-glass);
@@ -47,8 +47,8 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
   backdrop-filter: var(--goal-blur);
 }
 .goal-session-heading .icon {
-  width: 14px;
-  height: 14px;
+  width: 22px;
+  height: 22px;
 }
 .phone .goal-session-heading input {
   width: 100%;
@@ -322,7 +322,8 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 40px;
+  width: 44px;
+  min-height: 44px;
   display: grid;
   place-items: center;
   border: 0;
@@ -334,4 +335,8 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
   outline: 2px solid var(--viz-cash);
   outline-offset: 2px;
   border-radius: 8px;
+}
+
+.goal-paths label:last-child {
+  grid-column: 1 / -1;
 }

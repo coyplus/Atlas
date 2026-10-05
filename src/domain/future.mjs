@@ -76,6 +76,10 @@ export function applyExperiments(p, ideas) {
         throw new Error('Give your goal a short name.');
       if (p.l1.pots.some((g) => g.id === idea.goal))
         throw new Error('This goal is already in your plan.');
+      if (idea.lockYears != null && idea.lockYears !== 3)
+        throw new Error('Choose the illustrated three-year term.');
+      const maturity = idea.lockYears ? new Date(p.l1.asOf + 'T12:00:00Z') : null;
+      if (maturity) maturity.setUTCFullYear(maturity.getUTCFullYear() + idea.lockYears);
       const g = {
         id: idea.goal,
         name: idea.name,
@@ -84,6 +88,10 @@ export function applyExperiments(p, ideas) {
         target: idea.target,
         stopsAtTarget: !!idea.target && !idea.investment,
         ...(idea.investment ? { growthAnnual: 0.05 } : {}),
+        ...(maturity
+          ? { arrangementState: { lockedUntil: maturity.toISOString().slice(0, 10) } }
+          : {}),
+        ...(idea.isa ? { wrapper: 'cash-isa' } : {}),
         ...(idea.possibilityKey ? { possibilityKey: idea.possibilityKey } : {}),
         ...(idea.visualIcon ? { visualIcon: idea.visualIcon } : {}),
         rules: [],
@@ -278,6 +286,10 @@ export function ideaDescription(p, i) {
     return `Move £${i.amount}/month from ${p.l1.pots.find((g) => g.id === i.from)?.name || 'another goal'} to ${name}. Your total contribution stays the same.`;
   if (i.kind === 'remove')
     return `Retire ${name} as a goal and stop its Money Rules. Its existing Pot and balance stay available in Now.`;
+  if (i.kind === 'add' && i.lockYears)
+    return `Create ${i.name} with £${i.amount}/month. Lock withdrawals and outgoing rules for three years from today. Contributions remain possible. This illustration assumes no interest and does not open a real account.`;
+  if (i.kind === 'add' && i.isa)
+    return `Explore ${i.name} as a cash ISA with £${i.amount}/month. This prototype assumes no interest; ISA eligibility and allowances are not modelled.`;
   if (i.kind === 'add' && i.investment)
     return `Model ${i.name} with £${i.amount}/month from your current account ${i.target ? 'and a £' + i.target + ' milestone' : 'without a fixed target'}. Contributions continue after the milestone. This prototype uses 5% annual growth with an illustrative range; values can fall. Applying adds a simulated investment Pot and Money Rule, not a real investment account.`;
   return `Create ${i.name}, ${i.target ? 'a £' + i.target + ' goal' : 'an open-ended Pot'}, with a £${i.amount}/month Money Rule from your current account.`;

@@ -76,7 +76,7 @@ test('new targetless Pot follows the same preview and approval projection', asyn
   await page.locator('[name="name"]').fill('Room for life');
   await page.getByRole('button', { name: 'Try this in my future', exact: true }).click();
   await page.evaluate(() => window.atlas.dispatch('future-review'));
-  await expect(page.locator('.sheet-body')).toContainText('open-ended Pot');
+  await expect(page.locator('.sheet-body')).toContainText('cash ISA');
   await page.locator('#future-approval').check();
   await page.locator('[data-action="future-commit"]').click();
   const pot = await page.evaluate(() =>
@@ -182,5 +182,31 @@ test('oversized goal artwork never creates horizontal scrolling or clipped field
       expect(box!.x).toBeGreaterThanOrEqual(sheet!.x);
       expect(box!.x + box!.width).toBeLessThanOrEqual(sheet!.x + sheet!.width + 1);
     }
+  }
+});
+
+test('ISA and locked savings choices survive review and approval', async ({ page }) => {
+  for (const approach of ['cash', 'locked']) {
+    await page.goto('/?p=alex&tab=future&theme=vanilla');
+    await page.waitForFunction(() => !!window.atlas);
+    await page.evaluate(() => window.atlas.dispatch('future-own'));
+    await page.locator('[name="name"]').fill('My savings ' + approach);
+    await page.locator('[name="approach"][value="' + approach + '"]').check();
+    await page.getByRole('button', { name: 'Try this in my future', exact: true }).click();
+    await page.evaluate(() => window.atlas.dispatch('future-review'));
+    await expect(page.locator('.sheet-body')).toContainText(
+      approach === 'locked' ? 'three years' : 'cash ISA',
+    );
+    await page.locator('#future-approval').check();
+    await page.locator('[data-action="future-commit"]').click();
+    const pot = await page.evaluate(
+      (approach) =>
+        (window.atlas.getState() as any).people.alex.l1.pots.find(
+          (g: any) => g.name === 'My savings ' + approach,
+        ),
+      approach,
+    );
+    if (approach === 'locked') expect(pot.arrangementState.lockedUntil).toBe('2029-08-20');
+    else expect(pot.wrapper).toBe('cash-isa');
   }
 });

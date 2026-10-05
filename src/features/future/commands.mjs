@@ -131,6 +131,8 @@ export function handleFuture(ctx, type, id, p) {
       amount: Number(v.get('amount')),
       title: 'Make room for ' + name,
       investment: v.get('approach') === 'investment',
+      ...(v.get('approach') === 'locked' ? { lockYears: 3 } : {}),
+      ...(v.get('approach') === 'cash' ? { isa: true } : {}),
       ...(suggestion
         ? {
             possibilityKey: suggestion.key,

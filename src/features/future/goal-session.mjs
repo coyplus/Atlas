@@ -16,6 +16,7 @@ export function goalSessionModel(p, draft) {
     target: draft.target,
     amount: draft.amount,
     investment: draft.investment,
+    ...(draft.lockYears ? { lockYears: draft.lockYears } : {}),
     title: 'Your monthly contribution',
   };
   const next = forecast(p, [idea], draft.month);
@@ -39,9 +40,11 @@ export function goalSessionSupport(p, context) {
   return {
     source: 'ai',
     author: 'HSBC AI',
-    title: d.edited
-      ? `${money(d.amount)} a month. Try a different pace and see what feels right for you.`
-      : 'Start with a monthly amount. See where it could take you.',
+    title: d.lockYears
+      ? `Set this money aside until ${dateAt(p, 36)}. Would that leave enough accessible for everyday life?`
+      : d.edited
+        ? `${money(d.amount)} a month. Try a different pace and see what feels right for you.`
+        : 'Start with a monthly amount. See where it could take you.',
     singleMessage: true,
     message: [d.why, words(p, d, goalSessionModel(p, d))].filter(Boolean).join(' '),
     cta: 'Explore this together',
@@ -117,7 +120,7 @@ export function goalSession(p, i = null, makeReal = false) {
       </div>
       <div class="goal-session-panel">
       <section class="goal-session-time" aria-label="Time Travel"><div data-goal-moment>${goalMoment(p, d)}</div>${timeTravel({ id: 'goal-time', name: 'previewMonth', month: d.month, label: dateAt(p, d.month) })}</section>
-      <section class="goal-what-if" aria-label="What if"><h3>What if…</h3><div class="goal-paths"><label><input type="radio" name="approach" value="cash" ${!d.investment ? 'checked' : ''}><span>${icon('target')}<b>Keep it in savings</b><small>Build it with regular contributions</small><strong data-whatif-cash>${money(cashPreview.value)}</strong></span></label><label><input type="radio" name="approach" value="investment" ${d.investment ? 'checked' : ''}><span>${icon('trend')}<b>Explore a first investment</b><small>See how a fund could grow over time</small><strong data-whatif-investment>${money(investmentPreview.range[0])}–${money(investmentPreview.range[1])}</strong></span></label></div><p>Illustrations at your selected date. Cash: no interest. Fund: −2% to 8% annual growth, not a forecast or a limit on losses.</p></section>
+      <section class="goal-what-if" aria-label="What if"><h3>What if…</h3><div class="goal-paths"><label><input type="radio" name="approach" value="cash" ${!d.investment && !d.lockYears ? 'checked' : ''}><span>${icon('target')}<b>Keep it in an ISA</b><small>Build up cash, with access when needed</small><strong data-whatif-cash>${money(cashPreview.value)}</strong></span></label><label><input type="radio" name="approach" value="investment" ${d.investment ? 'checked' : ''}><span>${icon('trend')}<b>Explore a first investment</b><small>See how a fund could grow over time</small><strong data-whatif-investment>${money(investmentPreview.range[0])}–${money(investmentPreview.range[1])}</strong></span></label><label><input type="radio" name="approach" value="locked" ${d.lockYears ? 'checked' : ''}><span>${icon('target')}<b>Lock it away for 3 years</b><small>No withdrawals until ${dateAt(p, 36)}. Keep contributing.</small><strong data-whatif-locked>${money(cashPreview.value)}</strong></span></label></div><p>Illustrations at your selected date. ISA and locked savings: no interest assumed; ISA eligibility and allowances not modelled. Fund: −2% to 8% annual growth, not a forecast or a limit on losses.</p></section>
       <footer class="goal-session-footer"><button type="submit" class="btn primary wide">${makeReal ? 'Make it real' : 'Try this in my future'}</button>${i ? button(makeReal ? 'Not for me' : 'Create my own instead', makeReal ? 'future-horizon-hide:' + i.id : 'future-own', 'text wide') : ''}</footer>
       </div>
     </form>
@@ -134,6 +137,7 @@ export function updateGoalSession(p, form, render) {
     ...previous,
     edited: true,
     investment: form.elements.approach.value === 'investment',
+    lockYears: form.elements.approach.value === 'locked' ? 3 : undefined,
     name: form.elements.name.value,
     amount,
     target: value,
@@ -147,6 +151,9 @@ export function updateGoalSession(p, form, render) {
   render(form.querySelector('[data-goal-preview]'), goalSessionPreview(p, d));
   render(form.querySelector('[data-goal-moment]'), goalMoment(p, d));
   form.querySelector('[data-whatif-cash]').textContent = money(
+    goalSessionModel(p, { ...d, investment: false }).value,
+  );
+  form.querySelector('[data-whatif-locked]').textContent = money(
     goalSessionModel(p, { ...d, investment: false }).value,
   );
   const range = goalSessionModel(p, { ...d, investment: true }).range;
