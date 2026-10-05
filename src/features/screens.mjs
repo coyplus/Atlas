@@ -204,7 +204,8 @@ export function youScreen(p, s, data) {
             (p.l1.customer.id === 'alex'
               ? savingsBeginning(p) + dailyBeginning(p)
               : checkinEntry(p))
-        : checkinEntry(p) + portraitComponent(p, s)
+        : (p.l1.customer.id === 'jordan' ? dailyBeginning(p) : checkinEntry(p)) +
+          portraitComponent(p, s)
       : `${section('What we believe')}<section class="personality"><div class="member-picker">${members.map((m) => `<button class="${s.member === m.id ? 'selected' : ''}" aria-pressed="${s.member === m.id}" aria-label="${esc(m.name)}" data-action="member:${m.id}">${m.id === 'household' ? `<span>${icon('users')}</span>` : householdAvatar(m.id === 'self' ? p.l1.customer.id : m.id, m.name)}<small>${esc(m.name)}</small></button>`).join('')}<button data-action="invite"><span>${icon('plus')}</span><small>Invite</small></button></div>${p.ui.requests
           .filter((r) => r.kind === 'invite')
           .map(

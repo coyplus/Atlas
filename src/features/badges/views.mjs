@@ -1,3 +1,4 @@
+import { rewardMoment } from '../checkin/ritual.mjs';
 import { esc, icon, button } from '../../design-system/templates.mjs';
 import { challenges, categories } from './catalog.mjs';
 import { badgeState, badgeSummary, canRecord, nextStep, challenge } from './model.mjs';
@@ -78,7 +79,7 @@ export function badgeDetail(p, id, mode = 'detail') {
   return `<div class="badge-detail ${mode === 'celebrate' ? 'badge-celebrate' : ''}"><div class="badge-detail-hero">${badgeArt(b, s.status)}<span class="eyebrow">${earned ? 'BADGE EARNED' : s.status === 'paused' ? 'PAUSED · PROGRESS KEPT' : s.status === 'active' ? 'YOUR CHALLENGE' : 'A NEW CHALLENGE'}</span><h2>${esc(b.title)}</h2><span class="badge-detail-points">${earned ? '' : icon('award')}${earned ? '<span class="is-awarded">' + b.points + ' Points</span> earned' : '+' + b.points + ' Points on completion'}</span></div>
     ${
       earned
-        ? `<p class="badge-earned-copy">${esc(b.description)}</p><div class="badge-earned-receipt"><span>Completed ${date(s.earnedAt)}</span><b class="is-awarded">+${b.points} Points</b><small>Added to your Points balance. This badge is yours to keep.</small></div>${button('Explore more challenges', 'badge-browse', 'primary wide')}`
+        ? `<p class="badge-earned-copy">${esc(b.description)}</p><div class="badge-earned-receipt"><span>Completed ${date(s.earnedAt)}</span>${mode === 'celebrate' ? rewardMoment(b.points, 'for following through') : `<b class="is-awarded">${b.points} Points earned</b>`}<small>Added to your Points balance. This badge is yours to keep.</small></div>${button('Explore more challenges', 'badge-browse', 'primary wide')}`
         : `<p class="badge-description">${esc(b.description)}</p>
     ${active ? `<div class="badge-progress-summary"><b>${s.count}<span> / ${b.target}</span></b><span>${esc(b.unit)}</span></div><div class="badge-checkpoints" role="progressbar" aria-label="Challenge progress" aria-valuemin="0" aria-valuemax="${b.target}" aria-valuenow="${s.count}" style="--badge-columns:${b.target > 12 ? 10 : Math.min(b.target, 6)}">${Array.from({ length: b.target }, (_, i) => `<i class="${i < s.count ? 'is-done' : ''}" aria-hidden="true">${i < s.count ? icon('check') : i + 1}</i>`).join('')}</div>` : ''}
     <div class="badge-commitment"><h3>${active ? 'The commitment' : 'Before you begin'}</h3><p>${esc(b.commitment)}</p>${b.schedule === 'ramp' ? `<div class="badge-ramp" aria-label="Increasing daily savings: £1 on day 1, £15 on day 15 and £30 on day 30">${Array.from({ length: 30 }, (_, i) => `<i style="height:${8 + (i + 1) * 1.5}px" class="${i < s.count ? 'is-done' : ''}"></i>`).join('')}</div><div class="badge-ramp-labels"><span>Day 1 · £1</span><span>Day 30 · £30</span></div>` : ''}</div>

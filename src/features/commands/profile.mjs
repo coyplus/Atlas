@@ -1,4 +1,4 @@
-import { quizDialog } from '../you/quiz.mjs';
+import { quizDialog, setQuizReward } from '../you/quiz.mjs';
 import { nowBackgroundSettings, readBackgroundPhoto } from '../now/background.mjs';
 import { portraitSignalView, portraitNoteView } from '../you/portrait-story-view.mjs';
 import { portraitDetail } from '../you/portrait-view.mjs';
@@ -135,14 +135,17 @@ export function handle(ctx, type, id, p, action) {
     return ctx.change('Paused all automation', () => (p.l1.autonomy.paused = true));
   if (type === 'quiz') {
     ctx.quizAnswers = [];
+    setQuizReward(p, 0);
     return ctx.openJourney('Getting to know you', quizDialog(p, ctx.DATA, ctx.quizAnswers));
   }
   if (type === 'answer') {
     ctx.quizAnswers.push(Number(id));
     if (ctx.quizAnswers.length === 3) {
+      const before = p.l1.rewards.points.balance;
       transaction(p, 'Completed your money personality quiz', () =>
         completeQuiz(p, ctx.quizAnswers, ctx.DATA.shared.modules.quiz),
       );
+      setQuizReward(p, p.l1.rewards.points.balance - before);
       ctx.render();
     }
     return ctx.openJourney('Getting to know you', quizDialog(p, ctx.DATA, ctx.quizAnswers));

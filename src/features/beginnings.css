@@ -397,18 +397,58 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
   color: var(--muted);
 }
 .portrait-quiz .quiz-art {
-  height: 150px;
-  display: grid;
-  place-items: center;
-  margin: 18px 0;
+  position: relative;
+  height: 176px;
+  margin: 20px 0 24px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.portrait-quiz .quiz-art > svg {
+.portrait-quiz .quiz-art > .portrait-art {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 242px;
   max-width: 100%;
-  height: 100%;
+  overflow: hidden;
 }
-.portrait-quiz .quiz-art-symbol > svg {
-  width: 120px;
-  height: 120px;
+.portrait-quiz .quiz-art-symbol > .portrait-glyph {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  left: calc(50% - 110px);
+  opacity: 0.85;
+}
+.portrait-quiz .quiz-line-art {
+  position: relative;
+  width: 280px;
+  height: 176px;
+  color: var(--ink);
+}
+.portrait-quiz-result .quiz-art {
+  height: 210px;
+  margin: 12px 0 24px;
+}
+.phone .portrait-quiz-result h1 {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+.phone .portrait-quiz-result > p {
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0 0 16px;
+}
+.phone .portrait-quiz-result > .quiz-quiet {
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.portrait-quiz-result > .daily-reward {
+  margin: 0 0 24px;
+}
+.portrait-quiz-result > .btn {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 .phone .portrait-quiz h1 {
   font-size: 30px;
@@ -452,8 +492,8 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
   color: var(--muted);
 }
 .portrait-first-impression {
-  margin: 24px 0 36px;
-  padding: 24px;
+  margin: 24px 0 32px;
+  padding: 20px;
   background: color-mix(in srgb, var(--viz-cash) 8%, var(--surface));
   border-radius: 24px;
 }
@@ -464,8 +504,8 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
   letter-spacing: -0.7px;
 }
 .portrait-first-impression p {
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--muted);
 }
 .portrait-engagement-dock {
@@ -494,4 +534,14 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
 }
 .sheet:has(> .portrait-engagement-dock) .pe-colophon {
   padding-bottom: 110px;
+}
+
+.portrait-quiz .quiz-options {
+  margin-top: 20px;
+}
+.portrait-first-impression h3 {
+  margin: 12px 0;
+}
+.portrait-first-impression .btn {
+  margin-top: 8px;
 }

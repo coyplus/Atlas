@@ -11,7 +11,7 @@ test('Alex has light daily invitations and an openly visible HSBC relationship',
 }) => {
   await page.goto('/?p=alex&tab=you&theme=vanilla');
   await expect(page.locator('.savings-beginning')).toContainText('£465 altogether');
-  await expect(page.locator('.daily-beginning')).toContainText('How does money');
+  await expect(page.locator('.daily-beginning')).toContainText('How’s money');
   await expect(page.locator('.you-relationship-intro')).toContainText(
     'Points recognise your small steps',
   );
@@ -63,4 +63,27 @@ test('quiz opens a first portrait, with a dock that yields to the inline respons
     ),
   ).toContain('spontaneous');
   expect(errors).toEqual([]);
+});
+
+test('completion artwork clears the headline, and quiz Points cannot repeat', async ({ page }) => {
+  await page.goto('/?p=alex&tab=you&theme=vanilla');
+  await page.waitForFunction(() => !!window.atlas);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    await page.evaluate(() => window.atlas.dispatch('quiz'));
+    await expect(page.locator('.quiz-line-art')).toBeVisible();
+    for (let i = 0; i < 3; i++) await page.locator('[data-action="answer:0"]').click();
+    const art = await page.locator('.quiz-art').boundingBox();
+    const title = await page.locator('.portrait-quiz-result h1').boundingBox();
+    expect(art!.y + art!.height).toBeLessThanOrEqual(title!.y);
+    if (!attempt) await expect(page.locator('.reward-points')).toHaveText('+25 HSBC Points');
+    else await expect(page.locator('.reward-points')).toHaveCount(0);
+    await page.evaluate(() => window.atlas.dispatch('close'));
+  }
+});
+test('Jordan gets a welcoming daily invitation', async ({ page }) => {
+  await page.goto('/?p=jordan&tab=you&theme=vanilla');
+  await expect(page.locator('.daily-beginning')).toBeVisible();
+  await expect(page.locator('.daily-beginning')).toContainText('Pick up your rhythm');
+  await page.locator('.daily-beginning [data-action=feeling]').click();
+  await expect(page.locator('.sheet-body')).toContainText('feel');
 });

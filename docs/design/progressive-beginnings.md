@@ -29,3 +29,6 @@ This is deterministic prototype behaviour, not a live AI recommendation or valid
 ## Verification
 
 Chromium and WebKit: initial layouts, three-question quiz, first impression/confirmation, secondary-tool access, first-goal preview without L1 mutation, reset and switching to Sam. Desktop, 390px and 320px layouts reviewed. Existing portrait and Future regression checks accompany the new `e2e/progressive-beginnings.spec.ts` checks. Private presenter material and review captures remain outside this repository.
+
+### Visual refinement · 5 October evening
+Question scenes combine the existing trait glyph with a light line illustration of the situation. The result artwork has explicit dimensions and a clipping boundary, preventing SVG overflow into the heading. Reading, reward and next action have separate spacing. Quiz and newly completed challenge rewards reuse the Money Check-in reward component and its reduced-motion behavior; quiz rewards reflect the actual awarded delta, so retaking does not claim another bonus. Earned challenge history remains static. The early-portrait invitation is shortened to “More you, with time.” Jordan receives the daily-pause card with a return invitation and real check-in stamps, without inventing a streak.
