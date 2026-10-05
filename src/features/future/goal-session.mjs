@@ -80,7 +80,7 @@ export function goalSessionPreview(p, d) {
   const reference = d.amount * 12;
   const diameter = (value) => 80 * Math.sqrt(Math.max(0, value) / reference);
   return `<div class="goal-session-scene" data-investment="${d.investment}">
-    <div class="goal-growth-stage"><div class="goal-reference" style="width:${diameter(reference)}px;height:${diameter(reference)}px"></div><div class="goal-session-orbit" style="width:${diameter(m.value)}px;height:${diameter(m.value)}px"></div><div class="goal-session-orbit-copy" data-light="${diameter(m.value) < 145}">${icon(d.investment ? 'trend' : d.glyph || 'target')}<small>${d.month ? 'You could have' : 'Starting here'}</small><strong>${money(m.value)}</strong></div></div>
+    <div class="goal-growth-stage"><div class="goal-reference" style="width:${diameter(reference)}px;height:${diameter(reference)}px"><span><small>1 year</small><b>${money(reference)}</b></span></div><div class="goal-session-orbit" style="width:${diameter(m.value)}px;height:${diameter(m.value)}px"></div><div class="goal-session-orbit-copy" data-light="${diameter(m.value) < 145}">${icon(d.investment ? 'trend' : d.glyph || 'target')}<small>${d.month ? 'You could have' : 'Starting here'}</small><strong>${money(m.value)}</strong></div></div>
 
 
   </div>`;
@@ -112,8 +112,8 @@ export function goalSession(p, i = null, makeReal = false) {
     <form id="future-add-form" data-session="${esc(i?.id || 'own')}" data-make-real="${makeReal}" ${i ? `data-possibility="${esc(i.id)}"` : ''}>
       <header class="goal-session-heading"><label for="goal-name">Goal name <span>Tap to rename ${icon('edit')}</span></label><input id="goal-name" name="name" required maxlength="60" placeholder="Something you’d love to do" value="${esc(d.name)}" autocomplete="off"></header>
       <div data-goal-preview>${goalSessionPreview(p, d)}</div>
-      <div class="goal-session-panel"><small class="goal-scale-key" data-goal-reference>Dotted ring · one year’s contributions ${money(d.amount * 12)}</small>
       <section class="goal-session-controls possibility-numbers" aria-label="Shape this future"><div class="goal-session-fields"><label class="field">Each month (£)<input name="amount" type="number" required min="1" max="10000" step="1" value="${d.amount}" inputmode="numeric"></label><label class="field">Target (£)<input name="target" type="number" min="1" max="10000000" step="1" value="" placeholder="No target" inputmode="numeric"></label></div></section>
+      <div class="goal-session-panel">
       <section class="goal-session-time" aria-label="Time Travel"><div data-goal-moment>${goalMoment(p, d)}</div><label class="goal-time-heading" for="goal-time">Time Travel</label>${timeTravel({ id: 'goal-time', name: 'previewMonth', month: d.month, label: dateAt(p, d.month) })}<div class="goal-time-labels"><span>Today</span><span>10 years</span><span>20 years</span></div></section>
       <section class="goal-what-if" aria-label="What if"><h3>What if…</h3><div class="goal-paths"><label><input type="radio" name="approach" value="cash" ${!d.investment ? 'checked' : ''}><span>${icon('target')}<b>Keep it in savings</b><small>Build it with regular contributions</small><strong data-whatif-cash>${money(cashPreview.value)}</strong></span></label><label><input type="radio" name="approach" value="investment" ${d.investment ? 'checked' : ''}><span>${icon('trend')}<b>Explore a first investment</b><small>See how a fund could grow over time</small><strong data-whatif-investment>${money(investmentPreview.range[0])}–${money(investmentPreview.range[1])}</strong></span></label></div><p>Illustrations at your selected date. Cash: no interest. Fund: −2% to 8% annual growth, not a forecast or a limit on losses.</p></section>
       <footer class="goal-session-footer"><button type="submit" class="btn primary wide">${makeReal ? 'Make it real' : 'Try this in my future'}</button>${i ? button(makeReal ? 'Not for me' : 'Create my own instead', makeReal ? 'future-horizon-hide:' + i.id : 'future-own', 'text wide') : ''}</footer>
@@ -138,8 +138,6 @@ export function updateGoalSession(p, form, render) {
     month: Number(form.elements.previewMonth.value),
   };
   sessions.get(p).set(form.dataset.session, d);
-  form.querySelector('[data-goal-reference]').textContent =
-    'Dotted ring · one year’s contributions ' + money(d.amount * 12);
   const track = form.querySelector('.future-time-track');
   track.style.setProperty('--time-progress', (d.month / 240) * 100 + '%');
   track.style.setProperty('--time-inset', 38 - (38 * d.month) / 240 + 'px');
