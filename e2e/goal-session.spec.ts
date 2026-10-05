@@ -29,9 +29,9 @@ test('focused goals react to time and contributions, support conversation, and s
       el.value = '12';
       el.dispatchEvent(new Event('input', { bubbles: true }));
     });
-    await expect(page.locator('.goal-session-orbit strong')).toHaveText('£1,200');
+    await expect(page.locator('.goal-session-orbit-copy strong')).toHaveText('£1,200');
     await page.locator('[name="amount"]').fill('200');
-    await expect(page.locator('.goal-session-orbit strong')).toHaveText('£2,400');
+    await expect(page.locator('.goal-session-orbit-copy strong')).toHaveText('£2,400');
     await expect(page.locator('#support-dock')).toBeVisible();
     await page.locator('#support-dock .support-summary').click();
     await expect(page.locator('.chat-thread')).toContainText('£200');
@@ -47,7 +47,7 @@ test('focused goals react to time and contributions, support conversation, and s
       el.value = '24';
       el.dispatchEvent(new Event('input', { bubbles: true }));
     });
-    await expect(page.locator('.goal-session-orbit strong')).toHaveText('£4,800');
+    await expect(page.locator('.goal-session-orbit-copy strong')).toHaveText('£4,800');
     expect(
       await page.evaluate(
         (person) => JSON.stringify((window.atlas.getState() as any).people[person].l1),
@@ -100,7 +100,7 @@ test('Alex can explore investing, with growing bubbles and the shared Time Trave
   await page.locator('.sheet [data-action="future-possibility:investing-curiosity"]').click();
   await expect(page.locator('[name=openEnded]')).toBeChecked();
   await expect(page.locator('[name=target]')).toBeDisabled();
-  await expect(page.locator('.goal-investment-range')).toBeVisible();
+  await expect(page.locator('.goal-session-arrival')).toBeVisible();
   await expect(page.locator('.future-time-track .future-starlight')).toBeAttached();
   const travel = async (month: string) =>
     page.locator('#goal-time').evaluate((el: HTMLInputElement, m) => {
@@ -122,4 +122,39 @@ test('Alex can explore investing, with growing bubbles and the shared Time Trave
       () => (window.atlas.getState() as any).people.alex.ui.future.ideas.at(-1).investment,
     ),
   ).toBe(true);
+});
+
+test('proportional growth, compact controls and automatic fit on returning to Future', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/?p=sam&tab=future&theme=vanilla');
+  await page.waitForFunction(() => !!window.atlas);
+  await page.locator('#future-stage').focus();
+  await page.locator('#future-stage').press('+');
+  await page.evaluate(() => window.atlas.dispatch('future-own'));
+  await page.locator('[name=name]').fill('A growing future');
+  const control = await page.locator('[name=amount]').boundingBox(),
+    slider = await page.locator('#goal-time').boundingBox();
+  expect(control!.y).toBeLessThan(slider!.y);
+  expect(slider!.y + slider!.height).toBeLessThan(812);
+  await page.locator('#goal-time').evaluate((e: HTMLInputElement) => {
+    e.value = '48';
+    e.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  const sizes = await page.evaluate(() =>
+    [
+      document.querySelector('.goal-session-orbit')!,
+      document.querySelector('.goal-reference')!,
+    ].map((e) => e.getBoundingClientRect().width),
+  );
+  expect((sizes[0] / sizes[1]) ** 2).toBeCloseTo(4, 3);
+  await page.getByRole('button', { name: 'Try this in my future', exact: true }).click();
+  await expect(page.locator('#future-stage')).toHaveAttribute('data-zoom', '1');
+  await page.locator('#future-stage').focus();
+  await page.locator('#future-stage').press('+');
+  await page.evaluate(() => window.atlas.dispatch('future-review'));
+  await page.locator('#future-approval').check();
+  await page.locator('[data-action=future-commit]').click();
+  await expect(page.locator('#future-stage')).toHaveAttribute('data-zoom', '1');
 });

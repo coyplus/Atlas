@@ -130,7 +130,7 @@ test('Make it mine keeps its reasoning and decisions reachable in the focused se
     await page.locator('#fg-tick-horizon-family-giving').click();
     await expect(page.getByRole('textbox', { name: 'Goal name' })).toHaveValue('Giving back');
     await expect(page.locator('#support-dock .support-copy strong')).toHaveText(
-      'At 62, would you like the option to support someone or a cause you care about?',
+      'Start with a monthly amount. See where it could take you.',
     );
     await expect(page.locator('.tabbar')).toBeHidden();
     for (const locator of [

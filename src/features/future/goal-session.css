@@ -1,17 +1,21 @@
-/* A focused part of Future: one orbit and one continuous Time Travel panel. */
+/* Focused Future: a proportional field above one compact control panel. */
 .phone .goal-session {
   margin: -8px -24px -24px;
   background: var(--canvas);
 }
+body[data-direction='vanilla'] .phone .sheet.level-two:has(.goal-session),
+body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header {
+  background: var(--canvas);
+}
 .goal-session-heading {
-  padding: 8px 24px 0;
+  padding: 4px 24px 0;
 }
 .goal-session-heading label {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
 }
 .goal-session-heading label span {
   display: flex;
@@ -24,184 +28,16 @@
 }
 .phone .goal-session-heading input {
   width: 100%;
-  margin-top: 6px;
-  padding: 8px 0;
+  padding: 6px 0;
+  margin-top: 4px;
   border: 0;
   border-bottom: 1px solid var(--line);
   border-radius: 0;
   background: transparent;
   color: var(--ink);
-  font-size: 26px !important;
+  font-size: 25px !important;
   font-weight: 400;
   letter-spacing: -0.7px;
-}
-.goal-session-scene {
-  display: grid;
-  place-items: center;
-  height: 220px;
-}
-.goal-session-orbit {
-  width: 190px;
-  height: 190px;
-  position: relative;
-  border: 1px dashed #7295a4;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  isolation: isolate;
-  background: #447a9512;
-}
-.goal-session-orbit-copy {
-  text-align: center;
-  color: white;
-}
-.goal-session-orbit-copy > .icon {
-  width: 23px;
-  height: 23px;
-  margin-bottom: 7px;
-}
-.goal-session-orbit-copy small,
-.goal-session-orbit-copy strong,
-.goal-session-orbit-copy span {
-  display: block;
-}
-.goal-session-orbit-copy small,
-.goal-session-orbit-copy span {
-  font-size: 11px;
-}
-.goal-session-orbit-copy strong {
-  font-size: 35px;
-  line-height: 1.3;
-  font-weight: 400;
-  letter-spacing: -1px;
-  font-variant-numeric: tabular-nums;
-}
-.goal-session-orbit-copy span {
-  margin-top: 5px;
-}
-.goal-session-panel {
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-bottom: 0;
-  border-radius: 30px 30px 0 0;
-  background: color-mix(in srgb, var(--canvas) 86%, transparent);
-  backdrop-filter: blur(20px);
-}
-.goal-session-date {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-.goal-session-date small {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-  margin-bottom: 6px;
-}
-.goal-session-date strong {
-  display: block;
-  font-size: 38px;
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: -1px;
-}
-.goal-session-date strong span {
-  font-size: 12px;
-  letter-spacing: 0;
-  color: var(--muted);
-}
-.goal-session-arrival {
-  text-align: right;
-}
-.goal-session-arrival b {
-  font-size: 17px;
-  font-weight: 400;
-}
-.goal-time-heading {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 12px;
-}
-.goal-time-heading span {
-  color: var(--muted);
-  font-size: 11px;
-}
-.goal-time-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--muted);
-}
-.goal-session-controls {
-  margin-top: 22px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-}
-.goal-session-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.goal-session-fields .field {
-  margin: 0;
-  min-width: 0;
-  font-size: 12px;
-}
-.goal-session-fields input {
-  width: 100%;
-  min-width: 0;
-  padding: 10px 12px;
-  font-size: 23px !important;
-  font-weight: 400;
-  font-variant-numeric: tabular-nums;
-  background: var(--surface);
-}
-.goal-session-fields input:disabled {
-  opacity: 0.4;
-}
-.goal-open-ended {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  font-size: 12px;
-  margin-top: 4px;
-}
-.goal-open-ended input {
-  width: 17px;
-  height: 17px;
-  accent-color: #52859d;
-}
-.goal-session-footer p {
-  margin: 10px 0;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--muted);
-  text-align: center;
-}
-.phone.premier .goal-session {
-  background: var(--canvas);
-}
-@media (max-width: 360px) {
-  .goal-session-heading,
-  .goal-session-panel {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .phone .goal-session-heading input {
-    font-size: 23px !important;
-  }
-}
-
-/* Continue the detail canvas behind its floating Companion without a colour seam. */
-.phone .goal-session {
-  background: var(--canvas);
-}
-.phone.premier .goal-session {
-  background: var(--canvas);
 }
 .phone .goal-session-heading input:focus,
 .phone .goal-session-fields input:focus {
@@ -213,64 +49,189 @@
   border-bottom-width: 2px;
 }
 .goal-session-scene {
-  height: auto;
-  padding: 12px 0 20px;
+  padding: 12px 0 10px;
+  text-align: center;
 }
 .goal-growth-stage {
   position: relative;
+  height: 180px;
+  width: 100%;
+  overflow: hidden;
   display: grid;
   place-items: center;
-  width: 100%;
-  height: 270px;
+  isolation: isolate;
 }
 .goal-session-orbit {
-  border: 0;
-  background: var(--viz-cash, #487e97);
+  position: absolute;
+  border-radius: 50%;
+  background: var(--viz-cash);
   transition:
     width 0.25s ease,
     height 0.25s ease;
-  margin: 0;
 }
-.goal-session-orbit-copy strong {
-  font-size: 28px;
-}
-.goal-session-orbit-copy small {
-  font-size: 10px;
-}
-.goal-session-orbit-copy > .icon {
-  margin-bottom: 2px;
-  width: 18px;
-  height: 18px;
+.goal-session-scene[data-investment='true'] .goal-session-orbit {
+  background: var(--viz-investment);
 }
 .goal-reference {
   position: absolute;
-  border: 1px dashed var(--muted);
+  border: 1px dashed #a5bbc5;
   border-radius: 50%;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
-  opacity: 0.65;
+}
+.goal-session-orbit-copy {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  pointer-events: none;
+}
+.goal-session-orbit-copy[data-light='true'] {
+  color: var(--ink);
+}
+.goal-session-orbit-copy > .icon {
+  width: 18px;
+  height: 18px;
+}
+.goal-session-orbit-copy small,
+.goal-session-orbit-copy strong {
+  display: block;
+}
+.goal-session-orbit-copy small {
+  font-size: 10px;
+  margin-top: 3px;
+}
+.goal-session-orbit-copy strong {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
 }
 .goal-scale-key {
-  font-size: 11px;
-  color: var(--muted);
-}
-.goal-investment-range {
-  text-align: center;
-  font-size: 12px;
-  margin: 12px 24px 0;
-}
-.goal-investment-range b {
-  display: block;
-  margin: 4px;
-  font-size: 18px;
-  font-weight: 400;
-}
-.goal-investment-range small {
   display: block;
   color: var(--muted);
   font-size: 10px;
-  line-height: 1.4;
-  max-width: 280px;
+  margin-top: 7px;
+}
+.goal-session-panel {
+  position: relative;
+  padding: 16px 24px 24px;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  border-radius: 26px 26px 0 0;
+  background: color-mix(in srgb, var(--canvas) 86%, transparent);
+  backdrop-filter: blur(20px);
+}
+.goal-session-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.goal-session-fields .field {
+  margin: 0;
+  min-width: 0;
+  font-size: 11px;
+}
+.goal-session-fields input {
+  width: 100%;
+  min-width: 0;
+  padding: 5px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  font-size: 23px !important;
+  font-weight: 400;
+  background: transparent;
+  font-variant-numeric: tabular-nums;
+}
+.goal-session-fields input:disabled {
+  opacity: 0.35;
+}
+.goal-open-ended {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  font-size: 11px;
+  margin: 0;
+}
+.goal-open-ended input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--viz-cash);
+}
+.goal-session-time {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.goal-session-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.goal-session-date small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+.goal-session-date strong {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+.goal-session-date strong span {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+.goal-session-arrival {
+  text-align: right;
+}
+.goal-session-arrival b {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+}
+.goal-time-heading {
+  font-size: 11px;
+}
+.goal-time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+}
+.goal-paths strong {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  margin-top: auto;
+}
+@media (max-height: 740px) {
+  .goal-growth-stage {
+    height: 125px;
+  }
+  .goal-session-scene {
+    padding-top: 8px;
+  }
+}
+@media (max-width: 360px) {
+  .goal-session-heading,
+  .goal-session-panel {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .goal-session-orbit {
+    transition: none;
+  }
 }
 .goal-what-if {
   border-top: 1px solid var(--line);
@@ -329,28 +290,20 @@
   color: var(--muted);
   margin: 10px 0 20px;
 }
-@media (prefers-reduced-motion: reduce) {
-  .goal-session-orbit {
-    transition: none;
-  }
-}
 
-body[data-direction='vanilla'] .phone .sheet.level-two:has(.goal-session) {
-  background: var(--canvas);
-}
-body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header {
-  background: var(--canvas);
-}
 .goal-reference {
-  border-color: #a5bbc5;
+  left: calc(18% - 40px);
 }
-.goal-session-scene[data-investment='true'] .goal-session-orbit {
-  background: var(--viz-investment);
+.goal-session-orbit {
+  left: 60%;
+  transform: translateX(-50%);
+}
+.goal-session-orbit-copy {
+  position: absolute;
+  left: 60%;
+  transform: translateX(-50%);
 }
 
-.goal-paths strong {
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: -0.4px;
-  margin-top: auto;
+.goal-growth-stage {
+  mask-image: linear-gradient(transparent, black 12px, black calc(100% - 12px), transparent);
 }

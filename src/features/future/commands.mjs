@@ -28,6 +28,7 @@ export function handleFuture(ctx, type, id, p) {
     s = ctx.S;
   const show = (title, body) => ctx.openJourney(title, body);
   const refresh = () => ctx.render();
+  const fitGoals = () => requestAnimationFrame(() => ctx.futureChart.control('fit'));
   if (type.startsWith('future-horizon')) {
     const i = horizonPossibilities(p, s).find((x) => x.id === id);
     if (!i) return;
@@ -135,6 +136,7 @@ export function handleFuture(ctx, type, id, p) {
       // Commit only this reviewed possibility, never unrelated What If experiments.
       forecast(p, [i]);
       ctx.change('Created ' + name, () => applyExperiments(p, [i]));
+      fitGoals();
       return;
     }
     toggleExperiment(p, i);
@@ -144,6 +146,7 @@ export function handleFuture(ctx, type, id, p) {
     f.drawer = 'expanded';
     ctx.closeModal();
     refresh();
+    fitGoals();
   } else if (type === 'future-adjust' || type === 'future-priority')
     show('Shape your priorities', adjustDetail(p, id, type === 'future-priority'));
   else if (type === 'future-adjust-save') {
@@ -235,6 +238,7 @@ export function handleFuture(ctx, type, id, p) {
       p.ui.future = { mode: 'view', ideas: [], messages: [], proposal: null };
       p.ui.preview = [];
     });
+    if (ideas.some((idea) => idea.kind === 'add')) fitGoals();
   } else if (type === 'future-dismiss') ctx.closeModal();
   else if (type === 'future-pot') {
     ctx.closeModal();

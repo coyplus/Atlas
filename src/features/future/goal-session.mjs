@@ -41,10 +41,9 @@ export function goalSessionSupport(p, context) {
     author: 'HSBC AI',
     title: d.edited
       ? `${money(d.amount)} a month. Try a different pace and see what feels right for you.`
-      : d.why ||
-        'A little more freedom, a place of your own, or time to learn. What would you make room for?',
+      : 'Start with a monthly amount. See where it could take you.',
     singleMessage: true,
-    message: words(p, d, goalSessionModel(p, d)),
+    message: [d.why, words(p, d, goalSessionModel(p, d))].filter(Boolean).join(' '),
     cta: 'Explore this together',
     action: 'support:discuss',
   };
@@ -78,18 +77,22 @@ export function goalSessionReply(p, context, text) {
 }
 export function goalSessionPreview(p, d) {
   const m = goalSessionModel(p, d);
-  const diameter = (value) => Math.min(250, 100 + 150 * Math.sqrt(Math.max(0, value) / 10000));
   const reference = d.amount * 12;
+  const diameter = (value) => 80 * Math.sqrt(Math.max(0, value) / reference);
   return `<div class="goal-session-scene" data-investment="${d.investment}">
-    <div class="goal-growth-stage"><div class="goal-reference" style="width:${diameter(reference)}px;height:${diameter(reference)}px"></div><div class="goal-session-orbit" style="width:${diameter(m.value)}px;height:${diameter(m.value)}px"><div class="goal-session-orbit-copy">${icon(d.investment ? 'trend' : d.glyph || 'target')}<small>${d.month ? 'You could have' : 'Starting here'}</small><strong>${money(m.value)}</strong></div></div></div>
+    <div class="goal-growth-stage"><div class="goal-reference" style="width:${diameter(reference)}px;height:${diameter(reference)}px"></div><div class="goal-session-orbit" style="width:${diameter(m.value)}px;height:${diameter(m.value)}px"></div><div class="goal-session-orbit-copy" data-light="${diameter(m.value) < 145}">${icon(d.investment ? 'trend' : d.glyph || 'target')}<small>${d.month ? 'You could have' : 'Starting here'}</small><strong>${money(m.value)}</strong></div></div>
     <small class="goal-scale-key">Dotted ring · one year’s contributions ${money(reference)}</small>
-    ${d.investment ? `<div class="goal-investment-range">Illustrative range <b>${money(m.range[0])}–${money(m.range[1])}</b><small>−2% to 8% annual growth; central view 5%. Not a forecast or limit. You could lose money.</small></div>` : ''}
+
   </div>`;
 }
 
 function goalMoment(p, d) {
   const m = goalSessionModel(p, d);
-  return `<div class="goal-session-date"><div><small>${d.month ? dateAt(p, d.month) : 'Today'}</small><strong>${p.l1.customer.age + Math.floor(d.month / 12)} <span>years old</span></strong></div><div class="goal-session-arrival"><small>${d.target ? 'Target in reach' : 'Your direction'}</small><b>${d.target ? (m.reached == null ? 'Beyond 20 years' : dateAt(p, m.reached)) : 'Keep growing'}</b></div></div>`;
+  const contribution = Math.min(
+    d.amount * d.month,
+    d.target && !d.investment ? d.target : Infinity,
+  );
+  return `<div class="goal-session-date"><div><small>${d.month ? dateAt(p, d.month) : 'Today'}</small><strong>${p.l1.customer.age + Math.floor(d.month / 12)} <span>years old</span></strong></div><div class="goal-session-arrival"><small>${d.investment ? 'Illustrative range' : 'You put in'}</small><b>${d.investment ? money(m.range[0]) + '–' + money(m.range[1]) : money(contribution)}</b></div></div>`;
 }
 export function goalSession(p, i = null, makeReal = false) {
   const d = {
@@ -110,8 +113,8 @@ export function goalSession(p, i = null, makeReal = false) {
       <header class="goal-session-heading"><label for="goal-name">Goal name <span>Tap to rename ${icon('edit')}</span></label><input id="goal-name" name="name" required maxlength="60" placeholder="Something you’d love to do" value="${esc(d.name)}" autocomplete="off"></header>
       <div data-goal-preview>${goalSessionPreview(p, d)}</div>
       <div class="goal-session-panel">
+      <section class="goal-session-controls possibility-numbers" aria-label="Shape this future"><div class="goal-session-fields"><label class="field">Each month (£)<input name="amount" type="number" required min="1" max="10000" step="1" value="${d.amount}" inputmode="numeric"></label><label class="field">Target (£)<input name="target" type="number" disabled min="1" max="10000000" step="1" value="" placeholder="Optional" inputmode="numeric"></label></div><label class="goal-open-ended"><input type="checkbox" name="openEnded" checked> No target</label></section>
       <section class="goal-session-time" aria-label="Time Travel"><div data-goal-moment>${goalMoment(p, d)}</div><label class="goal-time-heading" for="goal-time">Time Travel</label>${timeTravel({ id: 'goal-time', name: 'previewMonth', month: d.month, label: dateAt(p, d.month) })}<div class="goal-time-labels"><span>Today</span><span>10 years</span><span>20 years</span></div></section>
-      <section class="goal-session-controls possibility-numbers" aria-label="Shape this future"><div class="goal-session-fields"><label class="field">Each month (£)<input name="amount" type="number" required min="1" max="10000" step="1" value="${d.amount}" inputmode="numeric"></label><label class="field">Your target (£)<input name="target" type="number" disabled min="1" max="10000000" step="1" value="${i?.target || 3000}" inputmode="numeric"></label></div><label class="goal-open-ended"><input type="checkbox" name="openEnded" checked> I don’t have a target yet</label></section>
       <section class="goal-what-if" aria-label="What if"><h3>What if…</h3><div class="goal-paths"><label><input type="radio" name="approach" value="cash" ${!d.investment ? 'checked' : ''}><span>${icon('target')}<b>Keep it in savings</b><small>Build it with regular contributions</small><strong data-whatif-cash>${money(cashPreview.value)}</strong></span></label><label><input type="radio" name="approach" value="investment" ${d.investment ? 'checked' : ''}><span>${icon('trend')}<b>Explore a first investment</b><small>See how a fund could grow over time</small><strong data-whatif-investment>${money(investmentPreview.range[0])}–${money(investmentPreview.range[1])}</strong></span></label></div><p>Illustrations at your selected date. Cash: no interest. Fund: −2% to 8% annual growth, not a forecast or a limit on losses.</p></section>
       <footer class="goal-session-footer"><button type="submit" class="btn primary wide">${makeReal ? 'Make it real' : 'Try this in my future'}</button>${i ? button(makeReal ? 'Not for me' : 'Create my own instead', makeReal ? 'future-horizon-hide:' + i.id : 'future-own', 'text wide') : ''}</footer>
       </div>
