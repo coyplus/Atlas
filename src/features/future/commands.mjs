@@ -24,6 +24,12 @@ import {
   adjustDetail,
 } from './views.mjs';
 export function handleFuture(ctx, type, id, p) {
+  if (type === 'future-rename') {
+    const name = document.querySelector('#goal-name');
+    name?.focus({ preventScroll: true });
+    name?.select();
+    return;
+  }
   const f = ensureFuture(p),
     s = ctx.S;
   const show = (title, body) => ctx.openJourney(title, body);

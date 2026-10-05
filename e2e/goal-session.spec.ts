@@ -20,6 +20,8 @@ test('focused goals react to time and contributions, support conversation, and s
     );
     await page.evaluate(() => window.atlas.dispatch('future-add'));
     await page.locator('.possibility-open').first().click();
+    await page.getByRole('button', { name: 'Edit goal name', exact: true }).click();
+    await expect(page.locator('[name="name"]')).toBeFocused();
     await page.locator('[name="name"]').fill('Time for myself');
     await page.locator('[name="target"]').fill('2400');
     await page.locator('[name="amount"]').fill('100');

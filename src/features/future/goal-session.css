@@ -46,20 +46,6 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
   -webkit-backdrop-filter: var(--goal-blur);
   backdrop-filter: var(--goal-blur);
 }
-.goal-session-heading label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--muted);
-  font-size: 11px;
-}
-.goal-session-heading label span {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-}
 .goal-session-heading .icon {
   width: 14px;
   height: 14px;
@@ -67,7 +53,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
 .phone .goal-session-heading input {
   width: 100%;
   min-width: 0;
-  padding: 7px 0;
+  padding: 7px 44px 7px 0;
   margin-top: 4px;
   border: 0;
   border-bottom: 1px solid var(--line);
@@ -88,7 +74,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
 }
 .goal-growth-stage {
   position: relative;
-  height: 180px;
+  height: 224px;
   width: 100%;
   display: grid;
   place-items: center;
@@ -249,15 +235,6 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
   font-weight: 400;
   letter-spacing: -0.4px;
 }
-.goal-time-heading {
-  font-size: 11px;
-}
-.goal-time-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-  color: var(--muted);
-}
 .goal-what-if {
   border-top: 1px solid var(--line);
   margin-top: 12px;
@@ -323,7 +300,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
 }
 @media (max-height: 740px) {
   .goal-growth-stage {
-    height: 125px;
+    height: 169px;
   }
 }
 @media (max-width: 360px) {
@@ -335,4 +312,26 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
   .goal-session-orbit {
     transition: none;
   }
+}
+
+.goal-name-field {
+  position: relative;
+}
+.goal-name-edit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.goal-name-edit:focus-visible {
+  outline: 2px solid var(--viz-cash);
+  outline-offset: 2px;
+  border-radius: 8px;
 }
