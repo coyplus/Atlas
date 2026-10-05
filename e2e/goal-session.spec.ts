@@ -21,8 +21,6 @@ test('focused goals react to time and contributions, support conversation, and s
     await page.evaluate(() => window.atlas.dispatch('future-add'));
     await page.locator('.possibility-open').first().click();
     await page.locator('[name="name"]').fill('Time for myself');
-    await expect(page.locator('[name="openEnded"]')).toBeChecked();
-    await page.locator('[name="openEnded"]').uncheck();
     await page.locator('[name="target"]').fill('2400');
     await page.locator('[name="amount"]').fill('100');
     await page.locator('#goal-time').evaluate((el: HTMLInputElement) => {
@@ -41,8 +39,7 @@ test('focused goals react to time and contributions, support conversation, and s
     await expect(page.locator('.chat-thread')).toContainText('I haven’t changed your draft.');
     await page.evaluate(() => window.atlas.dispatch('close'));
     await expect(page.locator('[name="amount"]')).toHaveValue('200');
-    await page.locator('[name="openEnded"]').check();
-    await expect(page.locator('[name="target"]')).toBeDisabled();
+    await page.locator('[name=target]').fill('');
     await page.locator('#goal-time').evaluate((el: HTMLInputElement) => {
       el.value = '24';
       el.dispatchEvent(new Event('input', { bubbles: true }));
@@ -75,7 +72,6 @@ test('new targetless Pot follows the same preview and approval projection', asyn
   await page.waitForFunction(() => !!window.atlas);
   await page.evaluate(() => window.atlas.dispatch('future-own'));
   await page.locator('[name="name"]').fill('Room for life');
-  await page.locator('[name="openEnded"]').check();
   await page.getByRole('button', { name: 'Try this in my future', exact: true }).click();
   await page.evaluate(() => window.atlas.dispatch('future-review'));
   await expect(page.locator('.sheet-body')).toContainText('open-ended Pot');
@@ -98,8 +94,6 @@ test('Alex can explore investing, with growing bubbles and the shared Time Trave
   await page.waitForFunction(() => !!window.atlas);
   await page.evaluate(() => window.atlas.dispatch('future-add'));
   await page.locator('.sheet [data-action="future-possibility:investing-curiosity"]').click();
-  await expect(page.locator('[name=openEnded]')).toBeChecked();
-  await expect(page.locator('[name=target]')).toBeDisabled();
   await expect(page.locator('.goal-session-arrival')).toBeVisible();
   await expect(page.locator('.future-time-track .future-starlight')).toBeAttached();
   const travel = async (month: string) =>

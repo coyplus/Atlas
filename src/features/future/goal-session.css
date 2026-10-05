@@ -56,7 +56,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   position: relative;
   height: 180px;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
   display: grid;
   place-items: center;
   isolation: isolate;
@@ -120,7 +120,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   border: 1px solid var(--line);
   border-bottom: 0;
   border-radius: 26px 26px 0 0;
-  background: color-mix(in srgb, var(--canvas) 86%, transparent);
+  background: color-mix(in srgb, var(--canvas) 76%, transparent);
   backdrop-filter: blur(20px);
 }
 .goal-session-fields {
@@ -147,20 +147,6 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
 }
 .goal-session-fields input:disabled {
   opacity: 0.35;
-}
-.goal-open-ended {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 6px;
-  min-height: 28px;
-  font-size: 11px;
-  margin: 0;
-}
-.goal-open-ended input {
-  width: 15px;
-  height: 15px;
-  accent-color: var(--viz-cash);
 }
 .goal-session-time {
   padding-top: 10px;
@@ -304,6 +290,37 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   transform: translateX(-50%);
 }
 
-.goal-growth-stage {
-  mask-image: linear-gradient(transparent, black 12px, black calc(100% - 12px), transparent);
+.phone .goal-session {
+  overflow: hidden;
+}
+.goal-session-heading {
+  position: relative;
+  z-index: 3;
+  background: var(--canvas);
+}
+.goal-session-panel {
+  z-index: 2;
+  -webkit-backdrop-filter: blur(24px) saturate(115%);
+  backdrop-filter: blur(24px) saturate(115%);
+}
+.goal-scale-key {
+  position: relative;
+  z-index: 1;
+}
+.goal-session-controls {
+  padding-bottom: 14px;
+}
+.goal-session-fields input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.goal-session-fields input::-webkit-inner-spin-button,
+.goal-session-fields input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.goal-session-panel .goal-scale-key {
+  margin: 0 0 10px;
+  text-align: left;
 }
