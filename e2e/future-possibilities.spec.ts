@@ -20,7 +20,7 @@ test('a named possibility becomes real without applying other experiments, and U
   await expect(page.getByRole('heading', { name: 'Make it mine', exact: true })).toBeVisible();
   await expect(page.locator('[name="target"]')).toBeVisible();
   await expect(page.locator('[name="amount"]')).toBeVisible();
-  await expect(page.locator('.possibility-numbers')).toContainText('Optional to adjust');
+  await expect(page.locator('.possibility-numbers')).toContainText('Each month');
   await expect(page.getByRole('button', { name: 'Try this possibility', exact: true })).toHaveCount(
     0,
   );
@@ -128,7 +128,7 @@ test('Make it mine keeps its reasoning and decisions reachable in the focused se
     await page.goto('/?p=elena&theme=vanilla&tab=future');
     await page.locator('#fg-tick-horizon-family-giving').click();
     await expect(page.getByRole('textbox', { name: 'Goal name' })).toHaveValue('Giving back');
-    await expect(page.locator('.goal-session-heading p')).toHaveText(
+    await expect(page.locator('#support-dock .support-copy strong')).toHaveText(
       'At 62, would you like the option to support someone or a cause you care about?',
     );
     await expect(page.locator('.tabbar')).toBeHidden();

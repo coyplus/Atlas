@@ -38,7 +38,7 @@ export function handleFuture(ctx, type, id, p) {
       return;
     }
     seePossibilities(p, [i]);
-    show('Make it mine', horizonDetail(p, i));
+    ctx.openModal('Make it mine', horizonDetail(p, i));
     return;
   }
   if (type === 'future-studio') {
@@ -91,7 +91,7 @@ export function handleFuture(ctx, type, id, p) {
     seePossibilities(p, possibilities(p, s));
     ctx.updateFuture();
     show('A new possibility', possibilityDiscovery(p, s));
-  } else if (type === 'future-own') show('Your own possibility', addDetail(null, p));
+  } else if (type === 'future-own') ctx.openModal('Your own possibility', addDetail(null, p));
   else if (type === 'future-possibility') {
     const idea = possibilities(p, s).find((i) => i.id === id);
     if (!idea) {
@@ -100,7 +100,7 @@ export function handleFuture(ctx, type, id, p) {
     }
     seePossibilities(p, [idea]);
     ctx.updateFuture();
-    show('Imagine this', addDetail(idea, p));
+    ctx.openModal('Imagine this', addDetail(idea, p));
   } else if (type === 'future-add-save') {
     const form = document.querySelector('#future-add-form');
     if (!form.reportValidity()) return;

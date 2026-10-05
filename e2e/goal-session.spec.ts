@@ -30,7 +30,8 @@ test('focused goals react to time and contributions, support conversation, and s
     await expect(page.locator('.goal-session-orbit strong')).toHaveText('£1,200');
     await page.locator('[name="amount"]').fill('200');
     await expect(page.locator('.goal-session-orbit strong')).toHaveText('£2,400');
-    await page.locator('.goal-session-companion').click();
+    await expect(page.locator('#support-dock')).toBeVisible();
+    await page.locator('#support-dock .support-summary').click();
     await expect(page.locator('.chat-thread')).toContainText('£200');
     await expect(page.locator('.chat-thread')).toContainText('Time for myself');
     await page.locator('#chat-input').fill('What about £25 a month?');

@@ -936,7 +936,10 @@ document.addEventListener('keydown', (e) => {
 });
 document.addEventListener('input', (e) => {
   const goalForm = e.target.closest('#future-add-form');
-  if (goalForm) updateGoalSession(current(S), goalForm, renderRegion);
+  if (goalForm) {
+    updateGoalSession(current(S), goalForm, renderRegion);
+    supportController.refresh();
+  }
   if (['convert-amount', 'convert-currency'].includes(e.target.id)) {
     const amount = Number(document.querySelector('#convert-amount').value),
       currency = document.querySelector('#convert-currency').value,
