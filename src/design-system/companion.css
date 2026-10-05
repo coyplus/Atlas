@@ -128,3 +128,57 @@
     transition: none;
   }
 }
+
+/* Audio is a briefing, with one playback control rather than a duplicated CTA. */
+body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .atlas-companion {
+  padding: 20px;
+}
+.support-audio-meta {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 1.1px;
+  color: var(--muted);
+}
+.support-audio-meta[hidden] {
+  display: none;
+}
+body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .support-copy strong {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+}
+body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .support-top {
+  gap: 20px;
+  align-items: center;
+}
+body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .support-avatar {
+  width: 50px;
+  height: 50px;
+  flex-basis: 50px;
+  background: var(--surface);
+}
+body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .support-message {
+  margin: 14px 0 0;
+  padding-right: 60px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .support-actions {
+  display: none;
+}
+body[data-direction='vanilla']
+  .support-dock[data-audio-briefing='true'].is-compact
+  .atlas-companion {
+  padding: 12px 16px;
+}
+body[data-direction='vanilla']
+  .support-dock[data-audio-briefing='true'].is-compact
+  .support-copy
+  strong {
+  font-size: 16px;
+}

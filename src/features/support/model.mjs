@@ -500,8 +500,8 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     return { ...aiMessage(p, 'future', s.month), source: 'ai', author: 'HSBC AI' };
   if (k === 'audio')
     return ai(
-      'Your weekly money report is ready',
-      'Your week in money. Press play to catch up.',
+      'Your week in money',
+      'A little perspective on your savings, plans and next steps.',
       'Play my report',
       'support:listen',
     );

@@ -108,7 +108,7 @@ test('Status discovery opens membership and focused Future keeps its action dock
 
 test('Sam’s revised numbers reconcile and his audio report is ready to play', async ({ page }) => {
   await page.goto('/?p=sam&tab=now&theme=vanilla');
-  await expect(page.locator('.support-copy')).toContainText('Your weekly money report is ready');
+  await expect(page.locator('.support-copy')).toContainText('Your week in money');
   await expect(page.getByRole('button', { name: 'Play recap', exact: true }).first()).toBeVisible();
   await expect(page.locator('[data-module="investments"]')).toContainText('£20,693.55');
   await expect(page.getByRole('button', { name: /Ella’s Pocket Money ·/ })).toBeVisible();

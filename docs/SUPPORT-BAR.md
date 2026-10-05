@@ -114,3 +114,6 @@ The previous body-only and message-type icon experiment is superseded following 
 - Persona settings: the established four organic forms remain unchanged. Their breathing motion and reduced-motion handling are shared with the cards.
 
 The experimental signal module and its CSS were removed. The unrelated voice prototype is not part of this update.
+
+### Audio briefing composition · 5 October visual polish
+Audio uses a small weekly-briefing/duration label, a short headline, restrained supporting copy and a single circular play/pause control. The duplicate text playback CTA is removed. Duration comes from the audio metadata (rounded minutes); playback, transcript and the shared player remain unchanged. Spacing and type are owned by the shared Companion stylesheet, with a scoped audio state rather than scenario-specific positioning.

@@ -190,6 +190,10 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     dock.inert = !view.visible;
     dock.setAttribute('aria-hidden', String(!view.visible));
     dock.dataset.state = view.engagement;
+    dock.dataset.audioBriefing = String(offerAudio);
+    const audioMeta = dock.querySelector('.support-audio-meta');
+    audioMeta.hidden = !offerAudio;
+    audioMeta.textContent = offerAudio ? `WEEKLY BRIEFING · ${Math.max(1, Math.round((window.ATLAS_AUDIO?.duration || 66) / 60))} MIN LISTEN` : '';
     if (m.companionStyle) dock.dataset.companionStyle = m.companionStyle;
     else delete dock.dataset.companionStyle;
     document.querySelector('#phone').dataset.supportSurface = view.surface;
@@ -276,7 +280,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
         ? playing ? 'Pause report' : 'Play my report'
         : m.cta;
     const markup =
-      button(label, action, 'secondary') +
+      (offerAudio ? '' : button(label, action, 'secondary')) +
       (humanDirect ? button('Prepare with AI', 'support:discuss', 'text') : '');
     if (ctas.innerHTML !== markup) renderRegion(ctas, markup);
     ctas.inert = !view.actions;
