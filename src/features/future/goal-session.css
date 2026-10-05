@@ -340,3 +340,27 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
 .goal-paths label:last-child {
   grid-column: 1 / -1;
 }
+
+/* The target shares the bubble's area scale; its caption stays visible when it overflows. */
+.goal-target-ring {
+  position: absolute;
+  left: 60%;
+  transform: translateX(-50%);
+  border: 2px dashed var(--ink);
+  border-radius: 50%;
+  opacity: 0.45;
+  pointer-events: none;
+}
+.goal-target-label {
+  position: absolute;
+  bottom: 0;
+  right: var(--goal-gutter);
+  z-index: 2;
+  padding: 5px 10px;
+  border-radius: 16px;
+  background: var(--goal-glass);
+  backdrop-filter: var(--goal-blur);
+  color: var(--ink);
+  font-size: 12px;
+  pointer-events: none;
+}

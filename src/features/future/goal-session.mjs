@@ -40,11 +40,18 @@ export function goalSessionSupport(p, context) {
   return {
     source: 'ai',
     author: 'HSBC AI',
-    title: d.lockYears
-      ? `Set this money aside until ${dateAt(p, 36)}. Would that leave enough accessible for everyday life?`
-      : d.edited
-        ? `${money(d.amount)} a month. Try a different pace and see what feels right for you.`
-        : 'Start with a monthly amount. See where it could take you.',
+    title:
+      context.topic === 'what-if'
+        ? d.investment
+          ? 'More growth potential means more uncertainty. Shall we compare it with keeping your money in cash?'
+          : d.lockYears
+            ? 'A higher rate, in exchange for time. Could you leave this money untouched for three years?'
+            : 'Access, certainty or growth potential—which matters most for this money?'
+        : d.lockYears
+          ? `Set this money aside until ${dateAt(p, 36)}. Would that leave enough accessible for everyday life?`
+          : d.edited
+            ? `${money(d.amount)} a month. Try a different pace and see what feels right for you.`
+            : 'Start with a monthly amount. See where it could take you.',
     singleMessage: true,
     message: [d.why, words(p, d, goalSessionModel(p, d))].filter(Boolean).join(' '),
     cta: 'Explore this together',
@@ -85,7 +92,7 @@ export function goalSessionPreview(p, d) {
   const reference = d.amount * 12;
   const diameter = (value) => 80 * Math.sqrt(Math.max(0, value) / reference);
   return `<div class="goal-session-scene" data-investment="${d.investment}">
-    <div class="goal-growth-stage"><div class="goal-reference" style="width:${diameter(reference)}px;height:${diameter(reference)}px"><span><small>1 year</small><b>${money(reference)}</b></span></div><div class="goal-session-orbit" style="width:${diameter(m.value)}px;height:${diameter(m.value)}px"></div><div class="goal-session-orbit-copy" data-light="${diameter(m.value) < 145}">${icon(d.investment ? 'trend' : d.glyph || 'target')}<small>${d.month ? 'You could have' : 'Starting here'}</small><strong>${money(m.value)}</strong></div></div>
+    <div class="goal-growth-stage"><div class="goal-reference" style="width:${diameter(reference)}px;height:${diameter(reference)}px"><span><small>1 year</small><b>${money(reference)}</b></span></div><div class="goal-session-orbit" style="width:${diameter(m.value)}px;height:${diameter(m.value)}px"></div>${d.target ? `<div class="goal-target-ring" style="width:${diameter(d.target)}px;height:${diameter(d.target)}px"></div><div class="goal-target-label">Target ${money(d.target)} · ${Math.round((m.value / d.target) * 100)}%</div>` : ''}<div class="goal-session-orbit-copy" data-light="${diameter(m.value) < 145}">${icon(d.investment ? 'trend' : d.glyph || 'target')}<small>${d.month ? 'You could have' : 'Starting here'}</small><strong>${money(m.value)}</strong></div></div>
 
 
   </div>`;
@@ -116,14 +123,14 @@ export function goalSession(p, i = null, makeReal = false) {
   sessions.get(p).set(i?.id || 'own', d);
   return `<div class="goal-session" ${i ? `data-possibility="${esc(i.id)}"` : ''}>
     <form id="future-add-form" data-session="${esc(i?.id || 'own')}" data-make-real="${makeReal}" ${i ? `data-possibility="${esc(i.id)}"` : ''}>
-      <div class="goal-session-hero">
+      <div class="goal-session-hero" data-support-topic="intro">
       <header class="goal-session-heading"><label class="sr-only" for="goal-name">Goal name</label><div class="goal-name-field"><input id="goal-name" name="name" required maxlength="60" placeholder="Something you’d love to do" value="${esc(d.name)}" autocomplete="off"><button type="button" class="goal-name-edit" data-action="future-rename" aria-label="Edit goal name">${icon('edit')}</button></div></header>
       <div data-goal-preview>${goalSessionPreview(p, d)}</div>
       <section class="goal-session-controls possibility-numbers" aria-label="Shape this future"><div class="goal-session-fields"><label class="field">Monthly contribution (£)<input name="amount" type="number" required min="1" max="10000" step="1" value="${d.amount}" inputmode="numeric"></label><label class="field">Target (£)<input name="target" type="number" min="1" max="10000000" step="1" value="" placeholder="No target" inputmode="numeric"></label></div></section>
       </div>
       <div class="goal-session-panel">
-      <section class="goal-session-time" aria-label="Time Travel"><div data-goal-moment>${goalMoment(p, d)}</div>${timeTravel({ id: 'goal-time', name: 'previewMonth', month: d.month, label: dateAt(p, d.month) })}</section>
-      <section class="goal-what-if" aria-label="What if"><h3>What if…</h3><div class="goal-paths"><label><input type="radio" name="approach" value="cash" ${!d.investment && !d.lockYears ? 'checked' : ''}><span>${icon('target')}<b>Keep it in an ISA</b><small>Build up cash, with access when needed</small><strong data-whatif-cash>${money(cashPreview.value)}</strong></span></label><label><input type="radio" name="approach" value="investment" ${d.investment ? 'checked' : ''}><span>${icon('trend')}<b>Explore a first investment</b><small>See how a fund could grow over time</small><strong data-whatif-investment>${money(investmentPreview.range[0])}–${money(investmentPreview.range[1])}</strong></span></label><label><input type="radio" name="approach" value="locked" ${d.lockYears ? 'checked' : ''}><span>${icon('target')}<b>Lock it away for 3 years</b><small>5% AER fixed · illustrative. Locked until ${dateAt(p, 36)}.</small><strong data-whatif-locked>${money(lockedPreview.value)}</strong></span></label></div><p>Illustrations at your selected date. ISA: no interest assumed. Locked savings: 5% AER for 3 years, then no further interest assumed; ISA eligibility and allowances not modelled. Fund: −2% to 8% annual growth, not a forecast or a limit on losses.</p></section>
+      <section class="goal-session-time" data-support-topic="intro" aria-label="Time Travel"><div data-goal-moment>${goalMoment(p, d)}</div>${timeTravel({ id: 'goal-time', name: 'previewMonth', month: d.month, label: dateAt(p, d.month) })}</section>
+      <section class="goal-what-if" data-support-topic="what-if" aria-label="What if"><h3>What if…</h3><div class="goal-paths"><label><input type="radio" name="approach" value="cash" ${!d.investment && !d.lockYears ? 'checked' : ''}><span>${icon('target')}<b>Keep it in an ISA</b><small>Build up cash, with access when needed</small><strong data-whatif-cash>${money(cashPreview.value)}</strong></span></label><label><input type="radio" name="approach" value="investment" ${d.investment ? 'checked' : ''}><span>${icon('trend')}<b>Explore a first investment</b><small>See how a fund could grow over time</small><strong data-whatif-investment>${money(investmentPreview.range[0])}–${money(investmentPreview.range[1])}</strong></span></label><label><input type="radio" name="approach" value="locked" ${d.lockYears ? 'checked' : ''}><span>${icon('target')}<b>Lock it away for 3 years</b><small>5% AER fixed · illustrative. Locked until ${dateAt(p, 36)}.</small><strong data-whatif-locked>${money(lockedPreview.value)}</strong></span></label></div><p>Illustrations at your selected date. ISA: no interest assumed. Locked savings: 5% AER for 3 years, then no further interest assumed; ISA eligibility and allowances not modelled. Fund: −2% to 8% annual growth, not a forecast or a limit on losses.</p></section>
       <footer class="goal-session-footer"><button type="submit" class="btn primary wide">${makeReal ? 'Make it real' : 'Try this in my future'}</button>${i ? button(makeReal ? 'Not for me' : 'Create my own instead', makeReal ? 'future-horizon-hide:' + i.id : 'future-own', 'text wide') : ''}</footer>
       </div>
     </form>

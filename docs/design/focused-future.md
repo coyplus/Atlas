@@ -40,3 +40,6 @@ A regression check uses the maximum contribution and target at 320px, 375px and 
 
 ### 5 October refinement — savings choices
 The goal name sits 16px closer to the Companion. Its edit button has a 44px hit area and a 22px icon. What If offers cash ISA, investment and a three-year locked savings illustration. The lock is preserved on approval using the existing withdrawal protection. The ISA example assumes no interest; ISA eligibility and allowances are not modelled. Locked savings use illustrative 5% AER, compounded monthly for the three-year term, with no further interest assumed after maturity. The shared projection preserves this savings interest separately from investment growth. The contribution field is labelled “Monthly contribution (£)”. Investment assumptions remain unchanged.
+
+### Target and reading context
+An entered target adds a dashed ring using the same area scale as the projected balance, with a persistent amount/percentage caption. Clearing the optional target removes both. The What If section uses the shared detail-page reading-context mechanism: Companion prompts respond to the chosen cash, investment or locked route, and return to the goal prompt when scrolling up.

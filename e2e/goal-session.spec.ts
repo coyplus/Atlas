@@ -210,3 +210,28 @@ test('ISA and locked savings choices survive review and approval', async ({ page
     else expect(pot.wrapper).toBe('cash-isa');
   }
 });
+
+test('target marker responds to edits and Companion follows What If reading context', async ({
+  page,
+}) => {
+  await page.goto('/?p=alex&tab=future&theme=vanilla');
+  await page.waitForFunction(() => !!window.atlas);
+  await page.evaluate(() => window.atlas.dispatch('future-own'));
+  await page.locator('[name=name]').fill('My next chapter');
+  await page.locator('[name=target]').fill('5000');
+  await expect(page.locator('.goal-target-ring')).toBeAttached();
+  await expect(page.locator('.goal-target-label')).toContainText('Target £5,000');
+  await page.locator('[name=target]').fill('2000');
+  await expect(page.locator('.goal-target-label')).toContainText('Target £2,000');
+  await page.locator('[name=target]').fill('');
+  await expect(page.locator('.goal-target-ring')).toHaveCount(0);
+  await page.locator('.goal-what-if').scrollIntoViewIfNeeded();
+  await expect(page.locator('#support-dock')).toContainText(
+    'Access, certainty or growth potential',
+    { timeout: 10000 },
+  );
+  await page.locator('[value=locked]').check();
+  await expect(page.locator('#support-dock')).toContainText('A higher rate, in exchange for time');
+  await page.locator('[name=name]').scrollIntoViewIfNeeded();
+  await expect(page.locator('#support-dock')).toContainText('Set this money aside');
+});
