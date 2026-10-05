@@ -32,7 +32,8 @@ body[data-direction='vanilla']
   box-shadow: 0 0 0 3px var(--surface);
   pointer-events: none;
 }
-/* Routine thinking stays neutral. An unread benefit change uses the same travelling rim, in red. */
+/* Thinking is an interaction state: a neutral travelling rim while the summary forms.
+   Attention is a message purpose: a still red hairline, never the same motion. */
 body[data-direction='vanilla'] .phone[data-active-tab='now'] .is-thinking .support-bar::after {
   background: conic-gradient(
     from var(--support-angle),
@@ -45,30 +46,9 @@ body[data-direction='vanilla']
   .phone[data-active-tab='now']
   .is-attention-pulse
   .support-bar::after {
-  background: conic-gradient(
-    from var(--support-angle),
-    transparent 0deg,
-    var(--red) 35deg,
-    #fff 55deg,
-    var(--red) 80deg,
-    transparent 125deg
-  );
+  background: color-mix(in srgb, var(--red) 58%, transparent);
   opacity: 1;
-  animation: now-attention-breathe 8s ease-in-out infinite;
-}
-@keyframes now-attention-breathe {
-  0% {
-    --support-angle: 0deg;
-    opacity: 0.55;
-  }
-  50% {
-    --support-angle: 180deg;
-    opacity: 1;
-  }
-  100% {
-    --support-angle: 360deg;
-    opacity: 0.55;
-  }
+  animation: none;
 }
 body[data-direction='vanilla'] .phone[data-active-tab='now'] .is-attention-pulse .support-bar {
   box-shadow:
@@ -187,15 +167,6 @@ body[data-direction='vanilla'] .phone[data-active-tab='now'] .story-split button
 body[data-direction='vanilla'] .phone[data-active-tab='now'] .story-split-key .part-1 {
   background: color-mix(in srgb, var(--story-ink) 55%, var(--story-ground));
 }
-@media (prefers-reduced-motion: reduce) {
-  body[data-direction='vanilla'] .phone[data-active-tab='now'] .is-attention-pulse .support-bar,
-  body[data-direction='vanilla']
-    .phone[data-active-tab='now']
-    .is-attention-pulse
-    .support-bar::after {
-    animation: none;
-  }
-}
 @media (prefers-reduced-transparency: reduce) {
   body[data-direction='vanilla']
     .phone[data-active-tab='now']
@@ -275,7 +246,7 @@ body[data-direction='vanilla']
   border-radius: 5px;
   color: var(--red);
   background: color-mix(in srgb, var(--red) 7%, var(--surface));
-  font-size: 10px;
+  font-size: var(--text-meta);
   font-weight: 500;
   line-height: 1.3;
 }
@@ -344,8 +315,12 @@ body[data-direction='vanilla'] .app-header {
   gap: 6px;
   padding: 5px 9px;
   min-height: 26px;
-  color: var(--red);
-  background: color-mix(in srgb, var(--red) 8%, var(--surface));
+  color: var(--companion-color, var(--ink));
+  background: color-mix(in srgb, var(--companion-color, var(--ink)) 10%, var(--surface));
+}
+.premier .number-ideas-badge {
+  color: color-mix(in srgb, var(--companion-color, var(--ink)) 35%, white);
+  background: color-mix(in srgb, var(--companion-color, var(--ink)) 26%, var(--surface));
 }
 .number-ideas-badge .icon {
   width: 16px;

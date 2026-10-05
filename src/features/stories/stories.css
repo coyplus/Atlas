@@ -24,6 +24,18 @@ body[data-direction='vanilla'] .story-tile .story-title {
   line-height: 1.12;
   font-weight: 500;
 }
+/* Paired half tiles use a smaller title so short headlines don't stack word by word. */
+body[data-direction='vanilla'] .story-tile:not(.new, .is-lone) .story-title {
+  font-size: 20px;
+  letter-spacing: -0.2px;
+}
+body[data-direction='vanilla'] .story-tile.is-lone {
+  grid-column: span 2;
+  min-height: 188px;
+}
+body[data-direction='vanilla'] .story-tile.is-lone .story-summary {
+  max-width: 80%;
+}
 body[data-direction='vanilla'] .story-tile .story-summary {
   color: #fff;
   font-size: 13px;
@@ -619,7 +631,7 @@ body[data-direction] .phone .sheet.story-evidence-shell .sheet-body {
   opacity: 0.3;
 }
 .story-browse > span {
-  font-size: 10px;
+  font-size: var(--text-meta);
   white-space: nowrap;
 }
 .story-payment-split .story-split {
@@ -761,7 +773,7 @@ body[data-direction] .phone .sheet.story-evidence-shell .sheet-body {
   background: var(--red);
 }
 .story-waterfall button > span:last-child {
-  font-size: 10px;
+  font-size: var(--text-meta);
   overflow-wrap: anywhere;
 }
 .story-milestones.story-sequence {

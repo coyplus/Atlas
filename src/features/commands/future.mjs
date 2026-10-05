@@ -1,3 +1,4 @@
+import { reportValidity } from '../../design-system/forms.mjs';
 import { ensureFuture, toggleExperiment } from '../../domain/future.mjs';
 import {
   clone,
@@ -102,7 +103,7 @@ export function handle(ctx, type, id, p, action) {
   }
   if (type === 'plan-review') {
     const f = document.querySelector('#plan-form');
-    if (!f.reportValidity()) return;
+    if (!reportValidity(f)) return;
     const values = new FormData(f),
       rec = ctx.DATA.shared.modules.newPlanRecommendations[id];
     ctx.planDraft = {

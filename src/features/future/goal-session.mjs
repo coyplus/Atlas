@@ -90,7 +90,10 @@ export function goalSessionReply(p, context, text) {
 export function goalSessionPreview(p, d) {
   const m = goalSessionModel(p, d);
   const reference = d.amount * 12;
-  const diameter = (value) => 80 * Math.sqrt(Math.max(0, value) / reference);
+  // Areas stay proportional; the scale shrinks so the largest circle always fits the stage.
+  const largest = Math.max(reference, m.value, d.target || 0),
+    unit = Math.max(48, Math.min(80, 196 / Math.sqrt(largest / reference)));
+  const diameter = (value) => unit * Math.sqrt(Math.max(0, value) / reference);
   return `<div class="goal-session-scene" data-investment="${d.investment}">
     <div class="goal-growth-stage"><div class="goal-reference" style="width:${diameter(reference)}px;height:${diameter(reference)}px"><span><small>1 year</small><b>${money(reference)}</b></span></div><div class="goal-session-orbit" style="width:${diameter(m.value)}px;height:${diameter(m.value)}px"></div>${d.target ? `<div class="goal-target-ring" style="width:${diameter(d.target)}px;height:${diameter(d.target)}px"></div><div class="goal-target-label">Target ${money(d.target)} · ${Math.round((m.value / d.target) * 100)}%</div>` : ''}<div class="goal-session-orbit-copy" data-light="${diameter(m.value) < 145}">${icon(d.investment ? 'trend' : d.glyph || 'target')}<small>${d.month ? 'You could have' : 'Starting here'}</small><strong>${money(m.value)}</strong></div></div>
 
@@ -124,7 +127,7 @@ export function goalSession(p, i = null, makeReal = false) {
   return `<div class="goal-session" ${i ? `data-possibility="${esc(i.id)}"` : ''}>
     <form id="future-add-form" data-session="${esc(i?.id || 'own')}" data-make-real="${makeReal}" ${i ? `data-possibility="${esc(i.id)}"` : ''}>
       <div class="goal-session-hero" data-support-topic="intro">
-      <header class="goal-session-heading"><label class="sr-only" for="goal-name">Goal name</label><div class="goal-name-field"><input id="goal-name" name="name" required maxlength="60" placeholder="Something you’d love to do" value="${esc(d.name)}" autocomplete="off"><button type="button" class="goal-name-edit" data-action="future-rename" aria-label="Edit goal name">${icon('edit')}</button></div></header>
+      <header class="goal-session-heading"><label class="sr-only" for="goal-name">Goal name</label><div class="goal-name-field"><input id="goal-name" name="name" required maxlength="60" placeholder="Name your goal" value="${esc(d.name)}" autocomplete="off"><button type="button" class="goal-name-edit" data-action="future-rename" aria-label="Edit goal name">${icon('edit')}</button></div></header>
       <div data-goal-preview>${goalSessionPreview(p, d)}</div>
       <section class="goal-session-controls possibility-numbers" aria-label="Shape this future"><div class="goal-session-fields"><label class="field">Monthly contribution (£)<input name="amount" type="number" required min="1" max="10000" step="1" value="${d.amount}" inputmode="numeric"></label><label class="field">Target (£)<input name="target" type="number" min="1" max="10000000" step="1" value="" placeholder="No target" inputmode="numeric"></label></div></section>
       </div>

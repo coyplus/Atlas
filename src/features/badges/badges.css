@@ -158,7 +158,7 @@
   font-size: 12px;
 }
 .badge-entry-preview .badge-tile small {
-  font-size: 10px;
+  font-size: var(--text-meta);
 }
 .badge-entry-preview .badge-bonus {
   font-size: 11px;

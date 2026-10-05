@@ -364,7 +364,7 @@
   padding-top: 28px;
 }
 .pm-footer > .eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
   letter-spacing: 1px;
   color: var(--muted);
 }

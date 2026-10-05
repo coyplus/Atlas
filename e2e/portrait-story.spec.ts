@@ -37,7 +37,7 @@ test('interpretation and measurements have distinct destinations and restore the
     window.atlas.closeAll();
     window.atlas.dispatch('portrait');
   });
-  await expect(page.locator('#dialog-title')).toHaveText('Your money portrait');
+  await expect(page.locator('#dialog-title')).toHaveText('Your Money Portrait');
   await expect(page.locator('.portrait-interpretations')).toContainText('How we read the picture');
   await expect(page.locator('[data-action="portrait-signal:rhythm"]')).toContainText(
     'You connect a routine today',

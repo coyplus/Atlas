@@ -136,13 +136,17 @@ body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .atlas-
 .support-audio-meta {
   display: block;
   margin-bottom: 8px;
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   line-height: 1.4;
-  letter-spacing: 1.1px;
+  letter-spacing: 0.9px;
   color: var(--muted);
 }
 .support-audio-meta[hidden] {
+  display: none;
+}
+/* Compact cards keep two lines: the briefing's meta belongs to the expanded card. */
+body[data-direction='vanilla'] .support-dock.is-compact .support-audio-meta {
   display: none;
 }
 body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .support-copy strong {
@@ -160,6 +164,12 @@ body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .suppor
   height: 50px;
   flex-basis: 50px;
   background: var(--surface);
+}
+/* Playing keeps the established active treatment: ink disc, surface glyph. */
+body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .support-avatar.is-playing {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
 }
 body[data-direction='vanilla'] .support-dock[data-audio-briefing='true'] .support-message {
   margin: 14px 0 0;

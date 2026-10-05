@@ -75,7 +75,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
 }
 .fg-net > small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   margin-bottom: 3px;
 }
@@ -137,7 +137,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
 .fg-entry small {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--text-meta);
   margin-top: 3px;
   font-weight: 400;
 }
@@ -182,7 +182,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
 .fg-footer > small {
   display: block;
   text-align: center;
-  font-size: 9px;
+  font-size: var(--text-meta);
   color: var(--muted);
   margin-top: 8px;
 }
@@ -204,7 +204,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
   width: 15px;
 }
 .fg-ideas-head > small {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .fg-ideas {
@@ -233,7 +233,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
 }
 .fg-idea small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-caption);
   color: var(--muted);
   line-height: 1.45;
   margin-top: 5px;
@@ -244,7 +244,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
 }
 .fg-idea em {
   grid-column: 1/-1;
-  font-size: 9px;
+  font-size: var(--text-meta);
   font-style: normal;
   color: var(--muted);
 }
@@ -309,7 +309,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
   font-size: 12px;
 }
 .fg-detail .eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
 }
 .fg-detail-icon {
   width: 68px;
@@ -384,7 +384,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
 }
 .fg-flow-row small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   line-height: 1.5;
   margin-top: 4px;
@@ -416,17 +416,6 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
   accent-color: var(--ink);
   flex-shrink: 0;
   margin-top: 0;
-}
-.fg-ai-label {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  color: var(--muted);
-}
-.fg-ai-label .icon {
-  width: 18px;
-  height: 18px;
 }
 .fg-chat-messages {
   display: grid;
@@ -480,7 +469,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
     font-size: 23px;
   }
   .fg-entry small {
-    font-size: 9px;
+    font-size: var(--text-meta);
   }
 }
 body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content {
@@ -586,7 +575,8 @@ body:not([data-direction='vanilla']) .future-studio {
   place-items: center;
   border: 2px solid var(--canvas);
   border-radius: 50%;
-  background: #db0011;
+  /* New AI possibilities carry the Companion's colour; red is kept for attention. */
+  background: var(--companion-color, var(--ink));
   color: white;
   font-size: 11px;
   font-weight: 600;
@@ -607,12 +597,6 @@ body:not([data-direction='vanilla']) .future-studio {
 .possibility-detail .support {
   font-size: 15px;
   line-height: 1.55;
-}
-.possibility-discovery .fg-ai-label {
-  font-size: 13px;
-}
-.possibility-discovery .fg-ai-label .icon {
-  color: #db0011;
 }
 .possibility-list {
   display: grid;
@@ -780,11 +764,11 @@ body:not([data-direction='vanilla']) .future-studio {
   margin-top: 3px;
 }
 .fg-footnote small {
-  font-size: 9px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .phone .fg-footnote .btn {
-  font-size: 10px;
+  font-size: var(--text-caption);
   min-height: 27px;
   padding: 5px 0;
 }
@@ -992,7 +976,7 @@ body[data-direction='vanilla'] .phone .future-milestone.is-complete {
   justify-content: center;
   gap: 18px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--text-meta);
   margin: 2px 0 8px;
 }
 .future-milestones {
@@ -1148,7 +1132,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .tabbar {
   gap: 12px;
   pointer-events: none;
   transition: bottom var(--duration-spatial) var(--ease-settle);
-  font-size: 10px;
+  font-size: var(--text-meta);
 }
 .phone .future-drawer {
   position: absolute;
@@ -1156,7 +1140,8 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .tabbar {
   right: 0;
   bottom: 0;
   z-index: 5;
-  height: var(--future-drawer-height);
+  height: calc(var(--future-drawer-height) + var(--drawer-audio-space, 0px));
+  padding-bottom: var(--drawer-audio-space, 0px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1532,7 +1517,7 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
   padding-top: 18px;
 }
 .phone .future-commitments > .eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
   margin: 0 0 3px;
 }
 .phone .future-commitments .fg-entry {
@@ -1962,4 +1947,9 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
 }
 .fg-speed-rules-heading {
   margin-top: 28px;
+}
+
+/* A playing briefing floats above the drawer's controls instead of covering Time Travel. */
+.phone.has-audio .future-drawer {
+  --drawer-audio-space: calc(var(--audio-height, 0px) + 8px);
 }

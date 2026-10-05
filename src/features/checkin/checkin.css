@@ -1,6 +1,6 @@
 .checkin-entry .feeling-entry-label small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-caption);
   font-weight: 400;
   color: var(--muted);
   margin-top: 3px;
@@ -60,7 +60,7 @@ body[data-direction='vanilla'] .sheet:has(.checkin-flow) > .sheet-body {
   margin: 0;
 }
 .checkin-eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
   letter-spacing: 1.2px;
   font-weight: 600;
   color: var(--muted);
@@ -162,11 +162,11 @@ body[data-direction='vanilla'] .sheet:has(.checkin-flow) > .sheet-body {
 }
 .toolkit-card .checkin-eyebrow {
   letter-spacing: 0.4px;
-  font-size: 9px;
+  font-size: var(--text-meta);
 }
 .toolkit-completed {
   margin-top: 10px;
-  font-size: 9px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .checkin-list-link {
@@ -185,7 +185,7 @@ body[data-direction='vanilla'] .sheet:has(.checkin-flow) > .sheet-body {
 .checkin-list-link small {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--text-caption);
   margin-top: 5px;
 }
 .checkin-list-link .icon {
@@ -198,7 +198,7 @@ body[data-direction='vanilla'] .sheet:has(.checkin-flow) > .sheet-body {
   justify-content: space-between;
   gap: 12px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--text-meta);
   letter-spacing: 1px;
 }
 .checkin-progress > div {
@@ -270,7 +270,7 @@ body[data-direction='vanilla'] .sheet:has(.checkin-flow) > .sheet-body {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   margin-top: auto;
   padding-top: 25px;
@@ -629,7 +629,7 @@ body[data-direction='vanilla'] .sheet:has(.checkin-flow) > .sheet-body {
 }
 .checkin-saved-list small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-caption);
   color: var(--muted);
   line-height: 1.5;
 }
@@ -892,7 +892,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.is-calm) > .sheet-body {
   animation: reward-arrive 0.7s ease-out both;
 }
 .daily-reward > span {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .checkin-closing-art {
@@ -1050,7 +1050,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.is-calm) > .sheet-body {
   column-gap: 9px;
 }
 .checkin-entry .feeling-streak {
-  font-size: 10px;
+  font-size: var(--text-meta);
 }
 .checkin-stamp-card {
   margin-top: 24px;
@@ -1078,7 +1078,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.is-calm) > .sheet-body {
   font-weight: 500;
 }
 .stamp-card-heading > small {
-  font-size: 8px;
+  font-size: var(--text-meta);
   letter-spacing: 1.1px;
   color: var(--muted);
 }
@@ -1099,7 +1099,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.is-calm) > .sheet-body {
   margin: 0 auto 6px;
 }
 .checkin-stamp-week li > span {
-  font-size: 9px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .checkin-stamp-week .is-today > span {
@@ -1114,7 +1114,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.is-calm) > .sheet-body {
   opacity: 0.5;
 }
 .checkin-flow .checkin-stamp-card > p {
-  font-size: 10px;
+  font-size: var(--text-caption);
   margin: 0;
   text-align: center;
   line-height: 1.5;
@@ -1212,10 +1212,10 @@ body[data-direction='vanilla'] .phone .sheet:has(.is-calm) > .sheet-body {
     font-size: 12px;
   }
   .checkin-entry .feeling-entry-label small {
-    font-size: 10px;
+    font-size: var(--text-caption);
   }
   .checkin-entry .feeling-streak {
-    font-size: 9px;
+    font-size: var(--text-meta);
   }
   .checkin-entry {
     padding-inline: 10px;
@@ -1245,7 +1245,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.is-calm) > .sheet-body {
   margin: 14px auto 4px;
 }
 .is-calm[data-stage='saved'] .checkin-closing-art .future-window > span {
-  font-size: 10px;
+  font-size: var(--text-meta);
   padding: 16px 8px 10px;
 }
 .is-calm[data-stage='saved'] .checkin-result-copy {

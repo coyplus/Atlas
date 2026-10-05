@@ -17,7 +17,7 @@ import {
   rewardAvailability,
   rewardSavingsPots,
 } from '../../domain/money.mjs';
-import { esc, icon, button, rows } from '../../design-system/templates.mjs';
+import { esc, icon, button, rows, figureHTML } from '../../design-system/templates.mjs';
 import { moduleModel } from '../../domain/numbers.mjs';
 import { potDialog, rulesDialog, storyDialog } from '../../features/dialogs.mjs';
 export function handle(ctx, type, id, p, action) {
@@ -76,7 +76,7 @@ export function handle(ctx, type, id, p, action) {
     if (id === 'grocery')
       return ctx.openModal(
         m.title,
-        `<span class="eyebrow">Spending insight · this month</span><div class="detail-number">${esc(m.value)}</div>${numberVisualMarkup(m.visual, true)}<p>Recorded grocery purchases across your accounts and pots. Transfers and top-ups aren’t counted.</p>${m.relatedPot ? `<button class="gallery-row insight-link" data-action="pot:${m.relatedPot}">${icon('basket')}<span><b>${esc(moneyContainer(p, m.relatedPot).name)}</b><small>${cash(moneyContainer(p, m.relatedPot).balance, true)} left to spend · money already set aside</small></span>${icon('chev')}</button>` : button('Explore a grocery budget pot', 'grocery-pot-intro', 'secondary wide')}<h3 class="dialog-section">Grocery purchases</h3>${rows(m.rows)}<p class="support">Includes the recorded purchases in your HSBC accounts and pots. Connected banks in this demo share balances only.</p>`,
+        `<span class="eyebrow">Spending insight · this month</span><div class="detail-number">${figureHTML(m.value)}</div>${numberVisualMarkup(m.visual, true)}<p>Recorded grocery purchases across your accounts and pots. Transfers and top-ups aren’t counted.</p>${m.relatedPot ? `<button class="gallery-row insight-link" data-action="pot:${m.relatedPot}">${icon('basket')}<span><b>${esc(moneyContainer(p, m.relatedPot).name)}</b><small>${cash(moneyContainer(p, m.relatedPot).balance, true)} left to spend · money already set aside</small></span>${icon('chev')}</button>` : button('Explore a grocery budget pot', 'grocery-pot-intro', 'secondary wide')}<h3 class="dialog-section">Grocery purchases</h3>${rows(m.rows)}<p class="support">Includes the recorded purchases in your HSBC accounts and pots. Connected banks in this demo share balances only.</p>`,
       );
     const detailRows =
       ctx.S.tab !== 'now'
@@ -102,7 +102,7 @@ export function handle(ctx, type, id, p, action) {
       ctx.S.tab === 'now' && ['safespend', 'afterbills', 'cardusage'].includes(id) ? '' : m.detail;
     return ctx.openModal(
       m.title,
-      `<div class="number-detail" data-number="${esc(id)}"><div class="detail-number">${esc(m.value)}</div><p class="number-detail-note">${esc(m.note)}</p>${numberVisualMarkup(m.visual, true)}${detailRows.length ? rows(detailRows) : ''}${detail ? `<p class="support">${esc(detail)}</p>` : ''}${holdingAction}</div>`,
+      `<div class="number-detail" data-number="${esc(id)}"><div class="detail-number">${figureHTML(m.value)}</div><p class="number-detail-note">${esc(m.note)}</p>${numberVisualMarkup(m.visual, true)}${detailRows.length ? rows(detailRows) : ''}${detail ? `<p class="support">${esc(detail)}</p>` : ''}${holdingAction}</div>`,
     );
   }
   if (type === 'grocery-pot-intro')

@@ -106,7 +106,7 @@ body[data-direction='vanilla'] .support-subtitle {
   display: none;
   margin-top: 3px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
   white-space: nowrap;
   overflow: hidden;
@@ -181,10 +181,19 @@ body[data-direction='vanilla'] .is-compact .support-bar {
   box-shadow: 0 10px 24px -10px #18212d45;
 }
 body[data-direction='vanilla'] .is-compact .support-copy strong {
-  font-size: 14px;
+  font-size: 15px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+/* Narrow phones keep the whole headline rather than an ellipsis mid-thought. */
+@media (max-width: 359px) {
+  body[data-direction='vanilla'] .is-compact .support-copy strong {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
 }
 body[data-direction='vanilla'] .is-compact .support-subtitle {
   display: block;
@@ -211,7 +220,7 @@ body[data-direction='vanilla'] .recap-track {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
@@ -250,11 +259,11 @@ body[data-direction='vanilla'] .recap-controls [data-action='support:speed'] {
   gap: 0;
 }
 body[data-direction='vanilla'] .recap-speed {
-  font-size: 9px;
+  font-size: var(--text-meta);
   line-height: 10px;
 }
 body[data-direction='vanilla'] .recap-date {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   margin-left: auto;
 }
@@ -383,6 +392,19 @@ body[data-direction='vanilla'] .support-conversation .chat-note {
 body[data-direction='vanilla'] .chat-compose button {
   width: 44px;
   height: 44px;
+  background: var(--ink);
+  color: var(--canvas);
+  transition:
+    background var(--duration-feedback, 160ms) ease,
+    color var(--duration-feedback, 160ms) ease;
+}
+/* Send is quiet until there is something to send; red stays for brand and attention. */
+body[data-direction='vanilla'] .chat-compose input:placeholder-shown ~ button[type='submit'] {
+  background: var(--soft);
+  color: var(--muted);
+}
+body[data-direction='vanilla'] .chat-compose input {
+  font-size: 16px;
 }
 body[data-direction='vanilla'] .chat-compose:focus-within {
   border-color: var(--focus);
@@ -603,12 +625,11 @@ body[data-direction='vanilla'] .support-conversation .chat-chips .btn {
   font-weight: 400;
   background: var(--surface);
 }
+/* The contextual next step shares the chip geometry, distinguished by a firmer ink edge. */
 body[data-direction='vanilla'] .support-conversation .chat-chips .chat-suggestion-primary {
-  border-color: var(--red);
-  color: var(--red);
-}
-body[data-direction='vanilla'] .premier .support-conversation .chat-chips .chat-suggestion-primary {
+  border-color: color-mix(in srgb, var(--ink) 55%, transparent);
   color: var(--ink);
+  font-weight: 500;
 }
 body[data-direction='vanilla'] .support-conversation #chat-form {
   padding-top: 0;
@@ -653,7 +674,7 @@ body[data-direction='vanilla'] #audio-dock .recap-name b {
 }
 body[data-direction='vanilla'] #audio-dock .recap-name small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   margin-top: 4px;
 }
@@ -874,4 +895,15 @@ body[data-direction='vanilla'] .support-dock[data-single-message='true'] .suppor
 }
 body[data-direction='vanilla'] .support-dock[data-single-message='true'] .support-subtitle {
   display: none;
+}
+/* “Suggest a next step” keeps the observation and adds the step as a second line. */
+body[data-direction='vanilla']
+  .support-dock[data-single-message='true'][data-next-step='true']
+  .support-subtitle {
+  display: block;
+  margin-top: 4px;
+}
+body[data-direction='vanilla'] .support-dock[data-next-step='true'] .support-subtitle {
+  color: var(--ink);
+  font-weight: 500;
 }

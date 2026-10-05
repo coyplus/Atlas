@@ -984,7 +984,7 @@
    "ledger": [
     {
      "date": "2026-02",
-     "reason": "Money personality quiz",
+     "reason": "Money Portrait questions",
      "points": 25
     },
     {
@@ -1058,12 +1058,12 @@
    },
    {
     "date": "2026-02",
-    "event": "Money personality quiz — Steady builder",
+    "event": "Money Portrait questions — Steady builder",
     "badge": "Quiz taken",
     "story": {
      "id": "personality",
      "title": "A clearer picture of you",
-     "summary": "You explored your money personality.",
+     "summary": "You explored your Money Portrait.",
      "detail": "Your first quiz described you as a Steady builder. It gave us a starting point for understanding how you approach money — one you can revisit as life changes.",
      "category": "Understanding you",
      "icon": "spark",

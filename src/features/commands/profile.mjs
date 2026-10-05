@@ -1,3 +1,4 @@
+import { reportValidity } from '../../design-system/forms.mjs';
 import { quizDialog, setQuizReward } from '../you/quiz.mjs';
 import { nowBackgroundSettings, readBackgroundPhoto } from '../now/background.mjs';
 import { portraitSignalView, portraitNoteView } from '../you/portrait-story-view.mjs';
@@ -25,7 +26,7 @@ export function handle(ctx, type, id, p, action) {
       `<div class="portrait-unshared"><span>${icon('users')}</span><h3>Awaiting consent</h3><p>A demo invitation has been created for ${esc(invite.name)}. No email has been sent and no personal information has been shared.</p>${button('Back to your household', 'close', 'secondary wide')}</div>`,
     );
   }
-  if (type === 'portrait') return ctx.openModal('Your money portrait', portraitDetail(p, ctx.S));
+  if (type === 'portrait') return ctx.openModal('Your Money Portrait', portraitDetail(p, ctx.S));
   if (type === 'portrait-story')
     return ctx.openModal(
       ctx.S.member === 'self' ? 'Behind your portrait' : 'Behind this portrait',
@@ -48,7 +49,7 @@ export function handle(ctx, type, id, p, action) {
   if (type === 'portrait-note-save') {
     if (ctx.S.member !== 'self') return;
     const input = document.querySelector('#portrait-note');
-    if (!input?.reportValidity()) return;
+    if (!reportValidity(input)) return;
     const text = input.value.trim();
     if (!text) return;
     ctx.change('Added your perspective to your portrait', () => {
@@ -127,8 +128,8 @@ export function handle(ctx, type, id, p, action) {
         () => (p.l1.autonomy.paused = false),
       );
     return ctx.openJourney(
-      'Step everything down',
-      `<p>Pause the automated rules in this demonstration. Your money stays where it is. You can restore the same permissions later.</p>${agreementEffectsView(agreementChangeEffects(p, (copy) => (copy.l1.autonomy.paused = true)).filter((e) => e.changed))}${button('Pause all automation', 'pause-all', 'primary wide')}`,
+      'Pause automation',
+      `<p>Pause every automated rule. Your money stays where it is, and you can restore the same permissions later.</p>${agreementEffectsView(agreementChangeEffects(p, (copy) => (copy.l1.autonomy.paused = true)).filter((e) => e.changed))}${button('Pause all automation', 'pause-all', 'primary wide')}`,
     );
   }
   if (type === 'pause-all')
@@ -182,7 +183,7 @@ export function handle(ctx, type, id, p, action) {
   if (type === 'save-invite') {
     const name = document.querySelector('#invite-name').value.trim(),
       input = document.querySelector('#invite-email');
-    if (!name || !input.value || !input.reportValidity())
+    if (!name || !input.value || !reportValidity(input))
       throw new Error('Add a name and valid email.');
     return ctx.change('Created an invitation for ' + name + ' · not sent', () =>
       p.ui.requests.push({

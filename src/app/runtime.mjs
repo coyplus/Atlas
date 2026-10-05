@@ -1,4 +1,4 @@
-import { companionAvatar } from '../features/companion/identity.mjs';
+import { companionAvatar, rememberCompanionStyle } from '../features/companion/identity.mjs';
 import { splitPortraitDock, installPortraitDock } from '../features/you/portrait-dock.mjs';
 import {
   updateGoalSession,
@@ -49,7 +49,11 @@ import { handle as command_future } from '../features/commands/future.mjs';
 import { handle as command_actions } from '../features/commands/actions.mjs';
 import { handle as command_accounts } from '../features/commands/accounts.mjs';
 import { handle as command_companion } from '../features/companion/commands.mjs';
-import { companionReply, companionPreferences } from '../features/companion/model.mjs';
+import {
+  companionReply,
+  companionPreferences,
+  styles as companionStyles,
+} from '../features/companion/model.mjs';
 import { handle as command_profile } from '../features/commands/profile.mjs';
 import {
   renderRegion,
@@ -271,6 +275,7 @@ let quizAnswers = [],
   galleryId = null,
   gallerySize = 'S';
 function render() {
+  rememberCompanionStyle(companionPreferences(current(S)).style);
   primaryScroll = null;
   numberEditor?.cancel();
   sheetReturn = null;
@@ -294,7 +299,7 @@ function render() {
       .join(
         '',
       )}</nav><div class="presenter-bottom">${button('Reset this moment', 'reset', 'text')}<a href="/presentation/">Presentation ${icon('arrow')}</a></div></aside>
- <main class="device-stage"><div class="phone ${p.l1.customer.tier === 'Premier' ? 'premier' : ''}" id="phone" data-active-tab="${S.tab}" data-now-photo="${S.tab === 'now' && S.direction === 'vanilla' && !!nowPhoto(p)}">${S.tab === 'now' && S.direction === 'vanilla' ? nowBackdrop(p) : ''}<div class="statusbar"><span>9:41</span><span>5G ▰</span></div><header class="app-header"><span class="bank-brand" role="button" tabindex="0" data-demo-menu="true" aria-label="HSBC Atlas demo options">${logo()}<b>HSBC${S.direction === 'vanilla' ? (membershipModel(p).index ? '<small>' + membershipModel(p).tier.name + '</small>' : '') : p.l1.customer.tier === 'Premier' ? '<small>Premier</small>' : ''}</b></span><div class="header-actions"><button class="scenario-switch" data-scenario-picker="true" aria-label="Switch scenario, currently ${esc(p.l1.customer.firstName)}">${esc(p.l1.customer.firstName)} <span aria-hidden="true">⌄</span></button>${S.direction !== 'vanilla' ? `<button class="icon-btn" data-action="chat" aria-label="Talk to AI">${agentAvatar('ai')}</button>` : ''}<button class="icon-btn header-settings" data-action="settings" aria-label="Settings">${icon('settings')}</button></div></header>${S.direction === 'vanilla' ? '<div id="support-slot"><div id="support-dock" class="support-dock is-resting"></div></div>' : ''}<div id="content" class="content" tabindex="-1">${S.tab === 'now' ? nowScreen(p, S, DATA) : S.tab === 'future' ? futureScreen(p, S, DATA) : youScreen(p, S, DATA)}</div><nav class="tabbar" aria-label="Main navigation">${[
+ <main class="device-stage"><div class="phone ${p.l1.customer.tier === 'Premier' ? 'premier' : ''}" id="phone" style="--companion-color:${companionStyles[companionPreferences(p).style].color}" data-active-tab="${S.tab}" data-now-photo="${S.tab === 'now' && S.direction === 'vanilla' && !!nowPhoto(p)}">${S.tab === 'now' && S.direction === 'vanilla' ? nowBackdrop(p) : ''}<div class="statusbar"><span>9:41</span><span>5G ▰</span></div><header class="app-header"><span class="bank-brand" role="button" tabindex="0" data-demo-menu="true" aria-label="HSBC Atlas demo options">${logo()}<b>HSBC${S.direction === 'vanilla' ? (membershipModel(p).index ? '<small>' + membershipModel(p).tier.name + '</small>' : '') : p.l1.customer.tier === 'Premier' ? '<small>Premier</small>' : ''}</b></span><div class="header-actions"><button class="scenario-switch" data-scenario-picker="true" aria-label="Switch scenario, currently ${esc(p.l1.customer.firstName)}">${esc(p.l1.customer.firstName)} <span aria-hidden="true">⌄</span></button>${S.direction !== 'vanilla' ? `<button class="icon-btn" data-action="chat" aria-label="Talk to AI">${agentAvatar('ai')}</button>` : ''}<button class="icon-btn header-settings" data-action="settings" aria-label="Settings">${icon('settings')}</button></div></header>${S.direction === 'vanilla' ? '<div id="support-slot"><div id="support-dock" class="support-dock is-resting"></div></div>' : ''}<div id="content" class="content" tabindex="-1">${S.tab === 'now' ? nowScreen(p, S, DATA) : S.tab === 'future' ? futureScreen(p, S, DATA) : youScreen(p, S, DATA)}</div><nav class="tabbar" aria-label="Main navigation">${[
    ['now', 'Now', 'bubbles'],
    ['future', 'Future', 'trend'],
    ['you', 'You', 'user'],
@@ -360,7 +365,9 @@ function modalIdentity() {
       last?.role === 'human'
         ? last.author || (p.l1.customer.id === 'elena' ? 'priya' : 'maya')
         : 'ai';
-  return `<div class="conversation-identity">${name === 'ai' ? companionAvatar(companionPreferences(current(S)).style) : agentAvatar(name)}<span><b>${name === 'ai' ? 'HSBC AI' : name === 'priya' ? 'Priya' : 'Maya'}</b><small>${name === 'ai' ? 'Your conversation' : name === 'priya' ? 'Relationship Manager' : 'Financial adviser'}</small></span></div>`;
+  const style = companionPreferences(p).style;
+  // The header names the speaker; for AI the chosen style stays recognisable here too.
+  return `<div class="conversation-identity">${name === 'ai' ? companionAvatar(style) : agentAvatar(name)}<span><b>${name === 'ai' ? 'HSBC AI' : name === 'priya' ? 'Priya' : 'Maya'}</b><small>${name === 'ai' ? companionStyles[style].name + ' · ' + companionStyles[style].tone : name === 'priya' ? 'Relationship Manager' : 'Financial adviser'}</small></span></div>`;
 }
 let primaryScroll = null;
 function syncPrimaryNavigation() {
@@ -431,7 +438,7 @@ function openModal(title, body, surface = 'detail', header = {}) {
         'Behind your portrait',
         'Behind this portrait',
         'A closer look',
-        'Your money portrait',
+        'Your Money Portrait',
         'Measured activity',
       ].includes(S.modal))
   )
@@ -452,7 +459,7 @@ function openModal(title, body, surface = 'detail', header = {}) {
   setModalOwnership(true);
   renderRegion(
     document.querySelector('#overlay'),
-    `<div class="scrim" data-action="close"></div><section ${story ? `style="--story-image:url('${storyPlate(storyId)}')"` : ''} class="sheet ${vanilla && !story && !conversation && surface !== 'story-evidence' && surface !== 'secondary' ? 'level-two' : ''} ${story ? 'story-shell' : surface === 'story-evidence' ? 'story-evidence-shell' : surface === 'secondary' ? 'secondary-shell' : ''}" ${vanilla ? '' : 'role="dialog" aria-modal="true" aria-labelledby="dialog-title"'}>${screenHeader({ title, vanilla, surface, conversation, identity: conversation ? modalIdentity() : '', storyStep, ...header })}<div class="sheet-body">${portraitParts.content}</div>${portraitParts.dock}</section>${(surface === 'story-evidence' || surface === 'secondary') && modalStack.at(-1) ? `<div class="story-underlay" inert aria-hidden="true">${modalStack.at(-1).html.replaceAll('dialog-title', 'story-parent-title')}</div>` : ''}`,
+    `<div class="scrim" data-action="close"></div><section ${story ? `style="--story-image:url('${storyPlate(storyId)}')"` : ''} class="sheet ${vanilla && !story && !conversation && surface !== 'story-evidence' && surface !== 'secondary' ? 'level-two' : ''} ${story ? 'story-shell' : surface === 'story-evidence' ? 'story-evidence-shell' : surface === 'secondary' ? 'secondary-shell' : ''}" ${vanilla ? '' : 'role="dialog" aria-modal="true" aria-labelledby="dialog-title"'}>${screenHeader({ title, vanilla, surface, conversation, identity: conversation ? modalIdentity() : '', storyStep, aiMark: companionAvatar(companionPreferences(current(S)).style, { still: true }), ...header })}<div class="sheet-body">${portraitParts.content}</div>${portraitParts.dock}</section>${(surface === 'story-evidence' || surface === 'secondary') && modalStack.at(-1) ? `<div class="story-underlay" inert aria-hidden="true">${modalStack.at(-1).html.replaceAll('dialog-title', 'story-parent-title')}</div>` : ''}`,
   );
   installPortraitDock();
   // React retains the shared scroller between detail pages. A new destination
@@ -772,7 +779,10 @@ function chatReply(text) {
   else
     reply =
       p.l2.companion.conversation.answers[text] ||
-      'I can help with the accounts, plans, points and permissions in this demonstration. Tell me which one you want to explore, or choose a question below.';
+      // A person never answers with the AI's capability summary.
+      (replyRole === 'human'
+        ? 'Thanks, I can see your plans here, so we can go through that together. Is there anything you’d like me to look at first?'
+        : 'I can help with the accounts, plans, points and permissions in this demonstration. Tell me which one you want to explore, or choose a question below.');
   p.ui.chat.push({
     role: replyRole,
     text: replyRole === 'ai' ? companionReply(p, reply, { sensitive: !!recovery }) : reply,
@@ -991,6 +1001,8 @@ document.addEventListener('submit', (e) => {
   if (e.target.id === 'chat-form') {
     e.preventDefault();
     const val = new FormData(e.target).get('message').trim();
+    // React keeps the same input element across the reply, so clear the sent text explicitly.
+    e.target.reset();
     if (val) chatReply(val);
   }
 });

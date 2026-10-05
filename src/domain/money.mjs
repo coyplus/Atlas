@@ -1,3 +1,4 @@
+import { displayDate } from './dates.mjs';
 import { savingsLockUntil, savingsBalanceCap } from './fixed-savings.mjs';
 import { relationshipQualification } from './membership.mjs';
 // Shared state and behaviour. No DOM or visual-direction dependencies.
@@ -348,7 +349,7 @@ function transferInPlace(p, fromId, toId, amount, label) {
   if (savingsLockUntil(from) > p.l1.asOf)
     throw new Error(
       'This pot is locked until ' +
-        savingsLockUntil(from) +
+        displayDate(savingsLockUntil(from)) +
         '. Withdrawals and outgoing rules are unavailable.',
     );
   if (!Number.isFinite(amount) || amount <= 0 || amount > from.balance)

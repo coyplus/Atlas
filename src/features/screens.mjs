@@ -17,6 +17,7 @@ import { storyPlate } from './stories/model.mjs';
 import { collectionCount } from './accounts/accounts.mjs';
 import { shortcutBar } from './now/actions.mjs';
 import { agentAvatar, householdAvatar } from '../design-system/templates.mjs';
+import { companionAvatar } from './companion/identity.mjs';
 import {
   current,
   totals,
@@ -55,7 +56,10 @@ export function quickActions() {
     .join('')}</nav>`;
 }
 export function storyTiles(p, s) {
-  return `<div class="stories">${p.l2.stories.map((st) => `<button class="story-tile ${st.state}" data-action="story:${esc(st.id)}" style="--story-image:url('${storyPlate(st.id)}')"><span class="story-state">${st.state === 'saved' ? 'In place' : p.ui.storyVisits?.[st.id]?.declinedAt ? 'Not now' : p.ui.storyVisits?.[st.id]?.read ? 'Read' : st.state === 'new' ? 'New story' : 'For you'}</span><span class="story-title">${esc(st.title)}</span><span class="story-summary">${esc(st.state === 'saved' ? st.residue : st.claim)}</span><span class="story-arrow">${icon('arrow')}</span></button>`).join('')}</div>`;
+  // Half-width tiles pair up; an unpaired last tile takes the full row instead of leaving a gap.
+  const halves = p.l2.stories.filter((st) => st.state !== 'new'),
+    lone = halves.length % 2 ? halves.at(-1) : null;
+  return `<div class="stories">${p.l2.stories.map((st) => `<button class="story-tile ${st.state}${st === lone ? ' is-lone' : ''}" data-action="story:${esc(st.id)}" style="--story-image:url('${storyPlate(st.id)}')"><span class="story-state">${st.state === 'saved' ? 'In place' : p.ui.storyVisits?.[st.id]?.declinedAt ? 'Not now' : p.ui.storyVisits?.[st.id]?.read ? 'Read' : st.state === 'new' ? 'New story' : 'For you'}</span><span class="story-title">${esc(st.title)}</span><span class="story-summary">${esc(st.state === 'saved' ? st.residue : st.claim)}</span><span class="story-arrow">${icon('arrow')}</span></button>`).join('')}</div>`;
 }
 export function nowScreen(p, s, data) {
   const cards = p.ui.order.map((id, i) =>
@@ -215,5 +219,15 @@ export function youScreen(p, s, data) {
           .join(
             '',
           )}${personality.name ? `<span class="eyebrow">MONEY PORTRAIT</span><h1>${esc(personality.name)}</h1><p>${esc(personality.copy)}</p><div class="traits">${traits.map(([t, n]) => `<div><span>${esc(t)}</span><span class="trait-bars" aria-label="${esc(t)} ${n} of 5">${Array.from({ length: 5 }, (_, i) => `<i class="${i < n ? 'filled' : ''}"></i>`).join('')}</span></div>`).join('')}</div><small class="personality-source">${esc(personality.provenance || 'Shared by consent')}</small>${s.member === 'self' ? `<div class="button-row">${button(p.ui.confirmed ? 'Confirmed' : 'This sounds like me', 'personality-confirm', p.ui.confirmed ? 'secondary' : 'primary', p.ui.confirmed ? 'disabled' : '')}${button('Not quite', 'personality-correct', 'text')}</div>` : `<p class="support">Shared by consent. Their other money stays private.</p>`}` : `<div class="personality-empty">${icon('spark')}<h1>Let’s start with you.</h1><p>Three questions. No right answers. A first picture you can always change.</p>${button('Take the 2-minute quiz', 'quiz')}</div>`}</section>`
-  }${early ? '<section class="you-relationship-intro"><span class="eyebrow">YOU + HSBC</span><h2>A relationship worth growing.</h2><p>Points recognise your small steps. Status opens up benefits. Your Companion helps you find the support that fits.</p></section>' : ''}${early && !personality.name ? button('Add household member', 'invite', 'text beginning-household') : ''}${s.direction === 'vanilla' ? membershipEntry(p) : section('What you’ve built')}<section class="points-module" aria-label="HSBC Points and challenges">${s.direction === 'vanilla' ? '' : `<span class="eyebrow">${esc(p.l1.relationship.tier)}</span><h2>${p.l1.relationship.nearPremier ? 'Your next chapter: Premier' : 'A relationship that grows.'}</h2><p>${esc(p.l1.relationship.statusNote)}</p>`}${pointsEntry(p)}</section>${journeyEntry(p)}${s.direction === 'vanilla' ? companionEntry(p) : ''}${section('On your behalf')}<section class="autonomy"><div class="autonomy-status">${icon('shield')}<span><b>${p.l1.autonomy.paused ? 'Everything is paused' : esc(p.l1.autonomy.level)}</b><small>${esc(p.l1.autonomy.limits)}</small></span></div>${button('Review your rules', 'rules', 'secondary')}${button(p.l1.autonomy.paused ? 'Restore agreed permissions' : 'Step everything down', 'autonomy', 'text')}<button class="human-link" data-action="${s.direction === 'vanilla' && p.l1.customer.tier !== 'Premier' ? 'support:discuss' : 'human'}">${icon('user')}<span><b>${p.l1.customer.id === 'elena' ? 'Priya, your Relationship Manager' : s.direction === 'vanilla' ? 'Ask HSBC AI' : 'A person, whenever you need one'}</b></span>${icon('arrow')}</button></section></div>`;
+  }${early ? '<section class="you-relationship-intro"><span class="eyebrow">YOU + HSBC</span><h2>A relationship worth growing.</h2><p>Points recognise your small steps. Status opens up benefits. Your Companion helps you find the support that fits.</p></section>' : ''}${early && !personality.name ? button('Add household member', 'invite', 'text beginning-household') : ''}${s.direction === 'vanilla' ? membershipEntry(p) : section('What you’ve built')}<section class="points-module" aria-label="HSBC Points and challenges">${s.direction === 'vanilla' ? '' : `<span class="eyebrow">${esc(p.l1.relationship.tier)}</span><h2>${p.l1.relationship.nearPremier ? 'Your next chapter: Premier' : 'A relationship that grows.'}</h2><p>${esc(p.l1.relationship.statusNote)}</p>`}${pointsEntry(p)}</section>${journeyEntry(p)}${s.direction === 'vanilla' ? companionEntry(p) : ''}${section('On your behalf')}<section class="autonomy"><div class="autonomy-status">${icon('shield')}<span><b>${p.l1.autonomy.paused ? 'Everything is paused' : 'HSBC AI ' + esc(p.l1.autonomy.level)}</b><small>${esc(p.l1.autonomy.limits)}</small></span></div>${button('Review your rules', 'rules', 'secondary')}${p.l1.autonomy.paused || p.l1.rules.some((r) => r.active) ? button(p.l1.autonomy.paused ? 'Restore agreed permissions' : 'Pause all automation', 'autonomy', 'text') : ''}${(() => {
+      const premier = p.l1.customer.tier === 'Premier',
+        vanilla = s.direction === 'vanilla';
+      // People keep their portrait; AI keeps the customer's chosen Companion mark.
+      const mark = premier
+        ? agentAvatar(p.l1.customer.rmId || 'priya')
+        : vanilla
+          ? companionAvatar(undefined, { still: true })
+          : icon('user');
+      return `<button class="human-link" data-action="${vanilla && !premier ? 'support:discuss' : 'human'}">${mark}<span><b>${p.l1.customer.id === 'elena' ? 'Priya, your Relationship Manager' : vanilla ? 'Ask HSBC AI' : 'A person, whenever you need one'}</b>${vanilla ? `<small>${premier ? 'Direct, with your plans in context' : 'It can bring in a person when you need one'}</small>` : ''}</span>${icon('arrow')}</button>`;
+    })()}</section></div>`;
 }

@@ -17,7 +17,7 @@ The four abstract marks keep the shared HSBC sparkle. Shape as well as colour di
 
 - **When I ask:** ordinary reading-context suggestions become a stable availability message. Opening it retrieves the actual reading context. No arrival thinking animation. Payment conditions, important account updates and human messages remain visible.
 - **In useful moments:** existing contextual behaviour, following what the customer is viewing.
-- **Suggest a next step:** the existing contextual action becomes the headline when an actionable next step exists. No extra notifications, timers or repeated reminders.
+- **Suggest a next step:** when an actionable next step exists, it stays visible as a second line (“Next step: …”) beneath the unchanged headline, including while scrolling. No extra notifications, timers or repeated reminders. (Revised 5 October 2026: replacing the headline with the action label produced headlines such as “Open activity” on the Activity screen.)
 
 This changes the in-app Companion only. It does not suppress the main application’s discovery cards, goals or mandatory financial information. It does not grant automation authority.
 
@@ -64,3 +64,7 @@ The You-tab entry uses the same page gutters as the Journey card. Explore your p
 All four persona marks share a slow breathing language, with slightly different cycles (7–8.4 seconds). A fuller, asymmetric breath moves the background while one fine contour gently flexes and drifts. Rounded forms stay organic, Analyst retains a soft geometric outline, and Coach retains its arch-like shape. The contour swings about ten degrees, rather than rotating continuously. The central sparkle and the button's touch target stay still. This is ambient presence, not a claim that a response is being generated. Existing explicit thinking and audio states remain distinct. Historic message avatars stay still, and reduced-motion preferences disable the ambient loops entirely.
 
 The transparent button border applies only when an actual persona avatar is present. Audio play/pause controls retain their circular outline and existing active treatment.
+
+## State poses and Premier tint · 5 October 2026
+
+The central sparkle remains still at rest. Explicit states now move its three stars rather than adding symbols: thinking (Now arrival), speaking (briefing playing), attention (unread), and a single twinkle when a new contextual thought arrives. The persona contour keeps its breathing. Each state has a still pose for reduced motion, and the surrounding text carries the meaning. In Premier, each persona’s hue deepens into the charcoal surface instead of showing a light pastel disc. Settings, header help, bylines, conversation controls and the You rows all use the same mark. See [the Companion system](../SUPPORT-BAR.md#companion-system--holistic-review-5-october-2026).

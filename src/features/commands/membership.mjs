@@ -1,3 +1,4 @@
+import { reportValidity } from '../../design-system/forms.mjs';
 import { motion } from '../../design-system/motion.mjs';
 import {
   membershipModel,
@@ -74,7 +75,7 @@ export function handle(ctx, type, id, p) {
   }
   if (type === 'membership-rule-review') {
     const input = document.querySelector('#membership-rule-amount');
-    if (!input?.reportValidity()) return;
+    if (!reportValidity(input)) return;
     const amount = Number(input.value);
     ruleDrafts.set(p, amount);
     return ctx.openJourney('Your saving rule', membershipRuleView(p, amount, true), {

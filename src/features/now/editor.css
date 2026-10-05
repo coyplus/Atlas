@@ -69,7 +69,7 @@ body[data-direction='vanilla'] .editing .number-resize {
   background: var(--surface);
   border: 1px solid var(--line);
   color: var(--ink);
-  font-size: 10px;
+  font-size: var(--text-meta);
   z-index: 3;
 }
 body[data-direction='vanilla'] .editing .edit-tools [data-action^='up:'] {

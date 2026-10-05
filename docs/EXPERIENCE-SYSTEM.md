@@ -155,3 +155,13 @@ per-button effects or action-name matching. Keep ordinary taps, navigation,
 scrolling, preview movement and AI updates silent. One completed action has one
 cue; the platform controller owns capability checks, preferences, priorities and
 noise limits. See the document for the pattern table and Time Travel budget.
+
+## Shared rules · holistic review, 5 October 2026
+
+- **Type floor.** `--text-meta` (11 px) for eyebrows, labels and meta; `--text-caption` (12 px) for sentences. Feature styles do not shrink copy below these. Plot ticks, in-bubble labels and avatar initials remain the deliberate infographic exception.
+- **Figures.** `figureHTML()` / `moneyHTML()` give every amount secondary pence, on cards and detail heroes alike. Half-width cards never break an amount; long values step down in size.
+- **Validation.** Forms use `reportValidity()` from `design-system/forms.mjs`: the message sits under its field, the input is kept, focus moves to the first problem and the message clears on edit. Domain checks (same account, available balance, lock) appear beside the field they concern, not in a toast. Dates in messages use the customer format.
+- **Actions and colour.** Primary is ink; secondary is the quiet neutral fill; contextual is text or a chip. Red is reserved for the brand, attention/benefit changes, validation and audio progress. New AI suggestions (Add a number, Goal) carry the Companion’s colour.
+- **AI identity.** Wherever AI is identified, use the customer’s persona mark (`companionAvatar` / `aiByline`); people keep their portraits. See [the Companion system](SUPPORT-BAR.md#companion-system--holistic-review-5-october-2026).
+- **Composition.** Half-width Story tiles pair; an unpaired tile spans the row. Growing-pot previews keep areas proportional while scaling to fit their stage. A playing briefing reserves space in the Future drawer instead of covering Time Travel.
+- **Naming.** Customer-facing copy says *Money Portrait* (not money personality) and *Pause all automation* (not “step everything down”). Agency statements read as sentences (“HSBC AI acts within limits you set”).

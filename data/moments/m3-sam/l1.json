@@ -881,7 +881,7 @@
       "ledger": [
         {
           "date": "2026-01",
-          "reason": "Money personality quiz",
+          "reason": "Money Portrait questions",
           "points": 25
         },
         {
@@ -973,7 +973,7 @@
           "id": "personality",
           "title": "Putting your approach into words",
           "summary": "Your quiz revealed a Planner.",
-          "detail": "Your first money personality quiz gave us a starting point: planning mattered to you. Your portrait can change as we learn more from you.",
+          "detail": "Your first Money Portrait questions gave us a starting point: planning mattered to you. Your portrait can change as we learn more from you.",
           "category": "Understanding you",
           "icon": "spark",
           "figure": null,

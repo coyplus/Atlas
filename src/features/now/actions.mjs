@@ -1,3 +1,4 @@
+import { displayDate } from '../../domain/dates.mjs';
 import { esc, icon, button, rows, quickActionButton } from '../../design-system/templates.mjs';
 import { cash, recentTransactions } from '../../domain/money.mjs';
 export const everydayActions = [
@@ -135,12 +136,12 @@ export function productDialog(id) {
   return `<div class="product-mark">${icon(a[2])}</div><h3 class="idea-title">${a[1]}</h3><p>${a[3]}</p>${button(a[4], id === 'savings' ? 'plan-intent:goal' : id === 'invest' ? 'plan-intent:grow' : id === 'current' ? 'collection' : 'product-help:' + id, 'primary wide')}<p class="support">Explore the experience with illustrative information. Product applications are not part of this prototype.</p>${button('All products and services', 'products', 'text')}`;
 }
 export function statementsDialog(p) {
-  return `<p>Choose an account to view the activity recorded in your money snapshot.</p>${p.l1.accounts.map((a) => `<button class="gallery-row" data-action="statement:${a.id}"><span><b>${esc(a.name)}</b><small>•• ${esc(a.masked)} · ${esc(p.l1.asOf)}</small></span>${icon('transcript')}</button>`).join('')}`;
+  return `<p>Choose an account to view the activity recorded in your money snapshot.</p>${p.l1.accounts.map((a) => `<button class="gallery-row" data-action="statement:${a.id}"><span><b>${esc(a.name)}</b><small>•• ${esc(a.masked)} · to ${esc(displayDate(p.l1.asOf))}</small></span>${icon('transcript')}</button>`).join('')}`;
 }
 export function statementDialog(p, id) {
   const a = p.l1.accounts.find((x) => x.id === id),
     tx = recentTransactions(p, id);
-  return `<span class="eyebrow">ACCOUNT SNAPSHOT · ${esc(p.l1.asOf)}</span><h3 class="idea-title">${esc(a.name)}</h3>${rows(
+  return `<span class="eyebrow">ACCOUNT SNAPSHOT · ${esc(displayDate(p.l1.asOf).toUpperCase())}</span><h3 class="idea-title">${esc(a.name)}</h3>${rows(
     [
       ['Account', '•• ' + a.masked],
       [a.owed != null ? 'To repay' : 'Available', cash(a.owed ?? a.balance, true)],

@@ -14,7 +14,7 @@
   gap: 12px;
 }
 .phone .savings-beginning header .eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: #466859;
 }
 .phone .savings-beginning-reward {
@@ -116,9 +116,13 @@
   margin: -8px var(--page) 28px;
   color: var(--muted);
 }
-.phone .portrait-beginning-promise > span {
-  color: #756189;
-  padding-top: 2px;
+.phone .portrait-beginning-promise > .companion-avatar {
+  width: 28px;
+  height: 28px;
+}
+.phone .portrait-beginning-promise > .companion-avatar svg {
+  width: 15px;
+  height: 15px;
 }
 .phone .portrait-beginning-promise p {
   margin: 0;
@@ -159,7 +163,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
 }
 .phone .future-beginning header > .eyebrow {
   color: #467a8b;
-  font-size: 10px;
+  font-size: var(--text-meta);
   letter-spacing: 1.4px;
 }
 .phone .future-beginning h1 {
@@ -363,7 +367,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
 }
 .daily-beginning-week small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .daily-beginning > small {
@@ -573,7 +577,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
 }
 .checkin-invitation small {
   display: block;
-  font-size: 9px;
+  font-size: var(--text-meta);
   letter-spacing: 1px;
   color: var(--muted);
 }
@@ -621,7 +625,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
 }
 .membership-discovery-pass small {
   flex-basis: 100%;
-  font-size: 8px;
+  font-size: var(--text-meta);
   letter-spacing: 1.5px;
   margin-top: 18px;
 }
@@ -660,7 +664,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
   gap: 10px;
 }
 .checkin-week-invitation header small {
-  font-size: 9px;
+  font-size: var(--text-meta);
   letter-spacing: 1.2px;
   color: var(--muted);
 }
@@ -693,7 +697,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
   font-size: 30px;
 }
 .number-purchases > small {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .number-purchases .row {

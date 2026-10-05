@@ -13,3 +13,5 @@ Every visible sentence must help the customer understand a fact or status, make 
 - Use gestures and icons consistently, with accessible names and a visible alternative. Explain a non-obvious gesture once in the relevant context rather than on every page.
 
 Apply this standard to Stories, AI cards, account/pot summaries, agreements, insights, journeys and new components. Human support can remain warm: empathy should address the customer’s situation, rather than add a generic slogan.
+
+Companion headlines name the subject or finding. They are never a bare action label (“Take me there”, “Open activity”) or a generic style tagline (“Your perspective comes first”); the action belongs in the button or the “Next step” line. A card should not repeat the action its page already leads with. *(5 October 2026)*

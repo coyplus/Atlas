@@ -82,6 +82,34 @@
   font-size: 16px;
   resize: vertical;
 }
+/* Inline validation: a red edge and a sentence beside the field, never a transient bubble. */
+.field-error {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--red);
+}
+.premier .field-error {
+  color: #ff8a8f;
+}
+:is(input, select, textarea)[aria-invalid='true'],
+.input-money:has([aria-invalid='true']) {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 1px var(--red);
+}
+.input-money > [aria-invalid='true'] {
+  box-shadow: none;
+}
+/* The money field focuses as one control; its inner input outline would be clipped. */
+.input-money:has(input:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.input-money > input:focus-visible {
+  outline: none;
+}
 .input-money {
   display: flex;
   border: 1px solid var(--line);
@@ -394,7 +422,7 @@
   font-weight: 500;
 }
 .time-control small {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .time-control input {
@@ -600,7 +628,7 @@
 }
 .pot-row small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   margin-top: 5px;
   line-height: 1.5;
@@ -806,7 +834,7 @@
   font-size: 13px;
 }
 .member-picker small {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .member-picker .selected > span {
@@ -820,7 +848,7 @@
 }
 .personality .eyebrow {
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--text-meta);
 }
 .personality h1 {
   font-size: 36px;
@@ -861,7 +889,7 @@
 }
 .personality-source {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-meta);
   line-height: 1.6;
   color: var(--muted);
 }
@@ -891,7 +919,7 @@
   border-bottom: 1px solid var(--line);
 }
 .belief-state {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--jade);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -985,7 +1013,7 @@
   line-height: 1.5;
 }
 .milestones small {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   display: block;
   margin-top: 3px;
@@ -1125,7 +1153,7 @@
 }
 .benefit-card strong small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   margin-top: 4px;
 }
@@ -1217,7 +1245,7 @@
   margin-right: 24px;
 }
 .chat-message > span {
-  font-size: 10px;
+  font-size: var(--text-meta);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--jade);
@@ -1441,7 +1469,7 @@
   border-radius: var(--radius);
 }
 .recommendation .eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 .recommendation strong {

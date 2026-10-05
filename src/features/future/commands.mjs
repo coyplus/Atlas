@@ -1,3 +1,4 @@
+import { reportValidity } from '../../design-system/forms.mjs';
 import {
   ensureFuture,
   futureState,
@@ -110,7 +111,7 @@ export function handleFuture(ctx, type, id, p) {
     ctx.openModal('Imagine this', addDetail(idea, p));
   } else if (type === 'future-add-save') {
     const form = document.querySelector('#future-add-form');
-    if (!form.reportValidity()) return;
+    if (!reportValidity(form)) return;
     const v = new FormData(form),
       name = String(v.get('name')).trim();
     const suggestion = form.dataset.possibility
@@ -159,7 +160,7 @@ export function handleFuture(ctx, type, id, p) {
     show('Shape your priorities', adjustDetail(p, id, type === 'future-priority'));
   else if (type === 'future-adjust-save') {
     const form = document.querySelector('#future-adjust-form');
-    if (!form.reportValidity()) return;
+    if (!reportValidity(form)) return;
     const v = new FormData(form),
       goal = form.dataset.goal,
       priority = form.dataset.priority === 'true',
@@ -199,7 +200,7 @@ export function handleFuture(ctx, type, id, p) {
   } else if (type === 'future-chat') show('Explore an idea', chatDetail(p));
   else if (type === 'future-chat-send') {
     const form = document.querySelector('#future-chat-form');
-    if (!form.reportValidity()) return;
+    if (!reportValidity(form)) return;
     const text = String(new FormData(form).get('message')).trim();
     if (!text) return;
     f.messages.push({ role: 'user', text });

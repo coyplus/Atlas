@@ -55,7 +55,7 @@ body[data-direction='vanilla'] .money-portrait.personality {
   backdrop-filter: blur(14px) saturate(110%);
 }
 .money-portrait .portrait-glass .eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
   letter-spacing: 1.3px;
 }
 .money-portrait .portrait-glass h1 {
@@ -266,7 +266,7 @@ body[data-direction='vanilla'] .money-portrait.personality {
   position: absolute;
   bottom: 51px;
   left: var(--page);
-  font-size: 10px;
+  font-size: var(--text-caption);
   color: var(--muted);
 }
 .portrait-traits {

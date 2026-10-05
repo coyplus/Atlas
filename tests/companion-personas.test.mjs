@@ -61,7 +61,7 @@ test('all styles use the same measured amount and leave financial state unchange
   assert.equal(new Set(texts).size, 3);
   assert.equal(JSON.stringify(p.l1), before);
 });
-test('next-step mode promotes the actual contextual action without inventing a permission', () => {
+test('next-step mode surfaces the actual contextual action without replacing the headline or inventing a permission', () => {
   const p = person('sam');
   p.ui.companion = { style: 'coach', initiative: 'lead' };
   const base = supportModel(
@@ -72,7 +72,8 @@ test('next-step mode promotes the actual contextual action without inventing a p
   );
   const changed = supportModel(p, state, { kind: 'stories' }, data.shared.modules);
   assert.equal(changed.action, base.action);
-  assert.equal(changed.title, base.cta);
+  assert.equal(changed.title, base.title);
+  assert.equal(changed.nextStep, base.cta);
 });
 test('reflections use their own traits, with no inferred weaknesses for an unformed or household portrait', () => {
   const p = person('alex');

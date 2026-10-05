@@ -1,4 +1,5 @@
-import { button, icon } from '../../design-system/templates.mjs';
+import { button } from '../../design-system/templates.mjs';
+import { companionAvatar } from '../companion/identity.mjs';
 import { portraitArt, portraitModel } from './portrait.mjs';
 import { checkinModel } from '../checkin/model.mjs';
 import { dailyStamp } from '../checkin/ritual.mjs';
@@ -38,7 +39,7 @@ export function portraitBeginning(p) {
       <small class="portrait-reward">A first impression you can shape and correct.</small>
     </div>
   </section>
-  <div class="portrait-beginning-promise"><span>${icon('spark')}</span><p>As we learn together, your portrait and support become more personal.</p></div>`;
+  <div class="portrait-beginning-promise">${companionAvatar(undefined, { still: true })}<p>As we learn together, your portrait and support become more personal.</p></div>`;
 }
 
 export function dailyBeginning(p) {

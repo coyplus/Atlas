@@ -1,3 +1,4 @@
+import { reportValidity, fieldError } from '../../design-system/forms.mjs';
 import { clone, cash, moveMoney } from '../../domain/money.mjs';
 import { button, rows } from '../../design-system/templates.mjs';
 import { transferDialog } from '../../features/dialogs.mjs';
@@ -9,16 +10,29 @@ export function handle(ctx, type, id, p, action) {
   }
   if (type === 'transfer-review') {
     const f = document.querySelector('#transfer-form');
-    if (!f.reportValidity()) return;
+    if (!reportValidity(f)) return;
     const vals = new FormData(f),
       payment = f.dataset.mode === 'pay';
-    ctx.transferDraft = {
+    const draft = {
       from: vals.get('from'),
       to: vals.get('to'),
       amount: Number(vals.get('amount')),
     };
-    const test = clone(p);
-    moveMoney(test, ctx.transferDraft.from, ctx.transferDraft.to, ctx.transferDraft.amount);
+    // Domain checks explain themselves beside the field they concern.
+    try {
+      moveMoney(clone(p), draft.from, draft.to, draft.amount);
+    } catch (error) {
+      const field = /different/.test(error.message)
+        ? 'to'
+        : /locked/.test(error.message)
+          ? 'from'
+          : 'amount';
+      const el = f.querySelector(`[name=${field}]`);
+      fieldError(el, error.message);
+      el.focus();
+      return;
+    }
+    ctx.transferDraft = draft;
     const all = [...p.l1.accounts, ...p.l1.pots];
     return ctx.openJourney(
       payment ? 'Review payment' : 'Review transfer',
@@ -26,7 +40,7 @@ export function handle(ctx, type, id, p, action) {
         ['From', all.find((x) => x.id === ctx.transferDraft.from).name],
         ['To', all.find((x) => x.id === ctx.transferDraft.to).name],
         ['Amount', cash(ctx.transferDraft.amount, true)],
-      ])}<p class="support">This updates the demonstration only. A matching entry appears on both sides.</p>${button(payment ? 'Confirm payment' : 'Confirm transfer', 'transfer-confirm', 'primary wide')}`,
+      ])}<p class="support">A matching entry appears in both places, with a receipt you can undo.</p>${button(payment ? 'Confirm payment' : 'Confirm transfer', 'transfer-confirm', 'primary wide')}`,
     );
   }
   if (type === 'transfer-confirm') {

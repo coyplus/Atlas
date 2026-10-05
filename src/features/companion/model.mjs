@@ -131,23 +131,6 @@ export function personaliseSupport(p, s, context, base, catalogue) {
     };
   if (essential || m.action === 'support:listen' || (context.kind === 'top' && s.tab === 'now'))
     return m;
-  const headings = {
-    listener: {
-      now: 'A little space to take stock',
-      you: 'Your perspective comes first',
-      future: 'A future that feels right for you',
-    },
-    analyst: {
-      now: 'Your money, with the working',
-      you: 'The evidence behind the picture',
-      future: 'The numbers behind your options',
-    },
-    coach: {
-      now: 'Find your next manageable step',
-      you: 'Notice what’s working for you',
-      future: 'Let’s turn a possibility into a plan',
-    },
-  };
   if (prefs.style !== 'guide') {
     // Cards stay concise; the fuller conversational style belongs in the dialogue.
     if (context.kind === 'module' && context.id === 'safespend' && safeAmount(p) !== null) {
@@ -161,10 +144,10 @@ export function personaliseSupport(p, s, context, base, catalogue) {
             : `${fact} Start by checking the breakdown. Then choose whether to keep the room, set some aside, or explore a goal. Which feels useful?`;
       m.title =
         prefs.style === 'listener'
-          ? 'What would a little breathing room mean?'
+          ? 'What would this room mean to you?'
           : prefs.style === 'analyst'
             ? `${amount}, after commitments`
-            : 'Give your breathing room a purpose';
+            : 'Give this money a purpose';
     } else if (context.kind === 'module' && context.id === 'balance' && catalogue) {
       const number = moduleModel(p, 'balance', catalogue);
       const fact = `${number.value} is held in your current accounts.`;
@@ -176,10 +159,10 @@ export function personaliseSupport(p, s, context, base, catalogue) {
             : `${fact} First, check what is already set aside for bills and plans. Then we can explore what you want the rest to do.`;
       m.title =
         prefs.style === 'listener'
-          ? 'Let’s make sense of where you stand'
+          ? 'Where you stand, together'
           : prefs.style === 'analyst'
             ? `${number.value}, in context`
-            : 'Start with what’s already covered';
+            : 'Start with what’s covered';
     } else if (prefs.style === 'analyst' && context.kind === 'module' && catalogue) {
       const number = moduleModel(p, context.id, catalogue);
       if (number.value && !m.message.includes(number.value))
@@ -192,19 +175,16 @@ export function personaliseSupport(p, s, context, base, catalogue) {
     ) {
       m.message = base.message;
     }
-    if (['top', 'future', 'personality', 'companion'].includes(context.kind))
-      m.title = headings[prefs.style][s.tab] || m.title;
-    // On single-line surfaces the observation remains visible, with the style in the discussion.
+    // The headline keeps the subject; style shapes the supporting words and the conversation.
     if (m.singleMessage) m.title = base.title;
   }
+  // Initiative changes when a next step is visible, never what the headline says.
   if (
     prefs.initiative === 'lead' &&
     m.cta &&
     !/^back\b/i.test(m.cta) &&
-    !/^support:|^chat$/.test(m.action || '')
-  ) {
-    m.title = m.cta;
-    m.singleMessage = false;
-  }
+    !/^support:|chat/.test(m.action || '')
+  )
+    m.nextStep = m.cta;
   return m;
 }

@@ -39,9 +39,9 @@ test('audio briefing has one visible play action and playback still works', asyn
   await page.goto('/?p=sam&tab=now&theme=vanilla');
   await expect(page.locator('.support-audio-meta')).toContainText('MIN LISTEN');
   await expect(page.locator('.support-actions button')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Play recap', exact: true }).first().click();
+  await page.getByRole('button', { name: 'Play briefing', exact: true }).first().click();
   await expect(page.locator('#audio-dock')).toBeVisible();
   await expect(
-    page.getByRole('button', { name: 'Pause recap', exact: true }).first(),
+    page.getByRole('button', { name: 'Pause briefing', exact: true }).first(),
   ).toBeVisible();
 });

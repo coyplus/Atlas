@@ -175,7 +175,7 @@
       ],
       "rows": [
         [
-          "Money personality quiz",
+          "Money Portrait questions",
           "25"
         ],
         [
@@ -333,7 +333,7 @@
         "personality": {
           "name": "Thoughtful nurturer",
           "copy": "Riley makes room for family life while keeping everyday spending steady. Shared routines leave space for the things that matter.",
-          "src": "Money personality answers shared by Riley · shared by consent",
+          "src": "Money Portrait answers shared by Riley · shared by consent",
           "traits": [
             [
               "Generosity",

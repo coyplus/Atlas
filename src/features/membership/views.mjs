@@ -1,10 +1,11 @@
 import { membershipModel, membershipSuggestion, tiers, benefits } from './model.mjs';
 import { esc, icon, button, householdStack, rows } from '../../design-system/templates.mjs';
 import { cash } from '../../domain/money.mjs';
+import { aiByline } from '../companion/identity.mjs';
 const mark = (level) =>
   `<span class="membership-mark" aria-hidden="true">${[0, 1, 2].map((i) => `<i class="${i <= level ? 'filled' : ''}"></i>`).join('')}</span>`;
 const ladder = (m) =>
-  `<div class="membership-ladder" aria-label="Membership tiers: HSBC, Premier at £100,000, Elite at £250,000"><div class="membership-track" role="progressbar" aria-label="Total relationship balance towards Elite" aria-valuemin="0" aria-valuemax="250000" aria-valuenow="${Math.min(250000, m.trb)}" aria-valuetext="${esc(cash(m.trb, true))}, ${m.tier.name}${m.next ? ', ' + cash(m.remaining, true) + ' to ' + m.next.name : ''}"><i style="width:${Math.min(100, m.trb / 2500)}%"></i><b style="left:40%"></b></div><div class="membership-stops">${tiers.map((t, i) => `<span class="${i === m.index ? 'current' : ''}" ${i === m.index ? 'aria-current="step"' : ''}><b>${t.name}</b><small>${i ? cash(t.threshold) : 'Your starting point'}</small></span>`).join('')}</div></div>`;
+  `<div class="membership-ladder" aria-label="Membership tiers: HSBC, Premier at £100,000, Elite at £250,000"><div class="membership-track" role="progressbar" aria-label="Total relationship balance towards Elite" aria-valuemin="0" aria-valuemax="250000" aria-valuenow="${Math.min(250000, m.trb)}" aria-valuetext="${esc(cash(m.trb, true))}, ${m.tier.name}${m.next ? ', ' + cash(m.remaining, true) + ' to ' + m.next.name : ''}"><i style="width:${Math.min(100, m.trb / 2500)}%"></i><b style="left:40%"></b></div><div class="membership-stops">${tiers.map((t, i) => `<span class="${i === m.index ? 'current' : ''}" ${i === m.index ? 'aria-current="step"' : ''}><b>${t.name}</b><small>${i ? cash(t.threshold) : 'From £0'}</small></span>`).join('')}</div></div>`;
 export function membershipEntry(p) {
   const m = membershipModel(p);
   if (p.l1.customer.id === 'alex') return `<section class="membership-module"><button class="membership-discovery" data-action="membership"><span class="eyebrow">HSBC STATUS</span><span class="membership-discovery-pass" aria-hidden="true">${mark(0)}<b>HSBC</b><small>YOUR NEXT CHAPTER</small></span><strong>There’s more inside.</strong><span>Discover the benefits of belonging.</span><span class="membership-discovery-action">Explore your access ${icon('arrow')}</span></button></section>`;
@@ -63,13 +64,13 @@ export function membershipHousehold(p) {
 export function membershipNudge(p) {
   const s = membershipSuggestion(p);
   if (!s) return '';
-  return `<div class="membership-nudge"><span class="membership-ai-label">${icon('spark')} HSBC AI</span><h2>${s.rule ? 'Your saving rule is ' + (s.paused ? 'paused' : 'ready') : cash(s.remaining) + ' to reach Premier'}</h2><p>${s.rule ? cash(s.amount) + ' from each new payday. Your balance qualifies once it reaches £100,000.' : 'Set aside ' + cash(s.amount) + ' from each new payday to build your savings towards Premier.'}</p>${button(s.rule ? 'Manage rule' : 'Explore a saving rule', s.rule ? 'container-rule:r-premier-savings' : 'membership-rule', 'text')}</div>`;
+  return `<div class="membership-nudge">${aiByline('HSBC AI')}<h2>${s.rule ? 'Your saving rule is ' + (s.paused ? 'paused' : 'ready') : cash(s.remaining) + ' to reach Premier'}</h2><p>${s.rule ? cash(s.amount) + ' from each new payday. Your balance qualifies once it reaches £100,000.' : 'Set aside ' + cash(s.amount) + ' from each new payday to build your savings towards Premier.'}</p>${button(s.rule ? 'Manage rule' : 'Explore a saving rule', s.rule ? 'container-rule:r-premier-savings' : 'membership-rule', 'text')}</div>`;
 }
 export function membershipRuleView(p, amount = 500, review = false) {
   const m = membershipModel(p),
     suggestion = membershipSuggestion(p),
     months = Math.ceil(m.remaining / amount);
-  return `<div class="membership-rule-flow"><span class="membership-ai-label">${icon('spark')} HSBC AI · Your saving plan</span><h1>${review ? 'Review your Money Rule' : 'A little closer each payday'}</h1><p>You’re ${cash(m.remaining)} away from qualifying for Premier. Build savings from new income while keeping your family plans funded.</p>${
+  return `<div class="membership-rule-flow">${aiByline('HSBC AI · Your saving plan')}<h1>${review ? 'Review your Money Rule' : 'A little closer each payday'}</h1><p>You’re ${cash(m.remaining)} away from qualifying for Premier. Build savings from new income while keeping your family plans funded.</p>${
     review
       ? rows([
           ['Amount', cash(amount) + ' each payday'],

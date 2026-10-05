@@ -1,3 +1,4 @@
+import { reportValidity } from '../../design-system/forms.mjs';
 import {
   potAppearance,
   potAppearanceView,
@@ -167,7 +168,7 @@ export function handle(ctx, type, id, p, action) {
   }
   if (type === 'container-rule-review') {
     const form = document.querySelector('#container-rule-form');
-    if (!form.reportValidity()) return;
+    if (!reportValidity(form)) return;
     const values = new FormData(form),
       variable = ['round-up', 'payday-sweep'].includes(values.get('type'));
     ctx.containerRuleDraft = {
@@ -262,7 +263,7 @@ export function handle(ctx, type, id, p, action) {
   }
   if (type === 'wallet-review') {
     const f = document.querySelector('#wallet-form');
-    if (!f.reportValidity()) return;
+    if (!reportValidity(f)) return;
     const v = new FormData(f);
     ctx.walletDraft = {
       id,
@@ -401,7 +402,7 @@ export function handle(ctx, type, id, p, action) {
     return ctx.openJourney('Shared access', containerMembersView(p, moneyContainer(p, id)));
   if (type === 'container-invite-review') {
     const form = document.querySelector('#container-invite-form');
-    if (!form.reportValidity()) return;
+    if (!reportValidity(form)) return;
     const values = new FormData(form);
     ctx.containerInviteDraft = {
       potId: id,

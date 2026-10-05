@@ -36,6 +36,8 @@ export const section = (name, action = '', label = '') =>
   `<header class="section-head"><h2>${esc(name)}</h2>${action ? button(label, action, 'text') : ''}</header>`;
 export const rows = (list, cls = '') =>
   `<dl class="rows ${cls}">${list.map((r) => `<div><dt>${esc(r[0])}${r.length > 2 ? `<small>${esc(displayDate(r[1]))}</small>` : ''}</dt><dd>${esc(displayDate(r.at(-1)))}</dd></div>`).join('')}</dl>`;
+/** A formatted figure with secondary pence, matching cards and detail heroes. */
+export const figureHTML = (value) => esc(value).replace(/(\.\d{2})$/, '<small>$1</small>');
 export const moneyHTML = (n) => {
   const [main, cents] = cash(n, true).split('.');
   return `${esc(main)}<small>.${cents}</small>`;
@@ -93,7 +95,7 @@ export function moduleCard(model, size = 'S', edit = false, index = 0, interacti
  <${tag} class="module-face" ${interactive ? `data-action="${esc(act)}"` : 'role="img"'} aria-label="${esc(label)}">
  <div class="module-top"><span><span class="number-symbol">${model.bankId ? bankAvatar(model.bankId) : icon(symbol)}</span><span class="number-title">${esc(model.title)}</span></span><span class="ordinal">${String(index + 1).padStart(2, '0')}/</span></div>
  ${model.attention ? `<span class="number-attention">${icon('info')}${esc(model.attention)}</span>` : ''}
- ${model.id === 'activity' ? rows(model.rows.slice(0, compact ? 3 : 4)) : `<strong class="module-value">${esc(model.value).replace(/(\.\d{2})$/, '<small>$1</small>')}${model.budget ? '<small class="budget-period">/mo</small>' : ''}</strong><div class="number-meta">${note ? `<p class="module-note">${esc(note)}</p>` : ''}${model.members?.length ? `<div class="module-household">${householdStack(model.members)}</div>` : ''}</div>`}
+ ${model.id === 'activity' ? rows(model.rows.slice(0, compact ? 3 : 4)) : `<strong class="module-value"${/^-?£/.test(model.value) && String(model.value).replace(/\.\d{2}$/, '').length > 7 ? ' data-long="true"' : ''}>${figureHTML(model.value)}${model.budget ? '<small class="budget-period">/mo</small>' : ''}</strong><div class="number-meta">${note ? `<p class="module-note">${esc(note)}</p>` : ''}${model.members?.length ? `<div class="module-household">${householdStack(model.members)}</div>` : ''}</div>`}
  ${model.budget ? `<div class="progress budget-progress ${model.budget.spent > model.budget.limit ? 'is-over' : ''}" data-viz-role="cash" data-viz-state="${limitState(model.budget.spent, model.budget.limit)}" role="progressbar" aria-label="Monthly budget used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.max(0, Math.min(100, Math.round((model.budget.spent / model.budget.limit) * 100)))}" aria-valuetext="${esc(cash(model.budget.spent, true) + ' spent of ' + cash(model.budget.limit) + ' monthly budget')}"><i style="width:${Math.max(0, Math.min(100, (model.budget.spent / model.budget.limit) * 100))}%"></i></div>` : ''}
  ${model.visual ? numberVisualMarkup(model.visual) : ''}
  ${model.budget && size === 'T' ? `<div class="number-purchases"><small>Latest shops</small>${model.recentPurchases?.length ? rows(model.recentPurchases) : '<p>No purchases yet</p>'}</div>` : ''}

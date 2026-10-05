@@ -23,11 +23,11 @@ body[data-direction='vanilla'] .now-page > .section-head:first-of-type {
   gap: 12px;
 }
 .overview-kicker .eyebrow {
-  font-size: 9px;
+  font-size: var(--text-meta);
   letter-spacing: 0.08em;
 }
 .overview-kicker > span:last-child {
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   white-space: nowrap;
 }
@@ -68,7 +68,7 @@ body[data-direction='vanilla'] .now-page > .section-head:first-of-type {
   letter-spacing: -0.25px;
 }
 .overview-footnote {
-  font-size: 10px !important;
+  font-size: var(--text-caption) !important;
   line-height: 1.5 !important;
   color: var(--muted);
   margin: 18px 0 0 !important;
@@ -151,7 +151,7 @@ body[data-direction='vanilla'] .now-page > .section-head:first-of-type {
 .holding-copy > small,
 .holding-value > small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-meta);
   color: var(--muted);
   line-height: 1.4;
   margin-top: 5px;
@@ -227,7 +227,7 @@ body[data-direction='vanilla'] .now-page > .section-head:first-of-type {
 .connect-entry > small {
   display: block;
   text-align: center;
-  font-size: 10px;
+  font-size: var(--text-caption);
   color: var(--muted);
   margin-top: 12px;
 }

@@ -117,3 +117,23 @@ The experimental signal module and its CSS were removed. The unrelated voice pro
 
 ### Audio briefing composition · 5 October visual polish
 Audio uses a small weekly-briefing/duration label, a short headline, restrained supporting copy and a single circular play/pause control. The duplicate text playback CTA is removed. Duration comes from the audio metadata (rounded minutes); playback, transcript and the shared player remain unchanged. Spacing and type are owned by the shared Companion stylesheet, with a scoped audio state rather than scenario-specific positioning.
+
+## Companion system · holistic review, 5 October 2026
+
+One component, three independent channels, so identity, message purpose and interaction state no longer compete:
+
+| Channel | Carried by | Never carried by |
+| --- | --- | --- |
+| Identity | The selected persona mark (shape and hue) everywhere AI is identified: floating card, conversation header and authors, journey-header help, “Return to AI”, inline `aiByline` attributions, You rows. People keep their portrait. | Colour alone, a generic red sparkle, a person icon |
+| Purpose | Content: headline (the subject or finding), supporting line, one quiet action. Attention adds a still red hairline and the unread dot. The briefing adds its meta line. | Motion |
+| State | Poses of the existing three stars, split from the same `auto_awesome` paths: *thinking* (Now arrival only, with the neutral rim), *speaking* (while the briefing plays, on the floating mark), *attention* (upper star raised), *curious* (one twinkle when a new thought arrives). Rest is unchanged. | New symbols; meaning that disappears without animation |
+
+Reduced motion keeps a still pose for each state; text (“Thinking…”, the headline, control labels) carries the meaning without motion or colour. The comparison prototype is recorded locally in the workspace review folder.
+
+**Headline integrity.** Style changes the supporting words and the conversation, never the headline’s subject; generic style taglines were removed. *Suggest a next step* keeps the headline and adds “Next step: …” as the visible second line (including on single-thought cards). A card never offers the screen being read, and when the page already leads with the same primary action, the card offers conversation instead; the conversation keeps that action as its first quick response.
+
+**Audio.** One name throughout: *Your week in money*, a weekly briefing. Playing uses the ink disc with a surface pause glyph. The player keeps its full title; the Companion shows *speaking* wherever it appears.
+
+**Conversation.** The header names the style (for example “Coach · Encouraging & practical”). Send is quiet until there is text, then ink; the contextual quick response uses a firmer ink edge; red is not used for ordinary actions. The composer uses 16 px text. Sent text clears. A person never answers with the AI capability summary.
+
+**Premier.** Persona hues deepen into the charcoal surface via `--companion-tint`; settings surfaces use the same tint with lightened text.

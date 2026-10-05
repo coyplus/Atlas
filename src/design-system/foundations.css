@@ -25,6 +25,8 @@
   --duration-spatial: 380ms;
   --ease-settle: cubic-bezier(0.22, 0.8, 0.25, 1);
   --motion: var(--duration-content) var(--ease-settle);
+  /* Type floor: meta labels and eyebrows 11px; sentences 12px. Plot ticks may go lower. */
+  --text-meta: 11px;
   --text-caption: 12px;
   --text-body: 14px;
   --target-min: 44px;
@@ -709,7 +711,7 @@ button:active:not(:disabled) {
   color: #162d3a;
 }
 .story-state {
-  font-size: 10px;
+  font-size: var(--text-meta);
   text-transform: uppercase;
   letter-spacing: 0.09em;
   font-weight: 600;
@@ -1029,7 +1031,7 @@ button:active:not(:disabled) {
     font-size: 13px;
   }
   .moment-picker small {
-    font-size: 10px;
+    font-size: var(--text-meta);
   }
   .device-stage {
     width: 100%;

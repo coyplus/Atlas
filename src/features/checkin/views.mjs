@@ -4,6 +4,7 @@ import { toolReflection, toolFollowup } from './reflection.mjs';
 import { esc, icon, button } from '../../design-system/templates.mjs';
 import { cash } from '../../domain/money.mjs';
 import { feelingGlyph } from '../you/feeling-view.mjs';
+import { aiByline } from '../companion/identity.mjs';
 import {
   tools,
   checkinModel,
@@ -133,12 +134,12 @@ function aheadView(p, d) {
 }
 function reflectionInvitation(d) {
   const prompt = toolReflection(d);
-  return `<button class="reflection-invitation checkin-reflection-invitation" data-action="checkin-reflect"><span class="reflection-author">${icon('assistant')} HSBC AI · optional</span><span>${esc(prompt.question)}</span><b>Reflect for a moment ${icon('arrow')}</b></button>`;
+  return `<button class="reflection-invitation checkin-reflection-invitation" data-action="checkin-reflect"><span class="reflection-author">${aiByline('HSBC AI · optional')}</span><span>${esc(prompt.question)}</span><b>Reflect for a moment ${icon('arrow')}</b></button>`;
 }
 function reflectionView(d) {
   const prompt = toolReflection(d),
     answer = d.reflection?.answer;
-  return `<span class="checkin-eyebrow">${tools.find((t) => t.id === d.tool).title}</span><span class="reflection-author">${icon('assistant')} HSBC AI</span><h1>${esc(prompt.question)}</h1><div class="reflection-options">${[...prompt.choices, 'In my own words'].map((c, i) => `<button data-action="checkin-reflection-answer:${i}" aria-pressed="${answer === c}">${esc(c)}${answer === c ? icon('check') : ''}</button>`).join('')}</div>${answer === 'In my own words' ? `<label class="checkin-field">A thought to keep <small>Optional</small><textarea id="checkin-note" rows="3" maxlength="500" placeholder="Only what you want to share…">${esc(d.note || '')}</textarea></label>` : ''}${answer ? `<aside class="reflection-followup"><p>${esc(toolFollowup(d))}</p>${button('Continue with AI', 'checkin-chat', 'text')}</aside>` : ''}${footer(btn('Finish check-in', 'checkin-result'))}`;
+  return `<span class="checkin-eyebrow">${tools.find((t) => t.id === d.tool).title}</span><span class="reflection-author">${aiByline('HSBC AI')}</span><h1>${esc(prompt.question)}</h1><div class="reflection-options">${[...prompt.choices, 'In my own words'].map((c, i) => `<button data-action="checkin-reflection-answer:${i}" aria-pressed="${answer === c}">${esc(c)}${answer === c ? icon('check') : ''}</button>`).join('')}</div>${answer === 'In my own words' ? `<label class="checkin-field">A thought to keep <small>Optional</small><textarea id="checkin-note" rows="3" maxlength="500" placeholder="Only what you want to share…">${esc(d.note || '')}</textarea></label>` : ''}${answer ? `<aside class="reflection-followup"><p>${esc(toolFollowup(d))}</p>${button('Continue with AI', 'checkin-chat', 'text')}</aside>` : ''}${footer(btn('Finish check-in', 'checkin-result'))}`;
 }
 export function resultView(p, d) {
   const result = resultFor(p, d);

@@ -5,7 +5,7 @@
   color: var(--ink);
 }
 .portrait-editorial .eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
   line-height: 1.5;
   letter-spacing: 1.5px;
   color: var(--muted);

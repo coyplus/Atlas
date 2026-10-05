@@ -294,7 +294,7 @@ body:is([data-mode='workbench'], [data-mode='blueprint']) #app {
   margin: 34px 0 26px;
 }
 .welcome-heading .eyebrow {
-  font-size: 10px;
+  font-size: var(--text-meta);
   letter-spacing: 1.3px;
   color: #626b6e;
   margin-bottom: 15px;

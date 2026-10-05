@@ -67,7 +67,7 @@ test('Alex quiz Story explains the return, opens the quiz, and completes without
   await expect(page.locator('.tabbar')).toHaveCSS('border-top-width', '1px');
 });
 
-test('global header stays below status glass and new ideas use a larger red badge', async ({
+test('global header stays below status glass and new ideas carry the Companion colour', async ({
   page,
 }, info) => {
   await page.goto('/?p=alex&theme=vanilla&tab=now');
@@ -95,7 +95,8 @@ test('global header stays below status glass and new ideas use a larger red badg
     .screenshot({ path: `docs/screenshots/now-review/${info.project.name}-header-top.png` });
   const badge = page.locator('.number-ideas-badge').first();
   await expect(badge).toHaveCSS('font-size', '12px');
-  expect(await badge.evaluate((el) => getComputedStyle(el).color)).toBe('rgb(219, 0, 17)');
+  // New AI suggestions use the selected Companion's colour (Guide for Alex); red is kept for attention.
+  expect(await badge.evaluate((el) => getComputedStyle(el).color)).toBe('rgb(117, 97, 137)');
   await badge.scrollIntoViewIfNeeded();
   await page.waitForTimeout(250);
   await page

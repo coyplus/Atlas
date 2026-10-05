@@ -1,4 +1,5 @@
-import { companionAvatar } from '../companion/identity.mjs';
+import { companionAvatar, rememberCompanionStyle } from '../companion/identity.mjs';
+import { companionPreferences } from '../companion/model.mjs';
 import { companionCard } from './card.mjs';
 import { motion } from '../../design-system/motion.mjs';
 import {
@@ -31,7 +32,9 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     reviewAudio = null,
     topTimer,
     thinking = false,
-    thinkingTimer;
+    thinkingTimer,
+    curiousTimer,
+    lastCurious = 0;
   const state = () => getState(),
     person = () => current(state()),
     enabled = () => state().direction === 'vanilla';
@@ -113,7 +116,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
       ].join(' · ');
   }
   function summary(m) {
-    if (m.action === 'support:listen') return 'Your plans. A minute to catch up.';
+    if (m.action === 'support:listen') return 'Savings, plans and next steps in a minute.';
     if (activeContext().kind === 'chat')
       return m.source === 'human'
         ? 'Your conversation, together.'
@@ -139,7 +142,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     if (audioDock && audioAvailable())
       renderRegion(
         audioDock,
-        `<section class="recap-player" aria-label="Money recap player"><div class="recap-controls"><span class="recap-name"><b>Money recap</b><small id="recap-elapsed">0:00</small></span>${control('play', 'Pause recap', icon('pause'))}${control('back', 'Back 10 seconds', icon('rewind'))}${control('speed', 'Playback speed: 1×', '<small class="recap-speed">1×</small>')}${control('transcript', 'Read transcript', icon('transcript'))}${control('stop', 'Close audio player', icon('close'))}</div><label class="sr-only" for="recap-progress">Recap playback position</label><input id="recap-progress" type="range" min="0" max="${window.ATLAS_AUDIO.duration}" value="0" step="1"><p class="recap-error" role="status" hidden></p></section>`,
+        `<section class="recap-player" aria-label="Weekly briefing player"><div class="recap-controls"><span class="recap-name"><b>Your week in money</b><small id="recap-elapsed">0:00</small></span>${control('play', 'Pause briefing', icon('pause'))}${control('back', 'Back 10 seconds', icon('rewind'))}${control('speed', 'Playback speed: 1×', '<small class="recap-speed">1×</small>')}${control('transcript', 'Read transcript', icon('transcript'))}${control('stop', 'Close audio player', icon('close'))}</div><label class="sr-only" for="recap-progress">Briefing playback position</label><input id="recap-progress" type="range" min="0" max="${window.ATLAS_AUDIO.duration}" value="0" step="1"><p class="recap-error" role="status" hidden></p></section>`,
       );
   }
   function acknowledgeAttention() {
@@ -196,6 +199,17 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     audioMeta.textContent = offerAudio ? `WEEKLY BRIEFING · ${Math.max(1, Math.round((window.ATLAS_AUDIO?.duration || 66) / 60))} MIN LISTEN` : '';
     if (m.companionStyle) dock.dataset.companionStyle = m.companionStyle;
     else delete dock.dataset.companionStyle;
+    dock.dataset.purpose = thinking
+      ? 'thinking'
+      : m.source === 'human'
+        ? 'human'
+        : offerAudio
+          ? 'briefing'
+          : m.attentionKey
+            ? 'attention'
+            : m.quiet
+              ? 'availability'
+              : 'insight';
     document.querySelector('#phone').dataset.supportSurface = view.surface;
     const attention =
       state().tab === 'now' &&
@@ -213,9 +227,20 @@ export function createSupportController(getState, data, dispatch, showDialog) {
 
     dock.querySelector('.support-copy').setAttribute('aria-busy', String(thinking));
     dock.dataset.singleMessage = String(!!m.singleMessage && !thinking);
+    // A suggestion never offers the destination the customer is already reading.
+    const destinations = { receipts: 'activity', rules: 'rules', points: 'rewards', badges: 'badges' },
+      sameDetail =
+        !!modalContext &&
+        (m.action === modalContext.kind + ':' + modalContext.id ||
+          destinations[m.action] === modalContext.kind);
+    const nextStep = !thinking && m.nextStep && !sameDetail ? 'Next step: ' + m.nextStep : '';
+    dock.dataset.nextStep = String(!!nextStep);
     const title = thinking ? 'Thinking…' : m.title,
-      sub = thinking ? 'Bringing your money into focus' : m.singleMessage ? '' : summary(m),
+      sub = thinking
+        ? 'Bringing your money into focus'
+        : nextStep || (m.singleMessage ? '' : summary(m)),
       copy = dock.querySelector('.support-copy');
+    const newThought = !!lastCopy && lastCopy.split('|')[0] !== title && !thinking;
     if (lastCopy !== title + '|' + sub) {
       copy.querySelector('strong').textContent = title;
       copy.querySelector('.support-subtitle').textContent = sub;
@@ -246,18 +271,41 @@ export function createSupportController(getState, data, dispatch, showDialog) {
       ? 'Speak directly to Priya'
       : offerAudio
         ? playing
-          ? 'Pause recap'
+          ? 'Pause briefing'
           : audio === 'ended'
-            ? 'Replay recap'
-            : 'Play recap'
+            ? 'Replay briefing'
+            : 'Play briefing'
         : 'Open AI conversation';
-    const avatarMarkup =
-      m.source === 'human'
-        ? agentAvatar(humanId)
-        : offerAudio
-          ? icon(playing ? 'pause' : 'play')
-          : m.companionStyle ? companionAvatar(m.companionStyle) : agentAvatar('ai');
-    if (avatar.innerHTML !== avatarMarkup) renderRegion(avatar, avatarMarkup);
+    // Identity re-renders only when the speaker changes; state poses move the same mark.
+    const style = m.companionStyle || companionPreferences(person()).style;
+    rememberCompanionStyle(style);
+    const identity =
+      m.source === 'human' ? 'human:' + humanId : offerAudio ? 'audio:' + playing : 'ai:' + style;
+    if (avatar.dataset.identity !== identity) {
+      renderRegion(
+        avatar,
+        m.source === 'human'
+          ? agentAvatar(humanId)
+          : offerAudio
+            ? icon(playing ? 'pause' : 'play')
+            : companionAvatar(style),
+      );
+      avatar.dataset.identity = identity;
+    }
+    const mark = avatar.querySelector('.companion-avatar');
+    if (mark) {
+      // While the briefing plays, the Companion is the one speaking wherever it appears.
+      const pose = thinking ? 'thinking' : attention ? 'attention' : playing ? 'speaking' : '';
+      if (pose) mark.dataset.mark = pose;
+      else if (newThought && !reduced() && Date.now() - lastCurious > 1200) {
+        lastCurious = Date.now();
+        mark.dataset.mark = 'curious';
+        clearTimeout(curiousTimer);
+        curiousTimer = setTimeout(() => {
+          if (mark.dataset.mark === 'curious') delete mark.dataset.mark;
+        }, 900);
+      } else if (mark.dataset.mark !== 'curious') delete mark.dataset.mark;
+    }
     avatar.dataset.action = avatarAction;
     avatar.setAttribute('aria-label', avatarLabel);
     avatar.title = avatarLabel;
@@ -267,17 +315,21 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     details.inert = !view.details;
     details.setAttribute('aria-hidden', String(!view.details));
     dock.querySelector('.support-message').textContent = m.singleMessage ? '' : m.message;
-    const ctas = dock.querySelector('.support-actions'),
-      sameDetail = modalContext && m.action === modalContext.kind + ':' + modalContext.id;
-    const action = sameDetail
+    const ctas = dock.querySelector('.support-actions');
+    // When the page already leads with this action, the card offers conversation instead.
+    const pageLeads =
+      !modalContext &&
+      !!m.action &&
+      !!document.querySelector(`#content .btn.primary[data-action="${CSS.escape(m.action)}"]`);
+    const action = sameDetail || pageLeads
       ? 'support:discuss'
       : m.action === 'support:listen'
         ? 'support:play'
         : m.action;
-    const label = sameDetail
+    const label = sameDetail || pageLeads
       ? 'Talk it through'
       : m.action === 'support:listen'
-        ? playing ? 'Pause report' : 'Play my report'
+        ? playing ? 'Pause briefing' : 'Play briefing'
         : m.cta;
     const markup =
       (offerAudio ? '' : button(label, action, 'secondary')) +
@@ -316,15 +368,15 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     const playerPlay = document.querySelector('#audio-dock [data-action="support:play"]');
     if (playerPlay) {
       renderRegion(playerPlay, icon(playing ? 'pause' : 'play'));
-      const playLabel = playing ? 'Pause recap' : audio === 'ended' ? 'Replay recap' : 'Play recap';
+      const playLabel = playing ? 'Pause briefing' : audio === 'ended' ? 'Replay briefing' : 'Play briefing';
       playerPlay.setAttribute('aria-label', playLabel);
       playerPlay.title = playLabel;
     }
     const chatAudio = document.querySelector('.conversation-audio');
     if (chatAudio) {
       renderRegion(chatAudio, icon(playing ? 'pause' : 'play'));
-      chatAudio.setAttribute('aria-label', playing ? 'Pause recap' : 'Play recap');
-      chatAudio.title = playing ? 'Pause recap' : 'Play recap';
+      chatAudio.setAttribute('aria-label', playing ? 'Pause briefing' : 'Play briefing');
+      chatAudio.title = playing ? 'Pause briefing' : 'Play briefing';
     }
     measure();
   }
@@ -683,7 +735,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
                 'Your rewards': 'rewards',
                 'Your challenges': 'badges',
                 'Your activity': 'activity',
-                'Audio transcript': 'audio',
+                'Briefing transcript': 'audio',
               }[title] || 'dialog',
             title,
           };
@@ -808,8 +860,8 @@ export function createSupportController(getState, data, dispatch, showDialog) {
         break;
       case 'transcript':
         showDialog(
-          'Audio transcript',
-          `<p class="eyebrow">SAM · 8 SEPTEMBER</p><h3 class="idea-title">Your money, in a minute</h3>${window.ATLAS_AUDIO.transcript
+          'Briefing transcript',
+          `<p class="eyebrow">SAM · 8 SEPTEMBER</p><h3 class="idea-title">Your week in money</h3>${window.ATLAS_AUDIO.transcript
             .split('\n\n')
             .map((x) => `<p class="support">${esc(x)}</p>`)
             .join('')}`,

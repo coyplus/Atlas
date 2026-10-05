@@ -124,9 +124,9 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     if (next && !next.rule && s.member === 'self')
       return ai(
         cash(next.remaining) + ' to reach Premier',
-        'Your savings bring you close. A ' +
+        'A ' +
           cash(next.amount) +
-          ' payday rule could help you retain new income and close the gap while keeping your family plans funded.',
+          ' payday rule could close the gap from new income, while keeping your family plans funded.',
         'Explore a saving rule',
         'membership-rule',
       );
@@ -143,7 +143,7 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     if (!p.l2.personality.name)
       return ai(
         'Let’s start with your perspective.',
-        'Your transactions show what you do with money. Three questions can help us understand how you approach it.',
+        'Your transactions show what you do with money. Three questions help us understand why, and you can correct anything afterwards.',
         'Answer three questions',
         'quiz',
       );
@@ -401,7 +401,7 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
         ? 'Your latest change is recorded here: ' +
             p.ui.receipts.at(-1).title +
             '. You can undo your latest change.'
-        : 'Follow the recorded transactions and any changes you make in this demonstration.',
+        : 'Your recorded transactions are here. Payments, transfers and rule changes you make add a receipt you can undo.',
       'Open activity',
       'receipts',
     );
@@ -483,9 +483,10 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
   }
   if (k === 'rewards')
     return ai(
-      'Consistency adds up',
-      p.l1.rewards.points.balance +
-        ' HSBC Points recognise openness and healthy habits. Explore what is available before using them.',
+      p.l1.rewards.points.balance ? 'Consistency adds up' : 'Your first Points come from small habits',
+      p.l1.rewards.points.balance
+        ? 'HSBC Points recognise healthy habits, not spending. Compare what each reward needs before you use them.'
+        : 'A daily check-in or your Money Portrait questions earn Points. They recognise habits, not spending.',
       'Explore rewards',
       'points',
     );

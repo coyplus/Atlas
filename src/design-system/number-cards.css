@@ -38,6 +38,15 @@ body[data-direction='vanilla'] .number-title {
 body[data-direction='vanilla'] .module .module-value {
   margin-top: 18px;
 }
+/* Amounts never break mid-number: long values step down in half-width cards. */
+body[data-direction='vanilla'] .module:is(.size-S, .size-T) .module-value {
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+body[data-direction='vanilla'] .module:is(.size-S, .size-T) .module-value[data-long='true'] {
+  font-size: 23px;
+  letter-spacing: -0.6px;
+}
 body[data-direction='vanilla'] .number-meta {
   display: flex;
   align-items: center;

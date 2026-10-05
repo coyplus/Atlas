@@ -25,8 +25,12 @@ export function companionSettings(p, s, draft, catalogue) {
     contexts[sampleTab],
     catalogue,
   );
-  const card = companionCard({ title: preview.title, interactive: false });
-  return `<div class="companion-settings" style="--companion-color:${selected.color};--companion-light:${selected.light}"><header><span class="eyebrow">SAME COMPANION. YOUR KIND OF SUPPORT.</span><h1>Your kind<br>of support.</h1><p>Choose how we talk, and when we step forward. Try a few styles. See what feels like you.</p></header>
+  const card = companionCard({
+    title: preview.title,
+    interactive: false,
+    avatar: companionAvatar(draft.style),
+  });
+  return `<div class="companion-settings" style="--companion-color:${selected.color};--companion-light:${selected.light}"><header><span class="eyebrow">ONE COMPANION · FOUR STYLES</span><h1>Your kind<br>of support.</h1><p>Choose how we talk and when we step forward. Each preview uses your own numbers.</p></header>
   <section class="companion-recommendation"><div>${companionAvatar(r.style)}<span><small>${r.trait ? 'A STARTING POINT FROM YOUR PORTRAIT' : 'A PLACE TO BEGIN'}</small><b>Try the ${styles[r.style].name}</b></span></div><p>${esc(r.reason)}</p><details><summary>Why this suggestion?</summary><p>${r.trait ? `Your ${r.trait.toLowerCase()} trait informed this suggestion. A money habit cannot tell us exactly how you like to be supported.` : 'We do not have a Money Portrait for you yet, so this is a balanced default.'} You choose what fits. Your style won’t change unless you change it.</p></details></section>
   <fieldset class="companion-styles"><legend>How we talk</legend>${Object.entries(styles)
     .map(
@@ -45,7 +49,7 @@ export function companionSettings(p, s, draft, catalogue) {
     )
     .join(
       '',
-    )}</div><div class="companion-preview-card" aria-live="polite">${card.replace(/<span class="agent-avatar[\s\S]*?<\/span>/, companionAvatar(draft.style))}<p>${esc(preview.message)}</p></div><small>Your scenario. The same facts, with a different approach.</small></section>
+    )}</div><div class="companion-preview-card" aria-live="polite">${card}<p>${esc(preview.message)}</p></div><small>Your scenario. The same facts, with a different approach.</small></section>
   <fieldset class="companion-initiative"><legend>When we step forward</legend>${Object.entries(
     initiatives,
   )

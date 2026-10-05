@@ -1,3 +1,4 @@
+import { reportValidity } from '../../design-system/forms.mjs';
 import { transaction } from '../../domain/money.mjs';
 import { badgeCollection, badgeDetail, pointsActivity } from '../badges/views.mjs';
 import {
@@ -52,7 +53,7 @@ export function handle(ctx, type, id, p) {
   if (type === 'badge-pause' && !['active', 'paused'].includes(badgeState(p, id).status)) return;
   if (
     type === 'badge-record' &&
-    (!canRecord(p, id) || !document.querySelector('#badge-confirm')?.reportValidity())
+    (!canRecord(p, id) || !reportValidity(document.querySelector('#badge-confirm')))
   )
     return;
   const operations = {

@@ -354,14 +354,14 @@
   {
    "id": "a-quiz",
    "state": "new",
-   "title": "Your money personality",
-   "claim": "Discover your money habits and a way forward that feels like you.",
-   "aiLine": "Three questions reveal your money personality: how you plan, find a rhythm and make room for spontaneity. You can review and correct your profile. Completing the quiz earns 25 HSBC Points once.",
+   "title": "Your Money Portrait",
+   "claim": "Three questions to explore how you approach money.",
+   "aiLine": "Three questions start your Money Portrait: how you plan, find a rhythm and make room for spontaneity. You can review and correct it. Completing the questions earns 25 HSBC Points once.",
    "figure": "Your money. Your way.",
    "rows": [
     [
-     "Your money style",
-     "A profile shaped by your answers",
+     "Your Money Portrait",
+     "A first impression shaped by your answers",
      "Personal"
     ],
     [
@@ -371,15 +371,15 @@
     ],
     [
      "HSBC Points",
-     "Awarded once when you complete the quiz",
+     "Awarded once when you complete the questions",
      "25"
     ]
    ],
    "chart": false,
-   "verb": "Discover your money personality",
-   "residue": "Your money profile is ready to review.",
+   "verb": "Discover your Money Portrait",
+   "residue": "Your Money Portrait is ready to review.",
    "action": "quiz",
-   "cta": "Discover my style",
+   "cta": "Discover my Money Portrait",
    "basis": [
     "l2:signals/sig-no-quiz"
    ],

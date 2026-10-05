@@ -62,7 +62,7 @@ test('Now review: scenarios, detail surfaces, sheets and return paths', async ({
   expect(errors).toEqual([]);
 });
 
-test('attention loops until acknowledged by review, and absent from routine pages', async ({
+test('attention stays visible until acknowledged by review, and absent from routine pages', async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -73,11 +73,21 @@ test('attention loops until acknowledged by review, and absent from routine page
   await expect(dock).toHaveAttribute('data-attention', 'unread');
   await expect(dock).toHaveClass(/is-attention-pulse/);
   await expect(page.locator('.support-bar')).toHaveCSS('animation-name', 'none');
+  // Attention is a still accent and a raised star, never the travelling “thinking” rim.
   expect(
     await page
       .locator('.support-bar')
-      .evaluate((el) => getComputedStyle(el, '::after').animationIterationCount),
-  ).toBe('infinite');
+      .evaluate((el) => getComputedStyle(el, '::after').animationName),
+  ).toBe('none');
+  expect(
+    Number(
+      await page.locator('.support-bar').evaluate((el) => getComputedStyle(el, '::after').opacity),
+    ),
+  ).toBe(1);
+  await expect(page.locator('.support-avatar .companion-avatar')).toHaveAttribute(
+    'data-mark',
+    'attention',
+  );
   await page.waitForTimeout(6500);
   await expect(dock).toHaveClass(/is-attention-pulse/);
   await page.evaluate(() => window.atlas.dispatch('pot:grocery-wallet'));

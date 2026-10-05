@@ -21,7 +21,7 @@
 }
 .companion-avatar i:first-child {
   inset: 0;
-  background: var(--companion-light);
+  background: var(--companion-tint, var(--companion-light));
   border: 0;
   opacity: 1;
 }
@@ -29,6 +29,12 @@
   width: 25px;
   height: 25px;
   fill: currentColor;
+  overflow: visible;
+}
+/* Premier keeps each persona's hue, deepened into the charcoal surface. */
+.premier .companion-avatar {
+  --companion-tint: color-mix(in srgb, var(--companion-color) 30%, #2b2c30);
+  color: color-mix(in srgb, var(--companion-color) 35%, #fff);
 }
 .companion-avatar-listener i:first-child {
   border-radius: 45% 55% 50% 50%;
@@ -127,14 +133,154 @@
     opacity: 0.7;
   }
 }
-/* Past messages remain still; reduced motion retains the original avatar. */
-.message-author .companion-avatar i {
+/* Past messages, headers and bylines remain still; reduced motion retains the original avatar. */
+.message-author .companion-avatar i,
+.companion-avatar.is-still i {
   animation: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .companion-avatar i {
     animation: none;
   }
+}
+
+/* State is carried by the existing three stars, never by a new symbol or colour alone.
+   Rest is unchanged. Each state also has a still pose for reduced motion. */
+.mark-star {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    scale var(--duration-content, 220ms) var(--ease-settle, ease),
+    opacity var(--duration-content, 220ms) ease,
+    translate var(--duration-content, 220ms) ease;
+}
+/* Thinking (Now arrival only): the small stars take turns while the large one considers. */
+[data-mark='thinking'] .mark-star-a {
+  animation: mark-twinkle 1.6s ease-in-out infinite;
+}
+[data-mark='thinking'] .mark-star-b {
+  animation: mark-twinkle 1.6s ease-in-out -0.8s infinite;
+}
+[data-mark='thinking'] .mark-star-main {
+  animation: mark-consider 3.2s ease-in-out infinite;
+}
+/* Speaking (audio playing): a quiet level meter in the small stars. */
+[data-mark='speaking'] .mark-star-a {
+  animation: mark-level 0.9s ease-in-out infinite;
+}
+[data-mark='speaking'] .mark-star-b {
+  animation: mark-level 0.9s ease-in-out -0.45s infinite;
+}
+[data-mark='speaking'] .mark-star-main {
+  animation: mark-voice 1.8s ease-in-out infinite;
+}
+/* Attention (unread): the upper star is raised — a still pose with one arrival lift. */
+[data-mark='attention'] .mark-star-a {
+  scale: 1.4;
+  translate: 0.6px -0.6px;
+  animation: mark-raise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+[data-mark='attention'] .mark-star-b {
+  scale: 0.8;
+  opacity: 0.75;
+}
+/* Curious: one twinkle when a new contextual thought arrives. */
+[data-mark='curious'] .mark-star-a,
+[data-mark='curious'] .mark-star-b {
+  animation: mark-twinkle 0.7s ease-in-out 1 both;
+}
+[data-mark='curious'] .mark-star-b {
+  animation-delay: 0.12s;
+}
+@keyframes mark-twinkle {
+  0%,
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+  50% {
+    scale: 0.45;
+    opacity: 0.55;
+  }
+}
+@keyframes mark-consider {
+  0%,
+  100% {
+    rotate: -7deg;
+  }
+  50% {
+    rotate: 7deg;
+  }
+}
+@keyframes mark-level {
+  0%,
+  100% {
+    scale: 0.7;
+  }
+  50% {
+    scale: 1.25;
+  }
+}
+@keyframes mark-voice {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.07;
+  }
+}
+@keyframes mark-raise {
+  from {
+    scale: 1;
+    translate: 0 0;
+  }
+  60% {
+    scale: 1.6;
+  }
+  to {
+    scale: 1.4;
+    translate: 0.6px -0.6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mark-star {
+    animation: none !important;
+    transition: none;
+  }
+  [data-mark='thinking'] .mark-star-a,
+  [data-mark='thinking'] .mark-star-b {
+    scale: 0.6;
+    opacity: 0.6;
+  }
+  [data-mark='speaking'] .mark-star-a,
+  [data-mark='speaking'] .mark-star-b {
+    scale: 1.2;
+  }
+}
+
+/* Inline attribution: the same mark, small and still, beside a short label. */
+.ai-byline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+}
+.ai-byline .companion-avatar {
+  width: 24px;
+  height: 24px;
+}
+.ai-byline .companion-avatar svg {
+  width: 13px;
+  height: 13px;
+}
+.ai-byline .companion-avatar i:last-of-type {
+  inset: 3px;
 }
 .companion-entry {
   margin: 32px var(--page);
@@ -193,8 +339,8 @@
   padding: 4px 0 24px;
 }
 .companion-settings header > .eyebrow {
-  font-size: 10px;
-  letter-spacing: 1.2px;
+  font-size: 11px;
+  letter-spacing: 1.1px;
 }
 .companion-settings h1 {
   font-size: 38px;
@@ -210,7 +356,7 @@
   margin-bottom: 26px;
 }
 .companion-recommendation {
-  background: var(--surface-alt, #f1f3f3);
+  background: var(--soft, #f1f3f3);
   padding: 20px;
   border-radius: 20px;
   margin: 0 0 30px;
@@ -221,8 +367,8 @@
   align-items: center;
 }
 .companion-recommendation small {
-  font-size: 9px;
-  letter-spacing: 1px;
+  font-size: 11px;
+  letter-spacing: 0.8px;
   line-height: 1.5;
   display: block;
   color: var(--muted);
@@ -282,7 +428,7 @@
 }
 .companion-styles > button[aria-pressed='true'] {
   border-color: var(--style-color);
-  background: var(--style-light);
+  background: var(--style-tint, var(--style-light));
   box-shadow: inset 0 0 0 1px var(--style-color);
 }
 .companion-styles .companion-avatar {
@@ -307,7 +453,7 @@
 .companion-styles em {
   margin-top: auto;
   padding-top: 8px;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--style-color);
   font-style: normal;
   font-weight: 600;
@@ -323,7 +469,7 @@
   height: 17px;
 }
 .companion-sample {
-  background: var(--companion-light);
+  background: var(--companion-tint, var(--companion-light));
   border-radius: 24px;
   padding: 18px;
   margin: 0 0 32px;
@@ -337,7 +483,7 @@
   align-items: center;
 }
 .companion-sample-heading .eyebrow {
-  font-size: 10px;
+  font-size: 11px;
 }
 .companion-preview-tabs {
   display: flex;
@@ -408,7 +554,7 @@
 }
 .companion-initiative button[aria-pressed='true'] {
   border-color: var(--companion-color);
-  background: var(--companion-light);
+  background: var(--companion-tint, var(--companion-light));
 }
 .companion-initiative b {
   display: block;
@@ -492,15 +638,73 @@ body[data-direction='vanilla'] .companion-settings .companion-preview-card .supp
 body[data-direction='vanilla'] #support-dock .support-avatar:has(.companion-avatar) {
   border-color: transparent;
 }
-.companion-styles > button[aria-pressed='true'],
-.companion-initiative button[aria-pressed='true'] {
+.phone:not(.premier) .companion-styles > button[aria-pressed='true'],
+.phone:not(.premier) .companion-initiative button[aria-pressed='true'] {
   color: #191b1c;
 }
-.companion-styles > button[aria-pressed='true'] small,
-.companion-initiative button[aria-pressed='true'] small {
+.phone:not(.premier) .companion-styles > button[aria-pressed='true'] small,
+.phone:not(.premier) .companion-initiative button[aria-pressed='true'] small {
   color: #586063;
 }
-.premier .companion-styles > button:not([aria-pressed='true']) strong,
-.premier .companion-styles > button:not([aria-pressed='true']) em {
+/* Premier: persona hues deepen into the charcoal surface and their text lightens. */
+.premier .companion-settings {
+  --companion-tint: color-mix(in srgb, var(--companion-color) 24%, var(--surface));
+}
+.premier .companion-styles > button {
+  --style-tint: color-mix(in srgb, var(--style-color) 26%, var(--surface));
+}
+.premier .companion-styles strong,
+.premier .companion-styles em,
+.premier .companion-choice-mark,
+.premier .companion-sample-heading,
+.premier .companion-sample > small,
+.premier .companion-preview-tabs button:not([aria-pressed='true']),
+.premier .companion-initiative i {
+  color: color-mix(in srgb, var(--companion-color) 35%, white);
+}
+.premier .companion-styles strong,
+.premier .companion-styles em,
+.premier .companion-choice-mark {
   color: color-mix(in srgb, var(--style-color) 35%, white);
+}
+
+/* One AI identity across placements: headers, conversation controls and rows. */
+body[data-direction='vanilla'] .journey-help .companion-avatar,
+.chat-context-actions .companion-avatar {
+  width: 36px;
+  height: 36px;
+}
+body[data-direction='vanilla'] .journey-help .companion-avatar svg,
+.chat-context-actions .companion-avatar svg {
+  width: 18px;
+  height: 18px;
+}
+.human-link > .companion-avatar,
+.human-link > .agent-avatar {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+}
+.human-link > .companion-avatar svg {
+  width: 20px;
+  height: 20px;
+}
+body[data-direction='vanilla'] .human-link b {
+  font-size: 15px;
+  font-weight: 500;
+}
+body[data-direction='vanilla'] .human-link small {
+  font-size: 12px;
+  margin-top: 3px;
+}
+#audio-dock .recap-name b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#audio-dock .recap-name {
+  overflow: hidden;
+}
+/* The static preview shows its message below; the empty reveal block adds no space. */
+body[data-direction='vanilla'] .companion-preview-card .support-reveal {
+  display: none;
 }

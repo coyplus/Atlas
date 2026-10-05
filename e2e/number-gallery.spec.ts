@@ -19,7 +19,7 @@ test('inline add entry, AI previews, size choice, add and expanded visual stay c
   });
   expect(alignment).toBeLessThan(2);
   await entry.click();
-  await expect(page.locator('.ideas-author')).toHaveText('HSBC AI');
+  await expect(page.locator('.ideas-heading .ai-byline')).toHaveText('HSBC AI');
   const suggestion = page.locator('[data-suggestion="cardusage"]');
   await expect(suggestion.locator('[data-visual="gauge"]')).toBeVisible();
   await suggestion.getByRole('button', { name: 'Square', exact: true }).click();

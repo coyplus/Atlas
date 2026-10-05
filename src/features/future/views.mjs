@@ -1,4 +1,5 @@
 import { timeTravel } from './time-travel.mjs';
+import { aiByline } from '../companion/identity.mjs';
 import { goalSession } from './goal-session.mjs';
 import { isFutureBeginning, futureBeginning } from './beginning.mjs';
 import { moneySpeedModel } from './money-speed.mjs';
@@ -199,7 +200,7 @@ export function speedDetail(p, s) {
   return `<div class="fg-detail fg-speed-detail"><span class="eyebrow">YOUR MONTHLY MOMENTUM</span><h2>Your future in motion.</h2><p>${s.month ? esc(displayDate(futureMonthDate(p, s.month))) : 'Today'} · Your next month’s planned contributions</p>
     <div class="fg-speed-ring" style="--speed-ring:${stops ? `conic-gradient(${stops})` : 'var(--line)'}" role="img" aria-label="${esc(model.active.map((x) => x.goal.name + ': ' + money(x.amount) + ' a month').join(', ') || 'No monthly contributions yet')}"><div><strong>${money(model.total)}</strong><span>each month</span><small>${model.active.length} ${model.active.length === 1 ? 'goal' : 'goals'} in motion</small></div></div>
     <div class="fg-speed-key">${model.active.map(({ goal, amount }) => `<button data-action="future-goal:${esc(goal.id)}" style="${appearanceStyle(potAppearance(p, goal))}"><i></i><span>${esc(goal.name)}</span><b>${money(amount)}</b></button>`).join('')}</div>
-    <article class="fg-speed-insight"><span class="fg-ai-label">${icon('spark')} HSBC AI</span><h3>${esc(model.insight)}</h3><p>${esc(model.idea)}</p>${btn('Explore a different pace', 'chat', 'text')}</article>
+    <article class="fg-speed-insight">${aiByline('HSBC AI')}<h3>${esc(model.insight)}</h3><p>${esc(model.idea)}</p>${btn('Explore a different pace', 'chat', 'text')}</article>
     <h3 class="fg-speed-rules-heading">Your contributions</h3><div class="fg-flow">${
       model.allocations
         .map((x) => x.goal)
@@ -230,7 +231,7 @@ export function review(p, s) {
     investment = f.ideas.some((i) => i.authored?.effect?.newPot?.growthAnnual),
     extra = f.ideas.some((i) => ['extra', 'add', 'roundup'].includes(i.kind));
   return `<div class="fg-detail fg-plan-review" style="${colour}">
-    <header class="fg-review-heading"><span class="fg-ai-label">${icon('spark')} Your plan, made practical</span><h2>Make this<br>future yours.</h2></header>
+    <header class="fg-review-heading">${aiByline('Your plan, made practical')}<h2>Make this<br>future yours.</h2></header>
     <section class="fg-review-summary" aria-label="Monthly commitment">
       <span class="fg-review-summary-label">Your monthly plan from today</span>
       <div class="fg-review-amounts">${difference ? `<span class="fg-review-before">${money(base.speed)}</span>${icon('arrow')}` : ''}<strong>${money(next.speed)}<small>/month</small></strong></div>
@@ -243,7 +244,7 @@ export function review(p, s) {
       })
       .join('')}</div>
     <aside class="fg-review-impact">${icon('trend')}<div><small>Projected impact</small><strong>${esc(effect)}</strong></div></aside>
-    <footer class="fg-review-approval"><label class="fg-confirm"><input id="future-approval" type="checkbox"><span>I’ve reviewed ${investment ? 'the illustrative investment plan with Maya and ' : ''}the changes${extra ? ' and the extra contributions fit my budget' : ''}.</span></label>${btn('Apply to my plan', 'commit', 'primary wide')}<p class="fg-review-assurance">Protected commitments stay in place.<br>Changes stay in this demo. You can undo them.</p>${btn('Keep experimenting', 'dismiss', 'text wide')}</footer>
+    <footer class="fg-review-approval"><label class="fg-confirm"><input id="future-approval" type="checkbox"><span>I’ve reviewed ${investment ? 'the illustrative investment plan with Maya and ' : ''}the changes${extra ? ' and the extra contributions fit my budget' : ''}.</span></label>${btn('Apply to my plan', 'commit', 'primary wide')}<p class="fg-review-assurance">Protected commitments stay in place.<br>You can undo this from Activity.</p>${btn('Keep experimenting', 'dismiss', 'text wide')}</footer>
   </div>`;
 }
 export function chatDetail(p) {
@@ -251,12 +252,12 @@ export function chatDetail(p) {
     g =
       planningPots(p).find((g) => /home|house/i.test(g.name)) ||
       planningPots(p).find((g) => g.target);
-  return `<div class="fg-detail fg-conversation"><span class="fg-ai-label">${icon('spark')} Imagine with HSBC AI</span><h2>What’s on<br>your mind?</h2><p>Try a thought. See where it takes you.</p><div class="fg-chat-messages" aria-live="polite">${f.messages.map((m) => `<p class="fg-message ${m.role}">${esc(m.text)}</p>`).join('') || `<p class="fg-message ai">For example, “What if I pause my ${esc(g?.name || 'goal')} contributions for six months?”</p>`}</div>${f.proposal ? `<article class="fg-proposal"><b>${esc(f.proposal.title)}</b><p>${esc(ideaDescription(p, f.proposal))}</p>${btn('Try this idea', 'proposal', 'primary wide')}</article>` : ''}<form id="future-chat-form"><label class="field">Your idea<input name="message" id="future-chat-input" maxlength="300" required placeholder="What if I…" autocomplete="off"></label><button class="btn primary wide" type="submit">Explore this thought</button></form><small class="support">Simulated AI · refine an amount or pause duration in your next message.</small></div>`;
+  return `<div class="fg-detail fg-conversation">${aiByline('Imagine with HSBC AI')}<h2>What’s on<br>your mind?</h2><p>Try a thought. See where it takes you.</p><div class="fg-chat-messages" aria-live="polite">${f.messages.map((m) => `<p class="fg-message ${m.role}">${esc(m.text)}</p>`).join('') || `<p class="fg-message ai">For example, “What if I pause my ${esc(g?.name || 'goal')} contributions for six months?”</p>`}</div>${f.proposal ? `<article class="fg-proposal"><b>${esc(f.proposal.title)}</b><p>${esc(ideaDescription(p, f.proposal))}</p>${btn('Try this idea', 'proposal', 'primary wide')}</article>` : ''}<form id="future-chat-form"><label class="field">Your idea<input name="message" id="future-chat-input" maxlength="300" required placeholder="What if I…" autocomplete="off"></label><button class="btn primary wide" type="submit">Explore this thought</button></form><small class="support">Simulated AI · refine an amount or pause duration in your next message.</small></div>`;
 }
 export function possibilityDiscovery(p, s) {
   const items = possibilities(p, s);
   return `<div class="fg-detail possibility-discovery">
-    <span class="fg-ai-label">${icon('spark')} Imagine with HSBC AI</span>
+    ${aiByline('Imagine with HSBC AI')}
     <h2>What could<br>come next?</h2>
     <p>A few possibilities from your picture. See what feels like you.</p>
     <div class="possibility-own-link">${btn('Create my own', 'own', 'text')} ${icon('arrow')}</div>
