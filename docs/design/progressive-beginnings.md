@@ -4,9 +4,13 @@ Implemented 25 September 2026 following the owner's roadshow review. The demo br
 
 ## You
 
-An unnamed portrait leads with one invitation: three questions to discover an approach to money. The existing outline artwork, glass card and contextual Companion show both the action and its value. The quiz retains its existing scoring, 25-point reward, source trail and correctable first impression. A check-in does not infer personality.
+An unnamed portrait leads with an invitation: three questions to discover an approach to money. The existing outline artwork, glass card and contextual Companion show both the action and its value. The quiz retains its existing scoring, 25-point reward, source trail and correctable first impression. A check-in does not infer personality.
 
 An unnamed or early-evidence self portrait uses a quieter composition. Check-ins become visible alongside a named first impression; broader membership, Points, journey, Companion preferences and permissions sit under the expandable **Your HSBC relationship** section. Before the quiz, that section also offers check-ins and a household invitation. These capabilities remain available without completing a quiz. Shared portraits retain their existing consent-aware layout. Richer evidence uses the established full layout; a customer ID, balance or tenure threshold does not control progression.
+
+### Alex’s savings invitation · 5 October 2026
+
+Alongside the portrait invitation, Alex’s early You experience features **Small change, big start**: £1 on 30 different saving days, £30 saved, and 100 HSBC Points on completion. The existing challenge detail explains the commitment before joining. A 30-dot infographic becomes live progress after joining, preserves paused days, and celebrates completion. The invitation remains after the portrait quiz while evidence is still early. Joining and self-recording do not move money; joining or taking an incomplete step does not award the completion bonus. No challenge rules or financial arithmetic changed. Other scenarios keep their existing layout.
 
 ## Future
 

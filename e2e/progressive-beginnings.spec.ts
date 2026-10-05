@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   });
   await page.emulateMedia({ reducedMotion: 'reduce' });
 });
-test('You begins with one invitation and quiz grows an editable first impression', async ({
+test('You offers a portrait invitation and quiz grows an editable first impression', async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -67,4 +67,38 @@ test('Planning tools stay available and mature scenarios keep their full experie
   await expect(page.locator('.you-more')).toHaveCount(0);
   await expect(page.locator('.companion-entry')).toBeVisible();
   expect(errors).toEqual([]);
+});
+
+test('Alex can start a savings habit without taking the portrait quiz', async ({ page }) => {
+  await page.goto('/?p=alex&tab=you&theme=vanilla');
+  const hero = page.locator('.savings-beginning');
+  await expect(hero).toHaveAttribute('data-challenge-status', 'available');
+  await expect(hero.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '0');
+  const before = await page.evaluate(() => {
+    const p = (window.atlas.getState() as any).people.alex;
+    return { points: p.l1.rewards.points.balance, accounts: JSON.stringify(p.l1.accounts) };
+  });
+  await hero.locator('[data-action="badge:little-often"]').click();
+  await expect(page.locator('.badge-detail')).toContainText('+100 Points on completion');
+  await page.locator('[data-action="badge-join:little-often"]').click();
+  await page.locator('[data-action="badge-log:little-often"]').click();
+  await page.locator('#badge-confirm').check();
+  await page.locator('[data-action="badge-record:little-often"]').click();
+  await page.evaluate(() => window.atlas.dispatch('close'));
+  await page.evaluate(() => window.atlas.dispatch('close'));
+  await expect(hero).toHaveAttribute('data-challenge-status', 'active');
+  await expect(hero.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1');
+  await expect(page.locator('.portrait-beginning')).toBeVisible();
+  expect(
+    await page.evaluate(() => {
+      const p = (window.atlas.getState() as any).people.alex;
+      return { points: p.l1.rewards.points.balance, accounts: JSON.stringify(p.l1.accounts) };
+    }),
+  ).toEqual(before);
+  await hero.locator('[data-action="badge:little-often"]').click();
+  await page.locator('[data-action="badge-pause:little-often"]').click();
+  await page.evaluate(() => window.atlas.dispatch('close'));
+  await page.evaluate(() => window.atlas.dispatch('close'));
+  await expect(hero).toHaveAttribute('data-challenge-status', 'paused');
+  await expect(hero).toContainText('1 of 30 saving days · Paused');
 });

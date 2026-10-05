@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 test.beforeEach(async ({ page }, info) => {
   await page.addInitScript((testMode) => {
     window.__ATLAS_TEST__ = testMode;
+    sessionStorage.setItem('atlas-welcome-seen', 'yes');
   }, !info.title.includes('preserve progress'));
 });
 test('twenty badges, filters, progress sheets and Points navigation', async ({ page }, info) => {
@@ -29,6 +30,7 @@ test('join, record, pause and resume preserve progress and require confirmation'
   page,
 }, info) => {
   await page.goto('/?p=alex&theme=vanilla&tab=you');
+  await page.locator('.you-more > summary').click();
   await page.locator('[data-action="badges"]').click();
   await page.locator('[data-action="badge-filter:earned"]').click();
   await expect(page.locator('.badge-empty')).toContainText('Your collection starts here');
@@ -85,6 +87,7 @@ test('join, record, pause and resume preserve progress and require confirmation'
     )
     .toBe(1);
   await page.reload();
+  await page.locator('.you-more > summary').click();
   await page.locator('[data-action="badges"]').click();
   await page.locator('.badge-collection [data-action="badge:growing-savings"]').click();
   await expect(page.locator('.secondary-shell [role=progressbar]')).toHaveAttribute(
@@ -195,6 +198,7 @@ test('Points module is independent of the journey; earned rewards are struck thr
   );
   await page.screenshot({ path: `docs/screenshots/${info.project.name}-badge-awarded.png` });
   await page.goto('/?p=alex&theme=vanilla&tab=you');
+  await page.locator('.you-more > summary').click();
   await page.locator('.points-entry [data-action="points-activity"]').click();
   await expect(page.locator('.points-activity')).toContainText('No Points activity yet');
   await page.getByRole('button', { name: 'Explore challenges', exact: true }).click();

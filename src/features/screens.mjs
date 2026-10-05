@@ -1,4 +1,4 @@
-import { isEarlyPortrait, portraitBeginning } from './you/beginning.mjs';
+import { isEarlyPortrait, portraitBeginning, savingsBeginning } from './you/beginning.mjs';
 import { companionEntry } from './companion/view.mjs';
 import { futureScreen as futureStudio } from './future/views.mjs';
 import { journeyEntry } from './journey/views.mjs';
@@ -192,8 +192,10 @@ export function youScreen(p, s, data) {
     s.direction === 'vanilla'
       ? early
         ? personality.name
-          ? portraitComponent(p, s) + checkinEntry(p)
-          : portraitBeginning(p)
+          ? portraitComponent(p, s) +
+            (p.l1.customer.id === 'alex' ? savingsBeginning(p) : '') +
+            checkinEntry(p)
+          : portraitBeginning(p) + (p.l1.customer.id === 'alex' ? savingsBeginning(p) : '')
         : checkinEntry(p) + portraitComponent(p, s)
       : `${section('What we believe')}<section class="personality"><div class="member-picker">${members.map((m) => `<button class="${s.member === m.id ? 'selected' : ''}" aria-pressed="${s.member === m.id}" aria-label="${esc(m.name)}" data-action="member:${m.id}">${m.id === 'household' ? `<span>${icon('users')}</span>` : householdAvatar(m.id === 'self' ? p.l1.customer.id : m.id, m.name)}<small>${esc(m.name)}</small></button>`).join('')}<button data-action="invite"><span>${icon('plus')}</span><small>Invite</small></button></div>${p.ui.requests
           .filter((r) => r.kind === 'invite')
