@@ -113,7 +113,7 @@ The previous body-only and message-type icon experiment is superseded following 
 - Conversation: the same selected organic avatar in the header and AI messages. The conversational style has room here; canned persona prefixes are omitted from floating-card copy.
 - Persona settings: the established four organic forms remain unchanged. Their breathing motion and reduced-motion handling are shared with the cards.
 
-The experimental signal module and its CSS were removed. The unrelated voice prototype is not part of this update.
+The experimental signal module and its CSS were removed. (The voice prototype was later integrated; see Voice below.)
 
 ### Audio briefing composition · 5 October visual polish
 Audio uses a small weekly-briefing/duration label, a short headline, restrained supporting copy and a single circular play/pause control. The duplicate text playback CTA is removed. Duration comes from the audio metadata (rounded minutes); playback, transcript and the shared player remain unchanged. Spacing and type are owned by the shared Companion stylesheet, with a scoped audio state rather than scenario-specific positioning.
@@ -137,3 +137,13 @@ Reduced motion keeps a still pose for each state; text (“Thinking…”, the h
 **Conversation.** The header names the style (for example “Coach · Encouraging & practical”). Send is quiet until there is text, then ink; the contextual quick response uses a firmer ink edge; red is not used for ordinary actions. The composer uses 16 px text. Sent text clears. A person never answers with the AI capability summary.
 
 **Premier.** Persona hues deepen into the charcoal surface via `--companion-tint`; settings surfaces use the same tint with lightened text.
+
+## Voice · integrated 5 October 2026
+
+Voice is a second way to talk within the same conversation, not a separate screen. It began as a dark, full-screen concept; it now shares the conversation's sheet, canvas, header and tokens in light and Premier themes.
+
+- **Entry and return.** The composer's trailing control offers voice when empty and send when typing. Entering voice fades the thread, chips and composer back (they stay in place but become inert) while the header's persona mark grows into the voice presence; *Type instead* reverses it and returns focus to the composer. Escape leaves voice first; a second Escape closes the conversation. A newly opened conversation always starts in text.
+- **Presence.** The selected persona mark at presence scale, its contour filled with slowly moving light in the persona's hue. Listening quickens the light; thinking and speaking use the shared star poses. It shrinks above the answer so the evidence has room. When a person joins, their portrait replaces it.
+- **Exchange.** The microphone is off in this demonstration (stated in the header and to assistive technology). *Try a sample question* paces itself: the question arrives word by word, a short thinking beat, then the answer as a caption with a visual card (monthly amount, allocation, a route to the monthly plan). With nothing set aside yet, the card offers a first goal instead of an empty chart.
+- **Continuity.** Spoken turns join the same thread with a small *Spoken* mark, so the text view keeps the whole story. *Bring in Maya/Priya* follows the AI's understanding of the question; *Continue with …* returns to text with the person's portrait in the header and their message referencing the spoken question.
+- **Controls.** One way back to typing (no duplicate end button); the header still closes the conversation. Reduced motion removes the morph, light movement and word reveal; every state remains readable as text.

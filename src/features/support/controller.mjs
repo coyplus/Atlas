@@ -1,6 +1,7 @@
 import { companionAvatar, rememberCompanionStyle } from '../companion/identity.mjs';
 import { companionPreferences } from '../companion/model.mjs';
 import { companionCard } from './card.mjs';
+import { voiceTranscript, adviserFor } from './voice.mjs';
 import { motion } from '../../design-system/motion.mjs';
 import {
   renderRegion,
@@ -13,7 +14,10 @@ import { current } from '../../domain/money.mjs';
 import { supportState } from './specimens.mjs';
 import { esc, icon, agentAvatar, button } from '../../design-system/templates.mjs';
 export function createSupportController(getState, data, dispatch, showDialog) {
-  let compact = false,
+  let voicePhase = null,
+    voiceTimers = [],
+    voiceAnswered = false,
+    compact = false,
     pageContext = {
       kind: 'top',
     },
@@ -722,6 +726,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     if (!enabled()) return;
     finishThinking();
     const conversation = title === 'Your conversation';
+    if (!conversation) endVoice();
     compact = restored ? restored.compact : !conversation;
     modalContext = restored
       ? restored.context
@@ -768,6 +773,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     }
   }
   function restore() {
+    endVoice();
     if (!enabled()) return;
     modalContext = null;
     compact = true;
@@ -811,10 +817,107 @@ export function createSupportController(getState, data, dispatch, showDialog) {
       });
     dispatch('chat');
   }
+  // Voice is a mode of the same conversation. The header mark grows into the voice
+  // presence and returns to the header, so switching never feels like a new screen.
+  function clearVoiceTimers() {
+    voiceTimers.forEach(clearTimeout);
+    voiceTimers = [];
+  }
+  function endVoice() {
+    clearVoiceTimers();
+    voicePhase = null;
+  }
+  function morphBetween(fromRect, target) {
+    if (!fromRect || !target) return;
+    const to = target.getBoundingClientRect();
+    if (!to.width) return;
+    const dx = fromRect.left + fromRect.width / 2 - (to.left + to.width / 2),
+      dy = fromRect.top + fromRect.height / 2 - (to.top + to.height / 2),
+      scale = fromRect.width / to.width;
+    motion(
+      target,
+      [
+        { transform: `translate(${dx}px, ${dy}px) scale(${scale})`, opacity: 0.85 },
+        { transform: 'none', opacity: 1 },
+      ],
+      'spatial',
+    );
+  }
+  const rectOf = (selector) => document.querySelector(selector)?.getBoundingClientRect() || null;
+  function showVoice(phase) {
+    if (!document.querySelector('.support-conversation')) return endVoice();
+    const entering = !voicePhase,
+      from = entering ? rectOf('.conversation-identity > :first-child') : null;
+    voicePhase = phase;
+    dispatch('chat');
+    if (entering) {
+      morphBetween(from, document.querySelector('.voice-orbit > *'));
+      document.querySelector('.voice-stage .voice-primary, .voice-stage .voice-control')?.focus({
+        preventScroll: true,
+      });
+    }
+  }
+  function answerVoice() {
+    clearVoiceTimers();
+    if (!voicePhase) return;
+    if (!voiceAnswered) {
+      const turn = voiceTranscript(person(), state());
+      // Spoken turns join the same thread, marked so the switch back to text keeps the story.
+      person().ui.chat.push(
+        { role: 'user', text: turn.question, via: 'voice' },
+        { role: 'ai', text: turn.response, via: 'voice' },
+      );
+      voiceAnswered = true;
+    }
+    showVoice('answer');
+  }
+  function leaveVoice(fromSelector, toSelector) {
+    const from = rectOf(fromSelector);
+    endVoice();
+    dispatch('chat');
+    morphBetween(from, document.querySelector(toSelector));
+  }
   function action(id) {
     if (!enabled()) return;
     finishThinking();
     switch (id) {
+      case 'voice':
+        voiceAnswered = false;
+        stopAudio();
+        showVoice('ready');
+        break;
+      case 'voice-sample':
+        voiceAnswered = false;
+        showVoice('listening');
+        // A spoken exchange paces itself: the question lands, a beat to think, then the answer.
+        voiceTimers.push(
+          setTimeout(() => showVoice('thinking'), 1900),
+          setTimeout(() => answerVoice(), 2700),
+        );
+        break;
+      case 'voice-answer':
+        answerVoice();
+        break;
+      case 'voice-human':
+        clearVoiceTimers();
+        showVoice('human');
+        break;
+      case 'voice-connect': {
+        const a = adviserFor(person());
+        person().ui.chat.push({
+          role: 'human',
+          author: a.id,
+          text:
+            'Hello ' +
+            person().l1.customer.firstName +
+            '. I have your goals and the question you asked by voice. What would you like us to work through?',
+        });
+        leaveVoice('.voice-person', '.conversation-identity .agent-avatar');
+        break;
+      }
+      case 'voice-text':
+        leaveVoice('.voice-orbit > *', '.conversation-identity > :first-child');
+        break;
       case 'ai':
         person().ui.chat.push({
           role: 'ai',
@@ -928,9 +1031,12 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     },
     reset() {
       finishThinking();
+      endVoice();
       lastPage = '';
       stopAudio();
     },
+    voicePhase: () => voicePhase,
+    endVoice,
     getContext: () => chatOrigin,
   };
 }

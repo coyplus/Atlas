@@ -79,6 +79,10 @@
       "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/format_list_bulleted/materialsymbolsoutlined/format_list_bulleted_24px.svg",
       "sha256": "11ac8fe41f16a1cbc8961387392fa1adddfb52f91c3bf761269045e145857fb3"
     },
+    "graphic_eq": {
+      "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/graphic_eq/materialsymbolsoutlined/graphic_eq_24px.svg",
+      "sha256": "6c3e0539f00b3388c124c488caef9cb3a02c13141a6438add8ad9048d6822f6d"
+    },
     "grid_view": {
       "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/grid_view/materialsymbolsoutlined/grid_view_24px.svg",
       "sha256": "02d4f1f7e42701446cb3ae3778ad7a0e14d105c45f0b11dc0a6a30ed6ead8c93"
@@ -94,6 +98,10 @@
     "info": {
       "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/info/materialsymbolsoutlined/info_24px.svg",
       "sha256": "33c77c7a4f193445d0136b970ad4b5a80ba8cc340603465d4cb46a1f8abec4ec"
+    },
+    "keyboard": {
+      "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/keyboard/materialsymbolsoutlined/keyboard_24px.svg",
+      "sha256": "2c3e09a5bbc5122b64cb3c0d351708b94d6c68c68378ab2cd70d37c0426b2679"
     },
     "light_mode": {
       "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/light_mode/materialsymbolsoutlined/light_mode_24px.svg",
@@ -143,6 +151,10 @@
       "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/schedule/materialsymbolsoutlined/schedule_24px.svg",
       "sha256": "6b6606472e4d807e4b2afc8cd667a48fa634341d44487580a7b350f8dd790170"
     },
+    "settings": {
+      "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/settings/materialsymbolsoutlined/settings_24px.svg",
+      "sha256": "6aebb4a88b40a5bf1ce378ca532e4a885aedc402a0574562c6ed4ded03360fd2"
+    },
     "shopping_basket": {
       "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/shopping_basket/materialsymbolsoutlined/shopping_basket_24px.svg",
       "sha256": "8c76f1858fb126a241cb79ac3b98e0997da3fd5acea8e99e6706a14f37a92bc8"
@@ -170,10 +182,6 @@
     "workspace_premium": {
       "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/workspace_premium/materialsymbolsoutlined/workspace_premium_24px.svg",
       "sha256": "9ecc0a5f20ca60773638a89bd3106f70329fe97e101c63bae9b20720a77152a9"
-    },
-    "settings": {
-      "url": "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/settings/materialsymbolsoutlined/settings_24px.svg",
-      "sha256": "6aebb4a88b40a5bf1ce378ca532e4a885aedc402a0574562c6ed4ded03360fd2"
     }
   }
 }

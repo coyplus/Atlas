@@ -18,10 +18,12 @@ export function activeCompanionStyle() {
  * One AI identity. `state` is an interaction pose (thinking, speaking, attention, curious);
  * `still` removes the ambient breathing for utility and historic placements.
  */
-export function companionAvatar(style = active, { still = false, state = '' } = {}) {
+export function companionAvatar(style = active, { still = false, state = '', orb = false } = {}) {
   const id = styles[style] ? style : 'guide',
     c = styles[id];
-  return `<span class="companion-avatar companion-avatar-${id}${still ? ' is-still' : ''}"${state ? ` data-mark="${esc(state)}"` : ''} style="--companion-color:${c.color};--companion-light:${c.light}" aria-hidden="true"><i></i><i></i>${stars}</span>`;
+  // The voice orb is the same mark at presence scale, its contour filled with moving light.
+  const fill = orb ? '<b class="orb-light orb-light-cool"></b><b class="orb-light orb-light-warm"></b>' : '';
+  return `<span class="companion-avatar companion-avatar-${id}${still ? ' is-still' : ''}${orb ? ' is-orb' : ''}"${state ? ` data-mark="${esc(state)}"` : ''} style="--companion-color:${c.color};--companion-light:${c.light}" aria-hidden="true"><i>${fill}</i><i></i>${stars}</span>`;
 }
 /** Inline attribution for AI-authored content inside a page. */
 export function aiByline(label = 'HSBC AI', style = active) {

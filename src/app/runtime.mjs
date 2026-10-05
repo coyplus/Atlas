@@ -365,9 +365,11 @@ function modalIdentity() {
       last?.role === 'human'
         ? last.author || (p.l1.customer.id === 'elena' ? 'priya' : 'maya')
         : 'ai';
-  const style = companionPreferences(p).style;
+  const style = companionPreferences(p).style,
+    voice = !!supportController.voicePhase();
   // The header names the speaker; for AI the chosen style stays recognisable here too.
-  return `<div class="conversation-identity">${name === 'ai' ? companionAvatar(style) : agentAvatar(name)}<span><b>${name === 'ai' ? 'HSBC AI' : name === 'priya' ? 'Priya' : 'Maya'}</b><small>${name === 'ai' ? companionStyles[style].name + ' · ' + companionStyles[style].tone : name === 'priya' ? 'Relationship Manager' : 'Financial adviser'}</small></span></div>`;
+  // In voice it also states that the microphone is off in this demonstration.
+  return `<div class="conversation-identity">${name === 'ai' ? companionAvatar(style) : agentAvatar(name)}<span><b>${name === 'ai' ? 'HSBC AI' : name === 'priya' ? 'Priya' : 'Maya'}</b><small>${voice ? 'Voice · microphone off' : name === 'ai' ? companionStyles[style].name + ' · ' + companionStyles[style].tone : name === 'priya' ? 'Relationship Manager' : 'Financial adviser'}</small></span></div>`;
 }
 let primaryScroll = null;
 function syncPrimaryNavigation() {
@@ -790,6 +792,8 @@ function chatReply(text) {
   openChat();
 }
 function openChat() {
+  // A conversation always opens in text; voice is entered from within it.
+  if (S.modal !== 'Your conversation') supportController.endVoice();
   openModal(
     'Your conversation',
     chatDialog(
@@ -798,6 +802,8 @@ function openChat() {
         ? {
             context: supportController.conversationAction(),
             premier: current(S).l1.customer.tier === 'Premier',
+            voice: supportController.voicePhase(),
+            state: S,
           }
         : null,
     ),
@@ -808,9 +814,11 @@ function openChat() {
       thread.dataset.initialScroll = 'true';
       thread.scrollTop = thread.scrollHeight;
     }
-    document.querySelector('#chat-input')?.focus({
-      preventScroll: true,
-    });
+    // Voice keeps focus on its own controls; typing returns focus to the composer.
+    if (!supportController.voicePhase())
+      document.querySelector('#chat-input')?.focus({
+        preventScroll: true,
+      });
   } else
     document.querySelector('.sheet-body').scrollTop =
       document.querySelector('.sheet-body').scrollHeight;
@@ -1108,7 +1116,9 @@ document.addEventListener('keydown', (e) => {
     return;
   }
   if (e.key === 'Escape' && S.modal) {
-    closeModal();
+    // Escape leaves voice for typing first; a second Escape closes the conversation.
+    if (supportController.voicePhase()) act('support:voice-text');
+    else closeModal();
     return;
   }
   if (e.key === 'Tab' && S.modal) {
