@@ -782,10 +782,10 @@
         "reach": null,
         "kind": null,
         "valueAt": {
-          "0": 6000,
-          "12": 6000,
-          "60": 6000,
-          "120": 6000
+          "0": 5940,
+          "12": 5940,
+          "60": 5940,
+          "120": 5940
         },
         "model": "No monthly contribution selected; balance remains set aside."
       },

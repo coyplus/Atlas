@@ -43,3 +43,6 @@ The goal name sits 16px closer to the Companion. Its edit button has a 44px hit 
 
 ### Target and reading context
 An entered target adds a dashed ring using the same area scale as the projected balance, with a persistent amount/percentage caption. Clearing the optional target removes both. The What If section uses the shared detail-page reading-context mechanism: Companion prompts respond to the chosen cash, investment or locked route, and return to the goal prompt when scrolling up.
+
+### Persistent preview action · 5 October follow-up
+The focused session now places its submit action in a translucent bottom dock alongside the scroll body, using an explicit form association. Inputs, time travel and What If remain scrollable; the dock does not create a second action or change approval semantics. Alex’s empty Future screen uses shorter supporting copy and removes repeated suggestion subtitles.

@@ -312,7 +312,7 @@ function baseModuleModel(p, id, catalogue) {
         note: id === 'ratio' ? Math.round(pct * 100) + '% floor allocation' : 'Long-term money',
         rows: [
           ['Invested', amount(t.invested)],
-          ['Floor allocation', Math.round(pct * 100) + '%'],
+          ...(pct ? [['Floor allocation', Math.round(pct * 100) + '%']] : []),
           ['Illustrative growth', '5% a year · not guaranteed'],
         ],
       });
@@ -492,17 +492,17 @@ export function aiMessage(p, tab, month = 0) {
     };
   const lines = {
     alex: {
-      title: p.l1.behaviour.app.quizDone ? 'A good start, Alex' : 'Make money feel more manageable',
+      title: p.l1.behaviour.app.quizDone ? 'A good start, Alex' : 'Meet your money side',
       message: p.l1.behaviour.app.quizDone
         ? 'Your answers are in You. Choose the numbers you want to see here.'
-        : 'In two minutes, see how you plan, spend and save—with a money personality profile and 25 HSBC Points.',
+        : 'Three questions. A first glimpse of your money personality.',
       action: p.l1.behaviour.app.quizDone ? 'gallery' : 'quiz',
       cta: p.l1.behaviour.app.quizDone ? 'Choose your numbers' : 'Discover my money style',
     },
     jordan: {
       title: 'A little more breathing room',
       message:
-        'Your emergency fund is growing. A small change to eating out could help it get there sooner.',
+        'Your emergency fund is growing. Want to see what could help next?',
       action: 'story:j1',
       cta: 'Explore the idea',
     },

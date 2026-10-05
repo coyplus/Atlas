@@ -82,8 +82,34 @@ test('completion artwork clears the headline, and quiz Points cannot repeat', as
 });
 test('Jordan gets a welcoming daily invitation', async ({ page }) => {
   await page.goto('/?p=jordan&tab=you&theme=vanilla');
-  await expect(page.locator('.daily-beginning')).toBeVisible();
-  await expect(page.locator('.daily-beginning')).toContainText('Pick up your rhythm');
-  await page.locator('.daily-beginning [data-action=feeling]').click();
+  await expect(page.locator('.checkin-invitation')).toBeVisible();
+  await expect(page.locator('.checkin-invitation')).toContainText('Pick up your rhythm');
+  await page.locator('.checkin-invitation').click();
   await expect(page.locator('.sheet-body')).toContainText('feel');
+});
+
+test('Status discovery opens membership and focused Future keeps its action docked', async ({
+  page,
+}) => {
+  await page.goto('/?p=alex&tab=you&theme=vanilla');
+  await page.locator('.membership-discovery').click();
+  await expect(page.locator('.membership-detail')).toBeVisible();
+  await page.evaluate(() => window.atlas.dispatch('close'));
+  await page.getByRole('button', { name: 'Future', exact: true }).click();
+  await page.locator('.beginning-possibility').first().click();
+  const dock = page.locator('.sheet > .goal-action-dock');
+  await expect(dock).toBeVisible();
+  const before = await dock.boundingBox();
+  await page.locator('.goal-what-if').scrollIntoViewIfNeeded();
+  expect((await dock.boundingBox())!.y).toBeCloseTo(before!.y, 0);
+  await dock.getByRole('button').click();
+  await expect(page.locator('.goal-session')).toHaveCount(0);
+});
+
+test('Sam’s revised numbers reconcile and his audio report is ready to play', async ({ page }) => {
+  await page.goto('/?p=sam&tab=now&theme=vanilla');
+  await expect(page.locator('.support-copy')).toContainText('Your weekly money report is ready');
+  await expect(page.getByRole('button', { name: 'Play recap', exact: true }).first()).toBeVisible();
+  await expect(page.locator('[data-module="investments"]')).toContainText('£20,000');
+  await expect(page.getByRole('button', { name: /Ella’s Pocket Money ·/ })).toBeVisible();
 });

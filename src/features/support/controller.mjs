@@ -268,12 +268,12 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     const action = sameDetail
       ? 'support:discuss'
       : m.action === 'support:listen'
-        ? 'tab:future'
+        ? 'support:play'
         : m.action;
     const label = sameDetail
       ? 'Talk it through'
       : m.action === 'support:listen'
-        ? 'Explore your plans'
+        ? playing ? 'Pause report' : 'Play my report'
         : m.cta;
     const markup =
       button(label, action, 'secondary') +

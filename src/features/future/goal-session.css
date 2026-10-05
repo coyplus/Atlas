@@ -364,3 +364,22 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
   font-size: 12px;
   pointer-events: none;
 }
+
+.goal-action-dock {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 14px 24px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--goal-glass);
+  backdrop-filter: var(--goal-blur);
+  -webkit-backdrop-filter: var(--goal-blur);
+}
+.phone .sheet:has(> .goal-action-dock) > .sheet-body {
+  padding-bottom: 100px;
+}
+.goal-action-dock .btn {
+  min-height: 48px;
+}

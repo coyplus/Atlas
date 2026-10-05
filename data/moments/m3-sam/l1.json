@@ -4,12 +4,12 @@
   "moment": {
     "id": "m3",
     "name": "Grow",
-    "stage": "Ready to invest · nearly Premier",
+    "stage": "Growing investments · nearly Premier",
     "customerId": "sam",
     "asOf": "2026-09-08",
     "tenure": "month 8",
     "segment": "Everyday · nearly Premier",
-    "description": "Three plans running quietly; idle cash identified; the first investment rehearsed."
+    "description": "Family plans, a long-term portfolio and everyday money, together."
   },
   "asOf": "2026-09-08",
   "customer": {
@@ -83,6 +83,17 @@
       "balance": 3120.44,
       "owed": null,
       "description": "Everyday spending"
+    },
+    {
+      "id": "ac-cc",
+      "productId": "credit",
+      "name": "Credit Card",
+      "kind": "credit",
+      "masked": "2841",
+      "balance": 0,
+      "owed": 480,
+      "limit": 5000,
+      "description": "Everyday purchases · £480 to repay"
     }
   ],
   "pots": [
@@ -247,7 +258,7 @@
       "id": "ac-savings",
       "name": "Long-term savings",
       "kind": "saving",
-      "balance": 72727.66,
+      "balance": 52727.66,
       "target": null,
       "monthlyRate": 0,
       "isDebt": false,
@@ -261,7 +272,7 @@
       "id": "ella-next",
       "name": "Ella’s next chapter",
       "kind": "goal",
-      "balance": 6000,
+      "balance": 5940,
       "target": 16000,
       "monthlyRate": 0,
       "isDebt": false,
@@ -314,6 +325,36 @@
         "photo": "/assets/stories/cooking.jpg"
       },
       "visualIcon": "users"
+    },
+    {
+      "target": null,
+      "monthlyRate": 0,
+      "isDebt": false,
+      "stopsAtTarget": false,
+      "rules": [],
+      "members": null,
+      "createdOn": "2026-01",
+      "id": "inv",
+      "name": "Investment portfolio",
+      "kind": "investment",
+      "balance": 20000,
+      "growthAnnual": 0.05,
+      "description": "Long-term investments · values can rise or fall"
+    },
+    {
+      "target": null,
+      "monthlyRate": 0,
+      "isDebt": false,
+      "stopsAtTarget": false,
+      "rules": [],
+      "members": null,
+      "createdOn": "2026-01",
+      "id": "ella-pocket",
+      "name": "Ella’s Pocket Money",
+      "kind": "saving",
+      "balance": 60,
+      "growthAnnual": null,
+      "description": "Pocket money set aside by Sam for Ella"
     }
   ],
   "rules": [
@@ -693,7 +734,7 @@
     }
   ],
   "ledgerOpeningBalances": {
-    "note": "Reconciled fictional opening balances for the expanded household story; balances already include recorded transfers and spending. £10,000 of existing long-term savings is earmarked for Ella (£6,000), a business idea (£3,500) and friends (£500); total holdings and existing £420 monthly Rules are unchanged.",
+    "note": "Reconciled fictional opening balances for the expanded household story; balances already include recorded transfers and spending. £10,000 of existing long-term savings is earmarked for Ella (£6,000), a business idea (£3,500) and friends (£500); total holdings and existing £420 monthly Rules are unchanged. October concept revision: £20,000 of long-term savings is held in a portfolio; £60 of Ella’s earmarked savings is pocket money. A £480 credit card balance is included in liabilities.",
     "values": {
       "ac-cur": 2442.44,
       "house": 6080.0,
@@ -701,10 +742,13 @@
       "hol": 540.0,
       "un": 850.0,
       "family-budget": 0.0,
-      "ac-savings": 72727.66,
-      "ella-next": 6000,
+      "ac-savings": 52727.66,
+      "ella-next": 5940,
       "my-own": 3500,
-      "friends": 500
+      "friends": 500,
+      "inv": 20000,
+      "ella-pocket": 60,
+      "ac-cc": 480
     }
   },
   "spending": {
@@ -730,17 +774,17 @@
   },
   "savingsAndInvestments": {
     "cash": 3120.4400000000023,
-    "inPots": 94879.56,
-    "invested": 0.0,
+    "inPots": 74879.56,
+    "invested": 20000,
     "floorProtectedPct": null,
     "floorProtected": null,
-    "illustratedGrowthAnnual": null
+    "illustratedGrowthAnnual": 0.05
   },
   "netWorth": {
     "held": 98000,
-    "owed": 0,
-    "net": 98000,
-    "engineNetWorth": 98000,
+    "owed": 480,
+    "net": 97520,
+    "engineNetWorth": 97520,
     "asOf": "2026-09-08"
   },
   "moneySpeed": {

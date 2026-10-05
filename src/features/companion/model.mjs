@@ -129,7 +129,8 @@ export function personaliseSupport(p, s, context, base, catalogue) {
       quiet: true,
       chips: [],
     };
-  if (essential) return m;
+  if (essential || m.action === 'support:listen' || (context.kind === 'top' && s.tab === 'now'))
+    return m;
   const headings = {
     listener: {
       now: 'A little space to take stock',

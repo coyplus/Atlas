@@ -32,3 +32,6 @@ Chromium and WebKit: initial layouts, three-question quiz, first impression/conf
 
 ### Visual refinement · 5 October evening
 Question scenes combine the existing trait glyph with a light line illustration of the situation. The result artwork has explicit dimensions and a clipping boundary, preventing SVG overflow into the heading. Reading, reward and next action have separate spacing. Quiz and newly completed challenge rewards reuse the Money Check-in reward component and its reduced-motion behavior; quiz rewards reflect the actual awarded delta, so retaking does not claim another bonus. Earned challenge history remains static. The early-portrait invitation is shortened to “More you, with time.” Jordan receives the daily-pause card with a return invitation and real check-in stamps, without inventing a streak.
+
+### Lightweight invitations · 5 October follow-up
+Jordan’s returning check-in is a compact invitation rather than a seven-day hero. Alex’s HSBC Status opens through a membership-pass discovery card; eligibility and benefits remain in the existing detail journey. Now’s opening Companion messages are shorter, and Sam’s existing audio recap is introduced as his weekly money report with direct playback.

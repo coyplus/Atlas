@@ -545,3 +545,103 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
 .portrait-first-impression .btn {
   margin-top: 8px;
 }
+
+/* Returning customers need an invitation, rather than another onboarding hero. */
+.checkin-invitation {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: calc(100% - 48px);
+  padding: 18px;
+  margin: 8px 24px 28px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.checkin-invitation-art {
+  width: 48px;
+  flex: 0 0 48px;
+}
+.checkin-invitation-art svg {
+  width: 48px;
+  height: 56px;
+}
+.checkin-invitation > span:nth-child(2) {
+  flex: 1;
+}
+.checkin-invitation small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.checkin-invitation strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 6px 0;
+}
+.checkin-invitation span span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.membership-discovery {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  width: 100%;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  text-align: left;
+  background: var(--surface);
+  color: var(--ink);
+}
+.membership-discovery-pass {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  width: 190px;
+  padding: 22px;
+  margin: 24px auto 28px;
+  border-radius: 14px;
+  transform: rotate(-7deg);
+  background: #202626;
+  color: white;
+  box-shadow:
+    8px 10px 0 #e4e9e9,
+    0 16px 28px #00000016;
+}
+.membership-discovery-pass small {
+  flex-basis: 100%;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  margin-top: 18px;
+}
+.membership-discovery > strong {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+}
+.membership-discovery > span:not([class]) {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.membership-discovery-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}

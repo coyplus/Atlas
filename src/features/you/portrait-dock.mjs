@@ -1,7 +1,7 @@
 // Shared sheet snapshots keep the dock alongside the scroller, so returning from
 // a reflection restores the same article and reading position.
 export function splitPortraitDock(body) {
-  const start = body.indexOf('<div class="portrait-engagement-dock">');
+  const start = body.search(/<div class="(?:portrait-engagement-dock|goal-action-dock)">/);
   if (start < 0) return { content: body, dock: '' };
   const end = body.indexOf('</div>', start) + 6;
   return { content: body.slice(0, start) + body.slice(end), dock: body.slice(start, end) };

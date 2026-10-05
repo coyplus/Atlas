@@ -32,12 +32,15 @@ export const defaults = {
     'activity',
   ],
   sam: [
+    'investments',
     'housepot',
     'container-family-budget',
     'holiday',
     'efpot',
     'goldenratio',
-    'grocery',
+    'container-ac-cc',
+    'container-ella-pocket',
+    'safetydays',
     'points',
     'activity',
   ],
@@ -75,6 +78,10 @@ export function createSession(dataset) {
       item.personalOffer = clone(
         dataset.shared?.['container-experience']?.offers?.[id]?.[item.id] || null,
       );
+    if (id === 'sam') {
+      p.ui.sizes.investments = 'F';
+      p.ui.sizes.safetydays = 'W';
+    }
     if (id === 'elena') p.ui.sizes.familypot = 'W';
     people[id] = p;
   }

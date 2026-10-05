@@ -500,13 +500,9 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     return { ...aiMessage(p, 'future', s.month), source: 'ai', author: 'HSBC AI' };
   if (k === 'audio')
     return ai(
-      'Your money, in a minute',
-      'Your house deposit has ' +
-        cash(p.l1.pots.find((x) => x.id === 'house')?.balance || 0) +
-        ', with ' +
-        cash(p.l1.pots.find((x) => x.id === 'ef')?.balance || 0) +
-        ' kept separately in your emergency fund. What would you like to explore?',
-      'Open audio recap',
+      'Your weekly money report is ready',
+      'Your week in money. Press play to catch up.',
+      'Play my report',
       'support:listen',
     );
   if (k === 'dialog') {

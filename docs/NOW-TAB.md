@@ -69,3 +69,6 @@ Compact Budget Pot usage bars sit at the bottom of the card’s content area, wi
 ## My stories
 
 Stories now open a timed three-frame viewer: claim, visual working, then an optional decision. The first two pages have no decision CTAs. Swipe, pause and header AI access follow [STORIES.md](STORIES.md), including reduced-motion and evidence-sheet behaviour.
+
+## Sam’s refreshed composition · 5 October 2026
+Following the user-authorised fictional scenario revision, Investments leads as a full card, House deposit is square, Credit Card replaces Grocery spending and Ella’s Pocket Money is included. Safety net is the medium/wide infographic: 90 days of essential bills covered. £20,000 moves from existing long-term savings to an investment portfolio; £60 moves from Ella’s next chapter to her pocket-money pot. Holdings remain £98,000; a newly recorded £480 card liability makes net worth £97,520. Opening balances, stored totals and affected projections reconcile. The existing audio remains accurate for the unchanged saving rules and pots; it does not claim to narrate every holding.
