@@ -1,19 +1,56 @@
-/* Focused Future: a proportional field above one compact control panel. */
-.phone .goal-session {
-  margin: -8px -24px -24px;
+/* Focused Future owns its full-width layout. Only the decorative field can overflow;
+   the hero clips it before it can affect the sheet's scrollable width. */
+body[data-direction='vanilla'] .phone .sheet:has(.goal-session) {
+  --goal-gutter: 24px;
+  --goal-glass: color-mix(in srgb, var(--canvas) 76%, transparent);
+  --goal-blur: blur(24px) saturate(115%);
   background: var(--canvas);
 }
-body[data-direction='vanilla'] .phone .sheet.level-two:has(.goal-session),
-body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header {
+body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
+  padding-left: 0;
+  padding-right: 0;
+  overflow-x: hidden;
+  padding-top: 58px;
+}
+.phone .goal-session {
+  width: 100%;
+  min-width: 0;
   background: var(--canvas);
+}
+.goal-session form {
+  min-width: 0;
+  margin: 0;
+}
+.goal-session-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding-bottom: 16px;
+  padding-top: calc(var(--support-height) + 12px);
 }
 .goal-session-heading {
-  padding: 4px 24px 0;
+  position: relative;
+  z-index: 2;
+  padding: 4px var(--goal-gutter) 8px;
+  background: transparent;
+  isolation: isolate;
+}
+/* This plane spans exactly the reserved Companion space, not an arbitrary oversize patch. */
+.goal-session-heading::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * (var(--support-height) + 12px)) 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--goal-glass);
+  -webkit-backdrop-filter: var(--goal-blur);
+  backdrop-filter: var(--goal-blur);
 }
 .goal-session-heading label {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   color: var(--muted);
   font-size: 11px;
 }
@@ -21,6 +58,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   display: flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
 }
 .goal-session-heading .icon {
   width: 14px;
@@ -28,7 +66,8 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
 }
 .phone .goal-session-heading input {
   width: 100%;
-  padding: 6px 0;
+  min-width: 0;
+  padding: 7px 0;
   margin-top: 4px;
   border: 0;
   border-bottom: 1px solid var(--line);
@@ -39,32 +78,28 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   font-weight: 400;
   letter-spacing: -0.7px;
 }
-.phone .goal-session-heading input:focus,
-.phone .goal-session-fields input:focus {
+.phone .goal-session input:focus {
   outline: none;
   box-shadow: none;
   border-color: var(--viz-cash);
 }
-.phone .goal-session-heading input:focus {
-  border-bottom-width: 2px;
-}
 .goal-session-scene {
-  padding: 12px 0 10px;
-  text-align: center;
+  padding: 8px 0 12px;
 }
 .goal-growth-stage {
   position: relative;
   height: 180px;
   width: 100%;
-  overflow: visible;
   display: grid;
   place-items: center;
-  isolation: isolate;
 }
 .goal-session-orbit {
   position: absolute;
+  left: 60%;
+  transform: translateX(-50%);
   border-radius: 50%;
   background: var(--viz-cash);
+  pointer-events: none;
   transition:
     width 0.25s ease,
     height 0.25s ease;
@@ -74,14 +109,34 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
 }
 .goal-reference {
   position: absolute;
+  left: calc(18% - 40px);
+  z-index: 1;
+  display: grid;
+  place-items: center;
   border: 1px dashed #a5bbc5;
   border-radius: 50%;
-  z-index: 1;
+  background: color-mix(in srgb, var(--canvas) 90%, transparent);
   pointer-events: none;
+  text-align: center;
+  color: var(--ink);
+}
+.goal-reference small,
+.goal-reference b {
+  display: block;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.goal-reference small {
+  font-size: 10px;
+}
+.goal-reference b {
+  font-size: 16px;
 }
 .goal-session-orbit-copy {
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  left: 60%;
+  transform: translateX(-50%);
+  z-index: 1;
   color: white;
   text-align: center;
   pointer-events: none;
@@ -108,55 +163,65 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   letter-spacing: -1px;
   font-variant-numeric: tabular-nums;
 }
-.goal-scale-key {
-  display: block;
-  color: var(--muted);
-  font-size: 10px;
-  margin-top: 7px;
-}
+.goal-session-controls,
 .goal-session-panel {
   position: relative;
-  padding: 16px 24px 24px;
+  z-index: 2;
+  background: var(--goal-glass);
+  -webkit-backdrop-filter: var(--goal-blur);
+  backdrop-filter: var(--goal-blur);
   border: 1px solid var(--line);
-  border-bottom: 0;
-  border-radius: 26px 26px 0 0;
-  background: color-mix(in srgb, var(--canvas) 76%, transparent);
-  backdrop-filter: blur(20px);
+}
+.goal-session-controls {
+  margin: 0 var(--goal-gutter);
+  padding: 10px 14px;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px #0000000a;
 }
 .goal-session-fields {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
 }
 .goal-session-fields .field {
   margin: 0;
   min-width: 0;
   font-size: 11px;
+  gap: 4px;
 }
-.goal-session-fields input {
+.phone .goal-session-fields input {
   width: 100%;
   min-width: 0;
-  padding: 5px 0;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  border-radius: 0;
-  font-size: 23px !important;
+  height: 40px;
+  min-height: 40px;
+  margin-top: 4px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  color: var(--ink);
+  font-size: 21px !important;
   font-weight: 400;
-  background: transparent;
+  line-height: 1.2;
   font-variant-numeric: tabular-nums;
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
-.goal-session-fields input:disabled {
-  opacity: 0.35;
+.goal-session-fields input::-webkit-inner-spin-button,
+.goal-session-fields input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-.goal-session-time {
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
+.goal-session-panel {
+  padding: 16px var(--goal-gutter) 24px;
+  border-bottom: 0;
+  border-radius: 26px 26px 0 0;
 }
 .goal-session-date {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 10px;
 }
 .goal-session-date small {
@@ -193,35 +258,9 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   font-size: 10px;
   color: var(--muted);
 }
-.goal-paths strong {
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: -0.4px;
-  margin-top: auto;
-}
-@media (max-height: 740px) {
-  .goal-growth-stage {
-    height: 125px;
-  }
-  .goal-session-scene {
-    padding-top: 8px;
-  }
-}
-@media (max-width: 360px) {
-  .goal-session-heading,
-  .goal-session-panel {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .goal-session-orbit {
-    transition: none;
-  }
-}
 .goal-what-if {
   border-top: 1px solid var(--line);
-  margin-top: 10px;
+  margin-top: 12px;
   padding-top: 18px;
 }
 .goal-what-if h3 {
@@ -230,7 +269,7 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
 }
 .goal-paths {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 10px;
 }
 .goal-paths label {
@@ -263,6 +302,12 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   line-height: 1.4;
   color: var(--muted);
 }
+.goal-paths strong {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  margin-top: auto;
+}
 .goal-paths input:checked + span {
   border-color: var(--viz-investment);
   background: color-mix(in srgb, var(--viz-investment) 12%, var(--surface));
@@ -276,144 +321,18 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header 
   color: var(--muted);
   margin: 10px 0 20px;
 }
-
-.goal-reference {
-  left: calc(18% - 40px);
+@media (max-height: 740px) {
+  .goal-growth-stage {
+    height: 125px;
+  }
 }
-.goal-session-orbit {
-  left: 60%;
-  transform: translateX(-50%);
+@media (max-width: 360px) {
+  body[data-direction='vanilla'] .phone .sheet:has(.goal-session) {
+    --goal-gutter: 20px;
+  }
 }
-.goal-session-orbit-copy {
-  position: absolute;
-  left: 60%;
-  transform: translateX(-50%);
-}
-
-.phone .goal-session {
-  overflow: hidden;
-}
-.goal-session-heading {
-  position: relative;
-  z-index: 3;
-  background: var(--canvas);
-}
-.goal-session-panel {
-  z-index: 2;
-  -webkit-backdrop-filter: blur(24px) saturate(115%);
-  backdrop-filter: blur(24px) saturate(115%);
-}
-.goal-scale-key {
-  position: relative;
-  z-index: 1;
-}
-.goal-session-controls {
-  padding-bottom: 14px;
-}
-.goal-session-fields input[type='number'] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-}
-.goal-session-fields input::-webkit-inner-spin-button,
-.goal-session-fields input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.goal-session-panel .goal-scale-key {
-  margin: 0 0 10px;
-  text-align: left;
-}
-
-/* Three glass layers share the canvas while the growing field runs beneath them. */
-.phone .goal-session {
-  overflow: visible;
-  clip-path: inset(-500px 0 0 0);
-}
-.goal-session-heading {
-  background: color-mix(in srgb, var(--canvas) 72%, transparent);
-  -webkit-backdrop-filter: blur(24px) saturate(115%);
-  backdrop-filter: blur(24px) saturate(115%);
-}
-body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header {
-  background: transparent;
-}
-body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header::before {
-  background: color-mix(in srgb, var(--canvas) 72%, transparent);
-  mask-image: none;
-  -webkit-mask-image: none;
-  bottom: 0;
-}
-.goal-session-controls {
-  position: relative;
-  z-index: 3;
-  margin: 0 20px 16px;
-  padding: 10px 14px;
-  border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
-  border-radius: 24px;
-  background: color-mix(in srgb, var(--canvas) 70%, transparent);
-  -webkit-backdrop-filter: blur(24px) saturate(115%);
-  backdrop-filter: blur(24px) saturate(115%);
-  box-shadow: 0 8px 24px #0000000a;
-}
-.goal-session-time {
-  padding-top: 0;
-  border-top: 0;
-}
-.goal-reference {
-  display: grid;
-  place-items: center;
-  background: color-mix(in srgb, var(--canvas) 86%, transparent);
-}
-.goal-reference span {
-  color: var(--ink);
-  text-align: center;
-  line-height: 1.3;
-}
-.goal-reference small,
-.goal-reference b {
-  display: block;
-}
-.goal-reference small {
-  font-size: 10px;
-  font-weight: 400;
-}
-.goal-reference b {
-  font-size: 16px;
-  font-weight: 400;
-}
-
-/* One uninterrupted glass plane, including the space above the goal name. */
-.goal-session-heading {
-  isolation: isolate;
-  background: transparent;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-.goal-session-heading::before {
-  content: '';
-  position: absolute;
-  inset: -500px 0 0;
-  z-index: -1;
-  pointer-events: none;
-  background: color-mix(in srgb, var(--canvas) 72%, transparent);
-  -webkit-backdrop-filter: blur(24px) saturate(115%);
-  backdrop-filter: blur(24px) saturate(115%);
-}
-.phone .goal-session-fields {
-  gap: 12px;
-}
-.phone .goal-session-fields .field {
-  gap: 4px;
-}
-.phone .goal-session-fields input {
-  height: 40px;
-  min-height: 40px;
-  margin-top: 4px;
-  padding: 6px 10px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--surface) 84%, transparent);
-  font-size: 21px !important;
-  line-height: 1.2;
+@media (prefers-reduced-motion: reduce) {
+  .goal-session-orbit {
+    transition: none;
+  }
 }

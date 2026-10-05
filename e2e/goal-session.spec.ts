@@ -152,3 +152,33 @@ test('proportional growth, compact controls and automatic fit on returning to Fu
   await page.locator('[data-action=future-commit]').click();
   await expect(page.locator('#future-stage')).toHaveAttribute('data-zoom', '1');
 });
+
+test('oversized goal artwork never creates horizontal scrolling or clipped fields', async ({
+  page,
+}) => {
+  for (const width of [320, 375, 1440]) {
+    await page.setViewportSize({ width, height: width === 1440 ? 1100 : 812 });
+    await page.goto('/?p=sam&tab=future&theme=vanilla');
+    await page.waitForFunction(() => !!window.atlas);
+    await page.evaluate(() => window.atlas.dispatch('future-own'));
+    await page.locator('[name=name]').fill('My long-term goal');
+    await page.locator('[name=amount]').fill('10000');
+    await page.locator('#goal-time').evaluate((e: HTMLInputElement) => {
+      e.value = '240';
+      e.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await page.locator('[name=target]').fill('10000000');
+    const dimensions = await page.locator('.sheet-body').evaluate((e) => {
+      e.scrollLeft = 500;
+      return { client: e.clientWidth, scroll: e.scrollWidth, left: e.scrollLeft };
+    });
+    expect(dimensions.scroll).toBe(dimensions.client);
+    expect(dimensions.left).toBe(0);
+    const sheet = await page.locator('.sheet-body').boundingBox();
+    for (const selector of ['[name=name]', '[name=amount]', '[name=target]', '#goal-time']) {
+      const box = await page.locator(selector).boundingBox();
+      expect(box!.x).toBeGreaterThanOrEqual(sheet!.x);
+      expect(box!.x + box!.width).toBeLessThanOrEqual(sheet!.x + sheet!.width + 1);
+    }
+  }
+});

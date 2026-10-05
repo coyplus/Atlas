@@ -31,3 +31,9 @@ The domain now accepts a target of zero as an explicit open-ended Pot; other inv
 Browser checks cover all four scenarios, live updates, conversation return, optional targets, preview isolation, approval, life-stage creation and Undo, narrow-screen reachability, and existing progressive beginnings. Domain checks compare preview and committed projections and validate targetless growth. The guided-demo goal scene now focuses on the projection rather than an isolated input.
 
 The scripted Companion can compare a customer-supplied monthly amount or explain growth and affordability limits. A conversational comparison does not rewrite the form. Returning uses the existing journey snapshot; temporary contexts are keyed to the individual possibility so creating another idea does not replace the first idea’s context.
+
+## Layout consolidation — 5 October 2026
+
+Following repeated visual refinements, the page stylesheet was rewritten as a single layout rather than appended overrides. The sheet owns the full-width scroller; the goal session uses no negative margins. A dedicated hero contains the oversized artwork with `overflow: clip`, so its geometry cannot enlarge the horizontal scroll area or cause focused fields to be shifted off screen. The name, field pill and planning panel share one gutter and glass tokens. The glass above the name spans the measured Companion reserve instead of an arbitrary 500px extension. Obsolete selectors and conflicting declarations were removed.
+
+A regression check uses the maximum contribution and target at 320px, 375px and desktop widths, then attempts horizontal scrolling and checks every field stays inside the sheet. Existing goal editing, projection, conversation return, approval and fit checks also pass in Chromium and WebKit.
