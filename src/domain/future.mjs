@@ -197,6 +197,9 @@ export function forecast(p, ideas = [], month = 0) {
     values: Object.fromEntries(goals.map((g) => [g.id, t.values[g.id]])),
     net: t.net,
     range: prepared.ranges.map((path) => path[at].net),
+    goalRanges: Object.fromEntries(
+      goals.map((g) => [g.id, prepared.ranges.map((path) => path[at].values[g.id])]),
+    ),
     speed: sum(Object.values(rates).map(Math.abs)),
     rates,
     ruleCount: t.allocations.filter((a) => goalIds.has(a.potId)).length,

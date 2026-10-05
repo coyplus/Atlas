@@ -6,9 +6,15 @@ Implemented 5 October 2026 following the request to bring goal creation into the
 
 The focused session uses the same visual grammar as Future: one filled goal bubble above a continuous, translucent Time Travel panel. Date, age, target arrival, contribution and optional target sit together. The separate trajectory chart, duplicated sticky summary and inline AI block were removed after visual review: they fragmented the experience without adding enough value.
 
-“Goal name” and “Tap to rename” identify the editable name explicitly. A monthly contribution is required; a target is optional. “I don’t have a target yet” creates an open-ended preview rather than forcing an arbitrary finish line. Changing inputs updates the bubble and date; Time Travel changes the moment being inspected.
+“Goal name” and “Tap to rename” identify the editable name explicitly. A monthly contribution is required; no target is the default. “I don’t have a target yet” creates an open-ended preview rather than forcing an arbitrary finish line. Changing inputs updates the bubble and date; Time Travel changes the moment being inspected.
 
 This focused session deliberately uses the shared **detail** surface, with the real floating AI Companion, rather than the usual journey help icon. The initial message explains the suggested possibility; after edits it acknowledges the monthly pace and invites exploration. The full conversation can compare amounts, explain assumptions and suggest ways to frame the goal. It retains the customer’s Companion identity. Returning preserves the form, and each possibility retains its own temporary context. These are scripted prototype responses.
+
+The shared `time-travel.mjs` renderer now supplies the actual Future slider in both screens, including its fill, markers, thumb and starlight. The focused view omits other goals’ milestone buttons. The canvas continues behind the floating Companion, and active fields use a subtle border treatment instead of a boxed outline.
+
+The bubble grows with the projected amount against a dotted reference for one year of the selected monthly contributions. Diameter uses a bounded square-root scale for readability, not a literal area chart. This is a personal reference, not an assumed purchase price. Investment What If uses the existing domain projection: a 5% central illustration and −2%/8% annual-growth alternatives. The range is shown for this pot, not the customer’s entire net worth, and is not a probability interval or a bound on losses. Selection carries into the sandbox and approval. Cash assumes no interest. Alex also receives an investing possibility framed as curiosity, without inferring experience or a life stage. Locked savings were not added in this iteration; no new rate or lock agreement has been invented.
+
+The extra preview-assumptions accordion, exploratory subtitle and sandbox footer explanation were removed as requested. Investment assumptions remain beside the range because they explain the numbers being compared.
 
 The interface supports normal and Premier surfaces, narrow screens and reduced motion. One scrollable body keeps every control reachable.
 

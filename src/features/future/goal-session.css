@@ -1,7 +1,7 @@
 /* A focused part of Future: one orbit and one continuous Time Travel panel. */
 .phone .goal-session {
   margin: -8px -24px -24px;
-  background: radial-gradient(ellipse at 50% 24%, #b9d1dc65, transparent 55%), var(--canvas);
+  background: var(--canvas);
 }
 .goal-session-heading {
   padding: 8px 24px 0;
@@ -35,10 +35,6 @@
   font-weight: 400;
   letter-spacing: -0.7px;
 }
-.goal-session-heading input:focus-visible {
-  outline: 2px solid #52859d;
-  outline-offset: 4px;
-}
 .goal-session-scene {
   display: grid;
   place-items: center;
@@ -54,19 +50,6 @@
   place-items: center;
   isolation: isolate;
   background: #447a9512;
-}
-.goal-session-fill {
-  position: absolute;
-  inset: 6px;
-  border-radius: 50%;
-  background: #487e97;
-  transform: scale(calc(0.72 + var(--goal-fill) * 0.28));
-  transition: transform 360ms ease;
-  z-index: -1;
-}
-.goal-session-orbit.is-reached {
-  border-style: solid;
-  border-color: #52859d;
 }
 .goal-session-orbit-copy {
   text-align: center;
@@ -146,45 +129,6 @@
   color: var(--muted);
   font-size: 11px;
 }
-.phone .goal-session-time input[type='range'] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 100%;
-  margin: 10px 0 5px;
-  background: linear-gradient(
-    90deg,
-    #54849b 0%,
-    #8a77a0 var(--time-fill),
-    #dce1e3 var(--time-fill)
-  );
-  border: 1px solid #ccd3d6;
-  border-radius: 24px;
-  height: 40px;
-  padding: 0;
-  cursor: pointer;
-}
-.goal-session-time input::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: white;
-  border: 2px solid #e1e4e5;
-  box-shadow: 0 2px 6px #17252c25;
-}
-.goal-session-time input::-moz-range-thumb {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: white;
-  border: 2px solid #e1e4e5;
-  box-shadow: 0 2px 6px #17252c25;
-}
-.goal-session-time input:focus-visible {
-  outline: 2px solid #52859d;
-  outline-offset: 4px;
-}
 .goal-time-labels {
   display: flex;
   justify-content: space-between;
@@ -231,18 +175,6 @@
   height: 17px;
   accent-color: #52859d;
 }
-.goal-session-assumptions {
-  font-size: 12px;
-  color: var(--muted);
-  padding: 8px 0 16px;
-}
-.goal-session-assumptions summary {
-  cursor: pointer;
-  min-height: 28px;
-}
-.goal-session-assumptions p {
-  line-height: 1.5;
-}
 .goal-session-footer p {
   margin: 10px 0;
   font-size: 12px;
@@ -251,7 +183,7 @@
   text-align: center;
 }
 .phone.premier .goal-session {
-  background: radial-gradient(ellipse at 50% 24%, #44657365, transparent 55%), var(--canvas);
+  background: var(--canvas);
 }
 @media (max-width: 360px) {
   .goal-session-heading,
@@ -263,8 +195,162 @@
     font-size: 23px !important;
   }
 }
+
+/* Continue the detail canvas behind its floating Companion without a colour seam. */
+.phone .goal-session {
+  background: var(--canvas);
+}
+.phone.premier .goal-session {
+  background: var(--canvas);
+}
+.phone .goal-session-heading input:focus,
+.phone .goal-session-fields input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--viz-cash);
+}
+.phone .goal-session-heading input:focus {
+  border-bottom-width: 2px;
+}
+.goal-session-scene {
+  height: auto;
+  padding: 12px 0 20px;
+}
+.goal-growth-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 270px;
+}
+.goal-session-orbit {
+  border: 0;
+  background: var(--viz-cash, #487e97);
+  transition:
+    width 0.25s ease,
+    height 0.25s ease;
+  margin: 0;
+}
+.goal-session-orbit-copy strong {
+  font-size: 28px;
+}
+.goal-session-orbit-copy small {
+  font-size: 10px;
+}
+.goal-session-orbit-copy > .icon {
+  margin-bottom: 2px;
+  width: 18px;
+  height: 18px;
+}
+.goal-reference {
+  position: absolute;
+  border: 1px dashed var(--muted);
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.65;
+}
+.goal-scale-key {
+  font-size: 11px;
+  color: var(--muted);
+}
+.goal-investment-range {
+  text-align: center;
+  font-size: 12px;
+  margin: 12px 24px 0;
+}
+.goal-investment-range b {
+  display: block;
+  margin: 4px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.goal-investment-range small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+  max-width: 280px;
+}
+.goal-what-if {
+  border-top: 1px solid var(--line);
+  margin-top: 10px;
+  padding-top: 18px;
+}
+.goal-what-if h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+.goal-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.goal-paths label {
+  position: relative;
+  cursor: pointer;
+}
+.goal-paths input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.goal-paths label > span {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  gap: 8px;
+}
+.goal-paths b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.goal-paths small {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.goal-paths input:checked + span {
+  border-color: var(--viz-investment);
+  background: color-mix(in srgb, var(--viz-investment) 12%, var(--surface));
+}
+.goal-paths input:focus-visible + span {
+  outline: 2px solid var(--viz-investment);
+  outline-offset: 3px;
+}
+.goal-what-if > p {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 10px 0 20px;
+}
 @media (prefers-reduced-motion: reduce) {
-  .goal-session-fill {
+  .goal-session-orbit {
     transition: none;
   }
+}
+
+body[data-direction='vanilla'] .phone .sheet.level-two:has(.goal-session) {
+  background: var(--canvas);
+}
+body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-header {
+  background: var(--canvas);
+}
+.goal-reference {
+  border-color: #a5bbc5;
+}
+.goal-session-scene[data-investment='true'] .goal-session-orbit {
+  background: var(--viz-investment);
+}
+
+.goal-paths strong {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  margin-top: auto;
 }

@@ -123,10 +123,10 @@ export function handleFuture(ctx, type, id, p) {
       target: Number(v.get('target')),
       amount: Number(v.get('amount')),
       title: 'Make room for ' + name,
+      investment: v.get('approach') === 'investment',
       ...(suggestion
         ? {
             possibilityKey: suggestion.key,
-            investment: !!suggestion.investment,
             visualIcon: suggestion.glyph,
           }
         : {}),

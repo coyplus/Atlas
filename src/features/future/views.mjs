@@ -1,3 +1,4 @@
+import { timeTravel } from './time-travel.mjs';
 import { goalSession } from './goal-session.mjs';
 import { isFutureBeginning, futureBeginning } from './beginning.mjs';
 import { moneySpeedModel } from './money-speed.mjs';
@@ -158,7 +159,7 @@ export function futureScreen(p, s) {
     <section class="future-drawer" aria-label="Time Travel and your plan" data-state="${state.drawer || 'timeline'}">
       <button class="future-drawer-grip" data-drawer-to="toggle" aria-label="Expand future drawer" aria-expanded="false" aria-controls="future-drawer-body"><span></span></button>
       <div class="future-drawer-summary"><div class="fg-moment" id="fg-moment">${futureMoment(p, s, model)}</div>
-        <div class="fg-travel"><div class="future-milestones" id="fg-ticks">${futureTicks(p, s, model)}</div><label class="sr-only" for="time-slider">Explore your future in months</label><div class="future-time-track" style="--time-progress:${(s.month / HORIZON) * 100}%;--time-inset:${38 - (38 * s.month) / HORIZON}px"><span class="future-time-fill" aria-hidden="true"><span class="future-starlight"></span></span><input type="range" id="time-slider" min="0" max="${HORIZON}" step="1" value="${s.month}" aria-valuetext="${s.month ? dateAt(p, s.month) : 'Today'}, age ${p.l1.customer.age + Math.floor(s.month / 12)}"></div></div>
+        <div class="fg-travel"><div class="future-milestones" id="fg-ticks">${futureTicks(p, s, model)}</div><label class="sr-only" for="time-slider">Explore your future in months</label>${timeTravel({ month: s.month, label: `${s.month ? dateAt(p, s.month) : 'Today'}, age ${p.l1.customer.age + Math.floor(s.month / 12)}` })}</div>
       </div>
       <button class="future-drawer-invitation" data-drawer-to="expanded"><span>${icon('spark')} What if…</span><span>${state.ideas.length ? state.ideas.length + ' selected' : 'Try a change'} ${icon('chev')}</span></button>
       <div class="future-drawer-body" id="future-drawer-body" tabindex="-1">

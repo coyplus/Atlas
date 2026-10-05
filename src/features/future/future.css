@@ -1224,7 +1224,7 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .tabbar {
   margin: 0;
   min-height: 27px;
 }
-.phone .future-drawer #time-slider {
+.phone .future-time-track input {
   margin: 0;
   height: 22px;
   touch-action: pan-y;
@@ -1459,7 +1459,7 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
   background-size: 25% 100%;
   background-position: center;
 }
-.phone .future-drawer #time-slider {
+.phone .future-time-track input {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -1475,13 +1475,13 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
   touch-action: pan-y;
   box-shadow: none;
 }
-.phone .future-drawer #time-slider::-webkit-slider-runnable-track {
+.phone .future-time-track input::-webkit-slider-runnable-track {
   height: 38px;
   border: 0;
   background: transparent;
   border-radius: 24px;
 }
-.phone .future-drawer #time-slider::-webkit-slider-thumb {
+.phone .future-time-track input::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
   width: 38px;
@@ -1493,12 +1493,12 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
   box-shadow: 0 2px 8px #0003;
   transition: box-shadow 0.18s;
 }
-.phone .future-drawer #time-slider::-moz-range-track {
+.phone .future-time-track input::-moz-range-track {
   height: 38px;
   background: transparent;
   border: 0;
 }
-.phone .future-drawer #time-slider::-moz-range-thumb {
+.phone .future-time-track input::-moz-range-thumb {
   width: 34px;
   height: 34px;
   border: 2px solid #fff;
@@ -1506,12 +1506,12 @@ body:not([data-direction='vanilla']) .phone[data-active-tab='future'] > .app-hea
   background: #fff;
   box-shadow: 0 2px 8px #0003;
 }
-.phone .future-drawer #time-slider:active::-webkit-slider-thumb {
+.phone .future-time-track input:active::-webkit-slider-thumb {
   box-shadow:
     0 0 0 5px color-mix(in srgb, var(--viz-cash) 22%, transparent),
     0 3px 12px #0003;
 }
-.phone .future-drawer #time-slider:focus-visible {
+.phone .future-time-track input:focus-visible {
   outline: 2px solid var(--viz-cash);
   outline-offset: 4px;
 }

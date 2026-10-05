@@ -78,3 +78,13 @@ test('targetless goal previews continue saving and match the committed projectio
  assert.equal(forecast(q,[],24).values.open,preview.values.open);
  for(const target of [-1,NaN,Infinity]) assert.throws(()=>forecast(p,[{...idea,target}]));
 });
+
+test('focused investment range belongs to its pot and agrees after applying',()=>{
+ const p=people().alex,idea={id:'focused-range',kind:'add',goal:'range-pot',name:'Explore investing',target:0,amount:25,investment:true};
+ const original=JSON.stringify(p),preview=forecast(p,[idea],120),value=preview.values[idea.goal],range=preview.goalRanges[idea.goal];
+ assert.ok(range[0]<value && range[1]>value);
+ assert.ok(range[0]<25*120);
+ const q=clone(p);applyExperiments(q,[idea]);
+ assert.deepEqual(forecast(q,[],120).goalRanges[idea.goal],range);
+ assert.equal(JSON.stringify(p),original);
+});

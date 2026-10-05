@@ -25,6 +25,7 @@ test('a named possibility becomes real without applying other experiments, and U
     0,
   );
   await page.locator('[name="name"]').fill('Our family adventure');
+  await page.locator('[name="openEnded"]').uncheck();
   await page.locator('[name="target"]').fill('7000');
   await page.locator('[name="amount"]').fill('80');
   expect(await page.evaluate(() => JSON.stringify(window.atlas.getState().people.sam.l1))).toBe(

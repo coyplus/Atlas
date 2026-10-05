@@ -183,6 +183,23 @@ export function possibilities(p, s = {}) {
       /car costs|car insurance|servicing/i,
       { name: 'Annual car costs', source: 'Alongside your car loan' },
     );
+  if (p.l1.customer.id === 'alex' && !c.investor)
+    add(
+      'investing-curiosity',
+      'What could investing look like for you?',
+      'We’re still getting to know you. Whether investing is new or familiar, you can explore a small monthly amount without committing.',
+      'What would you like to understand about investing?',
+      'trend',
+      3000,
+      25,
+      /invest/i,
+      {
+        name: 'Explore investing',
+        source: 'An idea to explore',
+        investment: true,
+        role: 'investment',
+      },
+    );
   if (!c.investor && c.savings >= 10000 && c.traits.Planning >= 4)
     add(
       'first-investment',
@@ -262,7 +279,7 @@ export function possibilities(p, s = {}) {
         !(preferences.dismissed || []).includes(i.id) &&
         !futureState(p).ideas.some((g) => g.possibilityKey === i.key),
     )
-    .slice(0, 3)
+    .slice(0, p.l1.customer.id === 'alex' ? 4 : 3)
     .map((i) => ({ ...i, isNew: !(preferences.seen || []).includes(i.id) }));
 }
 

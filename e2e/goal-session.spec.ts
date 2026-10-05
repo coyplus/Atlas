@@ -21,6 +21,8 @@ test('focused goals react to time and contributions, support conversation, and s
     await page.evaluate(() => window.atlas.dispatch('future-add'));
     await page.locator('.possibility-open').first().click();
     await page.locator('[name="name"]').fill('Time for myself');
+    await expect(page.locator('[name="openEnded"]')).toBeChecked();
+    await page.locator('[name="openEnded"]').uncheck();
     await page.locator('[name="target"]').fill('2400');
     await page.locator('[name="amount"]').fill('100');
     await page.locator('#goal-time').evaluate((el: HTMLInputElement) => {
@@ -87,4 +89,37 @@ test('new targetless Pot follows the same preview and approval projection', asyn
   expect(pot.target).toBe(0);
   expect(pot.balance).toBe(0);
   expect(pot.stopsAtTarget).toBe(false);
+});
+
+test('Alex can explore investing, with growing bubbles and the shared Time Travel control', async ({
+  page,
+}) => {
+  await page.goto('/?p=alex&tab=future&theme=vanilla');
+  await page.waitForFunction(() => !!window.atlas);
+  await page.evaluate(() => window.atlas.dispatch('future-add'));
+  await page.locator('.sheet [data-action="future-possibility:investing-curiosity"]').click();
+  await expect(page.locator('[name=openEnded]')).toBeChecked();
+  await expect(page.locator('[name=target]')).toBeDisabled();
+  await expect(page.locator('.goal-investment-range')).toBeVisible();
+  await expect(page.locator('.future-time-track .future-starlight')).toBeAttached();
+  const travel = async (month: string) =>
+    page.locator('#goal-time').evaluate((el: HTMLInputElement, m) => {
+      el.value = m;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    }, month);
+  await travel('12');
+  const small = await page
+    .locator('.goal-session-orbit')
+    .evaluate((e) => e.getBoundingClientRect().width);
+  await travel('120');
+  const large = await page
+    .locator('.goal-session-orbit')
+    .evaluate((e) => e.getBoundingClientRect().width);
+  expect(large).toBeGreaterThan(small + 30);
+  await page.getByRole('button', { name: 'Try this in my future', exact: true }).click();
+  expect(
+    await page.evaluate(
+      () => (window.atlas.getState() as any).people.alex.ui.future.ideas.at(-1).investment,
+    ),
+  ).toBe(true);
 });
