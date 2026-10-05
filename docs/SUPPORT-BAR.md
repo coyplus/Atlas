@@ -102,3 +102,8 @@ Sources: `src/features/support/`, `src/features/dialogs.mjs`, `src/app/runtime.m
 See [NOW-TAB.md](NOW-TAB.md) for the page order and component contracts. Support follows Quick Actions, the ordinary Number widgets, accounts and pots, stories and the products entry as the user scrolls. Products and account activity use compact reading-detail support; Quick Actions and conversion use journey-header help.
 
 The Accounts & pots detail recommends Open Banking through the compact AI card. Opening the conversation reveals the full explanation and Connect another bank action. After connecting, the message reflects the selected sample balances and offers to explore the combined picture. Bank selection, account-sharing consent and disconnection are guided journeys with header help. See ACCOUNTS-POTS.md.
+
+## Single-style messages · 5 October 2026
+The floating Companion uses one regular-weight text block, with no repeated heading/body. Existing explicit single-message observations are retained; other messages use their observation, while important messages retain both the issue and explanation in the same style. Audio announces the report and keeps direct playback. Human messages retain human identity and content.
+
+Everyday guidance keeps the organic Companion. Discoveries use a gently turning SVG sparkle; attention uses an exclamation and calm outline; audio uses play/pause. These states are supplementary: important information remains in text. Motion is disabled for reduced-motion preferences. Primary card actions, focused Future submission and the first Portrait entry use HSBC red with white text. The unrelated voice experiment remains separate.

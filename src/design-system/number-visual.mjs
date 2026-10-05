@@ -36,7 +36,7 @@ export function numberVisualMarkup(v, expanded = false) {
       .slice(0, expanded ? items.length : 3)
       .map(
         (x, i) =>
-          `<span><i class="number-tone-${i % 5}" data-viz-role="${esc(x.role || v.role || 'neutral')}"></i><span>${esc(x.label)}</span>${expanded ? `<b>${money(x.value)}</b>` : ''}</span>`,
+          `<span><i class="number-tone-${i % 5}" data-viz-role="${esc(x.role || v.role || 'neutral')}"></i><span>${esc(x.label)}</span>${expanded ? `<b>${money(x.value)}</b>` : v.label === 'Investment mix' ? `<b>${Math.round(x.value / total * 100)}%</b>` : ''}</span>`,
       )
       .join(
         '',

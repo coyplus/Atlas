@@ -192,11 +192,11 @@ export function handle(ctx, type, id, p, action) {
   if (type === 'save-personality') {
     const val = document.querySelector('#correction').value.trim();
     if (!val) throw new Error('Add your correction first.');
-    return ctx.change('Corrected your money personality', () => {
+    return ctx.change('Corrected your Money Portrait', () => {
       p.l2.personality.copy = val;
       p.l2.personality.provenance = 'Corrected by you · ' + p.l1.asOf;
       p.ui.confirmed = true;
-      award(p, 'personality', 10, 'Money personality corrected');
+      award(p, 'personality', 10, 'Money Portrait corrected');
     });
   }
   if (type === 'save-belief') {

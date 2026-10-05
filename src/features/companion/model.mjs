@@ -190,7 +190,7 @@ export function personaliseSupport(p, s, context, base, catalogue) {
       !/^back\b/i.test(base.cta) &&
       !/^support:|^chat$/.test(base.action || '')
     ) {
-      m.message = `${base.message} A useful next step: ${base.cta.charAt(0).toLowerCase() + base.cta.slice(1)}.`;
+      m.message = base.message;
     }
     if (['top', 'future', 'personality', 'companion'].includes(context.kind))
       m.title = headings[prefs.style][s.tab] || m.title;

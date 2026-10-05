@@ -14,7 +14,7 @@ export function handle(ctx, type, id, p, action) {
     if (!member) return;
     return ctx.openJourney(
       member.name,
-      `<div class="portrait-unshared"><span>${icon('users')}</span><h3>${esc(member.name)}’s portrait is private</h3><p>${member.age && member.age < 11 ? 'They’re included in your household, but do not have a money personality profile.' : 'Sharing a pot does not share a money personality. Their portrait will appear here only when it has been shared with you.'}</p>${button('Back to your household', 'close', 'secondary wide')}</div>`,
+      `<div class="portrait-unshared"><span>${icon('users')}</span><h3>${esc(member.name)}’s portrait is private</h3><p>${member.age && member.age < 11 ? 'They’re included in your household, but do not have a Money Portrait profile.' : 'Sharing a pot does not share a Money Portrait. Their portrait will appear here only when it has been shared with you.'}</p>${button('Back to your household', 'close', 'secondary wide')}</div>`,
     );
   }
   if (type === 'portrait-invite') {
@@ -142,7 +142,7 @@ export function handle(ctx, type, id, p, action) {
     ctx.quizAnswers.push(Number(id));
     if (ctx.quizAnswers.length === 3) {
       const before = p.l1.rewards.points.balance;
-      transaction(p, 'Completed your money personality quiz', () =>
+      transaction(p, 'Completed your Money Portrait quiz', () =>
         completeQuiz(p, ctx.quizAnswers, ctx.DATA.shared.modules.quiz),
       );
       setQuizReward(p, p.l1.rewards.points.balance - before);
@@ -156,9 +156,9 @@ export function handle(ctx, type, id, p, action) {
     return ctx.act('portrait');
   }
   if (type === 'personality-confirm')
-    return ctx.change('Confirmed your money personality', () => {
+    return ctx.change('Confirmed your Money Portrait', () => {
       p.ui.confirmed = true;
-      award(p, 'personality', 10, 'Money personality confirmed');
+      award(p, 'personality', 10, 'Money Portrait confirmed');
     });
   if (type === 'personality-correct' || type === 'belief-correct') {
     return ctx.openJourney(

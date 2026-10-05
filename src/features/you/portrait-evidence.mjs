@@ -25,7 +25,7 @@ export const portraitEvidence = {
   },
   riley: {
     depth: 0,
-    description: 'A first picture from the money personality answers Riley shared.',
+    description: 'A first picture from the Money Portrait answers Riley shared.',
   },
   aisha: {
     depth: 0,

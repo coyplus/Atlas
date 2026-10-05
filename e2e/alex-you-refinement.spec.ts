@@ -82,9 +82,9 @@ test('completion artwork clears the headline, and quiz Points cannot repeat', as
 });
 test('Jordan gets a welcoming daily invitation', async ({ page }) => {
   await page.goto('/?p=jordan&tab=you&theme=vanilla');
-  await expect(page.locator('.checkin-invitation')).toBeVisible();
-  await expect(page.locator('.checkin-invitation')).toContainText('Pick up your rhythm');
-  await page.locator('.checkin-invitation').click();
+  await expect(page.locator('.checkin-week-invitation')).toBeVisible();
+  await expect(page.locator('.checkin-week-invitation')).toContainText('Pick up your rhythm');
+  await page.locator('.checkin-week-invitation [data-action=checkin]').click();
   await expect(page.locator('.sheet-body')).toContainText('feel');
 });
 
@@ -110,6 +110,6 @@ test('Sam’s revised numbers reconcile and his audio report is ready to play', 
   await page.goto('/?p=sam&tab=now&theme=vanilla');
   await expect(page.locator('.support-copy')).toContainText('Your weekly money report is ready');
   await expect(page.getByRole('button', { name: 'Play recap', exact: true }).first()).toBeVisible();
-  await expect(page.locator('[data-module="investments"]')).toContainText('£20,000');
+  await expect(page.locator('[data-module="investments"]')).toContainText('£20,693.55');
   await expect(page.getByRole('button', { name: /Ella’s Pocket Money ·/ })).toBeVisible();
 });

@@ -137,6 +137,13 @@ export function containerNumber(p, item, id = 'container-' + item.id) {
     id,
     title: item.name,
     budget,
+    recentPurchases: budget
+      ? p.l1.transactions
+          .filter((t) => t.ledger === item.id && t.amount < 0 && t.category === 'groceries')
+          .sort((a, b) => b.date.localeCompare(a.date))
+          .slice(0, 3)
+          .map((t) => [t.counterparty, cash(-t.amount, true)])
+      : null,
     visualRole: moneyVisualRole(c.type),
     attention:
       c.arrangement.recovery?.failed && !c.arrangement.recovery.restored ? 'Benefit changed' : null,

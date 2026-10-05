@@ -23,7 +23,7 @@ const editorial = {
   'a-quiz': [
     'Made for you',
     'Understand your money habits. Find an approach that feels like you.',
-    'Discover your money style?',
+    'Discover your Money Portrait?',
     'Three questions. A personal profile you can review and correct. Around two minutes.',
   ],
   a1: [
@@ -143,7 +143,7 @@ export function storyModel(p, id) {
       m.state = 'saved';
       m.question = 'Your profile is ready.';
       m.consequence =
-        'Review your money style and habits in You. You can correct anything that doesn’t feel right.';
+        'Review your Money Portrait and habits in You. You can correct anything that doesn’t feel right.';
     }
   }
   if (id === 'a1') {

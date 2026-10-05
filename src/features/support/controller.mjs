@@ -1,3 +1,4 @@
+import { companionMessage, companionSignal } from './message.mjs';
 import { companionAvatar } from '../companion/identity.mjs';
 import { companionCard } from './card.mjs';
 import { motion } from '../../design-system/motion.mjs';
@@ -208,9 +209,9 @@ export function createSupportController(getState, data, dispatch, showDialog) {
       (attention ? ' is-attention-pulse' : '');
 
     dock.querySelector('.support-copy').setAttribute('aria-busy', String(thinking));
-    dock.dataset.singleMessage = String(!!m.singleMessage && !thinking);
-    const title = thinking ? 'Thinking…' : m.title,
-      sub = thinking ? 'Bringing your money into focus' : m.singleMessage ? '' : summary(m),
+    dock.dataset.singleMessage = 'true';
+    const title = thinking ? 'Thinking…' : companionMessage(m),
+      sub = '',
       copy = dock.querySelector('.support-copy');
     if (lastCopy !== title + '|' + sub) {
       copy.querySelector('strong').textContent = title;
@@ -252,7 +253,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
         ? agentAvatar(humanId)
         : offerAudio
           ? icon(playing ? 'pause' : 'play')
-          : m.companionStyle ? companionAvatar(m.companionStyle) : agentAvatar('ai');
+          : companionSignal(m, attention) || (m.companionStyle ? companionAvatar(m.companionStyle) : agentAvatar('ai'));
     if (avatar.innerHTML !== avatarMarkup) renderRegion(avatar, avatarMarkup);
     avatar.dataset.action = avatarAction;
     avatar.setAttribute('aria-label', avatarLabel);
@@ -262,7 +263,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     const details = dock.querySelector('#support-details');
     details.inert = !view.details;
     details.setAttribute('aria-hidden', String(!view.details));
-    dock.querySelector('.support-message').textContent = m.message;
+    dock.querySelector('.support-message').textContent = ''; 
     const ctas = dock.querySelector('.support-actions'),
       sameDetail = modalContext && m.action === modalContext.kind + ':' + modalContext.id;
     const action = sameDetail
@@ -276,7 +277,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
         ? playing ? 'Pause report' : 'Play my report'
         : m.cta;
     const markup =
-      button(label, action, 'secondary') +
+      button(label, action, 'primary') +
       (humanDirect ? button('Prepare with AI', 'support:discuss', 'text') : '');
     if (ctas.innerHTML !== markup) renderRegion(ctas, markup);
     ctas.inert = !view.actions;

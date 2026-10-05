@@ -645,3 +645,151 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
   border-top: 1px solid var(--line);
   font-size: 14px;
 }
+
+/* One thought and one clear action. The avatar carries the message expression. */
+body[data-direction='vanilla'] .support-dock .support-message,
+body[data-direction='vanilla'] .support-dock .support-subtitle {
+  display: none;
+}
+body[data-direction='vanilla'] .support-dock .support-copy strong {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+body[data-direction='vanilla'] .support-dock .support-actions .btn.primary,
+body[data-direction='vanilla'] .goal-action-dock .btn.primary,
+body[data-direction='vanilla'] .portrait-beginning .btn.primary {
+  background: #db0011;
+  color: white;
+  border-color: #db0011;
+}
+.companion-signal {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: #84689e;
+  animation: signal-arrive 0.5s ease-out;
+}
+.companion-signal svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.companion-signal.is-important {
+  color: #db0011;
+}
+.signal-outline {
+  transform-origin: center;
+  animation: signal-breathe 6s ease-in-out infinite;
+}
+.signal-spark {
+  transform-origin: center;
+  animation: signal-curiosity 7s ease-in-out infinite;
+}
+@keyframes signal-arrive {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotate(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+@keyframes signal-breathe {
+  50% {
+    transform: scale(0.92, 1.03) rotate(8deg);
+  }
+}
+@keyframes signal-curiosity {
+  50% {
+    transform: rotate(25deg) scale(0.9);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .companion-signal,
+  .signal-outline,
+  .signal-spark {
+    animation: none;
+  }
+}
+.checkin-week-invitation {
+  margin: 8px 24px 28px;
+  padding: 18px 18px 8px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+}
+.checkin-week-invitation header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.checkin-week-invitation header small {
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+}
+.phone .checkin-week-invitation h2 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 6px 0 0;
+}
+.checkin-week-points {
+  font-size: 11px;
+  color: var(--muted);
+}
+.checkin-week-invitation .daily-beginning-week {
+  margin: 16px 0 6px;
+}
+.checkin-week-invitation .daily-beginning-week svg {
+  width: 28px;
+  height: 28px;
+}
+.checkin-week-invitation .btn {
+  font-size: 13px;
+}
+.module.has-purchases .module-face {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 18px;
+}
+.module.has-purchases .module-top {
+  grid-column: 1 / -1;
+}
+.module.has-purchases :is(.module-value, .number-meta, .budget-progress) {
+  grid-column: 1;
+}
+.module.has-purchases .module-value {
+  font-size: 32px;
+}
+.module.has-purchases .number-purchases {
+  grid-column: 2;
+  grid-row: 2 / span 3;
+  border-left: 1px solid var(--line);
+  padding-left: 16px;
+  align-self: stretch;
+}
+.number-purchases > small {
+  font-size: 10px;
+  color: var(--muted);
+}
+.number-purchases .row {
+  font-size: 11px;
+}
+.module[data-module='investments'] .number-split {
+  height: 14px;
+  border-radius: 6px;
+}
+body[data-direction='vanilla'] .module[data-module='investments'] :is(.number-split,.number-legend) .number-tone-0 { background:#80699b; }
+body[data-direction='vanilla'] .module[data-module='investments'] :is(.number-split,.number-legend) .number-tone-1 { background:#4e8793; }
+body[data-direction='vanilla'] .module[data-module='investments'] :is(.number-split,.number-legend) .number-tone-2 { background:#c39b66; }
+.number-purchases .rows { margin:8px 0 0; }
+.number-purchases .rows > div { display:block; padding:7px 0; font-size:11px; }
+.number-purchases .rows dd { margin:3px 0 0; text-align:left; color:var(--ink); }
+.number-purchases .rows dt { color:var(--muted); }
+body[data-direction='vanilla'] .support-avatar.icon-btn:has(.companion-signal) { border-color:transparent; background:transparent; }
+.atlas-companion .support-avatar .companion-signal svg { width:44px; height:44px; fill:none; stroke:currentColor; stroke-width:1.8; }

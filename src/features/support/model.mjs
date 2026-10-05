@@ -151,7 +151,7 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
       p.ui.confirmed ? 'Your perspective shapes this picture' : 'Does this still sound like you?',
       p.ui.confirmed
         ? 'Your portrait includes your feedback. You can revisit it whenever your priorities change.'
-        : 'Review your money personality and tell us what fits or what has changed.',
+        : 'Review your Money Portrait and tell us what fits or what has changed.',
       'Review your portrait',
       'portrait',
     );
@@ -185,7 +185,7 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
             ': “' +
             q.q +
             '” There’s no right or wrong answer. Choose what feels closest to you; this quiz is a starting point, not a fixed label.'
-        : 'Your answers have been saved. You can review your money personality and change anything that doesn’t feel right.',
+        : 'Your answers have been saved. You can review your Money Portrait and change anything that doesn’t feel right.',
     );
   }
   if (k === 'priya') return human();
@@ -473,7 +473,7 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     );
   if (k === 'personality') {
     const member = p.l1.household.members.find((x) => x.id === s.member),
-      name = s.member === 'household' ? 'Your household' : member?.name || 'Your money personality';
+      name = s.member === 'household' ? 'Your household' : member?.name || 'Your Money Portrait';
     return ai(
       name + ' · your perspective',
       s.member === 'self'

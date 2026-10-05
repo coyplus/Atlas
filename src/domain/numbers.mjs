@@ -308,7 +308,8 @@ function baseModuleModel(p, id, catalogue) {
     case 'ratio': {
       const pct = p.l1.savingsAndInvestments.floorProtectedPct || 0;
       Object.assign(model, {
-        value: cash(id === 'ratio' ? t.invested * pct : t.invested),
+        ...(id === 'investments' ? { title: 'Total Investment' } : {}),
+        value: cash(id === 'ratio' ? t.invested * pct : t.invested, true),
         note: id === 'ratio' ? Math.round(pct * 100) + '% floor allocation' : 'Long-term money',
         rows: [
           ['Invested', amount(t.invested)],
@@ -495,9 +496,9 @@ export function aiMessage(p, tab, month = 0) {
       title: p.l1.behaviour.app.quizDone ? 'A good start, Alex' : 'Meet your money side',
       message: p.l1.behaviour.app.quizDone
         ? 'Your answers are in You. Choose the numbers you want to see here.'
-        : 'Three questions. A first glimpse of your money personality.',
+        : 'Three questions. A first glimpse of your Money Portrait.',
       action: p.l1.behaviour.app.quizDone ? 'gallery' : 'quiz',
-      cta: p.l1.behaviour.app.quizDone ? 'Choose your numbers' : 'Discover my money style',
+      cta: p.l1.behaviour.app.quizDone ? 'Choose your numbers' : 'Discover my Money Portrait',
     },
     jordan: {
       title: 'A little more breathing room',

@@ -217,8 +217,8 @@ function voiceTile(p, m) {
     source: remembered
       ? 'A Money Check-in you chose to remember.'
       : belief
-        ? 'Your money personality answers and feedback.'
-        : 'Your money personality answers.',
+        ? 'Your Money Portrait answers and feedback.'
+        : 'Your Money Portrait answers.',
     watch: 'What feels different now, and which reflections you want us to remember.',
     question: 'Can I change your interpretation?',
   };

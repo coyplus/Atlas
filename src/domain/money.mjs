@@ -81,6 +81,7 @@ export function createSession(dataset) {
     if (id === 'sam') {
       p.ui.sizes.investments = 'F';
       p.ui.sizes.safetydays = 'W';
+      p.ui.sizes['container-family-budget'] = 'W';
     }
     if (id === 'elena') p.ui.sizes.familypot = 'W';
     people[id] = p;
@@ -529,7 +530,7 @@ export function completeQuiz(p, answers, questions = []) {
       status: 'open',
       basis: ['l1:behaviour/app'],
     });
-  award(p, 'quiz', 25, 'Money personality quiz');
+  award(p, 'quiz', 25, 'Money Portrait quiz');
 }
 export function confirmBelief(p, id, correction) {
   const b = p.l2.beliefs.find((x) => x.id === id);

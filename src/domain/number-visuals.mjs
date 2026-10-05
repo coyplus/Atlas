@@ -35,7 +35,7 @@ export function numberVisual(p, m) {
               spendingRole(k),
             ]);
     return {
-      type: 'ring',
+      type: id === 'investments' ? 'split' : 'ring',
       label:
         id === 'wealth'
           ? 'Where your money is held'

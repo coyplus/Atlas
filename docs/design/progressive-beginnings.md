@@ -35,3 +35,6 @@ Question scenes combine the existing trait glyph with a light line illustration 
 
 ### Lightweight invitations · 5 October follow-up
 Jordan’s returning check-in is a compact invitation rather than a seven-day hero. Alex’s HSBC Status opens through a membership-pass discovery card; eligibility and benefits remain in the existing detail journey. Now’s opening Companion messages are shorter, and Sam’s existing audio recap is introduced as his weekly money report with direct playback.
+
+### Returning check-in and naming · 5 October evening
+Jordan’s compact invitation includes the last seven days of recorded check-ins and opens the full check-in chooser, not Money feeling alone. Customer-facing entry points consistently call the experience Money Portrait; personality traits remain the subject of the portrait, not a competing product name.
