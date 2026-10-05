@@ -67,3 +67,14 @@ test('Savings and Smart Rule ideas share preview, approval and capped round-up s
  assert.equal(forecast(p,[],12).values.hup,projected.values.hup);
  undo(p);assert.equal(JSON.stringify(p.l1),original);
 });
+
+test('targetless goal previews continue saving and match the committed projection', () => {
+ const p=people().alex, before=JSON.stringify(p.l1);
+ const idea={id:'open',kind:'add',goal:'open',name:'Options',amount:50,target:0,title:'Build options'};
+ const preview=forecast(p,[idea],24);
+ assert.equal(preview.values.open,1200);assert.equal(preview.dates.open,null);
+ assert.equal(JSON.stringify(p.l1),before);
+ const q=clone(p);applyExperiments(q,[idea]);
+ assert.equal(forecast(q,[],24).values.open,preview.values.open);
+ for(const target of [-1,NaN,Infinity]) assert.throws(()=>forecast(p,[{...idea,target}]));
+});

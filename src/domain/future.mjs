@@ -71,7 +71,7 @@ export function applyExperiments(p, ideas) {
       applyIdea(p, clone(idea.authored));
     } else if (idea.kind === 'add') {
       positive(idea.amount);
-      positive(idea.target, 1e7);
+      if (idea.target !== 0) positive(idea.target, 1e7);
       if (!idea.name?.trim() || idea.name.length > 60)
         throw new Error('Give your goal a short name.');
       if (p.l1.pots.some((g) => g.id === idea.goal))
@@ -82,7 +82,7 @@ export function applyExperiments(p, ideas) {
         kind: idea.investment ? 'investment' : 'goal',
         balance: 0,
         target: idea.target,
-        stopsAtTarget: !idea.investment,
+        stopsAtTarget: !!idea.target && !idea.investment,
         ...(idea.investment ? { growthAnnual: 0.05 } : {}),
         ...(idea.possibilityKey ? { possibilityKey: idea.possibilityKey } : {}),
         ...(idea.visualIcon ? { visualIcon: idea.visualIcon } : {}),
@@ -276,8 +276,8 @@ export function ideaDescription(p, i) {
   if (i.kind === 'remove')
     return `Retire ${name} as a goal and stop its Money Rules. Its existing Pot and balance stay available in Now.`;
   if (i.kind === 'add' && i.investment)
-    return `Model ${i.name} with £${i.amount}/month from your current account and a £${i.target} milestone. Contributions continue after the milestone. This prototype uses 5% annual growth with an illustrative range; values can fall. Applying adds a simulated investment Pot and Money Rule, not a real investment account.`;
-  return `Create ${i.name}, a £${i.target} goal, with a £${i.amount}/month Money Rule from your current account.`;
+    return `Model ${i.name} with £${i.amount}/month from your current account ${i.target ? 'and a £' + i.target + ' milestone' : 'without a fixed target'}. Contributions continue after the milestone. This prototype uses 5% annual growth with an illustrative range; values can fall. Applying adds a simulated investment Pot and Money Rule, not a real investment account.`;
+  return `Create ${i.name}, ${i.target ? 'a £' + i.target + ' goal' : 'an open-ended Pot'}, with a £${i.amount}/month Money Rule from your current account.`;
 }
 export function interpretIdea(p, text, previous = null) {
   const t = text.toLowerCase(),

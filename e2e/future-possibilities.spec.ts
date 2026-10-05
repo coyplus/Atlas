@@ -66,10 +66,10 @@ test('long-range prompts change with life stage and ghost markers remain separat
     }, month);
   }
   await travel('96');
-  await expect(page.locator('#support-dock')).toContainText('At 37');
+  await expect(page.locator('.future-age')).toContainText('37');
   const early = await page.locator('#support-dock').textContent();
   await travel('180');
-  await expect(page.locator('#support-dock')).toContainText('At 44');
+  await expect(page.locator('.future-age')).toContainText('44');
   expect(await page.locator('#support-dock').textContent()).not.toBe(early);
   await expect(page.locator('.future-milestone.is-ghost')).toHaveCount(4);
   await page.locator('#fg-tick-horizon-time-away').click();
@@ -117,45 +117,33 @@ test('Pot photo and colour use the shared detail and cancel leaves the appearanc
   await expect(page.locator('#future-total')).toHaveText('£98,000');
 });
 
-test('Make it mine keeps its reasoning, editable figures and both decisions above the fold', async ({
+test('Make it mine keeps its reasoning and decisions reachable in the focused session', async ({
   page,
 }) => {
   for (const [width, height] of [
     [390, 844],
-    [375, 667],
+    [320, 667],
   ]) {
     await page.setViewportSize({ width, height });
     await page.goto('/?p=elena&theme=vanilla&tab=future');
     await page.locator('#fg-tick-horizon-family-giving').click();
     await expect(page.getByRole('textbox', { name: 'Goal name' })).toHaveValue('Giving back');
-    await expect(page.locator('.horizon-reason')).toHaveText(
+    await expect(page.locator('.goal-session-heading p')).toHaveText(
       'At 62, would you like the option to support someone or a cause you care about?',
     );
     await expect(page.locator('.tabbar')).toBeHidden();
-    const sheet = await page.locator('.sheet').boundingBox();
     for (const locator of [
-      page.locator('.horizon-reason'),
       page.locator('[name="target"]'),
       page.locator('[name="amount"]'),
       page.getByRole('button', { name: 'Make it real', exact: true }),
       page.getByRole('button', { name: 'Not for me', exact: true }),
     ]) {
-      await expect(locator).toBeVisible();
-      const box = await locator.boundingBox();
-      expect(box!.y).toBeGreaterThan(58);
-      expect(box!.y + box!.height).toBeLessThanOrEqual(sheet!.y + sheet!.height);
+      await locator.scrollIntoViewIfNeeded();
+      await expect(locator).toBeInViewport();
     }
-    // On unusually short displays content scrolls independently of the decisions.
-    await page.setViewportSize({ width, height: 500 });
-    const action = page.getByRole('button', { name: 'Make it real', exact: true });
-    const initial = await action.boundingBox();
-    await page.locator('.horizon-content').evaluate((el) => {
-      el.scrollTop = el.scrollHeight;
-    });
-    expect((await action.boundingBox())!.y).toBeCloseTo(initial!.y, 0);
-    const fields = await page.locator('[name="amount"]').boundingBox();
-    const footer = await page.locator('.horizon-actions').boundingBox();
-    expect(fields!.y + fields!.height).toBeLessThanOrEqual(footer!.y);
+    expect(
+      await page.locator('.goal-session').evaluate((el) => el.scrollWidth <= el.clientWidth),
+    ).toBe(true);
     await page.getByRole('button', { name: 'Not for me', exact: true }).click();
     await expect(page.locator('#fg-tick-horizon-family-giving')).toHaveCount(0);
   }

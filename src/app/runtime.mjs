@@ -1,3 +1,8 @@
+import {
+  updateGoalSession,
+  goalSessionTitles,
+  goalSessionReply,
+} from '../features/future/goal-session.mjs';
 import { feedback } from '../platform/haptics';
 import {
   captureHapticOutcome,
@@ -646,6 +651,17 @@ function chatReply(text) {
   const portraitContext = supportController.getContext();
   if (
     replyRole === 'ai' &&
+    goalSessionTitles.includes(portraitContext?.title) &&
+    !/\b(human|expert|priya|maya)\b/i.test(text)
+  ) {
+    const answer = goalSessionReply(p, portraitContext, text);
+    if (answer) {
+      p.ui.chat.push({ role: 'ai', text: companionReply(p, answer) });
+      return openChat();
+    }
+  }
+  if (
+    replyRole === 'ai' &&
     ['portrait-story', 'portrait-metrics'].includes(portraitContext?.kind) &&
     !/\b(human|expert|priya|maya)\b/i.test(text)
   ) {
@@ -919,6 +935,8 @@ document.addEventListener('keydown', (e) => {
   if (e.target.id === 'time-slider' && !e.repeat) timeHaptics.begin();
 });
 document.addEventListener('input', (e) => {
+  const goalForm = e.target.closest('#future-add-form');
+  if (goalForm) updateGoalSession(current(S), goalForm, renderRegion);
   if (['convert-amount', 'convert-currency'].includes(e.target.id)) {
     const amount = Number(document.querySelector('#convert-amount').value),
       currency = document.querySelector('#convert-currency').value,

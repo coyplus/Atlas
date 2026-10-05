@@ -49,7 +49,7 @@ test('Future previews an idea without changing money and reset returns to the in
   await page.evaluate(() => window.atlas.dispatch('future-reset'));
   await expect(page.locator('.future-beginning')).toBeVisible();
   await page.locator('[data-action="future-own"]').click();
-  await expect(page.locator('#future-add-form input[name="name"]')).toHaveValue('');
+  await expect(page.locator('#future-add-form [name="name"]')).toHaveValue('');
   expect(errors).toEqual([]);
 });
 test('Planning tools stay available and mature scenarios keep their full experience', async ({

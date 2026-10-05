@@ -1,3 +1,4 @@
+import { goalSessionSupport, goalSessionTitles } from '../future/goal-session.mjs';
 import { personaliseSupport } from '../companion/model.mjs';
 import { moneySpeedModel } from '../future/money-speed.mjs';
 import { portraitStorySupport } from '../you/portrait-story.mjs';
@@ -38,6 +39,10 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
     author: 'Priya · Relationship Manager',
   });
   const k = context.kind;
+  if (goalSessionTitles.includes(context.title)) {
+    const focused = goalSessionSupport(p, context);
+    if (focused) return focused;
+  }
   if (context.title === 'Money Speed') {
     const speed = moneySpeedModel(p, s);
     return ai(speed.insight, speed.idea, 'Explore a different pace', 'future-chat');

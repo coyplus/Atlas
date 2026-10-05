@@ -1,5 +1,6 @@
 # Atlas review documents
 
+- [Focused Future goal creation](design/focused-future.md): goal preview, Time Travel, optional targets and contextual Companion.
 - [Guided presentation and demo](design/guided-demo.md): `/demo/`, choreography, controls and shared prototype architecture.
 - [Review guide](REVIEW-GUIDE.md): start the prototype and walk the scenarios.
 - [Migration review](MIGRATION-REVIEW.md): evidence, fixes and remaining device checks.

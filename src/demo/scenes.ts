@@ -409,12 +409,12 @@ export const scenes: Scene[] = [
       action('future-add', '.sheet', 'Discover possibilities'),
       {
         click: '[data-action^="future-possibility:"]',
-        wait: '[name="target"]',
-        label: 'Explore a suggestion before making it yours',
+        wait: '[data-goal-preview]',
+        label: 'One possibility, with a future you can explore',
         hold: 3000,
       },
     ],
-    end: '[name="target"]',
+    end: '[data-goal-preview]',
   },
   {
     id: 'what-if',

@@ -463,6 +463,7 @@ import './design-system/data-colour.css';
 import './features/now/background.css';
 
 import './features/future/future.css';
+import './features/future/goal-session.css';
 
 import './features/pots/appearance.css';
 

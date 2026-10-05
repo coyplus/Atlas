@@ -91,7 +91,7 @@ export function handleFuture(ctx, type, id, p) {
     seePossibilities(p, possibilities(p, s));
     ctx.updateFuture();
     show('A new possibility', possibilityDiscovery(p, s));
-  } else if (type === 'future-own') show('Your own possibility', addDetail());
+  } else if (type === 'future-own') show('Your own possibility', addDetail(null, p));
   else if (type === 'future-possibility') {
     const idea = possibilities(p, s).find((i) => i.id === id);
     if (!idea) {
@@ -100,7 +100,7 @@ export function handleFuture(ctx, type, id, p) {
     }
     seePossibilities(p, [idea]);
     ctx.updateFuture();
-    show('Imagine this', addDetail(idea));
+    show('Imagine this', addDetail(idea, p));
   } else if (type === 'future-add-save') {
     const form = document.querySelector('#future-add-form');
     if (!form.reportValidity()) return;
@@ -138,6 +138,7 @@ export function handleFuture(ctx, type, id, p) {
       return;
     }
     toggleExperiment(p, i);
+    s.month = Math.max(0, Math.min(240, Number(v.get('previewMonth')) || 0));
     f.lastExperimentMonth = s.month;
     f.mode = 'sandbox';
     f.drawer = 'expanded';

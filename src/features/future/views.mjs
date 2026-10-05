@@ -1,3 +1,4 @@
+import { goalSession } from './goal-session.mjs';
 import { isFutureBeginning, futureBeginning } from './beginning.mjs';
 import { moneySpeedModel } from './money-speed.mjs';
 import { displayDate } from '../../domain/dates.mjs';
@@ -273,23 +274,8 @@ export function possibilityDiscovery(p, s) {
     <div class="possibility-own"><small>Personalised ideas · simulated AI</small></div>
   </div>`;
 }
-export function addDetail(i = null, p = null) {
-  if (i?.month && p) return horizonDetail(p, i);
-  return `<div class="fg-detail possibility-detail" ${i ? `data-possibility="${esc(i.id)}" data-viz-role="${i.role}"` : ''}>
-    ${i ? `<span class="possibility-art" aria-hidden="true">${icon('plus')}</span><span class="fg-ai-label">${esc(i.source)}</span>` : `<span class="fg-ai-label">${icon('spark')} A future that feels like you</span>`}
-    <h2>${esc(i?.prompt || 'What would you love to make possible?')}</h2>
-    <p>${esc(i?.why || 'Start with something that matters to you. You can try it before deciding.')}</p>
-    <form id="future-add-form" data-make-real="false" ${i ? `data-possibility="${esc(i.id)}"` : ''}>
-      <label class="field">${i ? 'Give this possibility a name' : 'Something to look forward to'}<input name="name" required maxlength="60" value="${esc(i?.name || '')}" placeholder="A place by the sea"></label>
-      ${i ? '<section class="possibility-numbers" aria-label="Shape the numbers"><h3>Shape the numbers <span>Optional to adjust</span></h3><p>Keep these starting figures or choose your own.</p>' : ''}
-      <div class="possibility-number-fields"><label class="field">${i?.investment ? 'A milestone to explore' : 'Your target'} (£)<input name="target" type="number" min="1" max="10000000" step="1" required value="${i?.target || 3000}" inputmode="numeric"></label>
-      <label class="field">Each month (£)<input name="amount" type="number" min="1" max="10000" step="1" required value="${i?.amount || 50}" inputmode="numeric"></label></div>
-      ${i ? '</section>' : ''}
-      <p class="support">${i?.investment ? 'Illustrative investment: 5% annual growth, with a range of outcomes. You could get back less than you put in. This does not open an investment account.' : 'Explore a monthly Money Rule from your current account. Review how it fits alongside your existing commitments before applying.'}</p>
-      <button type="submit" class="btn primary wide">Try this in my future</button>
-    </form>
-    ${i ? btn('Create my own instead', 'own', 'text wide') : ''}
-  </div>`;
+export function addDetail(i = null, p) {
+  return goalSession(p, i);
 }
 export function adjustDetail(p, id, priority = false) {
   const g = p.l1.pots.find((g) => g.id === id);
@@ -301,24 +287,5 @@ export function adjustDetail(p, id, priority = false) {
 }
 
 export function horizonDetail(p, i) {
-  return `<div class="fg-detail possibility-detail horizon-detail" data-possibility="${esc(i.id)}">
-    <div class="horizon-content">
-      <div class="horizon-when">${icon('plus')}<span>Around ${dateAt(p, i.month)} · age ${i.age}</span></div>
-      <form id="future-add-form" data-make-real="true" data-possibility="${esc(i.id)}">
-        <label class="horizon-name"><span class="sr-only">Goal name</span><input name="name" required maxlength="60" value="${esc(i.shortName || i.name)}" aria-describedby="horizon-reason">${icon('edit')}</label>
-        <p class="horizon-reason" id="horizon-reason">${esc(i.why)}</p>
-        <section class="possibility-numbers" aria-label="Shape the numbers">
-          <h3>Shape the numbers <span>Optional to adjust</span></h3>
-          <div class="possibility-number-fields">
-            <label class="field">Your target (£)<input name="target" type="number" min="1" max="10000000" step="1" required value="${i.target}" inputmode="numeric"></label>
-            <label class="field">Each month (£)<input name="amount" type="number" min="1" max="10000" step="1" required value="${i.amount}" inputmode="numeric"></label>
-          </div>
-        </section>
-      </form>
-    </div>
-    <footer class="horizon-actions">
-      <p>Creates a Pot and monthly Money Rule from today. You can undo this.</p>
-      <div class="horizon-decisions"><button type="submit" form="future-add-form" class="btn primary">Make it real</button>${btn('Not for me', 'horizon-hide:' + i.id, 'text')}</div>
-    </footer>
-  </div>`;
+  return goalSession(p, i, true);
 }
