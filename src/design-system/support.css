@@ -346,6 +346,11 @@ body[data-direction='vanilla'] .support-conversation .chat-thread {
   scrollbar-color: var(--line) transparent;
   gap: 8px;
   grid-template-columns: minmax(0, 1fr);
+  /* Messages soften as they scroll past the thread's edges instead of being cut flat. */
+  margin-top: -12px;
+  padding-block: 14px;
+  -webkit-mask-image: linear-gradient(transparent, #000 14px, #000 calc(100% - 14px), transparent);
+  mask-image: linear-gradient(transparent, #000 14px, #000 calc(100% - 14px), transparent);
 }
 body[data-direction='vanilla'] .chat-message .message-author {
   display: flex;
@@ -951,18 +956,22 @@ body[data-direction='vanilla']
   transform: translateY(-14px);
   pointer-events: none;
 }
-/* The header mark hands its identity to the voice presence while voice is active. */
-body[data-direction='vanilla'] .support-conversation .conversation-identity > :first-child {
-  transition:
-    opacity var(--duration-content) var(--ease-settle),
-    scale var(--duration-content) var(--ease-settle);
+/* The header mark hands its identity to the voice presence while voice is active;
+   the title centres above the presence (the controller glides it between positions). */
+body[data-direction='vanilla']
+  .support-conversation:has(.voice-stage:not([data-phase='off']))
+  .conversation-identity {
+  justify-content: center;
+  padding-left: 44px;
+  text-align: center;
 }
 body[data-direction='vanilla']
   .support-conversation:has(.voice-stage:not([data-phase='off']))
   .conversation-identity
   > :first-child {
+  position: absolute;
   opacity: 0;
-  scale: 0.6;
+  pointer-events: none;
 }
 .voice-stage {
   position: absolute;
@@ -1039,6 +1048,19 @@ body[data-direction='vanilla']
   width: 38%;
   height: 38%;
 }
+/* At presence scale the contour keeps the small mark's proportions, inside the fill. */
+.voice-orbit .companion-avatar.is-orb > i:last-of-type {
+  inset: 11%;
+}
+.voice-orbit .companion-avatar-listener.is-orb > i:last-of-type {
+  inset: 16% 4.5%;
+}
+.voice-orbit .companion-avatar-analyst.is-orb > i {
+  border-radius: 32%;
+}
+.voice-orbit .companion-avatar-analyst.is-orb > i:last-of-type {
+  inset: 18%;
+}
 .orb-light {
   position: absolute;
   display: block;
@@ -1057,9 +1079,9 @@ body[data-direction='vanilla']
   animation: orb-drift 12s ease-in-out infinite alternate;
 }
 .orb-light-warm {
-  inset: 42% -20% -26% -12%;
-  background: radial-gradient(ellipse at 50% 10%, #fff 0%, #ffffffb3 30%, transparent 72%);
-  filter: blur(4px);
+  inset: 34% -24% -34% -18%;
+  background: radial-gradient(ellipse at 50% 32%, #ffffffd9 0%, #ffffff73 34%, transparent 68%);
+  filter: blur(10px);
   animation: orb-drift-warm 10s ease-in-out infinite alternate;
 }
 /* Listening: the light gathers pace. Thinking and speaking move the three stars. */
@@ -1131,6 +1153,7 @@ body[data-direction='vanilla']
   gap: 8px;
   margin: 0;
   max-width: 30ch;
+  text-wrap: balance;
 }
 .voice-status small {
   font-size: var(--text-meta);
@@ -1288,6 +1311,7 @@ body[data-direction='vanilla']
 .voice-adviser-action small {
   font-size: var(--text-caption);
   color: var(--muted);
+  text-wrap: balance;
 }
 .voice-empty {
   margin: 12px 0 16px;

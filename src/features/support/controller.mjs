@@ -837,7 +837,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     motion(
       target,
       [
-        { transform: `translate(${dx}px, ${dy}px) scale(${scale})`, opacity: 0.85 },
+        { transform: `translate(${dx}px, ${dy}px) scale(${scale})`, opacity: scale > 1 ? 0.35 : 0.85 },
         { transform: 'none', opacity: 1 },
       ],
       'spatial',
@@ -847,12 +847,15 @@ export function createSupportController(getState, data, dispatch, showDialog) {
   function showVoice(phase) {
     if (!document.querySelector('.support-conversation')) return endVoice();
     const entering = !voicePhase,
-      from = entering ? rectOf('.conversation-identity > :first-child') : null;
+      from = entering ? rectOf('.conversation-identity > :first-child') : null,
+      title = entering ? rectOf('.conversation-identity > span') : null;
     voicePhase = phase;
     dispatch('chat');
     if (entering) {
       morphBetween(from, document.querySelector('.voice-orbit > *'));
-      document.querySelector('.voice-stage .voice-primary, .voice-stage .voice-control')?.focus({
+      glide(title, document.querySelector('.conversation-identity > span'));
+      const stage = document.querySelector('.voice-stage');
+      (stage?.querySelector('.voice-primary') || stage?.querySelector('.voice-control'))?.focus({
         preventScroll: true,
       });
     }
@@ -872,10 +875,20 @@ export function createSupportController(getState, data, dispatch, showDialog) {
     showVoice('answer');
   }
   function leaveVoice(fromSelector, toSelector) {
-    const from = rectOf(fromSelector);
+    const from = rectOf(fromSelector),
+      title = rectOf('.conversation-identity > span');
     endVoice();
     dispatch('chat');
     morphBetween(from, document.querySelector(toSelector));
+    glide(title, document.querySelector('.conversation-identity > span'));
+  }
+  // The header title moves between its text and voice positions instead of jumping.
+  function glide(fromRect, target) {
+    if (!fromRect || !target) return;
+    const to = target.getBoundingClientRect(),
+      dx = fromRect.left - to.left;
+    if (Math.abs(dx) > 1)
+      motion(target, [{ transform: `translateX(${dx}px)` }, { transform: 'none' }], 'spatial');
   }
   function action(id) {
     if (!enabled()) return;

@@ -53,7 +53,9 @@ body[data-direction] .phone[data-active-tab]:has(#overlay > .story-shell) .statu
   backdrop-filter: none;
   box-shadow: none;
 }
-body[data-direction='vanilla'] .phone .story-shell > .sheet-header::before {
+body[data-direction='vanilla'] .phone .story-shell > .sheet-header::before,
+body[data-direction='vanilla'] .phone .support-conversation > .sheet-header::before {
+  /* Nothing scrolls beneath the conversation header, so glass only painted a pale band. */
   display: none;
 }
 @media (prefers-reduced-transparency: reduce) {
