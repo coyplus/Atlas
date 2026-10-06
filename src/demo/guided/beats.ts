@@ -5,8 +5,15 @@ import type { Act } from './act';
 
 export type Customer = 'alex' | 'jordan' | 'sam' | 'elena';
 export type Run = { id: string; person: Customer; tab: 'now' | 'future' | 'you' };
-/** `centre` points at the middle of a large target, such as a bubble, instead of its leading edge. */
-export type Pointer = { run: string; target: string; label: string; centre?: boolean };
+/** The dot lands just inside the target's leading edge; `centre` for the middle of a large target such as a
+   bubble, `edge` just outside a small one such as a badge, so the dot never covers its words. */
+export type Pointer = {
+  run: string;
+  target: string;
+  label: string;
+  centre?: boolean;
+  edge?: boolean;
+};
 export type Beat = {
   id: string;
   chapter: string;
@@ -15,6 +22,8 @@ export type Beat = {
   who: Customer[];
   layout: 'single' | 'compare' | 'quad' | 'live';
   runs: string[];
+  /** Runs off camera before the frame appears, e.g. to open a tab without showing the way there. */
+  setup?: Partial<Record<string, (a: Act) => Promise<void>>>;
   steps?: Partial<Record<string, (a: Act) => Promise<void>>>;
   pointers?: Pointer[];
   montage?: boolean;
@@ -314,19 +323,29 @@ export const beats: Beat[] = [
     id: 'f4',
     chapter: future,
     headline: 'Try another path, before committing.',
-    sub: 'What if it were invested? A range, not a promise.',
+    sub: 'What if the £25 were invested? Saving becomes investing: a range, not a promise.',
     who: ['alex'],
     layout: 'single',
     runs: ['alex'],
-    optional: true,
     steps: {
       alex: async (a) => {
+        await a.scrollTo('text:Explore a first investment', {
+          container: '#overlay .sheet-body',
+          into: 'view',
+        });
+        await a.hold(400);
         await a.tap('text:Explore a first investment', 'Explore a first investment');
-        await a.hold(700);
+        await a.hold(900);
+        await a.scrollToTop('#overlay .sheet-body');
+        await a.note('text:Illustrative range', 'A range, not a promise', 1800);
       },
     },
     pointers: [
-      { run: 'alex', target: 'text:Explore a first investment', label: 'An illustrative range' },
+      {
+        run: 'alex',
+        target: '.goal-session-orbit',
+        label: 'From saving to investing',
+      },
     ],
   },
   {
@@ -341,15 +360,16 @@ export const beats: Beat[] = [
       alex: async (a) => {
         await a.tap('text:Try this in my Future', 'Try this in my Future');
         await a.waitGone('#overlay .sheet');
-        await a.hold(600);
-        if (a.has('.future-drawer-grip[aria-expanded="true"]'))
-          await a.tap('.future-drawer-grip', 'Panel down');
         await a.hold(700);
+        if (a.has('.future-studio[data-drawer="expanded"]'))
+          await a.tap('.future-drawer-grip', 'Panel down');
+        await a.settle(300);
+        // The map opens close in on a single goal; step back so it reads as a first goal among space to grow.
+        await a.zoomChart(0.51);
+        await a.hold(600);
       },
     },
-    pointers: [
-      { run: 'alex', target: '[id^="future-bubble-"]', label: 'Alex’s first goal', centre: true },
-    ],
+    pointers: [{ run: 'alex', target: '[id^="future-bubble-"]', label: 'Alex’s first goal' }],
   },
   {
     id: 'f6',
@@ -372,23 +392,26 @@ export const beats: Beat[] = [
     id: 'f7',
     chapter: future,
     headline: 'Months later: priorities compete for the same money.',
-    sub: 'The house deposit, an emergency fund, a family holiday, Ella’s next chapter.',
+    sub: 'Sam’s Future, eight months on: a house deposit, an emergency fund, a family holiday, Ella’s next chapter.',
     who: ['sam'],
     layout: 'single',
     runs: ['sam'],
-    steps: {
+    // No tab tap: the audience meets Sam's Future directly, a little closer in.
+    setup: {
       sam: async (a) => {
         a.closeAll();
-        await a.tap('[data-action="tab:future"]', 'Future');
+        a.dispatch('tab:future');
         await a.wait('#time-slider');
-        await a.hold(900);
+        await a.settle(500);
+        await a.zoomChart(1.55);
       },
     },
+    steps: { sam: (a) => a.hold(900) },
     pointers: [
       {
         run: 'sam',
         target: '#future-bubble-house|#future-bubble-ef|#future-bubble-hol',
-        label: 'Competing goals',
+        label: 'Sam’s goals',
       },
     ],
   },
@@ -413,8 +436,8 @@ export const beats: Beat[] = [
   {
     id: 'f9',
     chapter: future,
-    headline: 'Try a change. See the impact first.',
-    sub: 'Save £50 on payday: the emergency fund is ready 11 months sooner.',
+    headline: 'Try a few changes. See the impact first.',
+    sub: 'Save £50 on payday: the emergency fund is ready 11 months sooner. Add round-ups: 12. Nothing moves until Sam agrees.',
     who: ['sam'],
     layout: 'single',
     runs: ['sam'],
@@ -424,39 +447,42 @@ export const beats: Beat[] = [
           await a.tap('.future-drawer text:What if', 'What if');
         await a.hold(500);
         await a.tap('[data-action="future-try:closer-ef"]', 'Save £50 on payday');
+        await a.note('#support-dock', '11 months sooner', 1800);
+        await a.swipeTo('[data-action="future-try:roundup-ef"]');
+        await a.tap('[data-action="future-try:roundup-ef"]', 'Round up your spending');
         await a.hold(1000);
       },
     },
-    pointers: [
-      {
-        run: 'sam',
-        target: '[data-action="future-try:closer-ef"]',
-        label: 'A preview, not a commitment',
-      },
-    ],
+    pointers: [{ run: 'sam', target: '#support-dock', label: 'Together: 12 months sooner' }],
   },
   {
     id: 'f10',
     chapter: future,
     headline: 'What keeps the plan moving.',
-    sub: 'What moves each month, and where it goes. Speed up or slow down.',
+    sub: '£420 a month across three goals today. Sam can speed up or slow down.',
     who: ['sam'],
     layout: 'single',
     runs: ['sam'],
     optional: true,
     steps: {
       sam: async (a) => {
+        // Money Speed shows the agreed plan for the month on the timeline: clear the previews, back to today.
+        for (const el of a.doc.querySelectorAll<HTMLElement>(
+          '[data-action^="future-try:"][aria-pressed="true"]',
+        ))
+          a.dispatch(el.dataset.action!);
+        await a.drag('#time-slider', 0, 'Back to today');
         await a.tap('[data-action="future-speed"]', 'Money Speed');
         await a.hold(700);
       },
     },
-    pointers: [{ run: 'sam', target: '.fg-speed-ring', label: 'Money Speed' }],
+    pointers: [{ run: 'sam', target: '.fg-speed-ring', label: '£420 a month' }],
   },
   {
     id: 'y1',
     chapter: you,
-    headline: 'Day one: we ask, rather than assume.',
-    sub: 'Three light questions. A first impression Alex can shape.',
+    headline: 'Day one: we know little, so we ask.',
+    sub: 'No history yet. A fun quiz and a daily money check-in start to show what Alex prefers.',
     who: ['alex'],
     layout: 'single',
     runs: ['alex'],
@@ -465,10 +491,14 @@ export const beats: Beat[] = [
         await backOut(a);
         await a.tap('[data-action="tab:you"]', 'You');
         await a.wait('[data-action="quiz"]');
-        await a.hold(500);
+        await a.hold(700);
+        await a.scrollTo('.daily-beginning');
+        await a.note('.daily-beginning h2', 'A daily money check-in', 1800);
+        await a.scrollToTop();
+        await a.hold(400);
       },
     },
-    pointers: [{ run: 'alex', target: 'text:Discover how you', label: 'Three questions' }],
+    pointers: [{ run: 'alex', target: 'text:Discover how you', label: 'A fun quiz' }],
   },
   {
     id: 'y2',
@@ -514,40 +544,36 @@ export const beats: Beat[] = [
   {
     id: 'y4',
     chapter: you,
-    headline: 'Eight months on, the picture is richer.',
-    sub: 'Built from Sam’s choices, check-ins and household.',
+    headline: 'Eight months on, a portrait Sam recognises.',
+    sub: 'Built from Sam’s choices, check-ins and household. Planner: a plan for money, room for life.',
     who: ['sam'],
     layout: 'single',
     runs: ['sam'],
+    // No tab tap: the audience meets Sam's You tab directly.
+    setup: {
+      sam: async (a) => {
+        a.closeAll();
+        a.dispatch('tab:you');
+        await a.wait('[data-action="portrait"]');
+        a.doc.querySelector<HTMLElement>('#content')!.scrollTop = 0;
+      },
+    },
     steps: {
       sam: async (a) => {
-        await backOut(a);
-        await a.tap('[data-action="tab:you"]', 'You');
-        await a.wait('.portrait-glass');
+        await a.note('.portrait-glass', 'Sam’s Money Portrait', 1500);
+        await a.scrollTo('[data-action="portrait"]', { into: 'view' });
+        await a.note('.portrait-new', 'Something new', 1300);
+        await a.tap('[data-action="portrait"]', 'Explore your portrait');
+        await a.wait('#overlay text:A plan for money');
         await a.hold(600);
       },
     },
-    pointers: [{ run: 'sam', target: '.portrait-glass', label: 'Money Portrait' }],
+    pointers: [
+      { run: 'sam', target: '#overlay text:Planner', label: 'Sam’s Money Portrait', edge: true },
+    ],
   },
   {
     id: 'y5',
-    chapter: you,
-    headline: 'A portrait Sam recognises.',
-    sub: 'Planner: a plan for money, room for life.',
-    who: ['sam'],
-    layout: 'single',
-    runs: ['sam'],
-    steps: {
-      sam: async (a) => {
-        await a.tap('[data-action="portrait"]', 'Explore your portrait');
-        await a.wait('#overlay .sheet-body');
-        await a.hold(700);
-      },
-    },
-    pointers: [{ run: 'sam', target: 'text:A plan for money', label: 'What comes naturally' }],
-  },
-  {
-    id: 'y6',
     chapter: you,
     headline: 'Each trait, explained. And what’s changed.',
     sub: 'Since July: a new everyday habit, and an updated safety buffer.',
@@ -560,10 +586,12 @@ export const beats: Beat[] = [
         await a.hold(500);
       },
     },
-    pointers: [{ run: 'sam', target: '.ps-tile.has-update .ps-update', label: 'What’s new' }],
+    pointers: [
+      { run: 'sam', target: '.ps-tile.has-update .ps-update', label: 'What’s new', edge: true },
+    ],
   },
   {
-    id: 'y7',
+    id: 'y6',
     chapter: you,
     headline: 'We show our working.',
     sub: 'Eight months under the grocery line. Each figure with its source.',
@@ -584,7 +612,7 @@ export const beats: Beat[] = [
     pointers: [{ run: 'sam', target: '.pm-card.pm-kind-cadence', label: '8 months in a row' }],
   },
   {
-    id: 'y8',
+    id: 'y7',
     chapter: you,
     headline: 'All the data behind it, in the open.',
     sub: 'Saving by rule, monthly timing, app rhythm, 52 check-ins. 431 money moves, 15 answers.',
@@ -603,7 +631,7 @@ export const beats: Beat[] = [
     pointers: [{ run: 'sam', target: 'text:THE RECORD BEHIND THE PORTRAIT', label: 'The record' }],
   },
   {
-    id: 'y9',
+    id: 'y8',
     chapter: you,
     headline: 'Premier is within reach.',
     sub: '£2,000 to go. A Relationship Manager, family cover and benefits Sam chooses.',
@@ -626,7 +654,7 @@ export const beats: Beat[] = [
     pointers: [{ run: 'sam', target: '#overlay text:Expert access', label: 'Premier benefits' }],
   },
   {
-    id: 'y10',
+    id: 'y9',
     chapter: you,
     headline: 'Points that help with the next step.',
     sub: 'An hour with a coach, a rate boost, fee-free transfers. Not cash.',
@@ -653,10 +681,10 @@ export const beats: Beat[] = [
     ],
   },
   {
-    id: 'y11',
+    id: 'y10',
     chapter: you,
-    headline: 'Small steps, worth recognising.',
-    sub: 'Challenges give the next behaviour a shape.',
+    headline: 'Challenges that build healthy habits.',
+    sub: 'Fun to take on. They earn Points, build better money habits, and move Sam towards the goals that matter.',
     who: ['sam'],
     layout: 'single',
     runs: ['sam'],

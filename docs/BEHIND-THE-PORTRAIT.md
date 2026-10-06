@@ -18,6 +18,8 @@ What has changed · 6 October. Trait cards mark a reading that is new or updated
 in the last three months (for example *New · August*), and a line above the cards
 summarises it (*Since July: one new, one updated.*). The dates come from the
 milestones behind each reading, so the portrait shows that it learns over time.
+The new reading leads the cards, and *Explore your portrait* on You carries a red
+*New* marker until the customer opens their portrait.
 
 ## Behind: measurements
 

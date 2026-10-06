@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createSession, completeQuiz } from '../src/domain/money.mjs';
-import { portraitStory, portraitStoryReply } from '../src/features/you/portrait-story.mjs';
+import { portraitStory, portraitStoryReply, portraitNews } from '../src/features/you/portrait-story.mjs';
 const data = JSON.parse(readFileSync(new URL('../public/scenarios.json', import.meta.url)));
 const person = (id) => createSession(data).people[id];
 
@@ -49,7 +49,7 @@ test('customer perspective and contextual replies stay attached to the relevant 
   const money = JSON.stringify(p.l1);
   p.ui.portraitNotes = { routine: { text: 'Rules save me time for family.' } };
   const m = portraitStory(p);
-  assert.equal(m.cards[0].note, 'Rules save me time for family.');
+  assert.equal(m.cards.find((c) => c.id === 'routine').note, 'Rules save me time for family.');
   assert.match(portraitStoryReply(p, { member: 'self' }, { id: 'routine' }, 'What is that based on?'), /£420/);
   assert.match(portraitStoryReply(p, { member: 'self' }, { id: 'rhythm' }, 'Could there be another explanation?'), /Add your perspective/);
   assert.match(portraitStoryReply(p, { member: 'self' }, {}, 'Do my balances affect my personality?'), /do not set your personality/);
@@ -65,4 +65,16 @@ test('the story uses the words of a remembered reflection, never a private one',
   const voice = portraitStory(p).cards.find((c) => c.id === 'voice');
   assert.equal(voice.value, p.ui.checkins[0].insight);
   assert.equal(voice.observation, p.ui.checkins[0].insight);
+});
+
+test('a new reading leads the portrait and marks its entry until the customer opens it', () => {
+  const p = person('sam');
+  const m = portraitStory(p);
+  assert.deepEqual(m.cards[0].update, { kind: 'New', month: 'August' });
+  assert.equal(m.cards.find((c) => c.id === 'buffer').update.kind, 'Updated');
+  const news = portraitNews(p);
+  assert.equal(news.month, 'August');
+  p.ui.portraitUpdateSeen = news.key;
+  assert.equal(portraitNews(p), null);
+  assert.equal(portraitNews(person('alex')), null);
 });

@@ -108,6 +108,20 @@ body[data-direction='vanilla'] .money-portrait.personality {
   width: 20px;
   flex-shrink: 0;
 }
+.portrait-link .portrait-new {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.portrait-link .portrait-new + .icon {
+  margin-left: -4px;
+}
 .money-portrait .portrait-glass .btn {
   margin-top: 22px;
   padding: 12px 18px;

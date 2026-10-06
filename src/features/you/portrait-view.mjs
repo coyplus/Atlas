@@ -1,6 +1,7 @@
 import { esc, icon, button, householdAvatar } from '../../design-system/templates.mjs';
 import { portraitModel, portraitArt, traitExpression, traitGlyph } from './portrait.mjs';
 import { portraitInterpretationsView, portraitBalanceView } from './portrait-story-view.mjs';
+import { portraitNews } from './portrait-story.mjs';
 const summaries = {
   'Steady builder': 'You find your footing through small, regular steps.',
   Planner: 'You like a clear plan that makes room for everyday life.',
@@ -28,7 +29,7 @@ export function portraitComponent(p, s) {
     <div class="portrait-canvas">${portraitArt(m)}<span class="portrait-depth">${esc(m.household ? 'Shared perspectives' : m.stage)}</span></div>
     <div class="portrait-glass"><span class="eyebrow">${m.household ? 'YOUR HOUSEHOLD' : 'MONEY PORTRAIT'}</span><h1>${esc(m.personality.name || 'A picture of you.')}</h1>
     <p class="portrait-summary">${esc(m.named ? (corrected ? m.personality.copy : summaries[m.personality.name] || m.personality.copy) : 'Discover how you plan, spend and save. Your answers shape your portrait.')}</p>
-    ${m.named ? `<div class="portrait-traits">${m.traits.map(([t]) => `<span>${traitGlyph(t)}${esc(t)}</span>`).join('')}</div><button class="portrait-link" data-action="portrait"><span>${m.self ? 'Explore your portrait' : 'Explore this portrait'}</span>${icon('arrow')}</button>` : `${button('Take the 2-minute quiz', 'quiz', 'primary')}<small class="portrait-reward">Your Money Portrait + 25 HSBC Points</small>`}
+    ${m.named ? `<div class="portrait-traits">${m.traits.map(([t]) => `<span>${traitGlyph(t)}${esc(t)}</span>`).join('')}</div><button class="portrait-link" data-action="portrait"><span>${m.self ? 'Explore your portrait' : 'Explore this portrait'}</span>${m.self && portraitNews(p) ? '<em class="portrait-new">New</em>' : ''}${icon('arrow')}</button>` : `${button('Take the 2-minute quiz', 'quiz', 'primary')}<small class="portrait-reward">Your Money Portrait + 25 HSBC Points</small>`}
     <button class="portrait-link ps-entry" data-action="portrait-story"><span>Behind ${m.self ? 'your' : 'this'} portrait</span>${icon('arrow')}</button></div></section>`;
 }
 const coverLines = {

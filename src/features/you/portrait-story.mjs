@@ -273,6 +273,12 @@ function recentUpdates(p) {
     recent.map((r, i) => [r.card, { kind: i ? 'Updated' : 'New', month: r.month }]),
   );
 }
+/** The newest reading the customer has not opened yet: it marks the portrait entry as New. */
+export function portraitNews(p) {
+  const fresh = Object.entries(recentUpdates(p)).find(([, u]) => u.kind === 'New');
+  const key = fresh && fresh[0] + ':' + fresh[1].month;
+  return !fresh || p.ui.portraitUpdateSeen === key ? null : { key, month: fresh[1].month };
+}
 export function portraitStory(p, member = 'self') {
   const m = portraitModel(p, member),
     own = m.self;
@@ -362,6 +368,11 @@ export function portraitStory(p, member = 'self') {
     note: own ? p.ui.portraitNotes?.[card.id]?.text : null,
     update: updates[card.id] || null,
   }));
+  // What is new leads, so a returning customer sees it first.
+  cards = [
+    ...cards.filter((c) => c.update?.kind === 'New'),
+    ...cards.filter((c) => c.update?.kind !== 'New'),
+  ];
   return {
     ...m,
     own,

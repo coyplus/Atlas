@@ -71,30 +71,42 @@ test('Alex’s numbers carry forward, and going back rebuilds the same state', a
 });
 
 test('optional beats can be skipped, and the choice is remembered', async ({ page }) => {
-  await page.goto('/demo/?version=short#f3');
+  await page.goto('/demo/?version=short#f5');
   await ready(page);
   await page.keyboard.press('ArrowRight');
-  await expect(page).toHaveURL(/#f4$/);
+  await expect(page).toHaveURL(/#f6$/);
   await ready(page);
   // Hiding the beat on screen steps back to the nearest one that stays.
   await page.keyboard.press('o');
-  await expect(page).toHaveURL(/#f3$/);
-  await ready(page);
-  await page.keyboard.press('ArrowRight');
   await expect(page).toHaveURL(/#f5$/);
-  await page.reload();
   await ready(page);
   await page.keyboard.press('ArrowRight');
   await expect(page).toHaveURL(/#f7$/);
+  await page.goto('/demo/?version=short#f9');
+  await page.reload();
+  await ready(page);
+  await page.keyboard.press('ArrowRight');
+  await expect(page).toHaveURL(/#y1$/);
+});
+
+test('Money Speed shows Sam’s agreed plan for today, not a previewed or future month', async ({
+  page,
+}) => {
+  await page.goto('/demo/?version=short#f10');
+  await ready(page);
+  const sheet = frame(page, 'sam').locator('#overlay');
+  await expect(sheet).toContainText('£420');
+  await expect(sheet).toContainText('3 goals in motion');
 });
 
 test('Sam’s portrait shows what changed, then Premier opens from it', async ({ page }) => {
-  await page.goto('/demo/?version=short#y6');
+  await page.goto('/demo/?version=short#y5');
   await ready(page);
   const sam = frame(page, 'sam');
   await expect(sam.locator('.ps-updates-line')).toHaveText('Since July: one new, one updated.');
+  await expect(sam.locator('.ps-tile').first().locator('.ps-update')).toHaveText('New · August');
   await expect(pointers(page)).toHaveText(['What’s new']);
-  await page.goto('/demo/?version=short#y9');
+  await page.goto('/demo/?version=short#y8');
   await ready(page);
   await expect(sam.locator('#overlay')).toContainText('Expert access');
   await expect(pointers(page)).toHaveText(['Premier benefits']);

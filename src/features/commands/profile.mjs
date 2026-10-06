@@ -3,6 +3,7 @@ import { quizDialog, setQuizReward } from '../you/quiz.mjs';
 import { nowBackgroundSettings, readBackgroundPhoto } from '../now/background.mjs';
 import { portraitSignalView, portraitNoteView } from '../you/portrait-story-view.mjs';
 import { portraitDetail } from '../you/portrait-view.mjs';
+import { portraitNews } from '../you/portrait-story.mjs';
 import { portraitMetricsView, portraitMetricDetail } from '../you/portrait-metrics-view.mjs';
 import { agreementChangeEffects } from '../../domain/containers.mjs';
 import { agreementEffectsView } from '../../features/pots/views.mjs';
@@ -26,7 +27,15 @@ export function handle(ctx, type, id, p, action) {
       `<div class="portrait-unshared"><span>${icon('users')}</span><h3>Awaiting consent</h3><p>A demo invitation has been created for ${esc(invite.name)}. No email has been sent and no personal information has been shared.</p>${button('Back to your household', 'close', 'secondary wide')}</div>`,
     );
   }
-  if (type === 'portrait') return ctx.openModal('Your Money Portrait', portraitDetail(p, ctx.S));
+  if (type === 'portrait') {
+    // Opening your own portrait clears its New marker.
+    const news = ctx.S.member === 'self' && portraitNews(p);
+    if (news) {
+      p.ui.portraitUpdateSeen = news.key;
+      ctx.render();
+    }
+    return ctx.openModal('Your Money Portrait', portraitDetail(p, ctx.S));
+  }
   if (type === 'portrait-story')
     return ctx.openModal(
       ctx.S.member === 'self' ? 'Behind your portrait' : 'Behind this portrait',

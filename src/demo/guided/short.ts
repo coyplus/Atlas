@@ -11,7 +11,7 @@ import { slides as deckSlides } from '../../presentation/short';
 import { initialiseNarrativeMotion } from '../../presentation/narrative-motion';
 import { materialIcons, materialViewBoxes } from '../../design-system/icons.mjs';
 import { beats, live, runs, stages, type Beat, type Customer } from './beats';
-import { createAct, rectOf, type Cue } from './act';
+import { createAct, rectOf, type Act, type Cue } from './act';
 
 type Slide = (typeof deckSlides)[number];
 type Entry = { id: string; title: string; chapter: string; slide?: Slide; beat?: Beat };
@@ -235,6 +235,21 @@ const cue: Cue = {
   hide() {
     touchEl.hidden = true;
   },
+  point(spec, label) {
+    notePointer =
+      spec && cueFrame
+        ? {
+            f: cueFrame,
+            target: spec,
+            label: label || '',
+            compact: false,
+            centre: false,
+            edge: false,
+            right: false,
+          }
+        : null;
+    drawPointers();
+  },
 };
 let pointers: {
   f: Frame;
@@ -242,15 +257,18 @@ let pointers: {
   label: string;
   compact: boolean;
   centre: boolean;
+  edge: boolean;
   right: boolean;
 }[] = [];
+// A pointer shown for a moment during a step (act.note), alongside the beat's own.
+let notePointer: (typeof pointers)[number] | null = null;
 function drawPointers() {
   overlay.querySelectorAll('.g-pointer').forEach((el) => el.remove());
-  for (const p of pointers) {
+  for (const p of notePointer ? [...pointers, notePointer] : pointers) {
     if (!p.f.slot || !p.f.iframe.contentDocument) continue;
     const r = rectOf(p.f.iframe.contentDocument, p.target);
     if (!r) continue;
-    const inset = p.centre ? r.w / 2 : Math.min(30, r.w / 2);
+    const inset = p.centre ? r.w / 2 : p.edge ? -10 : Math.min(30, r.w / 2);
     const dot = toStage(p.f, p.right ? r.x + r.w - inset : r.x + inset, r.y + r.h / 2);
     const el = document.createElement('div');
     el.className = 'g-pointer' + (p.right ? ' is-right' : '');
@@ -286,20 +304,27 @@ function lastBefore(b: Beat, run: string) {
     if (active(beats[i]) && beats[i].runs.includes(run)) return i;
   return -1;
 }
+async function quietly(
+  f: Frame,
+  b: Beat,
+  work: ((a: Act) => Promise<void>) | undefined,
+  alive: () => boolean,
+) {
+  if (!work) return;
+  const a = createAct({ frame: f.iframe, visible: false, cue, alive, rush: () => true });
+  try {
+    await work(a);
+  } catch (e) {
+    if ((e as DOMException).name === 'AbortError') throw e;
+    console.warn('Guided demo: instant step skipped', b.id, f.run, e);
+  }
+}
 async function applyInstant(f: Frame, upTo: number, alive: () => boolean) {
   for (let i = f.applied + 1; i <= upTo; i++) {
     const b = beats[i];
     if (!active(b) || !b.runs.includes(f.run)) continue;
-    const step = b.steps?.[f.run];
-    if (step) {
-      const a = createAct({ frame: f.iframe, visible: false, cue, alive, rush: () => true });
-      try {
-        await step(a);
-      } catch (e) {
-        if ((e as DOMException).name === 'AbortError') throw e;
-        console.warn('Guided demo: instant step skipped', b.id, f.run, e);
-      }
-    }
+    await quietly(f, b, b.setup?.[f.run], alive);
+    await quietly(f, b, b.steps?.[f.run], alive);
     f.applied = i;
   }
 }
@@ -351,6 +376,7 @@ async function showBeat(b: Beat, forward: boolean, alive: () => boolean) {
   stage.dataset.status = 'preparing';
   renderChrome(b);
   pointers = [];
+  notePointer = null;
   drawPointers();
   cue.hide();
   clearTimeout(montageTimer);
@@ -379,10 +405,14 @@ async function showBeat(b: Beat, forward: boolean, alive: () => boolean) {
         else await p.f.ready;
         return;
       }
-      if (p.visible) return;
-      p.f.el.classList.add('is-preparing');
-      await prepare(p.f, b.steps?.[p.f.run] ? p.before : ownTarget, alive);
-      if (!b.steps?.[p.f.run]) p.f.applied = ownTarget;
+      const own = b.steps?.[p.f.run] || b.setup?.[p.f.run];
+      if (!p.visible) {
+        p.f.el.classList.add('is-preparing');
+        await prepare(p.f, own ? p.before : ownTarget, alive);
+        if (!own) p.f.applied = ownTarget;
+      }
+      // Setup happens off camera, so the customer is already where the beat begins.
+      if (p.f.applied < ownTarget && alive()) await quietly(p.f, b, b.setup?.[p.f.run], alive);
     }),
   );
   if (!alive()) return;
@@ -434,6 +464,7 @@ async function showBeat(b: Beat, forward: boolean, alive: () => boolean) {
     label: p.label,
     compact: b.layout !== 'single',
     centre: !!p.centre,
+    edge: !!p.edge,
     right: b.layout === 'compare' && b.runs.indexOf(p.run) === 1,
   }));
   drawPointers();
@@ -455,9 +486,9 @@ function montage(used: Frame[], alive: () => boolean) {
       ).atlas?.go(runOf(f.run).person, tabs[i]),
     );
     label.textContent = tabs[i][0].toUpperCase() + tabs[i].slice(1);
-    montageTimer = setTimeout(turn, fast ? 50 : 2600);
+    montageTimer = setTimeout(turn, fast ? 50 : 4200);
   };
-  montageTimer = setTimeout(turn, fast ? 50 : 1800);
+  montageTimer = setTimeout(turn, fast ? 50 : 3600);
 }
 
 // Look ahead: load the next beat's new frames out of sight so nothing loads in front of the room.
