@@ -407,12 +407,14 @@ export function createSupportController(getState, data, dispatch, showDialog) {
       audioError = 'Audio unavailable. Read the transcript.';
       refresh();
     });
-    media.addEventListener('timeupdate', () => {
+    // Read the element that fired: closing the player can deliver one last update after `media` is cleared.
+    media.addEventListener('timeupdate', (event) => {
+      const time = event.currentTarget.currentTime;
       const input = document.querySelector('#recap-progress');
-      if (input) input.value = media.currentTime;
+      if (input) input.value = time;
       paintProgress();
       const elapsed = document.querySelector('#recap-elapsed');
-      if (elapsed) elapsed.textContent = clock(media.currentTime);
+      if (elapsed) elapsed.textContent = clock(time);
     });
   }
   function stopAudio() {
@@ -908,8 +910,23 @@ export function createSupportController(getState, data, dispatch, showDialog) {
           setTimeout(() => answerVoice(), 2700),
         );
         break;
+      // Presenter-paced variants for the guided demo: the question holds until the next beat.
+      case 'voice-ask':
+        voiceAnswered = false;
+        clearVoiceTimers();
+        showVoice('listening');
+        break;
+      case 'voice-think':
+        clearVoiceTimers();
+        showVoice('thinking');
+        break;
       case 'voice-answer':
         answerVoice();
+        break;
+      case 'voice-agenda':
+        // Elena's open question goes to Priya before the review; the answer card confirms it.
+        person().ui.reviewAgenda = true;
+        showVoice('answer');
         break;
       case 'voice-human':
         clearVoiceTimers();

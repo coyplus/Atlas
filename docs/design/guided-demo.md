@@ -37,6 +37,20 @@ Every product scene now has a non-interactive playback indicator outside the pho
 
 This is a trial of the visual language, not a decision to apply every treatment to every scene. Review audience comprehension and presenter timing before extending it.
 
+## Narrative short guided edition · 6 October 2026
+
+Since 6 October 2026 this edition is the default at `/demo/` (also `/demo/?version=short`), for a 20–25 minute presentation and demo. The original edition described above stays at `/demo/?version=original`; `src/demo/entry.ts` chooses, and bookmarked links to the original scenes (for example `/demo/#time-travel`) still open the original. It follows a free demo that proved hard to operate: the presenter had to drive the prototype, jump between screens, reset it and remember notes at the same time. Here the presenter sets the pace and the screen carries the operation.
+
+Order: the first eleven Narrative short slides, then 34 beats, the closing slide, and the working prototype. The beats are grouped in chapters: the four customers and their moments (one beat), the Companion (c1–c7), Now (n1–n4), Future (f1–f10), You (y1–y11) and an ending montage (e1). Each beat has copy on the left (chapter, step count, headline, one line) and one or more live prototypes on the right, with one small step and one focused motion. A timeline at the top shows which customer and moment is on screen. The stage is a fixed 1600 × 900 composition scaled to the window.
+
+- `src/demo/guided/beats.ts` holds the copy, layout (single, compare, quad, live), customers, steps and pointers. `act.ts` performs steps on the real prototype; `short.ts` is the deck controller; `short.css` the stage.
+- Each customer keeps one prototype frame for the whole edition, so a beat continues from the state the previous beat left: Alex adds Safe to spend in n3 and still has it in Future. Going back or jumping rebuilds the frame silently from the fictional starting scenario, applying earlier beats without motion.
+- Every change of screen is shown, not cut: a touch disc for each tap, scroll, drag and Back, with a short label. A pointer (red label, line and dot, no outline) names what to look at once the step settles.
+- Right arrow, Space and Page Down advance; left arrow and Page Up go back; Home and End jump. Pressing during a step finishes it. C opens the contents. O hides or shows the optional beats (c3, f4, f6, f10, y2, y11); the choice is kept in this browser. The controls appear when the mouse moves. In the working prototype the presenter uses the app directly; Escape returns to the closing slide.
+- Each beat has a hash (`#n3`) and posts `{ type: 'atlas-demo', id, … }` to its opener and to the `atlas-guided-demo` BroadcastChannel; an `atlas-demo-control` message moves the deck. A presenter window can follow it. Presenter notes stay outside this repository.
+
+Product changes made for this story apply to the app as a whole: Safe to spend is Alex's lead number suggestion; when Safe to spend leads My numbers, the Companion offers an alert below £150 (`safespend-alert`); the Companion leaves its Customise message once Done is pressed; Elena can prepare for Thursday's review by voice and add the open question to Priya's agenda; Money Portrait trait cards mark readings that are new or updated in the last three months; closing the weekly briefing player no longer reads the removed audio element.
+
 ## Boundaries and verification
 
 This remains a fictional, deterministic concept—not a live banking or validated AI service. The memory demonstration uses the existing explicit Remember for future support control and the actual saved memory library. Known existing limitation: the Future support model currently prioritises forecast messaging ahead of remembered reflections. This release preserves that behaviour; the scene does not claim to demonstrate memory-driven Future messaging. Each scene resets independently; the complete deck is not one accumulating customer session. Reduced-motion preferences remove scroll and timeline tweening; presenter-controlled pacing remains available.

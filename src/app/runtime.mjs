@@ -1618,6 +1618,7 @@ const commandRoutes = {
   'preview-size': 'numbers',
   'suggestion-size': 'numbers',
   'add-suggestion': 'numbers',
+  'safespend-alert': 'numbers',
   'pin-preview': 'numbers',
   pin: 'numbers',
 };

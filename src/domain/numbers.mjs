@@ -421,8 +421,32 @@ function baseModuleModel(p, id, catalogue) {
   }
   return model;
 }
+// Once Safe to spend leads Now, the Companion offers to watch it rather than confirm the change.
+export const SAFE_SPEND_ALERT = 150;
+function safeSpendOffer(p, last) {
+  const safe = safeAmount(p);
+  if (safe === null || p.ui.order[0] !== 'safespend') return null;
+  if (p.ui.safeSpendAlert)
+    return /alert/i.test(last.title)
+      ? {
+          title: 'We’ll keep an eye on it',
+          message: `You’ll get a nudge if Safe to spend drops below ${cash(p.ui.safeSpendAlert)}.`,
+          action: 'receipts',
+          cta: 'See activity',
+        }
+      : null;
+  if (!/Safe to spend|Reordered your numbers/.test(last.title)) return null;
+  return {
+    title: `${cash(safe)} safe to spend until payday`,
+    message: `Want a nudge if it drops below ${cash(SAFE_SPEND_ALERT)}?`,
+    action: 'safespend-alert',
+    cta: 'Set an alert',
+  };
+}
 export function aiMessage(p, tab, month = 0) {
   const last = [...p.ui.receipts].reverse().find((x) => !x.undone);
+  const offer = last && tab === 'now' && !last.reversal ? safeSpendOffer(p, last) : null;
+  if (offer) return offer;
   if (last && tab === 'now')
     return {
       title: last.reversal ? 'Change undone' : 'All taken care of',

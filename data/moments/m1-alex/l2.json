@@ -630,6 +630,7 @@
    "id": "rec-widget-safespend",
    "kind": "module-suggestion",
    "moduleId": "safespend",
+   "lead": true,
    "why": "Payday is in 8 days. Want one number that says what’s truly spendable?",
    "basis": [
     "l1:spending",

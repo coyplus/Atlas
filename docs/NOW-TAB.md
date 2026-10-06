@@ -62,6 +62,8 @@ Current colour treatment: all Number cards use the same standard surface, border
 
 Safe to spend is Jordan’s first wide Number. Grocery spending remains in the catalogue but is not pinned by default; his Grocery budget pot remains visible.
 
+From 6 October, Safe to spend is also Alex’s first suggestion in Choose your numbers (*Payday is in 8 days. Want one number that says what’s truly spendable?*). Once it leads My numbers, the Companion offers a low-balance alert; see `SUPPORT-BAR.md`.
+
 A Budget Pot Number now leads with the monthly allowance (£320/mo), shows recorded spending (£150.30 spent), and a thin usage bar. The calculation uses the same calendar-month spending condition as the pot detail. Funding transfers do not count as spending or increase the budget; cash actually available remains explicit in the detail. For example Jordan has £69.70 available, £150.30 spent and a £320 monthly allowance: unused allowance is not presented as available cash. Above-budget spending keeps the actual amount, adds the excess in text and caps the red bar at 100%. Shared avatars remain compact. This budget-specific presentation replaces the benefit note in mini widgets; current cashback and agreement conditions remain in the detail.
 
 Compact Budget Pot usage bars sit at the bottom of the card’s content area, with a minimum 12 px gap above. Adjacent cards share the same bar baseline even when one has participant avatars or wrapped copy.

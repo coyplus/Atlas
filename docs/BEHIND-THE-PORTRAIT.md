@@ -14,6 +14,11 @@ its contribution to a trait. Tapping it opens the fuller observation, reasoning
 and ongoing signals. Confirmation, correction and saved personal perspectives
 remain here. The customer can inspect the reasoning without accepting it.
 
+What has changed · 6 October. Trait cards mark a reading that is new or updated
+in the last three months (for example *New · August*), and a line above the cards
+summarises it (*Since July: one new, one updated.*). The dates come from the
+milestones behind each reading, so the portrait shows that it learns over time.
+
 ## Behind: measurements
 
 A separate dashboard leads with numbers, periods and visual measurements. It has

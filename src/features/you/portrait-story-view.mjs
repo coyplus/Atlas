@@ -26,9 +26,23 @@ function chart(card) {
   return '';
 }
 const style = (c) => `--signal:${c.color};--signal-light:${c.light}`;
+// What has changed since the customer last looked: one line above the readings.
+function updatesLine(cards) {
+  const changed = cards.filter((c) => c.update);
+  if (!changed.length) return '';
+  const fresh = changed.filter((c) => c.update.kind === 'New').length,
+    updated = changed.length - fresh,
+    words = ['', 'one', 'two', 'three'];
+  const parts = [
+    fresh && `${words[fresh] || fresh} new`,
+    updated && `${words[updated] || updated} updated`,
+  ].filter(Boolean);
+  const since = changed.at(-1).update.month;
+  return `<p class="ps-updates-line">Since ${esc(since)}: ${parts.join(', ')}.</p>`;
+}
 export function portraitInterpretationsView(p, s) {
   const m = portraitStory(p, s.member);
-  return `<section class="portrait-interpretations" data-portrait-story="${esc(m.member)}"><header class="pe-section-heading"><span class="eyebrow">THE PATTERNS BENEATH THE PORTRAIT</span><h3>How we read the picture.</h3></header><div class="ps-tiles">${m.cards.map((c) => `<button class="ps-tile ps-interpretation" data-action="portrait-signal:${c.id}" data-support-topic="${c.id}" style="${style(c)}"><span class="ps-tile-top"><span>${esc(c.label)}</span>${icon('arrow')}</span><h3>${esc(c.title)}</h3><div class="ps-interpretation-body">${c.trait ? traitGlyph(c.trait) : icon('spark')}<p>${esc(c.note || c.meaning)}</p></div><span class="ps-trait">${esc(c.note ? 'Your perspective added' : c.trait ? 'Part of your ' + c.trait.toLowerCase() : 'Still taking shape')}</span></button>`).join('')}</div>${m.own && p.ui.portraitNotes?.overall ? `<section class="ps-own-perspective"><span class="eyebrow">IN YOUR OWN WORDS</span><blockquote>${esc(p.ui.portraitNotes.overall.text)}</blockquote>${button('Edit your perspective', 'portrait-note:overall', 'text')}</section>` : ''}</section>`;
+  return `<section class="portrait-interpretations" data-portrait-story="${esc(m.member)}"><header class="pe-section-heading"><span class="eyebrow">THE PATTERNS BENEATH THE PORTRAIT</span><h3>How we read the picture.</h3>${updatesLine(m.cards)}</header><div class="ps-tiles">${m.cards.map((c) => `<button class="ps-tile ps-interpretation${c.update ? ' has-update' : ''}" data-action="portrait-signal:${c.id}" data-support-topic="${c.id}" style="${style(c)}"><span class="ps-tile-top"><span>${esc(c.label)}</span>${c.update ? `<em class="ps-update">${esc(c.update.kind)} · ${esc(c.update.month)}</em>` : icon('arrow')}</span><h3>${esc(c.title)}</h3><div class="ps-interpretation-body">${c.trait ? traitGlyph(c.trait) : icon('spark')}<p>${esc(c.note || c.meaning)}</p></div><span class="ps-trait">${esc(c.note ? 'Your perspective added' : c.trait ? 'Part of your ' + c.trait.toLowerCase() : 'Still taking shape')}</span></button>`).join('')}</div>${m.own && p.ui.portraitNotes?.overall ? `<section class="ps-own-perspective"><span class="eyebrow">IN YOUR OWN WORDS</span><blockquote>${esc(p.ui.portraitNotes.overall.text)}</blockquote>${button('Edit your perspective', 'portrait-note:overall', 'text')}</section>` : ''}</section>`;
 }
 
 export function portraitSignalView(p, s, id) {

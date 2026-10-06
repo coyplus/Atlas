@@ -1313,6 +1313,68 @@ body[data-direction='vanilla']
   color: var(--muted);
   text-wrap: balance;
 }
+/* Elena's review preparation: on track, open, to ask. */
+.voice-review-list {
+  display: grid;
+  gap: 0;
+  margin: 12px 0 4px;
+  padding: 0;
+  list-style: none;
+}
+.voice-review-list li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.voice-review-list li:first-child {
+  border-top: 0;
+}
+.voice-review-list i {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-style: normal;
+  background: var(--soft);
+  color: var(--muted);
+}
+.voice-review-list [data-state='done'] i {
+  color: var(--ink);
+}
+.voice-review-list [data-state='open'] i {
+  background: var(--companion-color, var(--ink));
+  color: var(--surface);
+}
+.voice-review-list b {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+}
+.voice-review-list small {
+  font-size: var(--text-caption);
+  color: var(--muted);
+}
+.voice-review-added {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  animation: voice-arrive var(--duration-surface) var(--ease-settle) both;
+}
+.voice-review-added .icon {
+  width: 18px;
+  height: 18px;
+}
+.voice-review-added span {
+  text-wrap: balance;
+}
 .voice-empty {
   margin: 12px 0 16px;
   font-size: 15px;

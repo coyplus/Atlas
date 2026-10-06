@@ -1,7 +1,7 @@
 import { numberIdeas } from '../../domain/number-visuals.mjs';
 import { renderRegion } from '../../design-system/Markup.tsx';
-import { transaction } from '../../domain/money.mjs';
-import { moduleModel } from '../../domain/numbers.mjs';
+import { transaction, cash } from '../../domain/money.mjs';
+import { moduleModel, SAFE_SPEND_ALERT } from '../../domain/numbers.mjs';
 import { galleryDialog, modulePreviewDialog, suggestedNumber } from '../../features/dialogs.mjs';
 export function handle(ctx, type, id, p, action) {
   if (type === 'reorder-numbers') {
@@ -17,6 +17,14 @@ export function handle(ctx, type, id, p, action) {
       p.ui.order = order;
     });
     ctx.render();
+    return;
+  }
+  if (type === 'safespend-alert') {
+    transaction(p, `Set a Safe to spend alert at ${cash(SAFE_SPEND_ALERT)}`, () => {
+      p.ui.safeSpendAlert = SAFE_SPEND_ALERT;
+    });
+    ctx.render();
+    ctx.toast('Alert set');
     return;
   }
   if (type === 'size') {

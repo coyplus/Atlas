@@ -242,6 +242,37 @@ function longHabitTile() {
     question: 'How does this shape the portrait?',
   };
 }
+// Readings that changed recently, from dated milestones: the newest is new, earlier ones updated.
+const READING_MILESTONES = {
+  rhythm: 'grocery-rhythm',
+  buffer: 'safety-buffer',
+  routine: 'home-plan',
+};
+function recentUpdates(p) {
+  const asOf = new Date(p.l1.asOf + 'T12:00:00Z');
+  const recent = Object.entries(READING_MILESTONES)
+    .map(([card, story]) => {
+      const m = p.l1.relationship?.milestones?.find((x) => x.story?.id === story);
+      if (!m) return null;
+      const date = new Date(m.date.slice(0, 7) + '-01T12:00:00Z');
+      const months =
+        (asOf.getUTCFullYear() - date.getUTCFullYear()) * 12 +
+        asOf.getUTCMonth() -
+        date.getUTCMonth();
+      return months <= 3
+        ? {
+            card,
+            date,
+            month: date.toLocaleDateString('en-GB', { month: 'long', timeZone: 'UTC' }),
+          }
+        : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.date - a.date);
+  return Object.fromEntries(
+    recent.map((r, i) => [r.card, { kind: i ? 'Updated' : 'New', month: r.month }]),
+  );
+}
 export function portraitStory(p, member = 'self') {
   const m = portraitModel(p, member),
     own = m.self;
@@ -324,10 +355,12 @@ export function portraitStory(p, member = 'self') {
         question: 'What will you learn next?',
       },
     ];
+  const updates = own ? recentUpdates(p) : {};
   cards = cards.map((card) => ({
     ...card,
     ...tone(card.trait),
     note: own ? p.ui.portraitNotes?.[card.id]?.text : null,
+    update: updates[card.id] || null,
   }));
   return {
     ...m,

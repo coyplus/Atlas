@@ -1,0 +1,316 @@
+/* Narrative short guided demo: a fixed 16:9 stage, scaled to the window, around the live prototype. */
+body[data-guided='short'] .guided-header {
+  display: none;
+}
+body[data-guided='short'] .deck-controls {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+body[data-guided='short'].g-controls .deck-controls,
+body[data-guided='short'] .deck-controls:focus-within {
+  opacity: 1;
+}
+#g-stage-host {
+  position: fixed;
+  inset: var(--header, 64px) 0 0;
+  z-index: 3;
+  background: var(--paper, #fafaf9);
+  overflow: hidden;
+}
+#g-stage-host[hidden] {
+  display: none;
+}
+#g-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1600px;
+  height: 900px;
+  transform-origin: center;
+  color: var(--ink, #161719);
+}
+.g-timeline {
+  position: absolute;
+  left: 100px;
+  right: 100px;
+  top: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.g-timeline > div {
+  border-top: 2px solid #d4d8da;
+  padding-top: 10px;
+  color: #9aa0a5;
+  transition:
+    color 0.5s,
+    border-color 0.5s;
+}
+.g-timeline b {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+}
+.g-timeline span {
+  font-size: 13px;
+}
+.g-timeline [data-state='on'] {
+  border-color: #db0011;
+  color: var(--ink, #161719);
+}
+.g-timeline [data-state='past'] {
+  border-color: #9aa0a5;
+}
+.g-copy {
+  position: absolute;
+  left: 100px;
+  top: 220px;
+  width: 640px;
+}
+#g-stage[data-layout='quad'] .g-copy,
+#g-stage[data-layout='compare'] .g-copy {
+  width: 520px;
+}
+.g-copy.is-in {
+  animation: g-rise 0.45s ease both;
+}
+.g-label {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted, #62666b);
+}
+.g-label b {
+  color: #db0011;
+  font-weight: 600;
+}
+.g-headline {
+  margin: 22px 0 0;
+  font-size: 58px;
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.g-sub {
+  margin: 24px 0 0;
+  max-width: 600px;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--muted, #62666b);
+  text-wrap: pretty;
+}
+.g-frames {
+  position: absolute;
+  inset: 0;
+}
+.g-device {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 390px;
+  height: 844px;
+  transform-origin: 0 0;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.45s ease;
+}
+.g-device.is-on {
+  opacity: 1;
+}
+.g-device.is-preparing {
+  opacity: 0;
+}
+.g-screen {
+  width: 390px;
+  height: 844px;
+  border-radius: 46px;
+  overflow: hidden;
+  background: #f4f6f5;
+  box-shadow:
+    0 0 0 7px #1d2023,
+    0 0 0 8px #3a3f43,
+    0 30px 60px -28px #1c293366;
+}
+.g-screen iframe {
+  display: block;
+  width: 390px;
+  height: 844px;
+  border: 0;
+  background: #f4f6f5;
+}
+.g-screen iframe[inert] {
+  pointer-events: none;
+}
+.g-label-who {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 18px);
+  text-align: center;
+  font-size: 38px;
+  color: var(--muted, #62666b);
+  white-space: nowrap;
+}
+.g-label-who b {
+  color: var(--ink, #161719);
+  font-weight: 600;
+}
+#g-stage[data-layout='single'] .g-label-who,
+#g-stage[data-layout='live'] .g-label-who {
+  font-size: 18px;
+}
+#g-stage[data-layout='compare'] .g-label-who {
+  font-size: 19px;
+}
+.g-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.g-touch {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: #16171940;
+  box-shadow: 0 3px 14px #0004;
+  transition:
+    left 0.3s ease,
+    top 0.3s ease,
+    transform 0.18s ease;
+}
+.g-touch[data-pressed='true'] {
+  transform: scale(0.8);
+  background: #db001166;
+  border-color: #db0011;
+}
+.g-touch span {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  border-radius: 16px;
+  background: #161719;
+  color: #fff;
+  font-size: 16px;
+  white-space: nowrap;
+}
+.g-touch span:empty {
+  display: none;
+}
+.g-pointer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: g-rise 0.45s ease both;
+}
+.g-pointer span {
+  padding: 6px 13px;
+  border-radius: 20px;
+  background: #db0011;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+.g-pointer.is-right b {
+  margin-left: 0;
+}
+.g-pointer i {
+  display: block;
+  height: 2px;
+  background: #db0011;
+}
+.g-pointer.is-right {
+  flex-direction: row-reverse;
+}
+.g-pointer b {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  border-radius: 50%;
+  background: #db0011;
+  box-shadow: 0 0 0 5px #db001133;
+}
+.g-montage-tab {
+  position: absolute;
+  left: 766px;
+  width: 754px;
+  top: 262px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #db0011;
+}
+.g-progress {
+  position: absolute;
+  left: 100px;
+  right: 100px;
+  bottom: 34px;
+  display: flex;
+  gap: 18px;
+}
+.g-progress > div {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+}
+.g-progress i {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: #d9dcde;
+}
+.g-progress [data-state='done'] {
+  background: var(--ink, #161719);
+}
+.g-progress [data-state='current'] {
+  background: #db0011;
+}
+.g-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+/* Live: the copy steps aside and the prototype is the stage. */
+body.g-live .g-timeline,
+body.g-live .g-progress {
+  opacity: 0;
+}
+body.g-live .g-device.is-on {
+  pointer-events: auto;
+}
+@keyframes g-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .g-copy.is-in,
+  .g-pointer {
+    animation: none;
+  }
+  .g-device,
+  .g-touch {
+    transition: none;
+  }
+}

@@ -53,6 +53,8 @@ Twelve of the fifteen Narrative slides, reordered to follow the briefing structu
 
 `short.ts` picks slides by `stage`, so Narrative edits flow through. It sets `look = 'narrative'`: `deck.ts` styles it with the Narrative language (`data-version='narrative'`) and marks `data-deck='short'`. A first, broader edition with new slides was replaced the same day at the owner's request, as too great a departure from the Narrative. Presenter notes stay outside the public repository. Browser coverage: `e2e/presentation-short.spec.ts`.
 
+The same slides lead into the presenter-paced demo at `/demo/`; see `docs/design/guided-demo.md`.
+
 ## Editing
 
 - `src/presentation/slides.ts`: audience-facing headlines and visuals.

@@ -490,7 +490,7 @@ function baseSupportModel(p, s, context = { kind: 'top' }, catalogue) {
       'Explore rewards',
       'points',
     );
-  if (k === 'customise')
+  if (k === 'customise' && s.edit)
     return ai(
       'Make this page yours',
       'Choose the numbers that matter, resize them or change their order. Your underlying accounts stay the same.',

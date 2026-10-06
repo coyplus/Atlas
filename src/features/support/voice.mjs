@@ -13,7 +13,27 @@ export const adviserFor = (p) =>
     ? { id: 'priya', name: 'Priya', role: 'Relationship Manager' }
     : { id: 'maya', name: 'Maya', role: 'Financial adviser' };
 
+// Elena prepares for her quarterly review with Priya: what's on track, what's open, what to ask.
+export function reviewPrep(p, s) {
+  if (p.l1.customer.id !== 'elena') return null;
+  const goal = p.l1.goals.find((g) => g.id === 'goal-leo'),
+    leo = p.l1.household.members.find((x) => x.id === 'leo');
+  if (!goal || !leo?.age) return null;
+  const months = (18 - leo.age) * 12;
+  return {
+    monthly: moneySpeedModel(p, s).total,
+    target: goal.target,
+    leoMonthly: Math.round(goal.target / months),
+    hasPot: !!goal.potId,
+  };
+}
 export function voiceTranscript(p, s) {
+  const r = reviewPrep(p, s);
+  if (r)
+    return {
+      question: 'Help me get ready for Thursday with Priya.',
+      response: `Here’s where you stand for Thursday. All four plans are on track at ${cash(Math.round(r.monthly))} a month. The open item is Leo’s future: there’s no pot yet, and ${cash(r.leoMonthly)} a month would reach ${cash(r.target)} by his 18th. You could ask Priya whether it should be cash or invested.`,
+    };
   const m = moneySpeedModel(p, s);
   return {
     question: 'How is my money moving towards my goals?',
@@ -52,9 +72,21 @@ function caption(p, s, phase) {
   return `<span class="voice-caption">What’s on your mind?</span>`;
 }
 
+function reviewCard(p, s) {
+  const r = reviewPrep(p, s);
+  const row = (state, mark, title, detail) =>
+    `<li data-state="${state}"><i aria-hidden="true">${mark}</i><span><b>${title}</b><small>${detail}</small></span></li>`;
+  return `<article class="voice-evidence voice-review"><header><span>For your review · Thursday 2pm</span>${icon('clock')}</header><ul class="voice-review-list">${row('done', '✓', 'Four plans on track', `${cash(Math.round(r.monthly))} a month, as agreed`)}${row('open', '○', 'Leo’s future · no pot yet', `${cash(r.leoMonthly)} a month reaches ${cash(r.target)} by 18`)}${row('ask', '?', 'To ask Priya', 'Cash or invested for Leo?')}</ul>${
+    p.ui.reviewAgenda
+      ? `<p class="voice-review-added">${icon('check')}<span>On Priya’s agenda. She’ll see it before Thursday.</span></p>`
+      : `<button class="voice-card-action" data-action="support:voice-agenda"><span>Add to Priya’s agenda</span>${icon('arrow')}</button>`
+  }</article>`;
+}
 function surfaces(p, s, phase) {
   const m = moneySpeedModel(p, s),
     a = adviserFor(p);
+  if (phase === 'answer' && reviewPrep(p, s))
+    return `${reviewCard(p, s)}<button class="voice-adviser-action" data-action="support:voice-human">${agentAvatar(a.id)}<span><b>Bring in ${esc(a.name)}</b><small>${esc(a.role)}</small></span>${icon('arrow')}</button>`;
   // With nothing set aside yet, the answer offers a first step instead of an empty £0 chart.
   if (phase === 'answer' && !m.active.length)
     return `<article class="voice-evidence"><header><span>Each month, towards your goals</span>${icon('trend')}</header><p class="voice-empty">Nothing is set aside each month yet. A first goal can start small.</p><button class="voice-card-action" data-action="future-add"><span>Explore a first goal</span>${icon('arrow')}</button></article><button class="voice-adviser-action" data-action="support:voice-human">${agentAvatar(a.id)}<span><b>Bring in ${esc(a.name)}</b><small>${esc(a.role)}</small></span>${icon('arrow')}</button>`;

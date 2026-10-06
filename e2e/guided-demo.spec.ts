@@ -6,7 +6,7 @@ for (const scene of scenes) {
     await page.addInitScript(() => {
       window.__ATLAS_TEST__ = true;
     });
-    await page.goto('/demo/#' + scene.id);
+    await page.goto('/demo/?version=original#' + scene.id);
     await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready', {
       timeout: 30000,
     });
@@ -20,7 +20,7 @@ test('presenter can take control, replay and skip supporting scenes', async ({ p
   await page.addInitScript(() => {
     window.__ATLAS_TEST__ = true;
   });
-  await page.goto('/demo/#money-feeling');
+  await page.goto('/demo/?version=original#money-feeling');
   await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready');
   await page.getByRole('button', { name: 'Take control', exact: true }).click();
   await expect(page.locator('#guided-app')).not.toHaveAttribute('inert', '');
@@ -28,14 +28,14 @@ test('presenter can take control, replay and skip supporting scenes', async ({ p
   await page.getByRole('button', { name: 'Replay', exact: false }).click();
   await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready');
   await expect(page.frameLocator('#guided-app').locator('.feeling-saved')).toContainText('5');
-  await page.goto('/demo/#the-system');
+  await page.goto('/demo/?version=original#the-system');
   await page.getByRole('button', { name: 'Go to closing' }).click();
   await expect(page).toHaveURL(/#closing$/);
   await page.keyboard.press('Home');
   await expect(page.locator('#narrative-0')).toBeVisible();
 });
 test('pause holds the choreography and next cancels it', async ({ page }) => {
-  await page.goto('/demo/#a-familiar-start');
+  await page.goto('/demo/?version=original#a-familiar-start');
   await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'playing');
   await page.getByRole('button', { name: 'Pause', exact: true }).click();
   const before = await page
@@ -67,7 +67,7 @@ test('pause holds the choreography and next cancels it', async ({ page }) => {
   await expect(page).toHaveURL(/#personal-numbers$/);
 });
 test('guided manual changes do not read or overwrite a normal saved session', async ({ page }) => {
-  await page.goto('/demo/#slide-1');
+  await page.goto('/demo/?version=original#slide-1');
   const sentinel = {
     schema: 1,
     scenarioVersion: 'isolation-test',
@@ -90,7 +90,7 @@ test('guided manual changes do not read or overwrite a normal saved session', as
       r.onerror = () => reject(r.error);
     });
   }, sentinel);
-  await page.goto('/demo/#human-support');
+  await page.goto('/demo/?version=original#human-support');
   await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready');
   await page.getByRole('button', { name: 'Take control', exact: true }).click();
   await page.frameLocator('#guided-app').locator('[data-action="tab:you"]').click();
@@ -115,7 +115,7 @@ test('customer memory requires permission and retains the customer words', async
   await page.addInitScript(() => {
     window.__ATLAS_TEST__ = true;
   });
-  await page.goto('/demo/#customer-memory');
+  await page.goto('/demo/?version=original#customer-memory');
   await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready');
   await expect(page.frameLocator('#guided-app').locator('.checkin-saved-list')).toContainText(
     'sunny kitchen',
@@ -125,7 +125,7 @@ test('narrow view and reduced motion retain controls and the real prototype', as
   test.setTimeout(60000);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/demo/#time-travel');
+  await page.goto('/demo/?version=original#time-travel');
   await expect(page.locator('#demo-stage')).toHaveAttribute('data-status', 'ready', {
     timeout: 40000,
   });
@@ -138,7 +138,7 @@ test('narrow view and reduced motion retain controls and the real prototype', as
 test('comparison makes the customer change explicit and takeover removes the comparison', async ({
   page,
 }) => {
-  await page.goto('/demo/#a-familiar-start');
+  await page.goto('/demo/?version=original#a-familiar-start');
   await expect(page.locator('#device-slot')).toHaveAttribute('data-comparing', 'true', {
     timeout: 15000,
   });
@@ -155,7 +155,7 @@ test('number journey shows its entry, a readable close-up and the actual added w
   page,
 }) => {
   test.setTimeout(60000);
-  await page.goto('/demo/#personal-numbers');
+  await page.goto('/demo/?version=original#personal-numbers');
   await expect(page.locator('.demo-touch:not([hidden])')).toBeVisible({ timeout: 15000 });
   await expect(page.frameLocator('#guided-app').locator('[data-action="gallery"]')).toBeVisible();
   await expect(page.locator('#guided-device')).toHaveAttribute('data-closeup', 'true', {
@@ -189,7 +189,7 @@ test('number journey shows its entry, a readable close-up and the actual added w
 test('animation progress follows playback, pauses, resets and is not a scrubber', async ({
   page,
 }) => {
-  await page.goto('/demo/#contextual-support');
+  await page.goto('/demo/?version=original#contextual-support');
   const progress = page.getByRole('progressbar', { name: 'Demo animation progress' });
   await expect
     .poll(async () => Number(await progress.getAttribute('aria-valuenow')))
