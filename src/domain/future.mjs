@@ -269,12 +269,12 @@ function firstGoalIdeas(p, first) {
       goal: 'future-treat',
       name: 'Holiday',
       visualIcon: 'plane',
-      target: 600,
-      amount: 50,
+      target: 400,
+      amount: 100,
       followUp: true,
-      title: 'Plan something to look forward to',
-      detail: '£50 a month for a trip or a treat',
-      why: 'A trip, a gig, a new laptop: £50 a month makes £600 in a year.',
+      title: 'What if you took a holiday this year?',
+      detail: '£100 a month, ready by December',
+      why: 'A short break before the year ends: £100 a month makes £400 by December.',
     });
   if (!p.l1.pots.some((g) => g.growthAnnual || g.kind === 'investment'))
     ideas.push({
