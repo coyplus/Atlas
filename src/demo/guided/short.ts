@@ -141,11 +141,31 @@ function load(f: Frame) {
       const w = f.iframe.contentWindow as
         (Window & { atlas?: unknown; HTMLMediaElement?: typeof HTMLMediaElement }) | null;
       if (w?.atlas && f.iframe.contentDocument?.querySelector('#content')) {
-        // The demo never makes sound: briefings play muted.
+        // The demo never makes sound: the briefing player runs, silently, whatever the app sets.
         const media = w.HTMLMediaElement!.prototype,
           play = media.play;
-        media.play = function () {
-          this.muted = true;
+        const muted = Object.getOwnPropertyDescriptor(media, 'muted')!,
+          volume = Object.getOwnPropertyDescriptor(media, 'volume')!;
+        const silence = (el: HTMLMediaElement) => {
+          muted.set!.call(el, true);
+          volume.set!.call(el, 0);
+        };
+        Object.defineProperty(media, 'muted', {
+          configurable: true,
+          get: muted.get,
+          set(this: HTMLMediaElement) {
+            silence(this);
+          },
+        });
+        Object.defineProperty(media, 'volume', {
+          configurable: true,
+          get: volume.get,
+          set(this: HTMLMediaElement) {
+            silence(this);
+          },
+        });
+        media.play = function (this: HTMLMediaElement) {
+          silence(this);
           return play.call(this);
         };
         // Focus can land inside the prototype (a chat input); the deck keys still work from there.
