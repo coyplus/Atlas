@@ -3,16 +3,17 @@ import './deck.css';
 import './relationship.css';
 import '../design-system/companion.css';
 import './narrative.css';
-import './behavioural.css';
 import { materialIcons, materialViewBoxes } from '../design-system/icons.mjs';
 const versions = {
   original: () => import('./slides'),
   relationship: () => import('./relationship'),
   narrative: () => import('./narrative'),
-  behavioural: () => import('./behavioural'),
+  short: () => import('./short'),
 };
 type Version = keyof typeof versions;
-const requested = new URLSearchParams(location.search).get('version');
+const asked = new URLSearchParams(location.search).get('version');
+// `behavioural` was this edition's first name; keep links already shared working.
+const requested = asked === 'behavioural' ? 'short' : asked;
 const version: Version = requested && requested in versions ? (requested as Version) : 'original';
 const deck: {
   slides: { stage: string; title: string; theme: string; content: string }[];
