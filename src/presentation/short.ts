@@ -29,7 +29,7 @@ const heading = (label: string, title: string, support: string) =>
 // Three conditions, words only: Sam's answer today, then what a system adds.
 const gap = {
   ...pick('The behaviour gap'),
-  content: `${heading('The behaviour gap', 'A behaviour happens when someone is <em>able&nbsp;to,</em> the situation <em>lets&nbsp;them,</em> and they <em>want&nbsp;to.</em>', 'Features make the action possible. A system makes it happen, and keep happening.')}
+  content: `${heading('The behaviour gap', 'A behaviour happens when someone is <em>able&nbsp;to,</em> the situation <em>lets&nbsp;them,</em> and they <em>want&nbsp;to.</em>', 'Features make the action possible. A system makes it happen, and keeps it happening.')}
     <div class="n-body"><div class="n-matrix s-gap" role="table" aria-label="Three conditions for a behaviour, today and with a system">
       <div class="n-matrix-head" role="row"><span></span><span class="r-label">Able to</span><span class="r-label">The situation lets them</span><span class="r-label">Wants to</span></div>
       <div class="n-matrix-row" role="row"><span class="r-label n-matrix-label">Sam saving £100, today</span><article><h2>Yes.</h2><p>The pot exists.</p></article><article class="n-no"><h2>No.</h2><p>Nothing marks payday.</p></article><article class="n-no"><h2>No.</h2><p>£100 feels like nothing.</p></article></div>
