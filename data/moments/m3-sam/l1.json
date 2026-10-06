@@ -335,11 +335,25 @@
       "members": null,
       "createdOn": "2026-01",
       "id": "inv",
-      "name": "Global shares",
+      "name": "HSBC Beginner Fund",
       "kind": "investment",
-      "balance": 12843.27,
+      "balance": 20693.55,
       "growthAnnual": 0.05,
-      "description": "Long-term investments · values can rise or fall"
+      "description": "One ready-made fund, spread across different investments · values can rise or fall",
+      "holdings": [
+        {
+          "name": "Global shares",
+          "amount": 12843.27
+        },
+        {
+          "name": "Bonds",
+          "amount": 5218.46
+        },
+        {
+          "name": "Multi-asset",
+          "amount": 2631.82
+        }
+      ]
     },
     {
       "target": null,
@@ -355,36 +369,6 @@
       "balance": 63.75,
       "growthAnnual": null,
       "description": "Pocket money set aside by Sam for Ella"
-    },
-    {
-      "target": null,
-      "monthlyRate": 0,
-      "isDebt": false,
-      "stopsAtTarget": false,
-      "rules": [],
-      "members": null,
-      "createdOn": "2026-01",
-      "id": "inv-bonds",
-      "name": "Bonds",
-      "kind": "investment",
-      "balance": 5218.46,
-      "growthAnnual": 0.05,
-      "description": "Long-term investments · values can rise or fall"
-    },
-    {
-      "target": null,
-      "monthlyRate": 0,
-      "isDebt": false,
-      "stopsAtTarget": false,
-      "rules": [],
-      "members": null,
-      "createdOn": "2026-01",
-      "id": "inv-mixed",
-      "name": "Multi-asset",
-      "kind": "investment",
-      "balance": 2631.82,
-      "growthAnnual": 0.05,
-      "description": "Long-term investments · values can rise or fall"
     }
   ],
   "rules": [
@@ -776,11 +760,9 @@
       "ella-next": 5936.25,
       "my-own": 3500,
       "friends": 500,
-      "inv": 12843.27,
+      "inv": 20693.55,
       "ella-pocket": 63.75,
-      "ac-cc": 483.72,
-      "inv-bonds": 5218.46,
-      "inv-mixed": 2631.82
+      "ac-cc": 483.72
     }
   },
   "spending": {

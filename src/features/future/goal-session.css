@@ -39,12 +39,15 @@ body[data-direction='vanilla'] .phone .sheet:has(.goal-session) > .sheet-body {
 .goal-session-heading::before {
   content: '';
   position: absolute;
-  inset: calc(-1 * (var(--support-height) - 4px)) 0 0;
+  inset: calc(-1 * (var(--support-height) - 4px)) 0 -28px;
   z-index: -1;
   pointer-events: none;
   background: var(--goal-glass);
   -webkit-backdrop-filter: var(--goal-blur);
   backdrop-filter: var(--goal-blur);
+  /* A growing goal can pass beneath the title; the glass fades rather than cutting it flat. */
+  -webkit-mask-image: linear-gradient(#000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(#000 calc(100% - 40px), transparent);
 }
 .goal-session-heading .icon {
   width: 22px;

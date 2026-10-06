@@ -708,19 +708,19 @@ body[data-direction='vanilla'] .phone[data-active-tab='future'] > .content:has(.
   border-radius: 6px;
 }
 body[data-direction='vanilla']
-  .module[data-module='investments']
+  :is(.module[data-module='investments'], .fund-holdings)
   :is(.number-split, .number-legend)
   .number-tone-0 {
   background: #80699b;
 }
 body[data-direction='vanilla']
-  .module[data-module='investments']
+  :is(.module[data-module='investments'], .fund-holdings)
   :is(.number-split, .number-legend)
   .number-tone-1 {
   background: #4e8793;
 }
 body[data-direction='vanilla']
-  .module[data-module='investments']
+  :is(.module[data-module='investments'], .fund-holdings)
   :is(.number-split, .number-legend)
   .number-tone-2 {
   background: #c39b66;

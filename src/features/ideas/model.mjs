@@ -146,18 +146,19 @@ export function possibilities(p, s = {}) {
       /home|house|place.*own/i,
       { source: 'Something you told us' },
     );
-  if (!has(/emergency|buffer|rainy|breathing room/i))
+  if (!has(/emergency|buffer|rainy|breathing room|safety net/i))
     add(
       'buffer',
-      'A little breathing room',
+      'Build a safety net',
       c.traits.Spontaneity >= 4
-        ? 'Your portrait makes room for spontaneity. A small cushion could leave more room for the unexpected.'
-        : 'There isn’t an emergency fund in your Atlas picture yet. A small cushion could be a place to start.',
-      'What would a little more breathing room feel like?',
+        ? 'Your portrait makes room for spontaneity. Money set aside for the unexpected keeps surprises from upsetting your plans.'
+        : 'You don’t have money set aside for emergencies yet. Even a small amount helps when something unexpected comes up.',
+      'How much would you like to set aside for the unexpected?',
       'target',
       1000,
       25,
-      /emergency|buffer|rainy|breathing room/i,
+      /emergency|buffer|rainy|breathing room|safety net/i,
+      { name: 'Safety net' },
     );
   if (!nextChapter && has(/house deposit|home deposit/i))
     add(
@@ -186,8 +187,8 @@ export function possibilities(p, s = {}) {
   if (p.l1.customer.id === 'alex' && !c.investor)
     add(
       'investing-curiosity',
-      'What could investing look like for you?',
-      'We’re still getting to know you. Whether investing is new or familiar, you can explore a small monthly amount without committing.',
+      'Try investing a little',
+      'See what a small monthly amount could grow to, before you commit to anything.',
       'What would you like to understand about investing?',
       'trend',
       3000,

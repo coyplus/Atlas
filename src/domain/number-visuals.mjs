@@ -26,9 +26,14 @@ export function numberVisual(p, m) {
             ['Invested', t.invested, 'investment'],
           ]
         : id === 'investments'
-          ? p.l1.pots
+          ? // A fund shows what it holds; separate investment pots show themselves.
+            p.l1.pots
               .filter((x) => x.growthAnnual || x.kind === 'investment')
-              .map((x) => [x.name, x.balance, 'investment'])
+              .flatMap((x) =>
+                x.holdings?.length
+                  ? x.holdings.map((h) => [h.name, h.amount, 'investment'])
+                  : [[x.name, x.balance, 'investment']],
+              )
           : Object.entries(p.l1.spending.byCategory).map(([k, v]) => [
               k.replaceAll('-', ' '),
               v,

@@ -46,3 +46,6 @@ An entered target adds a dashed ring using the same area scale as the projected 
 
 ### Persistent preview action · 5 October follow-up
 The focused session now places its submit action in a translucent bottom dock alongside the scroll body, using an explicit form association. Inputs, time travel and What If remain scrollable; the dock does not create a second action or change approval semantics. Alex’s empty Future screen uses shorter supporting copy and removes repeated suggestion subtitles.
+
+### Fixed growth scale · 6 October 2026
+The 1-year reference bubble keeps one size throughout. The goal bubble grows against it on the same area scale as Time Travel moves, and may extend beneath the controls and off the screen edge; the title's glass feathers instead of cutting it flat. (A briefly introduced fit-to-stage scaling was removed because it made the reference shrink.) Alex's two opening ideas read *Build a safety net* and *Try investing a little*. Sam holds one product, the HSBC Beginner Fund (£20,693.55), whose detail lists its holdings; Future and Accounts show one investment pot.

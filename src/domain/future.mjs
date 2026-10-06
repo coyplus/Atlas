@@ -268,11 +268,11 @@ export function suggestIdeas(p) {
       id: 'first-goal',
       kind: 'add',
       goal: 'future-first',
-      name: 'Breathing room',
+      name: 'Safety net',
       target: 1000,
       amount: 25,
-      title: 'Build a little breathing room',
-      why: 'Explore a £1,000 cushion, starting with £25 a month.',
+      title: 'Build a safety net',
+      why: 'Explore a £1,000 safety net, starting with £25 a month.',
     });
   return ideas;
 }

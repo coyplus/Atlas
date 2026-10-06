@@ -90,10 +90,9 @@ export function goalSessionReply(p, context, text) {
 export function goalSessionPreview(p, d) {
   const m = goalSessionModel(p, d);
   const reference = d.amount * 12;
-  // Areas stay proportional; the scale shrinks so the largest circle always fits the stage.
-  const largest = Math.max(reference, m.value, d.target || 0),
-    unit = Math.max(48, Math.min(80, 196 / Math.sqrt(largest / reference)));
-  const diameter = (value) => unit * Math.sqrt(Math.max(0, value) / reference);
+  // One fixed scale: the 1-year reference never changes size, so the goal visibly grows
+  // against it. Areas stay proportional; a large goal may extend beyond the stage.
+  const diameter = (value) => 80 * Math.sqrt(Math.max(0, value) / reference);
   return `<div class="goal-session-scene" data-investment="${d.investment}">
     <div class="goal-growth-stage"><div class="goal-reference" style="width:${diameter(reference)}px;height:${diameter(reference)}px"><span><small>1 year</small><b>${money(reference)}</b></span></div><div class="goal-session-orbit" style="width:${diameter(m.value)}px;height:${diameter(m.value)}px"></div>${d.target ? `<div class="goal-target-ring" style="width:${diameter(d.target)}px;height:${diameter(d.target)}px"></div><div class="goal-target-label">Target ${money(d.target)} · ${Math.round((m.value / d.target) * 100)}%</div>` : ''}<div class="goal-session-orbit-copy" data-light="${diameter(m.value) < 145}">${icon(d.investment ? 'trend' : d.glyph || 'target')}<small>${d.month ? 'You could have' : 'Starting here'}</small><strong>${money(m.value)}</strong></div></div>
 

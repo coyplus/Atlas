@@ -1,4 +1,5 @@
 import { savingsLockUntil } from '../../domain/fixed-savings.mjs';
+import { numberVisualMarkup } from '../../design-system/number-visual.mjs';
 import { potAppearance, appearanceStyle, potBackdrop, potColourControl } from './appearance.mjs';
 import { moneyVisualRole, limitState } from '../../domain/visual-semantics.mjs';
 import { quickActionsDialog } from '../now/actions.mjs';
@@ -49,7 +50,7 @@ export function containerDetailView(p, item, options = {}) {
       }),
       quickActionButton('More', 'grid', 'container-more:' + item.id),
     ];
-  return `<div class="container-detail container-system" style="${appearanceStyle(potAppearance(p, item))}" data-container="${esc(item.id)}" data-container-type="${c.type}" data-large-number="${c.amount >= 100000}">${potBackdrop(p, item)}<section class="container-hero" data-container-section="balance"><div class="container-amount"><div><span class="container-value-label">${c.debt ? 'Left to repay' : c.type === 'investment' ? 'Investment value' : c.type === 'budget' ? 'Left to spend' : savingsLockUntil(item) > p.l1.asOf ? 'Locked balance' : 'Available balance'}</span><div class="detail-number">${moneyHTML(c.amount)}</div></div><div class="container-facts"><div class="container-meta">${bankAvatar('hsbc')}<span><b>${esc(c.label)}</b>${item.masked ? `<small>•• ${esc(item.masked)}</small>` : ''}</span></div></div></div>${!c.account && !c.debt && c.type !== 'budget' ? potColourControl(p, item) : ''}${target}${budgetVisual}${members.length ? `<button class="container-members" data-action="container-members:${item.id}">${householdStack(members)}<span>${esc(members.map((m) => m.name.split(' ')[0]).join(', '))}</span>${icon('chev')}</button>` : pending.length ? `<button class="container-members" data-action="container-members:${item.id}">${icon('users')}<span>${pending.length} invitation pending</span>${icon('chev')}</button>` : ''}</section><section data-container-section="actions" class="quick-actions container-actions" aria-label="Related actions">${actions.join('')}</section>${item.spendingCategory === 'groceries' ? `<button class="gallery-row insight-link" data-action="module:grocery">${icon('chart')}<span><b>Grocery spending</b><small>Purchases across accounts and pots</small></span>${icon('chev')}</button>` : ''}${arrangementView(p, item, c)}<section data-container-section="activity" class="container-section"><header><h3>Recent activity</h3>${activity.length ? button('View all', 'container-activity:' + item.id, 'text') : ''}</header>${activity.length ? `<div class="container-ledger">${activity.map((x) => `<div><i class="activity-symbol">${icon(x.amount < 0 ? 'up' : 'down')}</i><span><b>${esc(x.counterparty)}</b><small>${esc(options.now ? conditionDate(x.date) : x.date)}</small></span><strong>${cash(x.amount, true)}</strong></div>`).join('')}</div>` : '<p class="activity-empty">No activity yet.</p>'}</section></div>`;
+  return `<div class="container-detail container-system" style="${appearanceStyle(potAppearance(p, item))}" data-container="${esc(item.id)}" data-container-type="${c.type}" data-large-number="${c.amount >= 100000}">${potBackdrop(p, item)}<section class="container-hero" data-container-section="balance"><div class="container-amount"><div><span class="container-value-label">${c.debt ? 'Left to repay' : c.type === 'investment' ? 'Investment value' : c.type === 'budget' ? 'Left to spend' : savingsLockUntil(item) > p.l1.asOf ? 'Locked balance' : 'Available balance'}</span><div class="detail-number">${moneyHTML(c.amount)}</div></div><div class="container-facts"><div class="container-meta">${bankAvatar('hsbc')}<span><b>${esc(c.label)}</b>${item.masked ? `<small>•• ${esc(item.masked)}</small>` : ''}</span></div></div></div>${!c.account && !c.debt && c.type !== 'budget' ? potColourControl(p, item) : ''}${target}${budgetVisual}${members.length ? `<button class="container-members" data-action="container-members:${item.id}">${householdStack(members)}<span>${esc(members.map((m) => m.name.split(' ')[0]).join(', '))}</span>${icon('chev')}</button>` : pending.length ? `<button class="container-members" data-action="container-members:${item.id}">${icon('users')}<span>${pending.length} invitation pending</span>${icon('chev')}</button>` : ''}</section><section data-container-section="actions" class="quick-actions container-actions" aria-label="Related actions">${actions.join('')}</section>${item.spendingCategory === 'groceries' ? `<button class="gallery-row insight-link" data-action="module:grocery">${icon('chart')}<span><b>Grocery spending</b><small>Purchases across accounts and pots</small></span>${icon('chev')}</button>` : ''}${fundHoldings(item)}${arrangementView(p, item, c)}<section data-container-section="activity" class="container-section"><header><h3>Recent activity</h3>${activity.length ? button('View all', 'container-activity:' + item.id, 'text') : ''}</header>${activity.length ? `<div class="container-ledger">${activity.map((x) => `<div><i class="activity-symbol">${icon(x.amount < 0 ? 'up' : 'down')}</i><span><b>${esc(x.counterparty)}</b><small>${esc(options.now ? conditionDate(x.date) : x.date)}</small></span><strong>${cash(x.amount, true)}</strong></div>`).join('')}</div>` : '<p class="activity-empty">No activity yet.</p>'}</section></div>`;
 }
 export function containerRuleRow(p, r) {
   const active = r.active && !p.l1.autonomy.paused && !(r.resumeOn > p.l1.asOf);
@@ -241,6 +242,18 @@ export function arrangementOverview(a) {
           ? 'View your conditions and payments.'
           : 'No conditions to meet.',
   };
+}
+// One fund can hold several kinds of investment; show them inside the product, not as pots.
+function fundHoldings(item) {
+  if (!item.holdings?.length) return '';
+  return `<section data-container-section="holdings" class="container-section fund-holdings"><header><h3>What’s inside this fund</h3></header>${numberVisualMarkup(
+    {
+      type: 'split',
+      label: 'Fund holdings',
+      items: item.holdings.map((h) => ({ label: h.name, value: h.amount, role: 'investment' })),
+    },
+    true,
+  )}<p class="support">One fund, spread across different kinds of investment. Values can rise or fall.</p></section>`;
 }
 export function arrangementView(p, item, c = containerModel(p, item)) {
   const a = c.arrangement,
