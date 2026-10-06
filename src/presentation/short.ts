@@ -2,7 +2,8 @@ import { slides as narrative } from './narrative';
 
 /* Narrative, shortened for a presentation followed by a live demo. The slides are the
    Narrative ones, unchanged, in the order of the briefing: context, the business case,
-   then the behavioural design and system thinking that lead into the demo. */
+   then the behavioural design and system thinking that lead into the demo. The product
+   slides are left out because the demo shows each tab live. */
 export const look = 'narrative';
 
 const pick = (stage: string) => {
@@ -25,6 +26,7 @@ export const slides = [
   pick('The behaviour gap'),
   unnumbered('Behavioural science'),
   unnumbered('AI and human support'),
+  unnumbered('A loyalty framework'),
   pick('The flywheel'),
   pick('Close'),
 ];
