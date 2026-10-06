@@ -3,6 +3,7 @@ import './deck.css';
 import './relationship.css';
 import '../design-system/companion.css';
 import './narrative.css';
+import './short.css';
 import { materialIcons, materialViewBoxes } from '../design-system/icons.mjs';
 const versions = {
   original: () => import('./slides'),

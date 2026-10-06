@@ -12,8 +12,11 @@ test('the short Narrative has its own URL, keeps the Narrative look and the old 
   expect(new URL(page.url()).searchParams.get('p')).toBe('sam');
   await page.goto('/presentation/?version=short#4');
   await expect(page.locator('.slide:not([hidden]) h1')).toContainText('Building better customers');
+  await page.goto('/presentation/?version=short#6');
+  await expect(page.locator('.s-gap .n-matrix-head .r-label')).toHaveCount(3);
   await page.goto('/presentation/?version=short#7');
   await expect(page.locator('.slide:not([hidden]) .eyebrow')).toHaveText('Behavioural science');
+  await expect(page.locator('.s-tabs h2')).toHaveText(['Now', 'Future', 'You']);
   await page.goto('/presentation/?version=short#9');
   await expect(page.locator('.slide:not([hidden]) .eyebrow')).toHaveText('A loyalty framework');
   await page.goto('/presentation/?version=behavioural#10');
