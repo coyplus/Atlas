@@ -22,6 +22,7 @@ import {
   suggestIdeas,
   ideaDescription,
   toggleExperiment,
+  goalChange,
 } from '../../domain/future.mjs';
 const money = (n) => cash(Math.round(n));
 const btn = (label, action, cls = 'text', extra = '') =>
@@ -45,12 +46,13 @@ export function impact(p, base, next, limit = 2, preferred = []) {
   ];
   goals.sort((a, b) => Number(preferred.includes(b.id)) - Number(preferred.includes(a.id)));
   const changes = goals
-    .filter((g) => base.dates[g.id] !== next.dates[g.id] || !next.goals.some((n) => n.id === g.id))
-    .map((g) =>
-      !next.goals.some((n) => n.id === g.id)
-        ? `${g.name} · removed from this plan`
-        : `${g.name} · ${movement(base.dates[g.id], next.dates[g.id])}`,
-    );
+    .filter(
+      (g) =>
+        base.dates[g.id] !== next.dates[g.id] ||
+        !next.goals.some((n) => n.id === g.id) ||
+        !base.goals.some((b) => b.id === g.id),
+    )
+    .map((g) => goalChange(p, base, next, g));
   if (changes.length) return changes.slice(0, limit).join(' · ');
   const delta = next.net - base.net,
     speed = next.speed - base.speed;
@@ -111,20 +113,30 @@ export function futureTicks(p, s, model = futureModel(p, s)) {
 }
 // The card carries the decision and its effect. Review carries the mechanics.
 function ideaPreview(i) {
+  if (i.followUp && i.detail) return [i.title, i.detail];
   if (i.kind === 'extra') return [`Save ${money(i.amount)} on payday`, 'An automatic Savings Rule'];
   if (i.kind === 'roundup')
     return ['Round up your spending', `${money(i.amount)}/month estimate · £30 cap`];
   if (i.kind === 'pause') return [`Pause for ${i.months} months`, 'Keep contributions in cash'];
   if (i.kind === 'priority') return [i.title, `Redirect ${money(i.amount)}/month`];
-  if (i.kind === 'add') return [i.name, `${money(i.amount)}/month towards ${money(i.target)}`];
+  if (i.kind === 'boost') return [i.title, `${money(i.amount)} once, from your current account`];
+  if (i.kind === 'add')
+    return [
+      i.name,
+      i.target
+        ? `${money(i.amount)}/month towards ${money(i.target)}`
+        : `${money(i.amount)}/month · no fixed target`,
+    ];
   return [i.title, i.why || 'Try a different future'];
 }
 export function futureIdeas(p, s, model = futureModel(p, s)) {
   const { state, base, next } = model,
-    catalog = [
-      ...suggestIdeas(p),
-      ...state.ideas.filter((i) => !suggestIdeas(p).some((c) => c.id === i.id)),
-    ];
+    suggestions = suggestIdeas(p),
+    chosen = state.ideas.filter((i) => !suggestions.some((c) => c.id === i.id)),
+    // When ideas build on a drafted first goal, the customer's own goal leads the list.
+    catalog = suggestions[0]?.followUp
+      ? [...chosen.filter((i) => !i.followUp), ...suggestions, ...chosen.filter((i) => i.followUp)]
+      : [...suggestions, ...chosen];
   return `<div class="fg-ideas-head"><span>${icon('spark')} What if…</span><small>${state.ideas.length ? state.ideas.length + ' selected' : ''}</small></div><div class="fg-ideas" aria-label="Ideas to try">${catalog
     .map((i) => {
       let effect;
@@ -133,9 +145,22 @@ export function futureIdeas(p, s, model = futureModel(p, s)) {
         const candidate = clone(p);
         if (!selected) toggleExperiment(candidate, i);
         const result = selected ? next : forecast(candidate, futureState(candidate).ideas, s.month);
-        effect = impact(p, base, result, i.kind === 'priority' ? 2 : 1, [i.goal, i.from]);
-        if ((selected ? state.ideas : futureState(candidate).ideas).length > 1)
-          effect = 'Together: ' + effect;
+        if (i.followUp) {
+          // An idea built on a first goal shows its own difference, not the combined plan.
+          const without = forecast(
+            p,
+            state.ideas.filter((x) => x.id !== i.id),
+            s.month,
+          );
+          effect = impact(p, without, result, 1, [i.goal, i.from]);
+          if (i.kind === 'boost' && /stay the same|stays the same/.test(effect))
+            effect = `A ${money(i.amount)} head start`;
+          if (i.kind === 'roundup') effect = `About ${money(i.amount * 12)} more a year`;
+        } else {
+          effect = impact(p, base, result, i.kind === 'priority' ? 2 : 1, [i.goal, i.from]);
+          if ((selected ? state.ideas : futureState(candidate).ideas).length > 1)
+            effect = 'Together: ' + effect;
+        }
       } catch {
         effect = 'Review this idea';
       }

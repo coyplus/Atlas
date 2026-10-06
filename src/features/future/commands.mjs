@@ -130,7 +130,7 @@ export function handleFuture(ctx, type, id, p) {
       name,
       target: Number(v.get('target')),
       amount: Number(v.get('amount')),
-      title: 'Make room for ' + name,
+      title: (v.get('approach') === 'investment' ? 'Start investing: ' : 'Save for ') + name,
       investment: v.get('approach') === 'investment',
       ...(v.get('approach') === 'locked' ? { lockYears: 3 } : {}),
       ...(v.get('approach') === 'cash' ? { isa: true } : {}),

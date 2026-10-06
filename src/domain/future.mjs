@@ -9,6 +9,8 @@ import {
   addRule,
   applyIdea,
   dateAt,
+  moveMoney,
+  cash,
 } from './money.mjs';
 
 export const HORIZON = 240;
@@ -50,6 +52,21 @@ export function movement(a, b) {
   if (b == null) return 'Beyond 20 years';
   if (a == null) return 'Now within reach';
   return `${Math.abs(b - a)}mo ${b < a ? 'earlier' : 'later'}`;
+}
+// How one goal changes between two forecasts, in plain words. New goals are described
+// by when they are ready or, without a target, by what a year of contributions adds up to.
+export function goalChange(p, base, next, g) {
+  if (!next.goals.some((n) => n.id === g.id)) return `${g.name} · removed from this plan`;
+  if (!base.goals.some((b) => b.id === g.id)) {
+    if (g.target || g.isDebt)
+      return next.dates[g.id] == null
+        ? `${g.name} · beyond 20 years`
+        : `${g.name} · ready by ${when(p, next.dates[g.id])}`;
+    // Contributions only, plus any starting money; growth is not assumed here.
+    const year = (g.balance || 0) + Math.abs(next.rates[g.id] || 0) * 12;
+    return `${g.name} · ${cash(year)} ${g.growthAnnual ? 'invested' : 'saved'} in a year`;
+  }
+  return `${g.name} · ${movement(base.dates[g.id], next.dates[g.id])}`;
 }
 function positive(n, max = 10000) {
   if (!Number.isFinite(n) || n <= 0 || n > max)
@@ -134,6 +151,10 @@ export function applyExperiments(p, ideas) {
         const from = editable(p, idea.from);
         if (from.id === g.id) throw new Error('Choose two different goals.');
         redirectRuleAmount(p, from, g, idea.amount, idea.title);
+      } else if (idea.kind === 'boost') {
+        // A one-off move from the current account; the monthly plan is unchanged.
+        positive(idea.amount, 100000);
+        moveMoney(p, idea.from || 'ac-cur', g.id, idea.amount);
       } else if (idea.kind === 'remove') {
         for (const r of p.l1.rules.filter((r) => r.potId === g.id && r.active)) r.active = false;
         g.futureArchived = true; // Keep its Pot, balance and history; retire only the goal.
@@ -217,8 +238,81 @@ export function forecast(p, ideas = [], month = 0) {
     cash: t.cash,
   };
 }
+// After a first goal is drafted, offer different kinds of next idea built around it,
+// rather than suggesting another first goal: a windfall, something to enjoy,
+// a first look at investing and automatic saving. All are previews until approved.
+function firstGoalIdeas(p, first) {
+  const ideas = [],
+    current = p.l1.accounts.find((a) => a.balance != null),
+    bonus = [...p.l1.transactions]
+      .reverse()
+      .find((t) => t.category === 'bonus' && t.amount > 0 && t.amount <= (current?.balance || 0));
+  if (bonus) {
+    const label = /switch/i.test(bonus.counterparty) ? 'switch bonus' : 'bonus';
+    ideas.push({
+      id: 'boost-' + first.goal,
+      kind: 'boost',
+      goal: first.goal,
+      name: first.name,
+      from: current.id,
+      amount: bonus.amount,
+      followUp: true,
+      title: `Give your ${label} a job`,
+      detail: `${cash(bonus.amount)} once, from your current account`,
+      why: `Put the ${cash(bonus.amount)} ${label} into ${first.name}.`,
+    });
+  }
+  if (!planningPots(p).some((g) => /holiday|trip|travel/i.test(g.name)))
+    ideas.push({
+      id: 'first-treat',
+      kind: 'add',
+      goal: 'future-treat',
+      name: 'Holiday',
+      visualIcon: 'plane',
+      target: 600,
+      amount: 50,
+      followUp: true,
+      title: 'Plan something to look forward to',
+      detail: '£50 a month for a trip or a treat',
+      why: 'A trip, a gig, a new laptop: £50 a month makes £600 in a year.',
+    });
+  if (!p.l1.pots.some((g) => g.growthAnnual || g.kind === 'investment'))
+    ideas.push({
+      id: 'first-invest',
+      kind: 'add',
+      goal: 'future-invest',
+      name: 'First investment',
+      investment: true,
+      visualIcon: 'trend',
+      target: 0,
+      amount: 20,
+      followUp: true,
+      title: 'Try investing £20 a month',
+      detail: 'Illustrative growth · values can fall',
+      why: 'See how a small amount could grow over ten years. Values can fall as well as rise.',
+    });
+  if (!p.l1.rules.some((r) => r.active && r.type === 'round-up'))
+    ideas.push({
+      id: 'roundup-' + first.goal,
+      kind: 'roundup',
+      goal: first.goal,
+      name: first.name,
+      amount: 10,
+      followUp: true,
+      title: 'Let the small change add up',
+      detail: 'Round card payments up to the next £1',
+      why: `Round card payments up to the next £1 for ${first.name}. Try a £10 a month estimate, capped at £30.`,
+    });
+  return ideas;
+}
 export function suggestIdeas(p) {
   const gs = planningPots(p).filter((g) => !protectedGoal(p, g));
+  if (!gs.length) {
+    const first = futureState(p).ideas.find(
+      (i) => i.kind === 'add' && !i.investment && !i.followUp,
+    );
+    if (first) return firstGoalIdeas(p, first);
+  }
   const home = gs.find((g) => /home|house/i.test(g.name)) || gs.find((g) => g.target) || gs[0];
   const saving =
     gs.find((g) => /emergency|buffer/i.test(g.name)) ||
@@ -287,6 +381,8 @@ export function ideaDescription(p, i) {
     return `Pause ${name} for ${i.months} months, then resume automatically. Contributions stay in your current account during the pause.`;
   if (i.kind === 'priority')
     return `Move £${i.amount}/month from ${p.l1.pots.find((g) => g.id === i.from)?.name || 'another goal'} to ${name}. Your total contribution stays the same.`;
+  if (i.kind === 'boost')
+    return `Move ${cash(i.amount)} from your current account into ${name} now. It’s a one-off; your monthly amount stays the same.`;
   if (i.kind === 'remove')
     return `Retire ${name} as a goal and stop its Money Rules. Its existing Pot and balance stay available in Now.`;
   if (i.kind === 'add' && i.lockYears)
@@ -365,7 +461,10 @@ export function interpretIdea(p, text, previous = null) {
 export function toggleExperiment(p, idea) {
   const f = ensureFuture(p);
   if (f.ideas.some((i) => i.id === idea.id)) {
-    f.ideas = f.ideas.filter((i) => i.id !== idea.id);
+    // Removing a drafted goal also removes the ideas that build on it.
+    f.ideas = f.ideas.filter(
+      (i) => i.id !== idea.id && !(idea.kind === 'add' && i.goal === idea.goal),
+    );
     return;
   }
   const ideas = f.ideas.filter(

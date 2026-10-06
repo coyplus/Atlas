@@ -190,7 +190,7 @@ export function possibilityExperiment(i, overrides = {}) {
     target: i.target,
     amount: i.amount,
     possibilityKey: i.key,
-    title: 'Make room for ' + i.name,
+    title: 'Save for ' + i.name,
     ...overrides,
   };
 }

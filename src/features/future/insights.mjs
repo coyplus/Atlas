@@ -1,5 +1,12 @@
 import { isFutureBeginning } from './beginning.mjs';
-import { forecast, futureState, when, movement, suggestIdeas } from '../../domain/future.mjs';
+import {
+  forecast,
+  futureState,
+  when,
+  movement,
+  suggestIdeas,
+  goalChange,
+} from '../../domain/future.mjs';
 import { cash, dateAt } from '../../domain/money.mjs';
 import { visiblePossibilities } from '../ideas/horizon.mjs';
 import { possibilities } from '../ideas/model.mjs';
@@ -58,7 +65,12 @@ export function futureInsight(p, s) {
       'future-horizon:' + horizon.id,
     );
   }
-  if (lastMonth != null && s.month > lastMonth) {
+  // Right after trying an idea, talk about that idea rather than the distant horizon.
+  if (
+    lastMonth != null &&
+    s.month > lastMonth &&
+    !(ideas.length && f.lastExperimentMonth === s.month)
+  ) {
     const age = p.l1.customer.age + Math.floor(s.month / 12);
     return ai(
       `At ${age}, your planned milestones could be behind you. What would you love to do next?`,
@@ -68,13 +80,18 @@ export function futureInsight(p, s) {
     );
   }
   if (ideas.length) {
-    const changed = next.goals.filter((g) => base.dates[g.id] !== next.dates[g.id]);
+    const changed = next.goals.filter(
+      (g) => base.dates[g.id] !== next.dates[g.id] || !base.goals.some((b) => b.id === g.id),
+    );
+    // Lead with the goal the customer has just tried.
+    const latest = ideas.at(-1)?.goal;
+    changed.sort((a, b) => Number(b.id === latest) - Number(a.id === latest));
     return ai(
       changed.length
-        ? `${changed[0].name}, ${movement(base.dates[changed[0].id], next.dates[changed[0].id]).toLowerCase()}`
+        ? goalChange(p, base, next, changed[0]).replace(' · ', ': ')
         : `Your ideas could mean ${cash(Math.round(next.net))} by ${dateAt(p, s.month)}`,
       changed.length
-        ? changed.map((g) => `${g.name}: ${when(p, next.dates[g.id])}`).join('; ') +
+        ? changed.map((g) => goalChange(p, base, next, g).replace(' · ', ': ')).join('; ') +
             '. These experiments stay as previews until you approve them.'
         : 'Your balances respond to your ideas, even when milestone dates stay the same. Nothing changes until you approve.',
       'Review my changes',
