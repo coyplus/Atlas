@@ -4,8 +4,8 @@ import { materialIcons, materialViewBoxes } from '../design-system/icons.mjs';
 /* Narrative, shortened for a presentation followed by a live demo. The slides are the
    Narrative ones in the order of the briefing: context, the business case, then the
    behavioural design and system thinking that lead into the demo. The product slides
-   are left out because the demo shows each tab live. Two slides are simplified here
-   (the behaviour gap and the three needs); the full Narrative keeps its versions. */
+   are left out because the demo shows each tab live. Three slides are simplified here
+   (the behaviour gap, the big idea and the three needs); the full Narrative keeps its versions. */
 export const look = 'narrative';
 
 const icon = (name: keyof typeof materialIcons) =>
@@ -15,10 +15,13 @@ const pick = (stage: string) => {
   if (!slide) throw new Error(`Narrative slide missing: ${stage}`);
   return slide;
 };
-// The pillar numbers belong to the full Narrative, which introduces three numbered parts.
-const unnumbered = (stage: string) => {
+// The parts are numbered in this deck's order, set by the anchor slide.
+const numbered = (stage: string, number: string) => {
   const slide = pick(stage);
-  return { ...slide, content: slide.content.replace(/(<p class="eyebrow">)0\d · /, '$1') };
+  return {
+    ...slide,
+    content: slide.content.replace(/(<p class="eyebrow">)0\d · /, `$1${number} · `),
+  };
 };
 const heading = (label: string, title: string, support: string) =>
   `<div class="r-heading"><p class="eyebrow">${label}</p><h1>${title}</h1><p class="n-support">${support}</p></div>`;
@@ -36,11 +39,22 @@ const gap = {
     <p class="r-source"><a href="https://implementationscience.biomedcentral.com/articles/10.1186/1748-5908-6-42" target="_blank" rel="noopener noreferrer">COM-B · capability, opportunity, motivation · Michie, van Stralen &amp; West</a></p>`,
 };
 
+// The big idea as a signpost: three numbered parts, in the order this deck presents them.
+const anchor = {
+  ...pick('What the system needs'),
+  content: `${heading('Atlas · A behavioural operating system', 'Making banking <br><em>a relationship again.</em>', 'The system has to know you, and you have to trust it. Three things earn that.')}
+    <div class="n-body"><ol class="n-pillar-list" aria-label="How Atlas earns the relationship">
+      <li><span>01</span><h2>Behavioural science</h2><p>Makes the support feel like yours.</p></li>
+      <li><span>02</span><h2>AI and human support</h2><p>Knows you, and finds the right moment.</p></li>
+      <li><span>03</span><h2>A loyalty framework</h2><p>Makes the effort worth it now.</p></li>
+    </ol></div>`,
+};
+
 // The three needs become the three tabs, in the app's own order, with where each shows up.
 const needs = {
   ...pick('Behavioural science'),
   theme: `${pick('Behavioural science').theme} s-needs`,
-  content: `${heading('Behavioural science', 'People keep going when they feel <em>capable, connected and in control.</em>', 'So Atlas has three tabs, one for each need.')}
+  content: `${heading('01 · Behavioural science', 'People keep going when they feel <em>capable, connected and in control.</em>', 'So Atlas has three tabs, one for each need.')}
     <div class="n-body"><div class="n-tabs s-tabs">
       <article style="--tab:#3e8178"><span class="n-tab-glyph" aria-hidden="true">${icon('grid_view')}</span><span class="r-label">Competence</span><h2>Now</h2><p>“I can see where I stand, and act.”</p><p class="s-atlas">My numbers, stories and routines that run on payday.</p></article>
       <article style="--tab:#447f99"><span class="n-tab-glyph" aria-hidden="true">${icon('trending_up')}</span><span class="r-label">Autonomy</span><h2>Future</h2><p>“I choose my direction.”</p><p class="s-atlas">Possibilities, Time Travel and What if, before I commit.</p></article>
@@ -56,9 +70,10 @@ export const slides = [
   pick('Why a bank should build this'),
   pick('Why it is hard'),
   gap,
+  anchor,
   needs,
-  unnumbered('AI and human support'),
-  unnumbered('A loyalty framework'),
+  numbered('AI and human support', '02'),
+  numbered('A loyalty framework', '03'),
   pick('The flywheel'),
   pick('Close'),
 ];
