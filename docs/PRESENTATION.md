@@ -38,13 +38,24 @@ as hypotheses to validate, rather than measured claims.
 
 ## Versions
 
-The header selector switches between three decks. Each has its own shareable URL and keeps the `p` scenario parameter.
+The header selector switches between four decks. Each has its own shareable URL and keeps the `p` scenario parameter.
 
 - Original (default): `/presentation/`, fourteen slides, `src/presentation/slides.ts`.
 - Relationship: `/presentation/?version=relationship`, eleven slides, `src/presentation/relationship.ts`.
 - Narrative: `/presentation/?version=narrative`, fifteen slides, `src/presentation/narrative.ts` and `narrative.css`.
+- Behavioural design: `/presentation/?version=behavioural`, eleven slides, `src/presentation/behavioural.ts` and `behavioural.css`. A short briefing before a live demo (6 October 2026).
 
 The narrative deck argues in five moves: the problem (banking has become transactional; features alone have not delivered outcomes), why it is hard (outcomes are built from sustained behaviour; a behaviour needs three conditions and features fix only one), the thesis (building better customers builds a better bank), what Atlas is (a behavioural operating system with three parts: behavioural science, AI and human support, a loyalty framework, each given one slide, then Now, You and Future), how it compounds (the relationship flywheel) and a close (from product-led growth to behaviour-led growth). Every slide has the same grammar: eyebrow, headline, one supporting line, one piece of content. The styles are scoped to `body[data-version='narrative']` and follow the HSBC design ethos: warm greys, hairlines, red #DB0011 for emphasis only, light headlines, and brand textures on the cover and the two dark slides. Browser coverage: `e2e/presentation-narrative.spec.ts`.
+
+### Behavioural design edition · 6 October 2026
+
+A shorter deck for a 20–25 minute presentation and live demo. It puts more weight on the behavioural design and systems thinking behind the concept and less on individual features. It reuses five Narrative slides without changes (cover, deposit, behaviour gap, capable/connected/in control, close) through `reuse(stage)`, so edits to those slides flow into both decks. It sets `look = 'narrative'`: `deck.ts` styles it with the Narrative language (`data-version='narrative'`) and marks it with `data-deck='behavioural'` for its own compositions.
+
+1. Cover. 2. The problem: AI inside today's journeys versus what remains unresolved, ending on the relationship question. 3. The shift: useful support → stronger relationship → sustained behaviours → better outcomes. 4. You don't build a deposit in a day. 5. The behaviour gap (COM-B). 6. Design principles: six principles and where each appears in Atlas, without new research citations. 7. Capable, connected, in control (SDT → tabs). 8. One system: how Future, Now and You pass the behaviour on, with AI and memory beneath. 9. The AI Companion: push, pull and a person. 10. Day one to month eight: Alex's and Sam's tabs side by side, leading into the demo. 11. Close.
+
+The only research references are those already in the Narrative deck (COM-B, Self-Determination Theory, FCA Financial Lives 2024). At the owner's request, the principles slide adds none.
+
+Slide 10 uses captures in `assets/presentation/behavioural/`. They were taken on 6 October 2026 from the working prototype at revision `7ae2a70`, Vanilla theme, with a 390 × 844 viewport at 2× and WebP quality 92, without retouching. Alex is day nine; Sam is month eight. Presenter notes for this edition stay outside the public repository. Browser coverage: `e2e/presentation-behavioural.spec.ts`.
 
 ## Editing
 

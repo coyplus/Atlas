@@ -3,17 +3,25 @@ import './deck.css';
 import './relationship.css';
 import '../design-system/companion.css';
 import './narrative.css';
+import './behavioural.css';
 import { materialIcons, materialViewBoxes } from '../design-system/icons.mjs';
 const versions = {
   original: () => import('./slides'),
   relationship: () => import('./relationship'),
   narrative: () => import('./narrative'),
+  behavioural: () => import('./behavioural'),
 };
 type Version = keyof typeof versions;
 const requested = new URLSearchParams(location.search).get('version');
 const version: Version = requested && requested in versions ? (requested as Version) : 'original';
-const { slides } = await versions[version]();
-document.body.dataset.version = version;
+const deck: {
+  slides: { stage: string; title: string; theme: string; content: string }[];
+  look?: string;
+} = await versions[version]();
+const { slides } = deck;
+// An edition can reuse another version's visual language while keeping its own URL.
+document.body.dataset.version = deck.look || version;
+document.body.dataset.deck = version;
 const versionSelector = document.querySelector<HTMLSelectElement>('#deck-version')!;
 versionSelector.value = version;
 versionSelector.addEventListener('change', () => {
@@ -30,7 +38,7 @@ main.innerHTML = slides
       `<section class="slide ${slide.theme}" id="slide-${i + 1}" aria-label="${i + 1} of ${slides.length}: ${slide.title}" aria-roledescription="slide" tabindex="-1" hidden>${slide.content}</section>`,
   )
   .join('');
-if (version === 'narrative') {
+if (document.body.dataset.version === 'narrative') {
   const { initialiseNarrativeMotion } = await import('./narrative-motion');
   initialiseNarrativeMotion(main);
 }

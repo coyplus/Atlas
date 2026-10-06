@@ -1,0 +1,431 @@
+/* Behavioural design edition. Uses the Narrative language (body[data-version='narrative'])
+   and adds only the new compositions; reused Narrative slides are unchanged. */
+body[data-deck='behavioural'] .b-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6%;
+}
+body[data-deck='behavioural'] .b-compare > div + div {
+  border-left: 1px solid var(--rule);
+  padding-left: 6%;
+}
+body[data-deck='behavioural'] .b-compare ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body[data-deck='behavioural'] .b-compare li {
+  font-size: clamp(19px, 1.6vw, 25px);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+}
+body[data-deck='behavioural'] .b-compare li:last-child {
+  border-bottom: 0;
+}
+body[data-deck='behavioural'] .b-compare > div + div li {
+  color: var(--ink);
+}
+body[data-deck='behavioural'] .b-compare > div:first-child li {
+  color: var(--muted);
+}
+body[data-deck='behavioural'] .b-question {
+  margin-top: clamp(22px, 3.5vh, 40px);
+  font-size: clamp(24px, 2.2vw, 34px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.2 !important;
+}
+body[data-deck='behavioural'] .b-question em {
+  font-style: normal;
+  color: var(--red);
+}
+
+/* The shift: four steps on the ink stage, ending in the soundbite. */
+body[data-deck='behavioural'] .b-chain {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+body[data-deck='behavioural'] .b-chain h2 {
+  font-size: clamp(24px, 2.05vw, 32px);
+}
+body[data-deck='behavioural'] .b-chain p {
+  font-size: 17px;
+  max-width: 290px;
+}
+body[data-deck='behavioural'] .b-chain .r-arrow {
+  right: -34px;
+}
+body[data-deck='behavioural'] .b-soundbite {
+  margin-top: clamp(30px, 5vh, 56px);
+  font-size: clamp(24px, 2.3vw, 36px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: #ff505d;
+}
+
+/* Design principles: six principles, each with where it lives in Atlas. */
+@media (min-width: 951px) {
+  body[data-deck='behavioural'] .b-evidence {
+    display: grid;
+    grid-template-columns: minmax(0, 0.34fr) minmax(0, 0.66fr);
+    grid-template-rows: 1fr auto;
+    column-gap: 4.5%;
+    align-items: center;
+  }
+  body[data-deck='behavioural'] .b-evidence .n-body {
+    margin: 0;
+    padding: 0;
+  }
+  body[data-deck='behavioural'] .b-evidence .r-source {
+    grid-column: 1 / -1;
+  }
+  body[data-deck='behavioural'] .b-evidence h1 {
+    font-size: clamp(42px, 3.9vw, 62px);
+  }
+}
+/* Dense slides keep the Narrative grammar with a slightly smaller headline. */
+body[data-deck='behavioural'] .b-companion h1,
+body[data-deck='behavioural'] .b-growth h1,
+body[data-deck='behavioural'] .b-system h1 {
+  font-size: clamp(42px, 4.3vw, 66px);
+}
+body[data-deck='behavioural'] .b-evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+body[data-deck='behavioural'] .b-evidence-grid article {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px 18px;
+  border: 1px solid #e3e5e6;
+  border-radius: 20px;
+  background: #fff;
+}
+body[data-deck='behavioural'] .b-number {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+body[data-deck='behavioural'] .b-evidence-grid h2 {
+  font-size: clamp(21px, 1.7vw, 27px);
+  margin-bottom: 18px;
+}
+body[data-deck='behavioural'] .b-evidence-grid p {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.4 !important;
+}
+body[data-deck='behavioural'] .b-evidence-grid .b-atlas {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  color: var(--ink);
+}
+body[data-deck='behavioural'] .b-atlas b {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+body[data-deck='behavioural'] .b-evidence-grid small {
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* One system: three jobs in reading order, a return path and the AI layer beneath. */
+body[data-deck='behavioural'] .b-loop {
+  display: grid;
+  grid-template-columns: 1fr minmax(120px, 0.42fr) 1fr minmax(120px, 0.42fr) 1fr;
+  align-items: center;
+  row-gap: 18px;
+}
+body[data-deck='behavioural'] .b-loop article {
+  padding: 24px 26px;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--tab) 8%, var(--paper));
+  border: 1px solid color-mix(in srgb, var(--tab) 16%, var(--paper));
+  min-height: 100%;
+}
+body[data-deck='behavioural'] .b-loop .n-tab-glyph {
+  margin-bottom: 18px;
+}
+body[data-deck='behavioural'] .b-loop .n-tab-glyph .deck-icon {
+  width: 34px;
+  height: 34px;
+}
+body[data-deck='behavioural'] .b-loop .r-label {
+  color: var(--tab);
+  margin-bottom: 8px;
+}
+body[data-deck='behavioural'] .b-loop h2 {
+  font-size: clamp(24px, 2.1vw, 33px);
+  margin-bottom: 8px;
+}
+body[data-deck='behavioural'] .b-loop article p {
+  font-size: 16px;
+  color: var(--muted);
+}
+body[data-deck='behavioural'] .b-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 14px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.3 !important;
+}
+body[data-deck='behavioural'] .b-return,
+body[data-deck='behavioural'] .b-layer {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+body[data-deck='behavioural'] .b-return {
+  justify-content: center;
+  padding: 12px 0 2px;
+  border-top: 1px dashed #cfd3d5;
+  font-size: 14px;
+  color: var(--muted);
+}
+body[data-deck='behavioural'] .b-return span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+body[data-deck='behavioural'] .b-return .deck-icon,
+body[data-deck='behavioural'] .b-memory .deck-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--red);
+}
+body[data-deck='behavioural'] .b-layer {
+  padding: 16px 22px;
+  border-radius: 18px;
+  background: var(--ink);
+  color: #f2f3f3;
+  font-size: 16px;
+}
+body[data-deck='behavioural'] .b-layer .deck-icon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: #ff505d;
+}
+body[data-deck='behavioural'] .b-layer b {
+  font-weight: 500;
+}
+
+/* Push, pull and a person: one live Companion card shows the product voice. */
+body[data-deck='behavioural'] .b-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+body[data-deck='behavioural'] .b-modes article {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  border-radius: 24px;
+  background: #f2f3f3;
+  border: 1px solid #e3e5e6;
+}
+body[data-deck='behavioural'] .b-modes .r-label {
+  margin-bottom: 0;
+  color: var(--red);
+}
+body[data-deck='behavioural'] .b-modes h2 {
+  font-size: clamp(21px, 1.75vw, 27px);
+}
+body[data-deck='behavioural'] .b-modes p {
+  font-size: 15.5px;
+  color: var(--muted);
+}
+body[data-deck='behavioural'] .b-modes small {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--ink);
+}
+body[data-deck='behavioural'] .b-modes .n-companion .atlas-companion {
+  min-height: 0;
+  padding: 16px 18px;
+}
+body[data-deck='behavioural'] .b-modes .n-companion .support-copy strong {
+  font-size: 15px;
+}
+body[data-deck='behavioural'] .b-utterance,
+body[data-deck='behavioural'] .b-handover {
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--ink) !important;
+  font-size: 16px !important;
+  box-shadow: 0 10px 24px -16px #19212a40;
+}
+body[data-deck='behavioural'] .b-handover {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+body[data-deck='behavioural'] .b-handover .deck-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--red);
+}
+body[data-deck='behavioural'] .b-memory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* Day one to month eight: the same tab, side by side, cropped to the top of the screen. */
+body[data-deck='behavioural'] .b-growth-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.6vw, 44px);
+}
+body[data-deck='behavioural'] .b-growth-tab > h2 {
+  font-size: clamp(24px, 2vw, 32px);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+body[data-deck='behavioural'] .b-growth-pair {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 10px;
+}
+body[data-deck='behavioural'] .b-growth-pair .r-arrow {
+  align-self: center;
+}
+body[data-deck='behavioural'] .b-growth-pair figure {
+  margin: 0;
+  min-width: 0;
+}
+body[data-deck='behavioural'] .b-growth .phone-frame {
+  height: auto;
+  aspect-ratio: 390 / 600;
+  max-height: 35vh;
+  margin-inline: auto;
+  padding: 3px;
+  border-radius: 22px 22px 8px 8px;
+  border-bottom: 0;
+}
+body[data-deck='behavioural'] .b-growth .phone-frame img {
+  object-position: top;
+  border-radius: 19px 19px 5px 5px;
+}
+body[data-deck='behavioural'] .b-growth figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+body[data-deck='behavioural'] .b-growth figcaption b {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 3px;
+}
+
+/* Typical laptop presentation size. */
+@media (min-width: 951px) and (max-height: 820px) {
+  body[data-deck='behavioural'] .b-evidence-grid article {
+    padding: 14px 16px 12px;
+  }
+  body[data-deck='behavioural'] .b-evidence-grid .b-atlas {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+  body[data-deck='behavioural'] .b-evidence-grid h2 {
+    font-size: 21px;
+  }
+  body[data-deck='behavioural'] .b-evidence-grid p {
+    font-size: 13.5px;
+  }
+  body[data-deck='behavioural'] .b-modes article {
+    padding: 20px;
+    gap: 10px;
+  }
+  body[data-deck='behavioural'] .b-loop article {
+    padding: 20px 22px;
+  }
+  body[data-deck='behavioural'] .b-growth .phone-frame {
+    max-height: 28vh;
+  }
+  body[data-deck='behavioural'] .b-modes h2 {
+    font-size: 21px;
+  }
+  body[data-deck='behavioural'] .b-memory {
+    margin-top: 12px;
+  }
+  body[data-deck='behavioural'] .b-evidence-grid p {
+    line-height: 1.35 !important;
+  }
+  body[data-deck='behavioural'] .b-companion h1,
+  body[data-deck='behavioural'] .b-growth h1,
+  body[data-deck='behavioural'] .b-system h1,
+  body[data-deck='behavioural'] .b-evidence h1 {
+    font-size: 50px;
+  }
+}
+
+/* Phone / portrait tablet: reflow into one column. */
+@media (max-width: 950px) {
+  body[data-deck='behavioural'] .b-compare,
+  body[data-deck='behavioural'] .b-chain,
+  body[data-deck='behavioural'] .b-evidence-grid,
+  body[data-deck='behavioural'] .b-modes,
+  body[data-deck='behavioural'] .b-growth-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  body[data-deck='behavioural'] .b-compare > div + div {
+    border-left: 0;
+    padding-left: 0;
+  }
+  body[data-deck='behavioural'] .b-chain .r-arrow {
+    display: none;
+  }
+  body[data-deck='behavioural'] .b-loop {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+  body[data-deck='behavioural'] .b-link {
+    flex-direction: row;
+    justify-content: center;
+  }
+  body[data-deck='behavioural'] .b-link .r-arrow {
+    transform: rotate(90deg);
+  }
+  body[data-deck='behavioural'] .b-growth .phone-frame {
+    max-height: none;
+    max-width: 170px;
+  }
+}
+body[data-deck='behavioural'] .b-growth .n-body {
+  padding-block: 20px 0;
+}
