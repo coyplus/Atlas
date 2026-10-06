@@ -239,7 +239,7 @@ export function createSupportController(getState, data, dispatch, showDialog) {
           destinations[m.action] === modalContext.kind);
     // “Suggest a next step” offers the idea in the Companion's voice, never as an instruction.
     const suggestion = !thinking && m.suggestion && !sameDetail ? m.suggestion : '';
-    dock.dataset.suggestion = String(!!suggestion);
+    dock.dataset.offer = String(!!suggestion);
     const title = thinking ? 'Thinking…' : m.title,
       sub = thinking
         ? 'Bringing your money into focus'

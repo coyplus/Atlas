@@ -904,16 +904,16 @@ body[data-direction='vanilla'] .support-dock[data-single-message='true'] .suppor
 /* “Suggest a next step” keeps the observation and offers an idea as a second line,
    in the Companion's own colour: a partner's suggestion, not an instruction. */
 body[data-direction='vanilla']
-  .support-dock[data-single-message='true'][data-suggestion='true']
+  .support-dock[data-single-message='true'][data-offer='true']
   .support-subtitle {
   display: block;
   margin-top: 4px;
 }
-body[data-direction='vanilla'] .support-dock[data-suggestion='true'] .support-subtitle {
+body[data-direction='vanilla'] .support-dock[data-offer='true'] .support-subtitle {
   color: color-mix(in srgb, var(--companion-color, var(--ink)) 85%, var(--ink));
   font-weight: 500;
 }
-body[data-direction='vanilla'] .premier .support-dock[data-suggestion='true'] .support-subtitle {
+body[data-direction='vanilla'] .premier .support-dock[data-offer='true'] .support-subtitle {
   color: color-mix(in srgb, var(--companion-color, var(--ink)) 35%, white);
 }
 

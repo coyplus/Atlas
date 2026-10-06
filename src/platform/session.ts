@@ -135,6 +135,17 @@ export function upgradeSession(value: unknown): unknown {
   ) {
     samUI.sizes['container-family-budget'] = 'T';
   }
+  // The safety net moved from Sam's starting numbers to his first Add a number suggestion.
+  if (
+    JSON.stringify(samUI.order) === JSON.stringify(samOrder) &&
+    Object.keys(samUI.sizes).length === Object.keys(samSizes).length &&
+    Object.entries({ ...samSizes, 'container-family-budget': 'T' }).every(
+      ([id, size]) => samUI.sizes[id] === size,
+    )
+  ) {
+    samUI.order = samUI.order.filter((id: string) => id !== 'safetydays');
+    delete samUI.sizes.safetydays;
+  }
   const ui = state.people.alex.ui;
   const originalOrder = ['balance', 'dd', 'creditscore', 'activity'];
   const originalSizes: Record<string, string> = { balance: 'W', activity: 'W' };

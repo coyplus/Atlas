@@ -882,6 +882,17 @@
   ],
   "recommendations": [
     {
+      "id": "rec-widget-safetydays",
+      "kind": "module-suggestion",
+      "moduleId": "safetydays",
+      "lead": true,
+      "why": "Your emergency fund now covers about 90 days of essentials. Keep that cushion in view.",
+      "basis": [
+        "l1:pots",
+        "l1:bills"
+      ]
+    },
+    {
       "id": "rec-widget-subs",
       "kind": "module-suggestion",
       "moduleId": "subs",

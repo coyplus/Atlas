@@ -136,8 +136,10 @@ export function numberIdeas(p) {
       moduleId: 'investments',
       why: 'See how your long-term money is spread across pots.',
     });
-  const seen = new Set();
-  return [...extra, ...p.l2.recommendations.filter((r) => r.kind === 'module-suggestion')]
+  const seen = new Set(),
+    suggestions = p.l2.recommendations.filter((r) => r.kind === 'module-suggestion');
+  // An authored lead suggestion comes first; inferred ideas follow.
+  return [...suggestions.filter((r) => r.lead), ...extra, ...suggestions]
     .filter((r) => {
       if (seen.has(r.moduleId) || p.ui.order.includes(r.moduleId)) return false;
       seen.add(r.moduleId);

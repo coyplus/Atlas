@@ -41,7 +41,6 @@ export const defaults = {
     'goldenratio',
     'container-ac-cc',
     'container-ella-pocket',
-    'safetydays',
     'points',
     'activity',
   ],
@@ -81,7 +80,6 @@ export function createSession(dataset) {
       );
     if (id === 'sam') {
       p.ui.sizes.investments = 'F';
-      p.ui.sizes.safetydays = 'W';
       p.ui.sizes['container-family-budget'] = 'T';
     }
     if (id === 'elena') p.ui.sizes.familypot = 'W';

@@ -132,7 +132,7 @@
 - ✅ Product points is in the shared catalogue
 - ✅ Product committed-plan is in the shared catalogue
 - ✅ Product cashback is in the shared catalogue
-- ✅ L2 basis references resolve (96 refs)
+- ✅ L2 basis references resolve (98 refs)
 - ✅ Projection House deposit: milestone month 55 recomputed = 55
 - ✅ Projection House deposit: value at 60 months 24000.0
 - ✅ Projection Emergency fund: milestone month 20 recomputed = 20
