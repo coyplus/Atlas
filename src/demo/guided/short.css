@@ -314,3 +314,19 @@ body.g-live .g-device.is-on {
     transition: none;
   }
 }
+/* Films (?version=future, ?version=companion): the device alone, centred on white. */
+body.g-film,
+body.g-film #g-stage-host {
+  background: #fff;
+}
+body.g-film #g-stage-host {
+  inset: 0;
+}
+body.g-film .deck-header,
+body.g-film .g-copy,
+body.g-film .g-timeline,
+body.g-film .g-progress,
+body.g-film .g-montage-tab,
+body.g-film .g-label-who {
+  display: none;
+}

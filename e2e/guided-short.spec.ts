@@ -125,3 +125,27 @@ test('the close hands over the working prototype, and Escape returns', async ({ 
   await expect(page).toHaveURL(/#slide-12$/);
   await expect(page.locator('#slide-12')).toBeVisible();
 });
+
+test('the Future film is the device alone, ending on Money Speed for today', async ({ page }) => {
+  await page.goto('/demo/?version=future');
+  await ready(page);
+  await expect(page).toHaveURL(/#goals$/);
+  await expect(page.locator('body')).toHaveClass(/g-film/);
+  await expect(page.locator('.g-copy')).toBeHidden();
+  await expect(page.locator('.deck-header')).toBeHidden();
+  await page.goto('/demo/?version=future#money-speed');
+  await ready(page);
+  await expect(frame(page, 'sam').locator('#overlay')).toContainText('£420');
+});
+
+test('the Companion film follows Elena from a contextual message to Priya’s agenda', async ({
+  page,
+}) => {
+  await page.goto('/demo/?version=companion#wealth');
+  await ready(page);
+  await expect(frame(page, 'elena').locator('#support-dock')).toContainText('Total wealth');
+  await page.goto('/demo/?version=companion#agenda');
+  await ready(page);
+  await expect(frame(page, 'elena').locator('.voice-review-added')).toBeVisible();
+  await expect(pointers(page)).toHaveText(['On Priya’s agenda']);
+});

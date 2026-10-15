@@ -10,7 +10,8 @@ import './short.css';
 import { slides as deckSlides } from '../../presentation/short';
 import { initialiseNarrativeMotion } from '../../presentation/narrative-motion';
 import { materialIcons, materialViewBoxes } from '../../design-system/icons.mjs';
-import { beats, live, runs, stages, type Beat, type Customer } from './beats';
+import { beats as storyBeats, live, runs, stages, type Beat, type Customer } from './beats';
+import { films } from './films';
 import { createAct, rectOf, type Act, type Cue } from './act';
 
 type Slide = (typeof deckSlides)[number];
@@ -29,24 +30,39 @@ try {
 } catch {
   /* Optional beats stay shown without storage. */
 }
+// ?version=future or ?version=companion: a stand-alone film, beats only, on a white stage.
+const params = new URLSearchParams(location.search);
+const film = films[params.get('version') || ''];
+const beats = film || storyBeats;
+// ?autoplay moves on by itself once each beat settles, for screen recordings.
+const autoplay = params.has('autoplay') ? Number(params.get('autoplay')) || 2600 : 0;
 const intro = deckSlides.slice(0, -1),
   close = deckSlides.at(-1)!;
-const allEntries: Entry[] = [
-  ...intro.map((s, i) => ({
-    id: 'slide-' + String(i + 1).padStart(2, '0'),
-    title: s.title,
-    chapter: s.stage,
-    slide: s,
-  })),
-  ...beats.map((b) => ({ id: b.id, title: b.headline, chapter: b.chapter, beat: b })),
-  {
-    id: 'slide-' + String(deckSlides.length).padStart(2, '0'),
-    title: close.title,
-    chapter: close.stage,
-    slide: close,
-  },
-  { id: live.id, title: live.headline, chapter: live.chapter, beat: live },
-];
+const filmEntries: Entry[] = beats.map((b) => ({
+  id: b.id,
+  title: b.headline,
+  chapter: b.chapter,
+  beat: b,
+}));
+const allEntries: Entry[] = film
+  ? filmEntries
+  : [
+      ...intro.map((s, i) => ({
+        id: 'slide-' + String(i + 1).padStart(2, '0'),
+        title: s.title,
+        chapter: s.stage,
+        slide: s,
+      })),
+      ...beats.map((b) => ({ id: b.id, title: b.headline, chapter: b.chapter, beat: b })),
+      {
+        id: 'slide-' + String(deckSlides.length).padStart(2, '0'),
+        title: close.title,
+        chapter: close.stage,
+        slide: close,
+      },
+      { id: live.id, title: live.headline, chapter: live.chapter, beat: live },
+    ];
+if (film) document.body.classList.add('g-film');
 const entries = () => allEntries.filter((e) => showOptional || !e.beat?.optional);
 
 /* ---------- page ---------- */
@@ -189,6 +205,8 @@ const frameFor = (runId: string) => frames.get(runId) || makeFrame(runId);
 /* ---------- layouts ---------- */
 const layouts: Record<Beat['layout'], (n: number) => Slot[]> = {
   single: () => [{ x: STAGE_W - 130 - 390 * 0.8, y: 160, k: 0.8 }],
+  // A film: one larger device, centred; pointers still reach in from the left.
+  film: () => [{ x: (STAGE_W - 390 * 0.98) / 2, y: (STAGE_H - 844 * 0.98) / 2, k: 0.98 }],
   // The right-hand margin leaves room for the second device's pointer, which points in from the right.
   compare: () =>
     [0, 1].map((i) => ({
@@ -315,7 +333,8 @@ let index = -1,
   token = 0,
   busy = false,
   rushing = false,
-  montageTimer: ReturnType<typeof setTimeout> | undefined;
+  montageTimer: ReturnType<typeof setTimeout> | undefined,
+  autoplayTimer: ReturnType<typeof setTimeout> | undefined;
 const beatOrder = (b: Beat) => beats.indexOf(b);
 const active = (b: Beat) => showOptional || !b.optional;
 // The last earlier beat that set up this run's state.
@@ -489,6 +508,8 @@ async function showBeat(b: Beat, forward: boolean, alive: () => boolean) {
   }));
   drawPointers();
   stage.dataset.status = 'ready';
+  if (autoplay && index < entries().length - 1)
+    autoplayTimer = setTimeout(() => alive() && advance(1), autoplay);
   if (b.montage) montage(used, alive);
 }
 // The ending: four customers step through the same three tabs together.
@@ -547,6 +568,7 @@ async function show(target: number, forwardHint?: boolean) {
   const mine = ++token;
   const alive = () => mine === token;
   rushing = false;
+  clearTimeout(autoplayTimer);
   const e = list[index];
   main.querySelectorAll<HTMLElement>('.slide').forEach((s) => (s.hidden = s.id !== e.id));
   host.hidden = !e.beat;

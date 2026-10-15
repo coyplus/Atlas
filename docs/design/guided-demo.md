@@ -52,6 +52,15 @@ Order: the first eleven Narrative short slides, then 33 beats, the closing slide
 
 Product changes made for this story apply to the app as a whole: Safe to spend is Alex's lead number suggestion; when Safe to spend leads My numbers, the Companion offers an alert below £150 (`safespend-alert`); the Companion leaves its Customise message once Done is pressed; Elena can prepare for Thursday's review by voice and add the open question to Priya's agenda; Money Portrait trait cards mark readings that are new or updated in the last three months; closing the weekly briefing player no longer reads the removed audio element.
 
+## Stand-alone films · 15 October 2026
+
+Two short films reuse the same beats engine without slides, copy, timeline or progress: one device, centred on white, with touch cues and pointers. `src/demo/guided/films.ts` holds them; `entry.ts` routes `?version=future` and `?version=companion` to the engine, which marks the page `g-film`.
+
+- `/demo/?version=future` · Sam's Future: competing goals (opened directly, a little closer in), Time Travel to 40, one What if, two combined, then Money Speed at today with the previews cleared.
+- `/demo/?version=companion` · Elena's Companion: Priya's note, then the message changing as she scrolls past total wealth, the family holiday and Points, back to the note, Prepare with AI, voice, the review card, and the open question added to Priya's agenda.
+
+The presenter advances with the same keys. Add `&autoplay` (or `&autoplay=4000` for a hold in milliseconds) to let a film move on by itself once each beat settles, for screen recording.
+
 ## Boundaries and verification
 
 This remains a fictional, deterministic concept—not a live banking or validated AI service. The memory demonstration uses the existing explicit Remember for future support control and the actual saved memory library. Known existing limitation: the Future support model currently prioritises forecast messaging ahead of remembered reflections. This release preserves that behaviour; the scene does not claim to demonstrate memory-driven Future messaging. Each scene resets independently; the complete deck is not one accumulating customer session. Reduced-motion preferences remove scroll and timeline tweening; presenter-controlled pacing remains available.

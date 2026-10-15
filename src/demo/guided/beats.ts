@@ -20,7 +20,7 @@ export type Beat = {
   headline: string;
   sub: string;
   who: Customer[];
-  layout: 'single' | 'compare' | 'quad' | 'live';
+  layout: 'single' | 'compare' | 'quad' | 'live' | 'film';
   runs: string[];
   /** Runs off camera before the frame appears, e.g. to open a tab without showing the way there. */
   setup?: Partial<Record<string, (a: Act) => Promise<void>>>;
