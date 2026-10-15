@@ -59,7 +59,7 @@ Two short films reuse the same beats engine without slides, copy, timeline or pr
 - `/demo/?version=future` · Sam's Future: competing goals (opened directly, a little closer in), Time Travel to 40, one What if, two combined, then Money Speed at today with the previews cleared.
 - `/demo/?version=companion` · Elena's Companion: Priya's note, then the message changing as she scrolls past total wealth, the family holiday and Points, back to the note, Prepare with AI, voice, the review card, and the open question added to Priya's agenda.
 
-The presenter advances with the same keys. Add `&autoplay` (or `&autoplay=4000` for a hold in milliseconds) to let a film move on by itself once each beat settles, for screen recording.
+Films play at a slower pace than the presentation (`pace` in `act.ts`), so they read as someone using the phone: the finger arrives before each tap and ripples on press, scrolls glide, Time Travel takes about four seconds so every figure can be seen changing, and Sam browses the What if cards (snapping is paused while the finger swipes) before choosing one. The presenter advances with the same keys. Add `&autoplay` (or `&autoplay=4000` for a hold in milliseconds) to let a film move on by itself once each beat settles, for screen recording.
 
 ## Boundaries and verification
 

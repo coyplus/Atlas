@@ -54,7 +54,7 @@ const futureFilm: Beat[] = [
   {
     id: 'what-if',
     chapter: future,
-    headline: 'What if: one change',
+    headline: 'What if: browse, then choose',
     sub: '',
     who: ['sam'],
     layout: 'film',
@@ -63,9 +63,16 @@ const futureFilm: Beat[] = [
       sam: async (a) => {
         if (!a.visible('[data-action="future-try:closer-ef"]'))
           await a.tap('.future-drawer text:What if', 'What if');
+        await a.hold(700);
+        // Browse the ideas first, as a person would, then come back and choose one.
+        for (const id of ['roundup-ef', 'pause-ef', 'priority-ef']) {
+          await a.swipeTo(`[data-action="future-try:${id}"]`);
+          await a.hold(900);
+        }
+        await a.swipeTo('[data-action="future-try:closer-ef"]');
         await a.hold(500);
         await a.tap('[data-action="future-try:closer-ef"]', 'Save £50 on payday');
-        await a.hold(1200);
+        await a.hold(1600);
       },
     },
     pointers: [{ run: 'sam', target: '#support-dock', label: 'A preview, before agreeing' }],

@@ -259,6 +259,10 @@ const cue: Cue = {
     touchEl.style.transition = '';
     touchEl.dataset.pressed = 'false';
     touchEl.querySelector('span')!.textContent = label || '';
+    // The finger arrives, so the eye finds it before it presses.
+    touchEl.classList.remove('is-arriving');
+    void touchEl.offsetWidth;
+    touchEl.classList.add('is-arriving');
   },
   press(pressed) {
     touchEl.dataset.pressed = String(pressed);
@@ -456,7 +460,8 @@ async function showBeat(b: Beat, forward: boolean, alive: () => boolean) {
   );
   if (!alive()) return;
   playable.forEach((p) => place(p.f, p.slot, forward ? 'right' : 'left'));
-  await new Promise((r) => setTimeout(r, fast ? 10 : 560));
+  // A film keeps the same device on screen, so the next beat follows on almost at once.
+  await new Promise((r) => setTimeout(r, fast ? 10 : film ? 150 : 560));
   if (!alive()) return;
   stage.dataset.status = 'playing';
   // Steps: visible on the frame the audience is watching; silent where it was rebuilt.
@@ -471,10 +476,12 @@ async function showBeat(b: Beat, forward: boolean, alive: () => boolean) {
     cueFrame = p.f;
     const a = createAct({
       frame: p.f.iframe,
-      visible: p.visible && b.layout === 'single',
+      // Single devices and films play every step on screen; comparisons and montages settle quietly.
+      visible: p.visible && (b.layout === 'single' || b.layout === 'film'),
       cue,
       alive,
       rush: () => rushing,
+      pace: film ? 1.5 : 1,
     });
     try {
       await step(a);

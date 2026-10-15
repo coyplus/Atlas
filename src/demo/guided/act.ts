@@ -74,6 +74,8 @@ export function createAct(opts: {
   cue: Cue;
   alive: () => boolean;
   rush: () => boolean;
+  /** Films play slower than the presentation, closer to a person using the phone. */
+  pace?: number;
 }) {
   const { frame, cue } = opts;
   const fast = !!(window as Window & { __ATLAS_TEST__?: boolean }).__ATLAS_TEST__;
@@ -84,13 +86,16 @@ export function createAct(opts: {
   const check = () => {
     if (!opts.alive()) throw new DOMException('Beat changed', 'AbortError');
   };
+  const pace = opts.pace ?? 1;
   const sleep = async (ms: number) => {
     check();
-    if (ms > 0) await new Promise((r) => setTimeout(r, fast ? Math.min(ms, 20) : ms));
+    const real = show() ? ms * pace : ms;
+    if (real > 0) await new Promise((r) => setTimeout(r, fast ? Math.min(real, 20) : real));
     check();
   };
   async function animate(ms: number, draw: (t: number) => void) {
     if (!show() || reduced) return draw(1);
+    ms *= pace;
     const start = performance.now();
     for (;;) {
       check();
@@ -273,6 +278,8 @@ export function createAct(opts: {
         row = row.parentElement;
       if (!row) return;
       row.style.scrollBehavior = 'auto';
+      // Snapping would pull each frame back to a card; let the finger glide, then snap again.
+      row.style.scrollSnapType = 'none';
       const r = el.getBoundingClientRect(),
         box = row.getBoundingClientRect(),
         start = row.scrollLeft,
@@ -280,7 +287,10 @@ export function createAct(opts: {
           0,
           Math.min(row.scrollWidth - row.clientWidth, start + r.left - box.left - 24),
         );
-      if (Math.abs(end - start) < 2) return;
+      if (Math.abs(end - start) < 2) {
+        row.style.scrollSnapType = '';
+        return;
+      }
       const y = r.top + r.height / 2,
         travel = Math.max(-240, Math.min(240, end - start));
       if (show()) {
@@ -297,6 +307,7 @@ export function createAct(opts: {
         await sleep(200);
         cue.hide();
       }
+      row.style.scrollSnapType = '';
       await sleep(show() ? 350 : 40);
     },
     /** Zoom the Future map by a factor, about the middle of its goals, through its own pinch-zoom. */
@@ -367,7 +378,8 @@ export function createAct(opts: {
         await sleep(500);
         cue.press(true);
       }
-      await animate(show() ? 2000 : 0, (t) => {
+      // In a film the thumb travels slowly enough to watch every figure change.
+      await animate(show() ? (pace > 1 ? 3000 : 2000) : 0, (t) => {
         const v = from + (value - from) * t;
         set(v);
         if (show()) {
