@@ -54,7 +54,7 @@ const futureFilm: Beat[] = [
   {
     id: 'what-if',
     chapter: future,
-    headline: 'What if: browse, then choose',
+    headline: 'What if',
     sub: '',
     who: ['sam'],
     layout: 'film',
@@ -64,41 +64,13 @@ const futureFilm: Beat[] = [
         if (!a.visible('[data-action="future-try:closer-ef"]'))
           await a.tap('.future-drawer text:What if', 'What if');
         await a.hold(700);
-        // Browse the ideas first, as a person would, then come back and choose one.
-        for (const id of ['roundup-ef', 'pause-ef', 'priority-ef']) {
-          await a.swipeTo(`[data-action="future-try:${id}"]`);
-          await a.hold(900);
-        }
-        await a.swipeTo('[data-action="future-try:closer-ef"]');
+        await a.swipeTo('[data-action="future-try:roundup-ef"]');
         await a.hold(500);
-        await a.tap('[data-action="future-try:closer-ef"]', 'Save £50 on payday');
+        await a.tap('[data-action="future-try:roundup-ef"]', 'Round up your spending');
         await a.hold(1600);
       },
     },
     pointers: [{ run: 'sam', target: '#support-dock', label: 'A preview, before agreeing' }],
-  },
-  {
-    id: 'combine',
-    chapter: future,
-    headline: 'What if: changes combine',
-    sub: '',
-    who: ['sam'],
-    layout: 'film',
-    runs: ['sam'],
-    steps: {
-      sam: async (a) => {
-        await a.swipeTo('[data-action="future-try:roundup-ef"]');
-        await a.tap('[data-action="future-try:roundup-ef"]', 'Round up your spending');
-        await a.hold(1200);
-      },
-    },
-    pointers: [
-      {
-        run: 'sam',
-        target: '[data-action="future-try:roundup-ef"]',
-        label: 'Two changes together',
-      },
-    ],
   },
   {
     id: 'money-speed',
@@ -110,17 +82,11 @@ const futureFilm: Beat[] = [
     runs: ['sam'],
     steps: {
       sam: async (a) => {
-        // Money Speed shows the agreed plan for the month on the timeline: clear the previews, back to today.
-        for (const el of a.doc.querySelectorAll<HTMLElement>(
-          '[data-action^="future-try:"][aria-pressed="true"]',
-        ))
-          a.dispatch(el.dataset.action!);
-        await a.drag('#time-slider', 0, 'Back to today');
         await a.tap('[data-action="future-speed"]', 'Money Speed');
         await a.hold(900);
       },
     },
-    pointers: [{ run: 'sam', target: '.fg-speed-ring', label: 'This month’s pace' }],
+    pointers: [{ run: 'sam', target: '.fg-speed-ring', label: 'Money Speed' }],
   },
 ];
 
@@ -154,8 +120,6 @@ const companionFilm: Beat[] = [
     pointers: [{ run: 'elena', target: '#support-dock', label: 'A note from Priya' }],
   },
   scrollBeat('wealth', '[data-module="wealth"]', 'Explains what’s on screen'),
-  scrollBeat('goal', '[data-module="familypot"]', 'Keeps a goal in view'),
-  scrollBeat('points', '[data-module="points"]', 'Recognises progress'),
   {
     id: 'back',
     chapter: companion,

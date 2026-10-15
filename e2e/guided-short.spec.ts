@@ -126,7 +126,7 @@ test('the close hands over the working prototype, and Escape returns', async ({ 
   await expect(page.locator('#slide-12')).toBeVisible();
 });
 
-test('the Future film is the device alone, ending on Money Speed for today', async ({ page }) => {
+test('the Future film is the device alone, ending on Money Speed', async ({ page }) => {
   await page.goto('/demo/?version=future');
   await ready(page);
   await expect(page).toHaveURL(/#goals$/);
@@ -135,7 +135,7 @@ test('the Future film is the device alone, ending on Money Speed for today', asy
   await expect(page.locator('.deck-header')).toBeHidden();
   await page.goto('/demo/?version=future#money-speed');
   await ready(page);
-  await expect(frame(page, 'sam').locator('#overlay')).toContainText('£420');
+  await expect(frame(page, 'sam').locator('#overlay')).toContainText('Your future in motion');
 });
 
 test('the Companion film follows Elena from a contextual message to Priya’s agenda', async ({
