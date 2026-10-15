@@ -359,7 +359,6 @@ body.g-film #g-stage-host {
 body.g-film .deck-header,
 body.g-film .g-copy,
 body.g-film .g-timeline,
-body.g-film .g-progress,
 body.g-film .g-montage-tab,
 body.g-film .g-label-who {
   display: none;
@@ -368,4 +367,31 @@ body.g-film .g-label-who {
 body[data-guided='short'] #deck :focus,
 body[data-guided='short'] #deck :focus-visible {
   outline: none;
+}
+/* Progress: the current step shimmers while it plays and turns solid once it has settled, so the
+   presenter knows when to move on. */
+#g-stage:is([data-status='preparing'], [data-status='playing']) .g-progress [data-state='current'] {
+  background: linear-gradient(90deg, #db001133 0%, #db0011 50%, #db001133 100%) 0 0 / 200% 100%;
+  animation: g-progress-play 1.1s linear infinite;
+}
+@keyframes g-progress-play {
+  to {
+    background-position: -200% 0;
+  }
+}
+body.g-film .g-progress {
+  left: 560px;
+  right: 560px;
+  bottom: 14px;
+}
+body.g-film .g-progress i {
+  height: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  #g-stage:is([data-status='preparing'], [data-status='playing'])
+    .g-progress
+    [data-state='current'] {
+    animation: none;
+    background: #db001155;
+  }
 }
