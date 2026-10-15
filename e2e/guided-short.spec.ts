@@ -135,7 +135,7 @@ test('the Future film is the device alone, ending on Money Speed', async ({ page
   await expect(page.locator('.deck-header')).toBeHidden();
   await page.goto('/demo/?version=future#money-speed');
   await ready(page);
-  await expect(frame(page, 'sam').locator('#overlay')).toContainText('Your future in motion');
+  await expect(frame(page, 'sam').locator('#overlay')).toContainText('£440');
 });
 
 test('the Companion film follows Elena from a contextual message to Priya’s agenda', async ({

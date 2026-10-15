@@ -56,10 +56,10 @@ Product changes made for this story apply to the app as a whole: Safe to spend i
 
 Two short films reuse the same beats engine without slides, copy, timeline or progress: one device, centred on white, with touch cues and pointers. `src/demo/guided/films.ts` holds them; `entry.ts` routes `?version=future` and `?version=companion` to the engine, which marks the page `g-film`.
 
-- `/demo/?version=future` · Sam's Future: competing goals (opened directly, a little closer in), Time Travel to 40, a swipe to Round up your spending and selecting it, then Money Speed. Money Speed shows the month on the timeline, so at 40 it shows that month's plan.
+- `/demo/?version=future` · Sam's Future: competing goals (opened directly, a little closer in), Time Travel to 40, a swipe to Round up your spending and selecting it, then Money Speed. Money Speed shows the month on the timeline, so the timeline returns to today as its sheet opens: today's plan with the round-ups (£440).
 - `/demo/?version=companion` · Elena's Companion: Priya's note, the message changing as she scrolls to her total wealth, back to the note, Prepare with AI, voice, the review card, and the open question added to Priya's agenda.
 
-Films play at a slower pace than the presentation (`pace` in `act.ts`), so they read as someone using the phone: the finger arrives before each tap and ripples on press, scrolls glide, Time Travel takes about four seconds so every figure can be seen changing, and the What if carousel glides under the finger (snapping is paused while it swipes). The presenter advances with the same keys. Add `&autoplay` (or `&autoplay=4000` for a hold in milliseconds) to let a film move on by itself once each beat settles, for screen recording.
+Films play at a slower pace than the presentation (`pace` in `act.ts`), so they read as someone using the phone: the finger arrives before each tap and ripples on press, scrolls glide, Time Travel takes about four seconds so every figure can be seen changing, and the What if carousel glides under the finger (snapping is paused while it swipes). The presenter advances with the same keys; focus rings are switched off on the stage and inside the demo phones, since the keyboard drives the presentation. Add `&autoplay` (or `&autoplay=4000` for a hold in milliseconds) to let a film move on by itself once each beat settles, for screen recording.
 
 ## Boundaries and verification
 

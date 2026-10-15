@@ -157,6 +157,11 @@ function load(f: Frame) {
       const w = f.iframe.contentWindow as
         (Window & { atlas?: unknown; HTMLMediaElement?: typeof HTMLMediaElement }) | null;
       if (w?.atlas && f.iframe.contentDocument?.querySelector('#content')) {
+        // The presenter drives with the keyboard, so the browser would draw focus rings the audience never needs.
+        const quiet = f.iframe.contentDocument!.createElement('style');
+        quiet.textContent =
+          ':focus,:focus-visible,:focus-within{outline:none!important}:focus-visible{box-shadow:none!important}';
+        f.iframe.contentDocument!.head.append(quiet);
         // The demo never makes sound: the briefing player runs, silently, whatever the app sets.
         const media = w.HTMLMediaElement!.prototype,
           play = media.play;

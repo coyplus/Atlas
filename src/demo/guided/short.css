@@ -364,3 +364,8 @@ body.g-film .g-montage-tab,
 body.g-film .g-label-who {
   display: none;
 }
+/* The presenter drives with the keyboard: no focus rings on the stage. */
+body[data-guided='short'] #deck :focus,
+body[data-guided='short'] #deck :focus-visible {
+  outline: none;
+}

@@ -176,7 +176,8 @@ export function createAct(opts: {
     dispatch: (action: string) => win().atlas!.dispatch(action),
     closeAll: () => (win().atlas!.closeAll as () => void)(),
     /** Point at a control, press, then use it: click it, or dispatch an equivalent quieter action. */
-    async tap(spec: string, label: string, action?: string) {
+    /** `before` runs at the moment of the press, under the screen the tap opens. */
+    async tap(spec: string, label: string, action?: string, before?: () => void) {
       const el = await wait(spec);
       if (show()) {
         const p = centre(el);
@@ -187,6 +188,7 @@ export function createAct(opts: {
         cue.press(false);
       }
       check();
+      before?.();
       if (action) win().atlas!.dispatch(action);
       else el.click();
       if (show()) {

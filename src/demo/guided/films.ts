@@ -82,7 +82,10 @@ const futureFilm: Beat[] = [
     runs: ['sam'],
     steps: {
       sam: async (a) => {
-        await a.tap('[data-action="future-speed"]', 'Money Speed');
+        // Money Speed shows the month on the timeline; open it on today's plan, reset as the sheet covers the map.
+        await a.tap('[data-action="future-speed"]', 'Money Speed', undefined, () =>
+          (a.win.atlas!.setT as (m: number) => void)(0),
+        );
         await a.hold(900);
       },
     },
