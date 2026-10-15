@@ -96,6 +96,8 @@ host.innerHTML = `<div id="g-stage" role="region" aria-label="Guided demonstrati
   <div class="g-progress"></div>
   <p class="g-status" role="status" aria-live="polite"></p>
 </div>`;
+// In a film the progress bar runs along the bottom of the window, outside the scaled stage.
+if (film) host.append($('.g-progress', host));
 const stage = $('#g-stage'),
   framesLayer = $('.g-frames', stage),
   overlay = $('.g-overlay', stage),
@@ -405,7 +407,7 @@ function renderChrome(b: Beat) {
         : '';
   });
   const chapters = [...new Set(list.map((e) => e.beat!.chapter))];
-  $('.g-progress', stage).innerHTML = chapters
+  $('.g-progress', host).innerHTML = chapters
     .map(
       (ch) =>
         `<div>${list

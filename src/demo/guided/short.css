@@ -370,7 +370,9 @@ body[data-guided='short'] #deck :focus-visible {
 }
 /* Progress: the current step shimmers while it plays and turns solid once it has settled, so the
    presenter knows when to move on. */
-#g-stage:is([data-status='preparing'], [data-status='playing']) .g-progress [data-state='current'] {
+#g-stage-host:has(#g-stage:is([data-status='preparing'], [data-status='playing']))
+  .g-progress
+  [data-state='current'] {
   background: linear-gradient(90deg, #db001133 0%, #db0011 50%, #db001133 100%) 0 0 / 200% 100%;
   animation: g-progress-play 1.1s linear infinite;
 }
@@ -380,15 +382,17 @@ body[data-guided='short'] #deck :focus-visible {
   }
 }
 body.g-film .g-progress {
-  left: 560px;
-  right: 560px;
-  bottom: 14px;
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 10px;
+  gap: 8px;
 }
 body.g-film .g-progress i {
   height: 4px;
 }
 @media (prefers-reduced-motion: reduce) {
-  #g-stage:is([data-status='preparing'], [data-status='playing'])
+  #g-stage-host:has(#g-stage:is([data-status='preparing'], [data-status='playing']))
     .g-progress
     [data-state='current'] {
     animation: none;
